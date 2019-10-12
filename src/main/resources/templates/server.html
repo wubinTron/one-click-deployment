@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>一键部署网站</title>
+
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/nav.css">
+<link rel="stylesheet" type="text/css" href="css/iconfont.css">
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/nav.js"></script>
+
+</head>
+<body>
+	<script>
+		document.writeln("<style type=\"text/css\">");
+		document
+				.writeln(".schmenu{height:33px; line-height:33px; background:#636871; width:100%; margin:0 auto; overflow:hidden;}");
+		document
+				.writeln(".schmenu ul{width:1180px; margin:0 auto; overflow:hidden;}");
+		document.writeln(".schmenu ul li{float:left;list-style:none;}");
+		document
+				.writeln(".schmenu ul li a{height:33px; line-height:33px; display:block;color:#fff; font-size: 13px; padding: 0 10px;text-decoration: none;}");
+		document
+				.writeln(".schmenu ul li a:hover{color:#fff; background:#000; text-decoration:none;-moz-transition:all 0.2s ease;-webkit-transition:all 0.2s ease;-o-transition:all 0.2s ease;-moz-transition:all 0.2s ease;transition:all 0.2s ease;}");
+		document.writeln("<\/style>");
+		document.writeln("<div class=\"schmenu\">");
+		document.writeln("<ul>");
+		document.writeln("<li><a href=\"">返回首页<\/a><\/li>");
+		document.writeln("<\/ul>");
+		document.writeln("<\/div>");
+	</script>
+	<div class="nav">
+		<div class="nav-top">
+			<div id="mini"
+				style="border-bottom: 1px solid rgba(255, 255, 255, .1)">
+				<img src="images/favicon.png">
+			</div>
+		</div>
+		<ul>
+			<li class="nav-item"><a href="/server.html"><i
+					class="my-icon nav-icon icon_1"></i><span>服务器</span><i
+					class="my-icon nav-more"></i></a>
+				<ul>
+					<li><a href="/server.html"><span>服务器管理</span></a></li>
+					<li><a href=""><span>集群管理</span></a></li>
+				</ul></li>
+			<li class="nav-item"><a href="javascript:;"><i
+					class="my-icon nav-icon icon_2"></i><span>项目</span><i
+					class="my-icon nav-more"></i></a>
+				<ul>
+					<li><a href="javascript:;"><span>项目管理</span></a></li>
+					<li><a href="javascript:;"><span>空间管理</span></a></li>
+				</ul></li>
+			<li class="nav-item"><a href="javascript:;"><i
+					class="my-icon nav-icon icon_3"></i><span>配置文件</span><i
+					class="my-icon nav-more"></i></a>
+				<ul>
+					<li><a href="javascript:;"><span>配置网络</span></a></li>
+					<li><a href="javascript:;"><span>配置数据库引擎</span></a></li>
+				</ul></li>
+		</ul>
+	</div>
+	<div
+		style="text-align: center; margin: -650px 0; font: normal 14px/24px 'MicroSoft YaHei';">
+		<h5>新增服务器</h5>
+	</div>
+
+
+	<form role="form">
+		<div class="form-group">
+			<label>测试网</label> <input type="net" placeholder="请输入测试网类型"
+				class="form-control">
+		</div>
+		<div class="form-group">
+			<label>服务器名称</label> <input type="server" placeholder="请输入服务器名称"
+				class="form-control">
+		</div>
+		<div class="form-group">
+			<label>IP/HOST</label> <input type="ip" placeholder="请输入IP/HOST"
+				class="form-control">
+		</div>
+		<div class="form-group">
+			<label>SSH端口</label> <input type="port" placeholder="请输入SSH端口"
+				class="form-control">
+		</div>
+		<div>
+			<button class="btn btn-sm btn-primary pull-right m-t-n-xs"
+				type="submit">
+				<strong>确 定</strong>
+			</button>
+		</div>
+	</form>
+</body>
+</html>
