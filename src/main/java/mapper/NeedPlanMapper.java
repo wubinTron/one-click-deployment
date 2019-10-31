@@ -19,6 +19,4 @@ public interface NeedPlanMapper {
 
     void updateNeedPlan(NeedPlan needPlan);
 
-
-
 }
