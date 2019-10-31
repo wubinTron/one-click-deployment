@@ -2,7 +2,6 @@ package tron.deployment.shellExecutor;
 
 import static common.Common.logFormat;
 
-import com.google.common.collect.Streams;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ClassPathResource;
@@ -11,8 +10,6 @@ import org.springframework.core.io.Resource;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.ResourceUtils;
 
 public class BashExecutor {
 
@@ -24,7 +21,7 @@ public class BashExecutor {
             if (privateKey.length() != 0) {
                 cmdArray = ArrayUtils.add(cmdArray, privateKey);
             }
-            String logName = String.format(">> ".concat(logFormat), id.toString());
+            String logName = String.format("> ".concat(logFormat), id.toString());
             cmdArray = ArrayUtils.add(cmdArray, logName);
             String cmd = StringUtils.join(cmdArray, " ");
             Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
@@ -42,48 +39,49 @@ public class BashExecutor {
         }
     }
 
-    public void callDeployScript(String ip, Long port, String userName, String path){
-        try {
-            Resource resource = new ClassPathResource("deployNode.bash");
-            File script =resource.getFile();
-            String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-            processBuilder.redirectErrorStream(true);
-            Process process = processBuilder.start();
-            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line = "";
-            while ((line = input.readLine()) != null) {
-                System.out.println(line);
-            }
-            input.close();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+//    public void callDeployScript(String ip, Long port, String userName, String path){
+//        try {
+//            Resource resource = new ClassPathResource("deployNode.bash");
+//            File script =resource.getFile();
+//            String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
+//            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+//            processBuilder.redirectErrorStream(true);
+//            Process process = processBuilder.start();
+//            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//            String line = "";
+//            while ((line = input.readLine()) != null) {
+//                System.out.println(line);
+//            }
+//            input.close();
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void callScript2(String ip, Long port, String userName, String path, String privateKey){
+//        try {
+//            Resource resource = new ClassPathResource("deployNode.bash");
+//            File script =resource.getFile();
+//            String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
+//            if (privateKey.length() != 0) {
+//                ArrayUtils.add(cmd, privateKey);
+//            }
+//            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
+//            processBuilder.redirectErrorStream(true);
+//            Process process = processBuilder.start();
+//            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//            String line = "";
+//            while ((line = input.readLine()) != null) {
+//                System.out.println(line);
+//            }
+//            input.close();
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//        }
+//    }
 
-    public void callScript2(String ip, Long port, String userName, String path, String privateKey){
-        try {
-            Resource resource = new ClassPathResource("deployNode.bash");
-            File script =resource.getFile();
-            String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
-            if (privateKey.length() != 0) {
-                ArrayUtils.add(cmd, privateKey);
-            }
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-            processBuilder.redirectErrorStream(true);
-            Process process = processBuilder.start();
-            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line = "";
-            while ((line = input.readLine()) != null) {
-                System.out.println(line);
-            }
-            input.close();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
     public void callBuildScript(String branch){
         try {
             Resource resource = new ClassPathResource("build.bash");

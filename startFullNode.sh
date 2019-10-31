@@ -5,7 +5,7 @@ JAR_NAME="$APP.jar"
 MAX_STOP_TIME=60
 
 checkpid() {
- pid=`ps -ef | grep $JAR_NAME |grep -v grep | awk '{print $2}'`
+ pid=`ps ux | grep $JAR_NAME |grep -v grep | awk '{print $2}'`
  return $pid
 }
 
