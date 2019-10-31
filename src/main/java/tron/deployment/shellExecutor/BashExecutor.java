@@ -11,19 +11,20 @@ import org.springframework.core.io.Resource;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 
 public class BashExecutor {
 
     public void callScript(String ip, Long port, String userName, String path, String privateKey, Long id){
         try {
+            String absolutePath = System.getProperty("user.dir").concat("/deployNode.bash");
 
-            Resource resource = new ClassPathResource("deploy.bash");
-            File script =resource.getFile();
-            String[] cmdArray = {script.getAbsolutePath(), ip, port.toString(), userName, path};
+            String[] cmdArray = {absolutePath, ip, port.toString(), userName, path};
             if (privateKey.length() != 0) {
                 cmdArray = ArrayUtils.add(cmdArray, privateKey);
             }
-            String logName = String.format(">> " + logFormat, id.toString());
+            String logName = String.format(">> ".concat(logFormat), id.toString());
             cmdArray = ArrayUtils.add(cmdArray, logName);
             String cmd = StringUtils.join(cmdArray, " ");
             Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
@@ -43,7 +44,7 @@ public class BashExecutor {
 
     public void callDeployScript(String ip, Long port, String userName, String path){
         try {
-            Resource resource = new ClassPathResource("deploy.bash");
+            Resource resource = new ClassPathResource("deployNode.bash");
             File script =resource.getFile();
             String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
             ProcessBuilder processBuilder = new ProcessBuilder(cmd);
@@ -63,7 +64,7 @@ public class BashExecutor {
 
     public void callScript2(String ip, Long port, String userName, String path, String privateKey){
         try {
-            Resource resource = new ClassPathResource("deploy.bash");
+            Resource resource = new ClassPathResource("deployNode.bash");
             File script =resource.getFile();
             String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
             if (privateKey.length() != 0) {
