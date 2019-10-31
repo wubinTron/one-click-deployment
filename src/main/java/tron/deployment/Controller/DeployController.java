@@ -5,6 +5,14 @@ import static common.Util.readJsonFile;
 import common.Common;
 import common.ResultCode;
 import common.Util;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,7 +41,7 @@ public class DeployController {
 	public Object deploy(
 			@RequestParam(value = "id", required = false, defaultValue = "1") Long id,
 			@RequestParam(value = "path", required = false, defaultValue = "") String path
-  ) {
+	) {
 		JSONObject json = readJsonFile();
 		JSONArray nodes = (JSONArray)json.get(Common.nodesFile);
 		if (Objects.isNull(nodes)) {
@@ -51,12 +59,46 @@ public class DeployController {
 		String userName = (String)node.get(Common.userNameFile);
 		BashExecutor bashExecutor = new BashExecutor();
 		if (privateKey.length() != 0) {
-			bashExecutor.callScript(ip, port, userName, path, privateKey);
+			bashExecutor.callScript(ip, port, userName, path, privateKey, id);
 		} else {
-			bashExecutor.callScript(ip, port, userName, path, "");
+			bashExecutor.callScript(ip, port, userName, path, "", id);
 		}
 
 		return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/getLogInfo")
+	public JSONObject deploy(
+			@RequestParam(value = "id", required = false, defaultValue = "1") Long id
+	) {
+		String logName = String.format(Common.logFormat, id.toString());
+		File file = new File(logName);
+		String encoding = "GBK";
+		List<String> result= new ArrayList<>();
+		if (file.isFile() && file.exists()) {
+			try {
+				InputStreamReader read = new InputStreamReader(
+						new FileInputStream(file), encoding);
+				BufferedReader bufferedReader = new BufferedReader(read);
+				String lineTxt;
+
+				while ((lineTxt = bufferedReader.readLine()) != null)
+				{
+					result.add(lineTxt);
+				}
+				bufferedReader.close();
+				read.close();
+
+			} catch (Exception  e) {
+				e.printStackTrace();
+				return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "read log info failed").toJSONObject();
+			}
+		} else {
+			return new Response(ResultCode.NOT_FOUND.code, "log info file not found").toJSONObject();
+		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put(Common.logInfoFile, result);
+		return new Response(ResultCode.OK.code, jsonObject).toJSONObject();
 	}
 
 	public void init() {
@@ -65,5 +107,3 @@ public class DeployController {
 	}
 
 }
-
-

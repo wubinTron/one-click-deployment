@@ -43,4 +43,8 @@ public class Common {
   public static final String chainIdFile = "chainId";
 
   public static final String chainNameFile = "chainName";
+
+  public static final String logInfoFile = "logInfo";
+
+  public static final String logFormat = "logs/result_%s.log" ;
 }
