@@ -15,15 +15,15 @@ fi
 
 scp -P $2  $4 $3@$1:./java-tron/
 
+echo "uploading java-tron jar"
 result=`scp -P $2  ./config.conf $3@$1:./java-tron/ 2>&1`
 if [ -z $result ];then
-  echo "uploaded the jar"
+  echo "already uploading java-tron jar and config"
 else
-  echo "update jar and config failed"
+  echo "update java-tron jar and config failed"
   exit
 fi
 
-echo "uploaded the config file"
 if [ -z $5 ]; then
    echo "deploy FullNode"
    scp -P $2 ./start.sh $3@$1:./java-tron/

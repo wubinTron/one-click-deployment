@@ -117,7 +117,7 @@ public class ConfigControlller {
 
     // network
     networkConfig = new NetworkConfig(Args.getMaxHttpConnectNumber(config), Args.getRPCFullNodePort(config),
-        Args.getHTTPFullNodePort(config), Args.getRPCSolidityNodePort(config), Args.getHTTPSolidityNodePort(config));
+        Args.getHTTPFullNodePort(config), Args.getRPCSolidityNodePort(config), Args.getHTTPSolidityNodePort(config), Args.getListenPort(config));
 
     // crossChain
     initCrossSetting();
@@ -178,10 +178,12 @@ public class ConfigControlller {
       @RequestParam(value = "rpcPort", required = false, defaultValue = "50051") int rpcPort,
       @RequestParam(value = "rpcSolidityPort", required = false, defaultValue = "50061") int solidityRPCPort,
       @RequestParam(value = "httpFullNodePort", required = false, defaultValue = "8090") int httpFullNodePort,
-      @RequestParam(value = "httpSolidityPort", required = false, defaultValue = "8091") int httpSolidityPort
+      @RequestParam(value = "httpSolidityPort", required = false, defaultValue = "8091") int httpSolidityPort,
+      @RequestParam(value = "listenPort", required = false, defaultValue = "18889") int listenPort
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
-    boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, rpcPort, solidityRPCPort, httpFullNodePort, httpSolidityPort));
+    boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, rpcPort, solidityRPCPort,
+        httpFullNodePort, httpSolidityPort, listenPort));
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
     }

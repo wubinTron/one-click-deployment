@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.tron.core.Constant;
 import org.tron.core.Wallet;
 import org.tron.core.config.args.Account;
 import org.tron.core.config.args.SeedNode;
@@ -21,6 +22,7 @@ public class Args {
   private static final String MAX_ACTIVE_CONNECT_FACTOR_KEY = "node.activeConnectFactor";
   private static final String MAX_ACTIVE_NODE_WITH_SAME_IP_KEY = "node.maxActiveNodesWithSameIp";
   private static final String CONNECT_FACTOR_KEY = "node.connectFactor";
+  private static final String NODE_LISTEN_PORT = "node.listen.port";
 
 
   public static boolean needToUpdateAsset(final Config config) {
@@ -136,5 +138,9 @@ public class Args {
           ? null : config.getStringList("seed.node.ip.list");
     }
     return null;
+  }
+
+  public static int getListenPort(final Config config) {
+    return config.hasPath(NODE_LISTEN_PORT) ? config.getInt(NODE_LISTEN_PORT) : 0;
   }
 }
