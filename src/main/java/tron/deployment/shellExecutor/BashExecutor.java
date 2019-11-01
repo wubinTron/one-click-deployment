@@ -2,6 +2,7 @@ package tron.deployment.shellExecutor;
 
 import static common.Common.logFormat;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.ClassPathResource;
@@ -11,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 
+@Slf4j
 public class BashExecutor {
 
     public void callScript(String ip, Long port, String userName, String path, String privateKey, Long id){
@@ -25,6 +27,7 @@ public class BashExecutor {
             cmdArray = ArrayUtils.add(cmdArray, logName);
             String cmd = StringUtils.join(cmdArray, " ");
             Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
+            log.info("deploy cmd: {}", cmd);
 //            Process process = Runtime.getRuntime().exec(cmd, evnp, dir);
 //            process = Runtime.getRuntime().exec(cmd);
 //            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
