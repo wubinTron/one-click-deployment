@@ -4,8 +4,8 @@ echo "Start ssh deployment"
 noCheck="StrictHostKeyChecking no"
 
 ssh -p $2 $3@$1 -o "${noCheck}" "rm -rf java-tron"
-result=`ssh -p $2 $3@$1 "mkdir java-tron"`
-if [ -z "$str" ];then
+result=`ssh -p $2 $3@$1 "mkdir java-tron" 2>&1`
+if [ -z $result ];then
   echo "made the directory"
 else
   echo "ssh connect failed"
@@ -15,8 +15,8 @@ fi
 
 scp -P $2  $4 $3@$1:./java-tron/
 
-result=`scp -P $2  ./config.conf $3@$1:./java-tron/`
-if [ -z "$str" ];then
+result=`scp -P $2  ./config.conf $3@$1:./java-tron/ 2>&1`
+if [ -z "$result" ];then
   echo "uploaded the jar"
 else
   echo "update jar and config failed"
