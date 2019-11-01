@@ -16,7 +16,7 @@ fi
 scp -P $2  $4 $3@$1:./java-tron/
 
 result=`scp -P $2  ./config.conf $3@$1:./java-tron/ 2>&1`
-if [ -z "$result" ];then
+if [ -z $result ];then
   echo "uploaded the jar"
 else
   echo "update jar and config failed"
