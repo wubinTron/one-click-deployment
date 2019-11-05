@@ -4,8 +4,9 @@ import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
 
 import common.Common;
-import common.ResultCode;
+import response.ResultCode;
 import java.util.ArrayList;
+import java.util.List;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +27,7 @@ public class PluginConfig {
       @RequestParam(value = "consensus", required = false, defaultValue = "dpos") String consensus
   ){
     JSONObject json = readJsonFile();
-    json.put(Common.consensusFileName, consensus);
+    json.put(Common.consensusFiled, consensus);
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }
@@ -35,10 +36,19 @@ public class PluginConfig {
 
   @RequestMapping(method = RequestMethod.POST, value = "/transaction")
   public JSONObject transaction(
-      @RequestBody ArrayList<String> transactions
+      @RequestBody JSONObject jsonObject
   ){
+
+    if (!jsonObject.containsKey(Common.transactionFiled) || !jsonObject.containsKey(Common.customTransactionFiled)) {
+      return new Response(ResultCode.FAILED.code, "miss transaction or custom transaction").toJSONObject();
+    }
+
     JSONObject json = readJsonFile();
-    json.put(Common.transactionFileName, transactions);
+
+    List<String> transactions = (ArrayList<String>)jsonObject.get(Common.transactionFiled);
+    String customTransaction = (String) jsonObject.get(Common.customTransactionFiled);
+    json.put(Common.transactionFiled, transactions);
+    json.put(Common.customTransactionFiled, customTransaction);
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }
@@ -50,7 +60,7 @@ public class PluginConfig {
       @RequestParam(value = "dbEngine", required = false, defaultValue = "leveldb") String dbEngine
   ){
     JSONObject json = readJsonFile();
-    json.put(Common.dbEngineFileName, dbEngine);
+    json.put(Common.dbEngineFiled, dbEngine);
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }
@@ -61,9 +71,10 @@ public class PluginConfig {
   public JSONObject pluginConfig() {
     JSONObject json = readJsonFile();
     JSONObject result = new JSONObject();
-    result.put(Common.consensusFileName, json.get(Common.consensusFileName));
-    result.put(Common.transactionFileName, json.get(Common.transactionFileName));
-    result.put(Common.dbEngineFileName, json.get(Common.dbEngineFileName));
-    return result;
+    result.put(Common.consensusFiled, json.get(Common.consensusFiled));
+    result.put(Common.transactionFiled, json.get(Common.transactionFiled));
+    result.put(Common.dbEngineFiled, json.get(Common.dbEngineFiled));
+    result.put(Common.customTransactionFiled, json.get(Common.customTransactionFiled));
+    return new Response(ResultCode.OK.code, result).toJSONObject();
   }
 }

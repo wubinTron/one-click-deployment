@@ -4,7 +4,7 @@ import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
 
 import common.Common;
-import common.ResultCode;
+import response.ResultCode;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,8 +24,8 @@ public class BranchController {
   public JSONObject getBranch() {
     JSONObject json = readJsonFile();
     JSONObject result = new JSONObject();
-    result.put(Common.branchFileName, json.get(Common.branchFileName));
-    result.put(Common.branchNoteFileName, json.get(Common.branchNoteFileName));
+    result.put(Common.branchFiled, json.get(Common.branchFiled));
+    result.put(Common.branchNoteFiled, json.get(Common.branchNoteFiled));
     return new Response(ResultCode.OK.code, result).toJSONObject();
   }
 
@@ -36,8 +36,8 @@ public class BranchController {
   ) {
 
     JSONObject json = readJsonFile();
-    json.put(Common.branchFileName, branchName);
-    json.put(Common.branchNoteFileName, brachNote);
+    json.put(Common.branchFiled, branchName);
+    json.put(Common.branchNoteFiled, brachNote);
     if (!writeJsonFile(json))  {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }

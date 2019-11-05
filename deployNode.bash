@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Start ssh deployment"
+finish="deploy finish"
 noCheck="StrictHostKeyChecking no"
 
 ssh -p $2 $3@$1 -o "${noCheck}" "rm -rf java-tron"

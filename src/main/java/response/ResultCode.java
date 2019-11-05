@@ -1,4 +1,4 @@
-package common;
+package response;
 public enum ResultCode {
     OK(200),
     OK_NO_CONTENT(204),

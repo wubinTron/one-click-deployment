@@ -1,10 +1,9 @@
-package tron.deployment.pojo;
+package config;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigRenderOptions;
 
-import config.DBConfig;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

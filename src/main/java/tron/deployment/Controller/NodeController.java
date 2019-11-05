@@ -2,11 +2,19 @@ package tron.deployment.Controller;
 
 import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
+import static wallet.Wallet.hexs2Bytes;
+import static wallet.Wallet.private2Address;
 
 import common.Common;
-import common.ResultCode;
+import response.ResultCode;
 import common.Util;
+import entity.WitnessEntity;
+import config.GenesisWitnessConfig;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
@@ -15,21 +23,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.tron.keystore.CipherException;
 import response.Response;
+import config.ConfigGenerator;
 
 
 @CrossOrigin
 @RestController
 @Component
 @RequestMapping(value = "/")
+@Slf4j
 public class NodeController {
 
   private JSONArray removeNodeInfo(JSONArray nodes, Long id) {
     JSONArray newNodes = new JSONArray();
     for (int i = 0; i< nodes.size(); i++) {
       JSONObject node = (JSONObject) nodes.get(i);
-      Long nodeID = (Long) node.get(Common.idFile);
-      if (nodeID != id) {
+      Long nodeID = (Long) node.get(Common.idFiled);
+      if (nodeID == id) {
+        String privateKeyFile = (String) node.get(Common.privateKeyFiled);
+        File file = new File(String.format("%s/%s", Common.walletFiled, privateKeyFile));
+        if(file.exists()){
+          file.delete();
+        }
+      } else {
         newNodes.add(node);
       }
     }
@@ -38,16 +55,18 @@ public class NodeController {
 
   @RequestMapping(method = RequestMethod.POST, value = "/nodeInfo")
   public JSONObject addNode(
-      @RequestParam(value = "id", required = true, defaultValue = "1") Long id,
+      @RequestParam(value = "id", required = false, defaultValue = "1") Long id,
       @RequestParam(value = "userName", required = false, defaultValue = "node1") String userName,
       @RequestParam(value = "ip", required = false, defaultValue = "127.0.0.1") String ip,
       @RequestParam(value = "port", required = false, defaultValue = "8090") int port,
       @RequestParam(value = "isSR", required = false, defaultValue = "false") boolean isSR,
-      @RequestParam(value = "privateKey", required = false, defaultValue = "") String key
+      @RequestParam(value = "url", required = false, defaultValue = "") String url,
+      @RequestParam(value = "privateKey", required = false, defaultValue = "") String privateKey,
+      @RequestParam(value = "voteCount", required = false, defaultValue = "104") String voteCount
   ) {
 
     JSONObject json = readJsonFile();
-    JSONArray nodes = (JSONArray)json.get(Common.nodesFile);
+    JSONArray nodes = (JSONArray)json.get(Common.nodesFiled);
     if (Objects.isNull(nodes)) {
       nodes = new JSONArray();
     }
@@ -57,20 +76,29 @@ public class NodeController {
       return new Response(ResultCode.FORBIDDEND.code, "node id already exist").toJSONObject();
     }
 
-    JSONObject newNode = new JSONObject();
-    newNode.put(Common.idFile, id);
-    newNode.put(Common.userNameFile, userName);
-    newNode.put(Common.portFile, port);
-    newNode.put(Common.ipFile, ip);
-    newNode.put(Common.isSRFile, isSR);
-    newNode.put(Common.privateKeyFile, key);
-    nodes.add(newNode);
-    json.put(Common.nodesFile, nodes);
-
-    if (!writeJsonFile(json)) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
+    String path;
+    String publicKey;
+    try {
+      path = Util.importPrivateKey(hexs2Bytes(privateKey.getBytes()));
+      publicKey = private2Address(hexs2Bytes(privateKey.getBytes()));
+    } catch (CipherException | IOException e) {
+      log.error(e.toString()) ;
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
     }
-    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+
+    JSONObject newNode = new JSONObject();
+    newNode.put(Common.idFiled, id);
+    newNode.put(Common.userNameFiled, userName);
+    newNode.put(Common.portFiled, port);
+    newNode.put(Common.ipFiled, ip);
+    newNode.put(Common.isSRFiled, isSR);
+    newNode.put(Common.privateKeyFiled, path);
+    newNode.put(Common.publicKeyFiled, publicKey);
+    newNode.put(Common.UrlFiled, url);
+    newNode.put(Common.VoteCountFiled, voteCount);
+    nodes.add(newNode);
+
+    return updateNodesInfo(nodes, json);
   }
 
   @RequestMapping(method = RequestMethod.PUT, value = "/nodeInfo")
@@ -80,30 +108,41 @@ public class NodeController {
       @RequestParam(value = "ip", required = false, defaultValue = "") String ip,
       @RequestParam(value = "port", required = false, defaultValue = "") int port,
       @RequestParam(value = "isSR", required = false, defaultValue = "") boolean isSR,
-      @RequestParam(value = "privateKey", required = false, defaultValue = "") String key
+      @RequestParam(value = "privateKey", required = false, defaultValue = "") String key,
+      @RequestParam(value = "url", required = false, defaultValue = "") String url,
+      @RequestParam(value = "voteCount", required = false, defaultValue = "104") String voteCount
   ) {
 
     JSONObject json = readJsonFile();
-    JSONArray nodes = (JSONArray)json.get(Common.nodesFile);
+    JSONArray nodes = (JSONArray)json.get(Common.nodesFiled);
     JSONObject node = Util.getNodeInfo(nodes, id);
     if (node == null) {
       return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
     }
 
     nodes = removeNodeInfo(nodes, id);
-    node.put(Common.userNameFile, userName);
-    node.put(Common.portFile, port);
-    node.put(Common.ipFile, ip);
-    node.put(Common.isSRFile, isSR);
-    node.put(Common.privateKeyFile, key);
-    nodes.add(node);
-    json.put(Common.nodesFile, nodes);
-
-    boolean result = writeJsonFile(json);
-    if (!result) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
+    String path;
+    String publicKey;
+    try {
+      path = Util.importPrivateKey(hexs2Bytes(key.getBytes()));
+      publicKey = private2Address(hexs2Bytes(key.getBytes()));
+    } catch (CipherException | IOException e) {
+      log.error(e.toString()) ;
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
     }
-    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+
+    node.put(Common.userNameFiled, userName);
+    node.put(Common.portFiled, port);
+    node.put(Common.ipFiled, ip);
+    node.put(Common.isSRFiled, isSR);
+    node.put(Common.privateKeyFiled, path);
+    node.put(Common.publicKeyFiled, publicKey);
+    node.put(Common.UrlFiled, url);
+    node.put(Common.VoteCountFiled, voteCount);
+    nodes.add(node);
+    json.put(Common.nodesFiled, nodes);
+
+    return updateNodesInfo(nodes, json);
   }
 
 
@@ -113,7 +152,7 @@ public class NodeController {
   ) {
 
     JSONObject json = readJsonFile();
-    JSONArray nodes = (JSONArray) json.get(Common.nodesFile);
+    JSONArray nodes = (JSONArray) json.get(Common.nodesFiled);
     if (Objects.isNull(nodes)) {
       nodes = new JSONArray();
     }
@@ -130,7 +169,7 @@ public class NodeController {
   ) {
 
     JSONObject json = readJsonFile();
-    JSONArray nodes = (JSONArray) json.get(Common.nodesFile);
+    JSONArray nodes = (JSONArray) json.get(Common.nodesFiled);
     return new Response(ResultCode.OK.code, nodes).toJSONObject();
   }
 
@@ -140,7 +179,7 @@ public class NodeController {
   ) {
 
     JSONObject json = readJsonFile();
-    JSONArray nodes = (JSONArray) json.get(Common.nodesFile);
+    JSONArray nodes = (JSONArray) json.get(Common.nodesFiled);
     if (Objects.isNull(nodes)) {
       nodes = new JSONArray();
     }
@@ -150,7 +189,26 @@ public class NodeController {
       return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
     }
 
-    json.put(Common.nodesFile, newNodes);
+    return updateNodesInfo(newNodes, json);
+  }
+
+  JSONObject updateNodesInfo(JSONArray nodes, JSONObject json) {
+    ConfigGenerator configGenerator = new ConfigGenerator();
+
+    ArrayList<WitnessEntity> array = new ArrayList<>();
+    for (int i = 0; i< nodes.size(); i++) {
+      JSONObject node = (JSONObject) nodes.get(i);
+      array.add(new WitnessEntity((String) node.get(Common.publicKeyFiled),
+          (String)node.get(Common.UrlFiled), (String)node.get(Common.VoteCountFiled)));
+    }
+    GenesisWitnessConfig witnessConfig =  new GenesisWitnessConfig();
+    witnessConfig.setGenesisBlockWitnesses(array);
+    if (configGenerator.updateConfig(witnessConfig) == false) {
+      log.error("update witness config file failed");
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update witness config file failed").toJSONObject();
+    }
+
+    json.put(Common.nodesFiled, nodes);
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }

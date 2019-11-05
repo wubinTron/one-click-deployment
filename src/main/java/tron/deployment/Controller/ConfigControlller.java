@@ -9,15 +9,15 @@ import static org.tron.core.config.args.Storage.getDbVersionSyncFromConfig;
 import static org.tron.core.config.args.Storage.getIndexDirectoryFromConfig;
 import static org.tron.core.config.args.Storage.getTransactionHistoreSwitchFromConfig;
 
-import common.AssetsEntity;
+import entity.AssetsEntity;
 import common.Args;
 import common.Common;
-import common.ResultCode;
-import common.WitnessEntity;
+import response.ResultCode;
 import config.BaseSettingConfig;
 import config.CrossChainConfig;
 import config.DBConfig;
-import config.GenesisSettingConfig;
+import config.GenesisAssetConfig;
+import config.GenesisWitnessConfig;
 import config.NetworkConfig;
 import config.P2PConfig;
 import java.io.Serializable;
@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import response.Response;
-import tron.deployment.pojo.ConfigGenerator;
+import config.ConfigGenerator;
 
 
 @CrossOrigin
@@ -59,33 +59,36 @@ public class ConfigControlller {
   // baseSetting
   BaseSettingConfig baseSettingConfig;
   // genesisSetting
-  GenesisSettingConfig genesisSettingConfig;
+  GenesisAssetConfig genesisAssetConfig;
+
+  // genesisWitnessConfig
+  GenesisWitnessConfig genesisWitnessConfig;
 
   private void initCrossSetting() {
     JSONObject json = readJsonFile();
-    crossChainConfig = new CrossChainConfig((boolean)json.get(Common.enableCrossChainFile),
-        (Long)json.get(Common.maxValidatorNumberFile), (Long)json.get(Common.minValidatorNumberFile), (Double)json.get(Common.crossChainFeeFile));
+    crossChainConfig = new CrossChainConfig((boolean)json.get(Common.enableCrossChainFiled),
+        (Long)json.get(Common.maxValidatorNumberFiled), (Long)json.get(Common.minValidatorNumberFiled), (Double)json.get(Common.crossChainFeeFiled));
   }
 
   private void initBaseSettingConfig() {
     JSONObject json = readJsonFile();
-    chainId = (String)json.get(Common.chainIdFile);
-    chainName = (String)json.get(Common.chainNameFile);
+    chainId = (String)json.get(Common.chainIdFiled);
+    chainName = (String)json.get(Common.chainNameFiled);
     baseSettingConfig = new BaseSettingConfig(Args.getBlockProducedTimeOut(config), Args.getMaintenanceTimeInterval(config),
         Args.getProposalExpireTime(config), Args.getMinParticipationRate(config));
   }
 
   private List<String> getSeedNode() {
     JSONObject json = readJsonFile();
-    if (json.containsKey(Common.nodesFile) == false) {
+    if (json.containsKey(Common.nodesFiled) == false) {
       return null;
     }
-    JSONArray nodes = (JSONArray)json.get(Common.nodesFile);
+    JSONArray nodes = (JSONArray)json.get(Common.nodesFiled);
     List<String> result = new ArrayList<>();
     for (int i = 0; i < nodes.size(); i ++) {
       JSONObject node = (JSONObject)nodes.get(i);
-      if (node.containsKey(Common.ipFile) || node.containsKey(Common.portFile)) {
-        result.add(String.format("%s", node.get(Common.ipFile)));
+      if (node.containsKey(Common.ipFiled) || node.containsKey(Common.portFiled)) {
+        result.add(String.format("%s", node.get(Common.ipFiled)));
       }
     }
     return result;
@@ -125,8 +128,11 @@ public class ConfigControlller {
     // baseSetting
     initBaseSettingConfig();
 
-    // GenesisSetting
-    genesisSettingConfig = new GenesisSettingConfig(Args.getAccountsFromConfig(config), Args.getWitnessesFromConfig(config));
+    // GenesisAsset
+    genesisAssetConfig = new GenesisAssetConfig(Args.getAccountsFromConfig(config));
+
+    // GenesisWitness
+    genesisWitnessConfig = new GenesisWitnessConfig(Args.getWitnessesFromConfig(config));
   }
 
   private JSONObject getConfigJsonObject() {
@@ -145,12 +151,16 @@ public class ConfigControlller {
     configObject.put("crossChainConfig", crossChainObject);
 
     JSONObject baseSettingObject = generateJSONObject(baseSettingConfig.getClass().getFields(), baseSettingConfig);
-    baseSettingObject.put(Common.chainIdFile, chainId);
-    baseSettingObject.put(Common.chainNameFile, chainName);
+    baseSettingObject.put(Common.chainIdFiled, chainId);
+    baseSettingObject.put(Common.chainNameFiled, chainName);
     configObject.put("baseSettingConfig", baseSettingObject);
 
-    JSONObject genesisSettingObject = generateJSONObject(genesisSettingConfig.getClass().getFields(), genesisSettingConfig);;
-    configObject.put("genesisSetting", genesisSettingObject);
+    JSONObject genesisAssetObject = generateJSONObject(genesisAssetConfig.getClass().getFields(), genesisAssetConfig);
+    configObject.put("genesisAssetConfig", genesisAssetObject);
+
+    JSONObject genesisWitnessObject = generateJSONObject(genesisWitnessConfig.getClass().getFields(), genesisWitnessConfig);
+    configObject.put("genesisWitnessConfig", genesisWitnessObject);
+
     return configObject;
   }
 
@@ -218,10 +228,10 @@ public class ConfigControlller {
       @RequestParam(value = "crossChainFee", required = false, defaultValue = "0.00") double crossChainFee
   ) {
     JSONObject jsonObject = readJsonFile();
-    jsonObject.put(Common.enableCrossChainFile, enableCrossChain);
-    jsonObject.put(Common.maxValidatorNumberFile, maxValidatorNumber);
-    jsonObject.put(Common.minValidatorNumberFile, minValidatorNumber);
-    jsonObject.put(Common.crossChainFeeFile, crossChainFee);
+    jsonObject.put(Common.enableCrossChainFiled, enableCrossChain);
+    jsonObject.put(Common.maxValidatorNumberFiled, maxValidatorNumber);
+    jsonObject.put(Common.minValidatorNumberFiled, minValidatorNumber);
+    jsonObject.put(Common.crossChainFeeFiled, crossChainFee);
     boolean result = writeJsonFile(jsonObject);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update json file failed").toJSONObject();
@@ -238,8 +248,8 @@ public class ConfigControlller {
       @RequestParam(value = "proposalExpireTime", required = false, defaultValue = "259200000") int proposalExpireTime,
       @RequestParam(value = "minParticipationRate", required = false, defaultValue = "15") int minParticipationRate) {
     JSONObject jsonObject = readJsonFile();
-    jsonObject.put(Common.chainIdFile, chainId);
-    jsonObject.put(Common.chainNameFile, chainName);
+    jsonObject.put(Common.chainIdFiled, chainId);
+    jsonObject.put(Common.chainNameFiled, chainName);
     boolean result = writeJsonFile(jsonObject);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update json file failed").toJSONObject();
@@ -253,18 +263,16 @@ public class ConfigControlller {
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
 
-  @RequestMapping(method = RequestMethod.POST, value = "/genesisSetting")
+  @RequestMapping(method = RequestMethod.POST, value = "/genesisAssetConfig")
   public JSONObject genesisSettingConfig(@RequestBody JSONObject jsonObject) {
-    if (jsonObject.containsKey("witness") == false || jsonObject.containsKey("assets") == false) {
-      return new Response(ResultCode.FAILED.code, "miss assets or witness").toJSONObject();
+    if (jsonObject.containsKey(Common.assetsFiled) == false) {
+      return new Response(ResultCode.FAILED.code, "miss assets information").toJSONObject();
     }
-    List<AssetsEntity> assets = (ArrayList<AssetsEntity>)jsonObject.get("assets");
-    List<WitnessEntity> witness = (ArrayList<WitnessEntity>)jsonObject.get("witness");
+    List<AssetsEntity> assets = (ArrayList<AssetsEntity>)jsonObject.get(Common.assetsFiled);
     ConfigGenerator configGenerator = new ConfigGenerator();
-    GenesisSettingConfig genesisSettingConfig = new GenesisSettingConfig();
-    genesisSettingConfig.genesis_block_assets = assets;
-    genesisSettingConfig.genesis_block_witnesses = witness;
-    boolean result = configGenerator.updateConfig(genesisSettingConfig);
+    GenesisAssetConfig genesisAssetConfig = new GenesisAssetConfig();
+    genesisAssetConfig.genesis_block_assets = assets;
+    boolean result = configGenerator.updateConfig(genesisAssetConfig);
 
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();

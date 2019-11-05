@@ -2,49 +2,63 @@ package common;
 
 public class Common {
 
-  public static final String configFile = "config.conf";
+  public static final String configFiled = "config.conf";
 
-  public static final String originConfigFile = "originConfig.conf";
+  public static final String originConfigFiled = "originConfig.conf";
 
-  public static final String databaseFile = "database";
+  public static final String databaseFiled = "database";
 
-  public static final String branchFileName = "branch";
+  public static final String branchFiled = "branch";
 
-  public static final String consensusFileName = "consensus";
+  public static final String consensusFiled = "consensus";
 
-  public static final String transactionFileName = "transaction";
+  public static final String transactionFiled = "transaction";
 
-  public static final String dbEngineFileName = "dbEngine";
+  public static final String customTransactionFiled = "customTransaction";
 
-  public static final String branchNoteFileName = "branchNote";
+  public static final String assetsFiled = "assets";
 
-  public static final String idFile = "id";
+  public static final String witnessFiled = "witness";
 
-  public static final String nodesFile = "nodes";
+  public static final String dbEngineFiled = "dbEngine";
 
-  public static final String userNameFile = "userName";
+  public static final String branchNoteFiled = "branchNote";
 
-  public static final String portFile = "port";
+  public static final String idFiled = "id";
 
-  public static final String ipFile = "ip";
+  public static final String nodesFiled = "nodes";
 
-  public static final String isSRFile = "isSR";
+  public static final String userNameFiled = "userName";
 
-  public static final String privateKeyFile = "privateKey";
+  public static final String portFiled = "port";
 
-  public static final String enableCrossChainFile = "enableCrossChain";
+  public static final String ipFiled = "ip";
 
-  public static final String maxValidatorNumberFile = "maxValidatorNumber";
+  public static final String isSRFiled = "isSR";
 
-  public static final String minValidatorNumberFile = "minValidatorNumber";
+  public static final String privateKeyFiled = "privateKey";
 
-  public static final String crossChainFeeFile = "crossChainFee";
+  public static final String publicKeyFiled = "publicKey";
 
-  public static final String chainIdFile = "chainId";
+  public static final String UrlFiled = "url";
 
-  public static final String chainNameFile = "chainName";
+  public static final String VoteCountFiled = "voteCount";
 
-  public static final String logInfoFile = "logInfo";
+  public static final String enableCrossChainFiled = "enableCrossChain";
+
+  public static final String maxValidatorNumberFiled = "maxValidatorNumber";
+
+  public static final String minValidatorNumberFiled = "minValidatorNumber";
+
+  public static final String crossChainFeeFiled = "crossChainFee";
+
+  public static final String chainIdFiled = "chainId";
+
+  public static final String chainNameFiled = "chainName";
+
+  public static final String logInfoFiled = "logInfo";
+
+  public static final String walletFiled = "Wallet";
 
   public static final String logFormat = "logs/result_%s.log" ;
 }

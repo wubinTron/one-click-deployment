@@ -1,82 +1,40 @@
 package common;
 
-import com.typesafe.config.Config;
+import static wallet.Wallet.store2Keystore;
+import static wallet.WalletFile.createWalletFile;
+
 import com.typesafe.config.ConfigFactory;
-import com.typesafe.config.ConfigRenderOptions;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.lang.reflect.Field;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.util.StringUtils;
-import tron.deployment.pojo.Configuration;
+import org.tron.keystore.CipherException;
+import wallet.WalletFile;
 
 public class Util {
   public static com.typesafe.config.Config config;
-  public static  com.typesafe.config.Config originConfig;
 
   public static void parseConfig() {
-    File confFile = new File(Common.configFile);
+    File confFile = new File(Common.configFiled);
     config = ConfigFactory.parseFile(confFile);
   }
 
   public static void parseOriginConfig() {
-    File confFile = new File(Common.originConfigFile);
+    File confFile = new File(Common.originConfigFiled);
     config = ConfigFactory.parseFile(confFile);
-  }
-
-  static public void generateConfig(Configuration configuration){
-    // Load the original config file
-    File defaultConfigFile = new File(Common.configFile);
-    Config defaultConfig = ConfigFactory.parseFile(defaultConfigFile);
-    //use string builder to generate Config String
-    StringBuilder configSB = new StringBuilder();
-    Field[] fields = configuration.getClass().getFields();
-    for(Field field : fields ){
-      String fieldName = field.getName();
-      fieldName = fieldName.replaceAll("_",".");
-      Object value = null;
-      try {
-        value = field.get(configuration); // get the value
-      } catch (IllegalAccessException e) {
-        e.printStackTrace();
-      }
-      if (value!=null) {
-        configSB.append(fieldName).append("=")
-            .append(value.toString()).append(",");
-      }
-    }
-    Config modifiedConfig = ConfigFactory.parseString(configSB.toString());
-    Config newConfig = modifiedConfig.withFallback(defaultConfig);
-    String configStr = newConfig.root().render(
-        ConfigRenderOptions.defaults().setOriginComments(false).setComments(false).setJson(false));
-    File tempConfigFile = new File(Common.configFile);
-    try{
-      tempConfigFile.delete();
-      tempConfigFile.createNewFile();
-      FileWriter fileWriter = new FileWriter(tempConfigFile);
-      fileWriter.write(configStr);
-      fileWriter.flush();
-      fileWriter.close();
-      System.out.println("finish generation");
-    }
-    catch (IOException e){
-      e.printStackTrace();
-    }
   }
 
   static public JSONObject readJsonFile() {
     JSONParser parser = new JSONParser();
     JSONObject jsonObject = null;
     try {
-      Object obj = parser.parse(new FileReader(Common.databaseFile));
+      Object obj = parser.parse(new FileReader(Common.databaseFiled));
       jsonObject = (JSONObject) obj;
     } catch (IOException  | ParseException e) {
       e.printStackTrace();
@@ -87,7 +45,7 @@ public class Util {
   static public boolean writeJsonFile(JSONObject json) {
     Writer write;
     try {
-      write = new OutputStreamWriter(new FileOutputStream(Common.databaseFile), "UTF-8");
+      write = new OutputStreamWriter(new FileOutputStream(Common.databaseFiled), "UTF-8");
       write.write(json.toString());
       write.flush();
       write.close();
@@ -101,11 +59,18 @@ public class Util {
   static public JSONObject getNodeInfo(JSONArray nodes, Long id) {
     for (int i = 0; i< nodes.size(); i++) {
       JSONObject node = (JSONObject) nodes.get(i);
-      Long nodeID = (Long) node.get(Common.idFile);
+      Long nodeID = (Long) node.get(Common.idFiled);
       if (nodeID == id) {
         return node;
       }
     }
     return null;
   }
+
+  public static String importPrivateKey(byte[] priKey) throws CipherException, IOException {
+    WalletFile walletFile = createWalletFile(new byte[] {}, priKey);
+    String keystoreName = store2Keystore(walletFile);
+    return keystoreName;
+  }
+
 }

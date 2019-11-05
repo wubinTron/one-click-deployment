@@ -1,4 +1,4 @@
-package common;
+package entity;
 
 import org.tron.core.Wallet;
 import org.tron.core.config.args.Account;
