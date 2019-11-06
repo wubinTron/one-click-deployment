@@ -28,62 +28,11 @@ public class BashExecutor {
             String cmd = StringUtils.join(cmdArray, " ");
             Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
             log.info("deploy cmd: {}", cmd);
-//            Process process = Runtime.getRuntime().exec(cmd, evnp, dir);
-//            process = Runtime.getRuntime().exec(cmd);
-//            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//            String line = "";
-//            while ((line = input.readLine()) != null) {
-//                System.out.println(line);
-//            }
-//            input.close();
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
-
-//    public void callDeployScript(String ip, Long port, String userName, String path){
-//        try {
-//            Resource resource = new ClassPathResource("deployNode.bash");
-//            File script =resource.getFile();
-//            String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
-//            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-//            processBuilder.redirectErrorStream(true);
-//            Process process = processBuilder.start();
-//            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//            String line = "";
-//            while ((line = input.readLine()) != null) {
-//                System.out.println(line);
-//            }
-//            input.close();
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public void callScript2(String ip, Long port, String userName, String path, String privateKey){
-//        try {
-//            Resource resource = new ClassPathResource("deployNode.bash");
-//            File script =resource.getFile();
-//            String[] cmd = {"bash", script.getAbsolutePath(), ip, port.toString(), userName, path};
-//            if (privateKey.length() != 0) {
-//                ArrayUtils.add(cmd, privateKey);
-//            }
-//            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-//            processBuilder.redirectErrorStream(true);
-//            Process process = processBuilder.start();
-//            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//            String line = "";
-//            while ((line = input.readLine()) != null) {
-//                System.out.println(line);
-//            }
-//            input.close();
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
 
     public void callBuildScript(String branch){
         try {

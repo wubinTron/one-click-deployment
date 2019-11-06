@@ -9,7 +9,7 @@ result=`ssh -p $2 $3@$1 "mkdir java-tron" 2>&1`
 if [ -z $result ];then
   echo "made the directory"
 else
-  echo "ssh connect failed"
+  echo "ssh connect failed, ${finish}"
   echo $result
   exit
 fi
@@ -21,7 +21,7 @@ result=`scp -P $2  ./config.conf $3@$1:./java-tron/ 2>&1`
 if [ -z $result ];then
   echo "already uploading java-tron jar and config"
 else
-  echo "update java-tron jar and config failed"
+  echo "update java-tron jar and config failed, ${finish}"
   exit
 fi
 
@@ -37,4 +37,4 @@ else
 fi
 echo "Start Running the Node"
 
-echo  "Finish"
+echo  "${finish}"

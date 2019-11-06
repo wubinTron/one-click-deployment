@@ -94,8 +94,8 @@ public class NodeController {
     newNode.put(Common.isSRFiled, isSR);
     newNode.put(Common.privateKeyFiled, path);
     newNode.put(Common.publicKeyFiled, publicKey);
-    newNode.put(Common.UrlFiled, url);
-    newNode.put(Common.VoteCountFiled, voteCount);
+    newNode.put(Common.urlFiled, url);
+    newNode.put(Common.voteCountFiled, voteCount);
     nodes.add(newNode);
 
     return updateNodesInfo(nodes, json);
@@ -121,24 +121,27 @@ public class NodeController {
     }
 
     nodes = removeNodeInfo(nodes, id);
-    String path;
-    String publicKey;
-    try {
-      path = Util.importPrivateKey(hexs2Bytes(key.getBytes()));
-      publicKey = private2Address(hexs2Bytes(key.getBytes()));
-    } catch (CipherException | IOException e) {
-      log.error(e.toString()) ;
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
+
+    if (key.length() != 0) {
+      String path;
+      String publicKey;
+      try {
+        path = Util.importPrivateKey(hexs2Bytes(key.getBytes()));
+        publicKey = private2Address(hexs2Bytes(key.getBytes()));
+        node.put(Common.privateKeyFiled, path);
+        node.put(Common.publicKeyFiled, publicKey);
+      } catch (CipherException | IOException e) {
+        log.error(e.toString()) ;
+        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
+      }
     }
 
     node.put(Common.userNameFiled, userName);
     node.put(Common.portFiled, port);
     node.put(Common.ipFiled, ip);
     node.put(Common.isSRFiled, isSR);
-    node.put(Common.privateKeyFiled, path);
-    node.put(Common.publicKeyFiled, publicKey);
-    node.put(Common.UrlFiled, url);
-    node.put(Common.VoteCountFiled, voteCount);
+    node.put(Common.urlFiled, url);
+    node.put(Common.voteCountFiled, voteCount);
     nodes.add(node);
     json.put(Common.nodesFiled, nodes);
 
@@ -195,14 +198,18 @@ public class NodeController {
   JSONObject updateNodesInfo(JSONArray nodes, JSONObject json) {
     ConfigGenerator configGenerator = new ConfigGenerator();
 
-    ArrayList<WitnessEntity> array = new ArrayList<>();
+    ArrayList<WitnessEntity> witnessnodes = new ArrayList<>();
     for (int i = 0; i< nodes.size(); i++) {
       JSONObject node = (JSONObject) nodes.get(i);
-      array.add(new WitnessEntity((String) node.get(Common.publicKeyFiled),
-          (String)node.get(Common.UrlFiled), (String)node.get(Common.VoteCountFiled)));
+      boolean isSR = (Boolean) node.get(Common.isSRFiled);
+
+      if (isSR == true) {
+        witnessnodes.add(new WitnessEntity((String) node.get(Common.publicKeyFiled),
+            (String)node.get(Common.urlFiled), (String)node.get(Common.voteCountFiled)));
+      }
     }
     GenesisWitnessConfig witnessConfig =  new GenesisWitnessConfig();
-    witnessConfig.setGenesisBlockWitnesses(array);
+    witnessConfig.setGenesisBlockWitnesses(witnessnodes);
     if (configGenerator.updateConfig(witnessConfig) == false) {
       log.error("update witness config file failed");
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update witness config file failed").toJSONObject();

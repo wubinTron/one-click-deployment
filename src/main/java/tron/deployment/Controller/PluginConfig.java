@@ -3,7 +3,12 @@ package tron.deployment.Controller;
 import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
 
+import common.Args;
 import common.Common;
+import common.Util;
+import config.ActuatorConfig;
+import config.ConfigGenerator;
+import config.NetworkConfig;
 import response.ResultCode;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +51,16 @@ public class PluginConfig {
     JSONObject json = readJsonFile();
 
     List<String> transactions = (ArrayList<String>)jsonObject.get(Common.transactionFiled);
+
     String customTransaction = (String) jsonObject.get(Common.customTransactionFiled);
     json.put(Common.transactionFiled, transactions);
     json.put(Common.customTransactionFiled, customTransaction);
+
+    ConfigGenerator configGenerator = new ConfigGenerator();
+    if (!configGenerator.updateConfig(new ActuatorConfig(transactions))) {
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+    }
+
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }
@@ -72,9 +84,10 @@ public class PluginConfig {
     JSONObject json = readJsonFile();
     JSONObject result = new JSONObject();
     result.put(Common.consensusFiled, json.get(Common.consensusFiled));
-    result.put(Common.transactionFiled, json.get(Common.transactionFiled));
     result.put(Common.dbEngineFiled, json.get(Common.dbEngineFiled));
     result.put(Common.customTransactionFiled, json.get(Common.customTransactionFiled));
+    Util.parseConfig();
+    result.put(Common.transactionFiled, Args.getActuatorSet(Util.config));
     return new Response(ResultCode.OK.code, result).toJSONObject();
   }
 }

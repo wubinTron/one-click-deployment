@@ -197,6 +197,7 @@ public class ConfigControlller {
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
     }
+
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
 

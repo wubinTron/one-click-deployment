@@ -3,6 +3,7 @@ package tron.deployment.Controller;
 import static common.Util.readJsonFile;
 
 import common.Common;
+import org.springframework.web.bind.annotation.RequestBody;
 import response.ResultCode;
 import common.Util;
 import wallet.Wallet;
@@ -35,8 +36,19 @@ import tron.deployment.shellExecutor.BashExecutor;
 @Slf4j
 public class DeployController {
 
+	@RequestMapping(method = RequestMethod.POST, value = "/checkNode")
+	public JSONObject checkDeployStatus(@RequestBody ArrayList<Long> idList) {
+		JSONObject result = new JSONObject();
+		if (idList.isEmpty()) return result;
+		for (Long id : idList) {
+			String status = checkNodeStatus(String.format(Common.logFormat, id.toString()));
+			result.put(id.toString(), status);
+		}
+		return new Response(ResultCode.OK.code, result).toJSONObject();
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/deployNode")
-	public Object deploy(
+	public JSONObject deploy(
 			@RequestParam(value = "id", required = false, defaultValue = "1") Long id,
 			@RequestParam(value = "path", required = false, defaultValue = "") String path
 	) {
@@ -107,9 +119,30 @@ public class DeployController {
 		return new Response(ResultCode.OK.code, jsonObject).toJSONObject();
 	}
 
-	public void init() {
-		BashExecutor bashExecutor = new BashExecutor();
-		bashExecutor.callBuildScript("");
-	}
+	String checkNodeStatus(String path) {
+		File file = new File(path);
+		if (file.isFile() && file.exists()) {
+			try {
+				InputStreamReader read = new InputStreamReader(
+						new FileInputStream(file), "GBK");
+				BufferedReader bufferedReader = new BufferedReader(read);
+				String lineTxt;
 
+				while ((lineTxt = bufferedReader.readLine()) != null)
+				{
+					if (lineTxt.contains(Common.deployFinishStatus)) {
+						return Common.deployFinishStatus;
+					}
+				}
+				bufferedReader.close();
+				read.close();
+
+			} catch (Exception  e) {
+				log.error(e.toString());
+			}
+		} else {
+			return Common.notFoundStatus;
+		}
+		return Common.deployFailedStatus;
+	}
 }

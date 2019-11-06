@@ -20,9 +20,9 @@ public class GenesisWitnessConfig implements Serializable {
     genesis_block_witnesses.forEach(witness ->
         {
           LinkedHashMap<String, String> seqMap = new LinkedHashMap<>();
-          seqMap.put("address", encode58Check(witness.getAddress()));
-          seqMap.put(Common.UrlFiled, witness.getUrl());
-          seqMap.put(Common.VoteCountFiled, String.format("%d", witness.getVoteCount()));
+          seqMap.put(Common.addressFiled, encode58Check(witness.getAddress()));
+          seqMap.put(Common.urlFiled, witness.getUrl());
+          seqMap.put(Common.voteCountFiled, String.format("%d", witness.getVoteCount()));
           this.genesis_block_witnesses.add(seqMap);
         }
     );
@@ -35,9 +35,9 @@ public class GenesisWitnessConfig implements Serializable {
     genesisWitness.forEach(witness ->
         {
           LinkedHashMap<String, String> seqMap = new LinkedHashMap<>();
-          seqMap.put("address", witness.address);
-          seqMap.put(Common.UrlFiled,  witness.url);
-          seqMap.put(Common.VoteCountFiled, witness.voteCount);
+          seqMap.put(Common.addressFiled, witness.address);
+          seqMap.put(Common.urlFiled,  witness.url);
+          seqMap.put(Common.voteCountFiled, witness.voteCount);
           this.genesis_block_witnesses.add(seqMap);
         }
     );

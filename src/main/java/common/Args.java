@@ -3,13 +3,13 @@ package common;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigObject;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
-import org.tron.core.Constant;
 import org.tron.core.Wallet;
 import org.tron.core.config.args.Account;
-import org.tron.core.config.args.SeedNode;
 import org.tron.core.config.args.Witness;
 
 public class Args {
@@ -23,7 +23,17 @@ public class Args {
   private static final String MAX_ACTIVE_NODE_WITH_SAME_IP_KEY = "node.maxActiveNodesWithSameIp";
   private static final String CONNECT_FACTOR_KEY = "node.connectFactor";
   private static final String NODE_LISTEN_PORT = "node.listen.port";
-
+  private static final String RPC_SOLIDITY_PORT = "node.rpc.solidityPort";
+  private static final String NODE_HTTP_FULLNODE_PORT = "node.http.fullNodePort";
+  private static final String NODE_HTTP_SOLIDITY_PORT = "node.http.solidityPort";
+  private static final String BLOCK_MAINTENANCE_TIME_INTERVAR = "block.maintenanceTimeInterval";
+  private static final String NODE_BLOCK_PRODUCED_TIMEOUT = "node.blockProducedTimeOut";
+  private static final String GENESIS_BLOCK_ASSETS = "genesis.block.assets";
+  private static final String BLOCK_PROPOSAL_EXPIRETIME = "block.proposalExpireTime";
+  private static final String NODE_MIN_PARTICIPATIONRATE = "node.minParticipationRate";
+  private static final String SEED_NODE_IP_LIST = "seed.node.ip.list";
+  private static final String GENESIS_BLOCK_WITNESSES = "genesis.block.witnesses";
+  private static final String ACTUATOR_WHITELIST = "actuator.whitelist";
 
   public static boolean needToUpdateAsset(final Config config) {
     return config.hasPath(NEED_TO_UPDATE_ASSET_KEY) ? config
@@ -67,48 +77,48 @@ public class Args {
 
   public static int getRPCSolidityNodePort(final Config config) {
     return
-        config.hasPath("node.rpc.solidityPort") ? config.getInt("node.rpc.solidityPort") : 50061;
+        config.hasPath(RPC_SOLIDITY_PORT) ? config.getInt(RPC_SOLIDITY_PORT) : 50061;
   }
 
   public static int getHTTPFullNodePort(final Config config) {
     return
-        config.hasPath("node.http.fullNodePort") ? config.getInt("node.http.fullNodePort") : 8090;
+        config.hasPath(NODE_HTTP_FULLNODE_PORT) ? config.getInt(NODE_HTTP_FULLNODE_PORT) : 8090;
   }
 
   public static int getHTTPSolidityNodePort(final Config config) {
     return
-        config.hasPath("node.http.solidityPort") ? config.getInt("node.http.solidityPort") : 8091;
+        config.hasPath(NODE_HTTP_SOLIDITY_PORT) ? config.getInt(NODE_HTTP_SOLIDITY_PORT) : 8091;
   }
 
   public static long getMaintenanceTimeInterval(final Config config) {
     return
-        config.hasPath("block.maintenanceTimeInterval") ? config.getInt("block.maintenanceTimeInterval") : 21600000L;
+        config.hasPath(BLOCK_MAINTENANCE_TIME_INTERVAR) ? config.getInt(BLOCK_MAINTENANCE_TIME_INTERVAR) : 21600000L;
   }
 
   public static int getBlockProducedTimeOut(final Config config) {
     return
-        config.hasPath("node.blockProducedTimeOut") ?
-            config.getInt("node.blockProducedTimeOut") : 50;
+        config.hasPath(NODE_BLOCK_PRODUCED_TIMEOUT) ?
+            config.getInt(NODE_BLOCK_PRODUCED_TIMEOUT) : 50;
 
   }
 
   public static List<Account> getAccountsFromConfig(final Config config) {
-    return config.getObjectList("genesis.block.assets").stream()
+    return config.getObjectList(GENESIS_BLOCK_ASSETS).stream()
         .map(Args::createAccount)
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
   private static Account createAccount(final ConfigObject asset) {
     final Account account = new Account();
-    account.setAccountName(asset.get("accountName").unwrapped().toString());
-    account.setAccountType(asset.get("accountType").unwrapped().toString());
-    account.setAddress(Wallet.decodeFromBase58Check(asset.get("address").unwrapped().toString()));
-    account.setBalance(asset.get("balance").unwrapped().toString());
+    account.setAccountName(asset.get(Common.accountNameField).unwrapped().toString());
+    account.setAccountType(asset.get(Common.accountTypeField).unwrapped().toString());
+    account.setAddress(Wallet.decodeFromBase58Check(asset.get(Common.addressFiled).unwrapped().toString()));
+    account.setBalance(asset.get(Common.balanceField).unwrapped().toString());
     return account;
   }
 
   public static List<Witness> getWitnessesFromConfig(final Config config) {
-    return config.getObjectList("genesis.block.witnesses").stream()
+    return config.getObjectList(GENESIS_BLOCK_WITNESSES).stream()
         .map(Args::createWitness)
         .collect(Collectors.toCollection(ArrayList::new));
   }
@@ -116,31 +126,37 @@ public class Args {
   private static Witness createWitness(final ConfigObject witnessAccount) {
     final Witness witness = new Witness();
     witness.setAddress(
-        Wallet.decodeFromBase58Check(witnessAccount.get("address").unwrapped().toString()));
-    witness.setUrl(witnessAccount.get("url").unwrapped().toString());
-    witness.setVoteCount(witnessAccount.toConfig().getLong("voteCount"));
+        Wallet.decodeFromBase58Check(witnessAccount.get(Common.addressFiled).unwrapped().toString()));
+    witness.setUrl(witnessAccount.get(Common.urlFiled).unwrapped().toString());
+    witness.setVoteCount(witnessAccount.toConfig().getLong(Common.voteCountFiled));
     return witness;
   }
 
   public static long getProposalExpireTime(final Config config) {
-    return config.hasPath("block.proposalExpireTime") ? config
-        .getInt("block.proposalExpireTime") : 259200000L;
+    return config.hasPath(BLOCK_PROPOSAL_EXPIRETIME) ? config
+        .getInt(BLOCK_PROPOSAL_EXPIRETIME) : 259200000L;
   }
 
   public static int getMinParticipationRate(final Config config) {
-    return config.hasPath("node.minParticipationRate") ? config.getInt("node.minParticipationRate")
+    return config.hasPath(NODE_MIN_PARTICIPATIONRATE) ? config.getInt(NODE_MIN_PARTICIPATIONRATE)
         : 0;
   }
 
   public static List<String> getSeedNode(final Config config) {
-    if (config.hasPath("seed.node.ip.list")) {
-      return config.getStringList("seed.node.ip.list").size() == 0
-          ? null : config.getStringList("seed.node.ip.list");
+    if (config.hasPath(SEED_NODE_IP_LIST)) {
+      return config.getStringList(SEED_NODE_IP_LIST).size() == 0
+          ? null : config.getStringList(SEED_NODE_IP_LIST);
     }
     return null;
   }
 
   public static int getListenPort(final Config config) {
     return config.hasPath(NODE_LISTEN_PORT) ? config.getInt(NODE_LISTEN_PORT) : 0;
+  }
+
+  public static Set<String> getActuatorSet(final Config config) {
+    return config.hasPath(ACTUATOR_WHITELIST) ?
+        new HashSet<>(config.getStringList(ACTUATOR_WHITELIST))
+        : Collections.emptySet();
   }
 }

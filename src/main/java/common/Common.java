@@ -40,9 +40,11 @@ public class Common {
 
   public static final String publicKeyFiled = "publicKey";
 
-  public static final String UrlFiled = "url";
+  public static final String urlFiled = "url";
 
-  public static final String VoteCountFiled = "voteCount";
+  public static final String voteCountFiled = "voteCount";
+
+  public static final String addressFiled = "address";
 
   public static final String enableCrossChainFiled = "enableCrossChain";
 
@@ -60,5 +62,18 @@ public class Common {
 
   public static final String walletFiled = "Wallet";
 
+  public static final String accountNameField = "accountName";
+
+  public static final String accountTypeField = "accountType";
+
+  public static final String balanceField = "balance";
+
   public static final String logFormat = "logs/result_%s.log" ;
+
+  // Node Status
+  public static final String notFoundStatus = "not found";
+
+  public static final String deployFinishStatus = "deploy finish";
+
+  public static final String deployFailedStatus = "deploying";
 }

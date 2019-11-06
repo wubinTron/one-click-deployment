@@ -430,14 +430,4 @@ public class Wallet {
 
     return Base58.encode(inputCheck);
   }
-//  public static void main(String[] args) {
-//    // TODO Auto-generated method stub
-//    try {
-//      String ans = private2Address(hexs2Bytes("9FD8E129DE181EA44C6129F727A6871440169568ADE002943EAD0E7A16D8EDAC".getBytes()));
-//      System.out.println(ans);
-//    } catch (CipherException e) {
-//      e.printStackTrace();
-//    }
-//
-//  }
 }
