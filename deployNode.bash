@@ -27,7 +27,7 @@ fi
 
 if [ -z $5 ]; then
    echo "deploy FullNode"
-   scp -P $2 ./start.sh $3@$1:./java-tron/
+   scp -P $2 ./startFullNode.sh $3@$1:./java-tron/
    ssh -p $2 $3@$1 "cd java-tron&& nohup bash startFullNode.sh"
 else
    echo "deploy WitnessNode"
