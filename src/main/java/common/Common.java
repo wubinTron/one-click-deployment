@@ -2,11 +2,11 @@ package common;
 
 public class Common {
 
-  public static final String configFiled = "config.conf";
+  public static final String configFiled = ".config.conf";
 
-  public static final String originConfigFiled = "originConfig.conf";
+  public static final String originConfigFiled = ".originConfig.conf";
 
-  public static final String databaseFiled = "database";
+  public static final String databaseFiled = ".database";
 
   public static final String branchFiled = "branch";
 

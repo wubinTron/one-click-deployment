@@ -4,6 +4,7 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import com.typesafe.config.ConfigRenderOptions;
 
+import common.Common;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class ConfigGenerator {
     }
     public boolean updateConfig(Serializable configuration){
         // Load the original config file
-        File defaultConfigFile = new File("./config.conf");
+        File defaultConfigFile = new File(Common.configFiled);
         Config defaultConfig = ConfigFactory.parseFile(defaultConfigFile);
         //use string builder to generate Config String
         StringBuilder configSB = new StringBuilder();
@@ -40,7 +41,7 @@ public class ConfigGenerator {
         Config modifiedConfig = ConfigFactory.parseString(configSB.toString());
         Config newConfig = modifiedConfig.withFallback(defaultConfig);
         String configStr = newConfig.root().render(ConfigRenderOptions.defaults().setOriginComments(false).setComments(false).setJson(false));
-        File tempConfigFile = new File("./config.conf");
+        File tempConfigFile = new File(Common.configFiled);
         try{
             tempConfigFile.delete();
             tempConfigFile.createNewFile();
