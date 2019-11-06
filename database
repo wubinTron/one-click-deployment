@@ -1,1 +1,1 @@
-{"chainName":"Parachain","minValidatorNumber":1,"customTransaction":"","crossChainFee":0.01,"brachNote":"123","branch":"master","branchNote":"acd","consensus":"pbft","nodes":[],"enableCrossChain":false,"chainId":"2","dbEngine":"rockdb","maxValidatorNumber":4,"transaction":["TransferaSSET","UpdateAsset"]}"]}
+{"chainName":"Parachain","minValidatorNumber":1,"customTransaction":"","crossChainFee":0.01,"brachNote":"123","branch":"master","branchNote":"acd","consensus":"pbft","nodes":[],"enableCrossChain":false,"chainId":"2","dbEngine":"rockdb","maxValidatorNumber":4}
