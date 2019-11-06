@@ -63,20 +63,24 @@ public class DeployController {
 			return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
 		}
 
-		String privateKeypath = (String) node.get(Common.privateKeyFiled);
-		String privateKey;
-		try {
-			privateKey = Wallet.getPrivateString(String.format("%s/%s", Common.walletFiled, privateKeypath));
-		} catch (CipherException | IOException e) {
-			log.error(e.toString());
-			return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "load node info failed").toJSONObject();
-		}
+		boolean isSR = (Boolean) node.get(Common.isSRFiled);
+    String privateKeypath = (String) node.get(Common.privateKeyFiled);
+    String privateKey = null;
+		if (isSR) {
+      try {
+        privateKey = Wallet.getPrivateString(String.format("%s/%s", Common.walletFiled, privateKeypath));
+      } catch (CipherException | IOException e) {
+        log.error(e.toString());
+        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "load privateKey info failed").toJSONObject();
+      }
+    }
+
 
 		String ip = (String) node.get(Common.ipFiled);
 		Long port = (Long)node.get(Common.portFiled);
 		String userName = (String)node.get(Common.userNameFiled);
 		BashExecutor bashExecutor = new BashExecutor();
-		if (privateKey.length() != 0) {
+		if (Objects.nonNull(privateKey)) {
 			bashExecutor.callScript(ip, port, userName, path, privateKey, id);
 		} else {
 			bashExecutor.callScript(ip, port, userName, path, "", id);
