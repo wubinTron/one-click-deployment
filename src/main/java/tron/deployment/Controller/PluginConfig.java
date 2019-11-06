@@ -53,9 +53,7 @@ public class PluginConfig {
     List<String> transactions = (ArrayList<String>)jsonObject.get(Common.transactionFiled);
 
     String customTransaction = (String) jsonObject.get(Common.customTransactionFiled);
-    json.put(Common.transactionFiled, transactions);
     json.put(Common.customTransactionFiled, customTransaction);
-
     ConfigGenerator configGenerator = new ConfigGenerator();
     if (!configGenerator.updateConfig(new ActuatorConfig(transactions))) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();

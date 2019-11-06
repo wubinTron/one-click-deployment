@@ -76,24 +76,26 @@ public class NodeController {
       return new Response(ResultCode.FORBIDDEND.code, "node id already exist").toJSONObject();
     }
 
-    String path;
-    String publicKey;
-    try {
-      path = Util.importPrivateKey(hexs2Bytes(privateKey.getBytes()));
-      publicKey = private2Address(hexs2Bytes(privateKey.getBytes()));
-    } catch (CipherException | IOException e) {
-      log.error(e.toString()) ;
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
+    JSONObject newNode = new JSONObject();
+    if (isSR) {
+      String path;
+      String publicKey;
+      try {
+        path = Util.importPrivateKey(hexs2Bytes(privateKey.getBytes()));
+        publicKey = private2Address(hexs2Bytes(privateKey.getBytes()));
+        newNode.put(Common.privateKeyFiled, path);
+        newNode.put(Common.publicKeyFiled, publicKey);
+      } catch (CipherException | IOException e) {
+        log.error(e.toString()) ;
+        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
+      }
     }
 
-    JSONObject newNode = new JSONObject();
     newNode.put(Common.idFiled, id);
     newNode.put(Common.userNameFiled, userName);
     newNode.put(Common.portFiled, port);
     newNode.put(Common.ipFiled, ip);
     newNode.put(Common.isSRFiled, isSR);
-    newNode.put(Common.privateKeyFiled, path);
-    newNode.put(Common.publicKeyFiled, publicKey);
     newNode.put(Common.urlFiled, url);
     newNode.put(Common.voteCountFiled, voteCount);
     nodes.add(newNode);
