@@ -3,6 +3,8 @@ package tron.deployment.Controller;
 import static common.Util.readJsonFile;
 
 import common.Common;
+import config.BlockSettingConfig;
+import config.ConfigGenerator;
 import org.springframework.web.bind.annotation.RequestBody;
 import response.ResultCode;
 import common.Util;
@@ -66,15 +68,22 @@ public class DeployController {
 		boolean isSR = (Boolean) node.get(Common.isSRFiled);
     String privateKeypath = (String) node.get(Common.privateKeyFiled);
     String privateKey = null;
+    boolean blockNeedSync = true;
 		if (isSR) {
       try {
         privateKey = Wallet.getPrivateString(String.format("%s/%s", Common.walletFiled, privateKeypath));
+				blockNeedSync = isBlockNeedSync(nodes, id);
       } catch (CipherException | IOException e) {
         log.error(e.toString());
         return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "load privateKey info failed").toJSONObject();
       }
     }
 
+		ConfigGenerator configGenerator = new ConfigGenerator();
+		boolean result = configGenerator.updateConfig(new BlockSettingConfig(blockNeedSync));
+		if (result == false) {
+			return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();
+		}
 
 		String ip = (String) node.get(Common.ipFiled);
 		Long port = (Long)node.get(Common.portFiled);
@@ -148,5 +157,16 @@ public class DeployController {
 			return Common.notFoundStatus;
 		}
 		return Common.deployFailedStatus;
+	}
+
+	boolean isBlockNeedSync(JSONArray nodes, Long id) {
+		for (int i = 0; i< nodes.size(); i++) {
+			JSONObject node = (JSONObject) nodes.get(i);
+			Long nodeID = (Long) node.get(Common.idFiled);
+			if (id.compareTo(nodeID) > 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
