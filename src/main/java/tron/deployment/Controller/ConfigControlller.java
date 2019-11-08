@@ -174,7 +174,7 @@ public class ConfigControlller {
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new DBConfig(isDBSync, isOpenTransaction,
-        dbEnine, indexDirectory, needToUpdateAsset));
+        dbEnine, indexDirectory, needToUpdateAsset), Common.configFiled);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
     }
@@ -193,7 +193,7 @@ public class ConfigControlller {
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, rpcPort, solidityRPCPort,
-        httpFullNodePort, httpSolidityPort, listenPort));
+        httpFullNodePort, httpSolidityPort, listenPort), Common.configFiled);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
     }
@@ -213,7 +213,7 @@ public class ConfigControlller {
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new P2PConfig(p2pVersion, node_max_active_nodes,
-        activeConnectFactor, nodeMaxActiveNodesWithSameIp, connectFactor, ipList));
+        activeConnectFactor, nodeMaxActiveNodesWithSameIp, connectFactor, ipList), Common.configFiled);
 
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
@@ -257,7 +257,7 @@ public class ConfigControlller {
     }
     ConfigGenerator configGenerator = new ConfigGenerator();
     result = configGenerator.updateConfig(new BaseSettingConfig(blockProducedTimeOut, maintenanceTimeInterval,
-        proposalExpireTime, minParticipationRate));
+        proposalExpireTime, minParticipationRate), Common.configFiled);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();
     }
@@ -273,7 +273,7 @@ public class ConfigControlller {
     ConfigGenerator configGenerator = new ConfigGenerator();
     GenesisAssetConfig genesisAssetConfig = new GenesisAssetConfig();
     genesisAssetConfig.genesis_block_assets = assets;
-    boolean result = configGenerator.updateConfig(genesisAssetConfig);
+    boolean result = configGenerator.updateConfig(genesisAssetConfig, Common.configFiled);
 
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();

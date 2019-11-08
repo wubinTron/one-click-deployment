@@ -212,7 +212,7 @@ public class NodeController {
     }
     GenesisWitnessConfig witnessConfig =  new GenesisWitnessConfig();
     witnessConfig.setGenesisBlockWitnesses(witnessnodes);
-    if (configGenerator.updateConfig(witnessConfig) == false) {
+    if (configGenerator.updateConfig(witnessConfig, Common.configFiled) == false) {
       log.error("update witness config file failed");
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update witness config file failed").toJSONObject();
     }

@@ -55,7 +55,7 @@ public class PluginConfig {
     String customTransaction = (String) jsonObject.get(Common.customTransactionFiled);
     json.put(Common.customTransactionFiled, customTransaction);
     ConfigGenerator configGenerator = new ConfigGenerator();
-    if (!configGenerator.updateConfig(new ActuatorConfig(transactions))) {
+    if (!configGenerator.updateConfig(new ActuatorConfig(transactions), Common.configFiled)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
     }
 

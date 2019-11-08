@@ -2,6 +2,7 @@ package tron.deployment.shellExecutor;
 
 import static common.Common.logFormat;
 
+import common.Common;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -15,11 +16,11 @@ import java.io.InputStreamReader;
 @Slf4j
 public class BashExecutor {
 
-    public void callScript(String ip, Long port, String userName, String path, String privateKey, Long id){
+    public void callScript(String ip, Long port, String userName, String jarPath, String privateKey, Long id){
         try {
             String absolutePath = System.getProperty("user.dir").concat("/deployNode.bash");
-
-            String[] cmdArray = {absolutePath, ip, port.toString(), userName, path};
+            String configPath = String.format("%s_%s", Common.configFiled, id.toString());
+            String[] cmdArray = {absolutePath, ip, port.toString(), userName, jarPath, configPath};
             if (privateKey.length() != 0) {
                 cmdArray = ArrayUtils.add(cmdArray, privateKey);
             }

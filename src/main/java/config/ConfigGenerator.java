@@ -12,10 +12,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 
 public class ConfigGenerator {
-    public static void main(String[] args){
-        ConfigGenerator configGenerator = new ConfigGenerator();
-    }
-    public boolean updateConfig(Serializable configuration){
+    public boolean updateConfig(Serializable configuration, String newFile){
         // Load the original config file
         File defaultConfigFile = new File(Common.configFiled);
         Config defaultConfig = ConfigFactory.parseFile(defaultConfigFile);
@@ -35,13 +32,13 @@ public class ConfigGenerator {
             // generate the config string in typesafe's format
             if (value!=null) {
                 configSB.append(fieldName).append("=")
-                        .append(value.toString()).append(",");
+                    .append(value.toString()).append(",");
             }
         }
         Config modifiedConfig = ConfigFactory.parseString(configSB.toString());
         Config newConfig = modifiedConfig.withFallback(defaultConfig);
         String configStr = newConfig.root().render(ConfigRenderOptions.defaults().setOriginComments(false).setComments(false).setJson(false));
-        File tempConfigFile = new File(Common.configFiled);
+        File tempConfigFile = new File(newFile);
         try{
             tempConfigFile.delete();
             tempConfigFile.createNewFile();

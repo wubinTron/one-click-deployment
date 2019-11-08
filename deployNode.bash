@@ -14,10 +14,9 @@ else
   exit
 fi
 
-scp -P $2  $4 $3@$1:./java-tron/
-
 echo "uploading java-tron jar"
-result=`scp -P $2  ./config.conf $3@$1:./java-tron/ 2>&1`
+scp -P $2  $4 $3@$1:./java-tron/
+result=`scp -P $2 $5 $3@$1:./java-tron/config.conf 2>&1`
 if [ -z $result ];then
   echo "already uploading java-tron jar and config"
 else
@@ -25,16 +24,16 @@ else
   exit
 fi
 
-if [ -z $5 ]; then
+if [ -z $6 ]; then
    echo "deploy FullNode"
    scp -P $2 ./startFullNode.sh $3@$1:./java-tron/
    ssh -p $2 $3@$1 "cd java-tron&& nohup bash startFullNode.sh"
 else
    echo "deploy WitnessNode"
-   cmd="cd java-tron&& nohup bash startWitnessNode.sh ${5}"
+   cmd="cd java-tron&& nohup bash startWitnessNode.sh ${6}"
    scp -P $2 ./startWitnessNode.sh $3@$1:./java-tron/
-   ssh -p $2 $3@$1 "cd java-tron&& nohup bash startWitnessNode.sh ${5}"
+   ssh -p $2 $3@$1 "cd java-tron&& nohup bash startWitnessNode.sh ${6}"
 fi
-echo "Start Running the Node"
 
+rm -rf $5
 echo  "${finish}"

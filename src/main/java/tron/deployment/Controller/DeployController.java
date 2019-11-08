@@ -80,7 +80,9 @@ public class DeployController {
     }
 
 		ConfigGenerator configGenerator = new ConfigGenerator();
-		boolean result = configGenerator.updateConfig(new BlockSettingConfig(blockNeedSync));
+		boolean result = configGenerator.updateConfig(
+				new BlockSettingConfig(blockNeedSync), String.format("%s_%s", Common.configFiled, id.toString()));
+
 		if (result == false) {
 			return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();
 		}
