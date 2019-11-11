@@ -91,10 +91,16 @@ public class DeployController {
 		Long port = (Long)node.get(Common.portFiled);
 		String userName = (String)node.get(Common.userNameFiled);
 		BashExecutor bashExecutor = new BashExecutor();
+    String plugin = "null";
+    if (json.containsKey(Common.customTransactionFiled)
+        && ((String) json.get(Common.customTransactionFiled)).length() != 0) {
+      plugin = (String) json.get(Common.customTransactionFiled);
+    }
+
 		if (Objects.nonNull(privateKey)) {
-			bashExecutor.callScript(ip, port, userName, path, privateKey, id);
+			bashExecutor.callScript(ip, port, userName, path, privateKey, id, plugin);
 		} else {
-			bashExecutor.callScript(ip, port, userName, path, "", id);
+			bashExecutor.callScript(ip, port, userName, path, "", id, plugin);
 		}
 
 		return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();

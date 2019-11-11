@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+APP="java-tron-1.0.0"
 
 echo "Start ssh deployment"
 finish="deploy finish"
@@ -24,15 +25,33 @@ else
   exit
 fi
 
-if [ -z $6 ]; then
+result=`ssh -p $2 $3@$1 "cd java-tron&&unzip -o ./${APP}.zip > /dev/null"`
+if [ "$?" != "0" ]; then
+   echo "unzip failed, check unzip cmd is installed or not"
+   echo $result
+   exit
+fi
+
+scp -P $2 ./start.sh $3@$1:./java-tron/
+
+if [ $6 != "null" ]; then
+  echo "uploading plugin"
+  result=`scp -P $2 $6 $3@$1:./java-tron/$APP/lib/ 2>&1`
+
+  if [ -z $result ];then
+    echo "already upload plugin"
+  else
+    echo "update plugin failed"
+    exit
+  fi
+fi
+
+if [ -z $7 ]; then
    echo "deploy FullNode"
-   scp -P $2 ./startFullNode.sh $3@$1:./java-tron/
-   ssh -p $2 $3@$1 "cd java-tron&& nohup bash startFullNode.sh"
+   ssh -p $2 $3@$1 "cd java-tron&& nohup bash start.sh"
 else
    echo "deploy WitnessNode"
-   cmd="cd java-tron&& nohup bash startWitnessNode.sh ${6}"
-   scp -P $2 ./startWitnessNode.sh $3@$1:./java-tron/
-   ssh -p $2 $3@$1 "cd java-tron&& nohup bash startWitnessNode.sh ${6}"
+   ssh -p $2 $3@$1 "cd java-tron&& nohup bash start.sh ${7}"
 fi
 
 rm -rf $5
