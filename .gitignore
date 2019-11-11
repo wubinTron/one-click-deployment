@@ -3,7 +3,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-java-tron/
+.config.conf
+.originConfig.conf
 
 ### STS ###
 .apt_generated
