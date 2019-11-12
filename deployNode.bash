@@ -35,12 +35,12 @@ fi
 
 result=`ssh -p $2 $3@$1 "cd java-tron&&unzip -o ./${APP}.zip > /dev/null"`
 if [ "$?" != "0" ]; then
-   echo "unzip failed, check unzip cmd is installed or not, ${finish}"
+   echo "unzip failed, unzip cmd is not installed or java-tron zip upload failed, ${finish}"
    echo $result
    exit
 fi
 
-scp -P $2 ./start.sh $3@$1:./java-tron/
+scp -P $2 ./.startNode.sh $3@$1:./java-tron/start.sh
 
 if [ $6 != "null" ]; then
   echo "uploading plugin"
