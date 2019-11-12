@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-03 17:53:19
+ * @Last Modified time: 2019-11-08 11:01:16
  * @setting cross setting
  */
 
@@ -30,9 +30,10 @@
                                 class="baseFormItem mgt20"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.node_maxHttpConnectNumber"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronmaxHttpConnectNumberPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                             <el-form-item
@@ -41,9 +42,10 @@
                                 prop="node_http_fullNodePort"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.node_http_fullNodePort"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronhttpFullNodePortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                             <el-form-item
@@ -52,17 +54,19 @@
                                 prop="node_http_solidityPort"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.node_http_solidityPort"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronhttpHttpSolidityPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
 
                             <el-form-item class="baseFormItem" label="rpcPort" prop="node_rpc_port">
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.node_rpc_port"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronhttpRpcPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                             <el-form-item
@@ -71,9 +75,10 @@
                                 prop="node_rpc_solidityPort"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.node_rpc_solidityPort"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronhttpRpcSolidityPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                             <el-form-item
@@ -82,9 +87,10 @@
                                 prop="node_listen_port"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.node_listen_port"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronhttpRpcListenPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                         </div>
@@ -92,9 +98,14 @@
                 </el-col>
             </el-row>
             <el-form-item label-width="0" class="textRight">
-                <el-button type="primary" @click="previousStepFun">{{$t('tronSettingPreviousStep')}}</el-button>
+                <el-button
+                    size="small"
+                    type="primary"
+                    @click="previousStepFun"
+                >{{$t('tronSettingPreviousStep')}}</el-button>
 
                 <el-button
+                    size="small"
                     type="primary"
                     @click="saveData('crossSettingDialogForm')"
                 >{{$t('tronSettingNextStep')}}</el-button>
@@ -130,7 +141,7 @@ export default {
                 node_maxHttpConnectNumber: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronmaxHttpConnectNumberPlaceholder"),
                         trigger: "blur"
                     },
                     {
@@ -142,7 +153,7 @@ export default {
                 node_http_fullNodePort: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronhttpFullNodePortPlaceholder"),
                         trigger: "blur"
                     },
                     {
@@ -154,7 +165,7 @@ export default {
                 node_http_solidityPort: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronhttpHttpSolidityPortPlaceholder"),
                         trigger: "blur"
                     },
                     {
@@ -166,7 +177,7 @@ export default {
                 node_rpc_port: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronhttpRpcPortPlaceholder"),
                         trigger: "blur"
                     },
                     {
@@ -178,7 +189,7 @@ export default {
                 node_rpc_solidityPort: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronhttpRpcSolidityPortPlaceholder"),
                         trigger: "blur"
                     },
                     {
@@ -190,7 +201,7 @@ export default {
                 node_listen_port: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronhttpRpcListenPortPlaceholder"),
                         trigger: "blur"
                     },
                     {

@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-05 20:53:13
+ * @Last Modified time: 2019-11-11 17:23:02
  * @setting cross setting
  */
 
@@ -21,7 +21,7 @@
                     <el-card shadow="hover">
                         <div @click="baseContentShow = !baseContentShow">
                             <i :class="baseContentShow?'el-icon-arrow-down': 'el-icon-arrow-right'"></i>
-                            {{$t('tronSettingP2p')}}
+                            {{$t('tronCrossChain')}}
                         </div>
                         <div v-if="baseContentShow">
                             <el-form-item
@@ -30,6 +30,7 @@
                                 class="baseFormItem mgt20"
                             >
                                 <el-switch
+                                    size="small"
                                     v-model="baseSettingForm.enableCrossChain"
                                     active-color="#13ce66"
                                     inactive-color="#ff4949"
@@ -41,9 +42,10 @@
                                 class="baseFormItem"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.maxValidatorNumber"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronMaxValidatorNumberPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                             <el-form-item
@@ -52,9 +54,10 @@
                                 class="baseFormItem"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.minValidatorNumber"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronMinValidatorNumberPlaceholder')"
                                 ></el-input>
                             </el-form-item>
 
@@ -64,6 +67,7 @@
                                 class="baseFormItem"
                             >
                                 <el-input-number
+                                    size="small"
                                     controls-position="right"
                                     :min="0"
                                     :step="0.01"
@@ -77,8 +81,13 @@
                 </el-col>
             </el-row>
             <el-form-item label-width="0" class="textRight">
-                <el-button type="primary" @click="previousStepFun">{{$t('tronSettingPreviousStep')}}</el-button>
                 <el-button
+                    size="small"
+                    type="primary"
+                    @click="previousStepFun"
+                >{{$t('tronSettingPreviousStep')}}</el-button>
+                <el-button
+                    size="small"
                     type="primary"
                     @click="saveData('crossSettingDialogForm')"
                 >{{$t('tronSettingNextStep')}}</el-button>
@@ -96,6 +105,26 @@ export default {
         const validNum = (rule, value, callback) => {
             if (!isvalidateNum(value)) {
                 callback(new Error(this.$t("tronSettingNumberPlaceholder")));
+            } else {
+                callback();
+            }
+        };
+        const validMaxNum = (rule, value, callback) => {
+            if (
+                this.baseSettingForm.minValidatorNumber &&
+                value < this.baseSettingForm.minValidatorNumber
+            ) {
+                callback(new Error(this.$t("tronSettingMaxNumberPlaceholder")));
+            } else {
+                callback();
+            }
+        };
+        const validMinNum = (rule, value, callback) => {
+            if (
+                this.baseSettingForm.maxValidatorNumber &&
+                value > this.baseSettingForm.maxValidatorNumber
+            ) {
+                callback(new Error(this.$t("tronSettingMinNumberPlaceholder")));
             } else {
                 callback();
             }
@@ -121,24 +150,34 @@ export default {
                 maxValidatorNumber: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronMaxValidatorNumberPlaceholder"),
                         trigger: "change"
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
                         validator: validNum,
                         trigger: "blur"
+                    },
+                    {
+                        message: this.$t("tronSettingMaxNumberPlaceholder"),
+                        validator: validMaxNum,
+                        trigger: "blur"
                     }
                 ],
                 minValidatorNumber: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronMinValidatorNumberPlaceholder"),
                         trigger: "change"
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
                         validator: validNum,
+                        trigger: "blur"
+                    },
+                    {
+                        message: this.$t("tronSettingMinNumberPlaceholder"),
+                        validator: validMinNum,
                         trigger: "blur"
                     }
                 ],
@@ -165,12 +204,17 @@ export default {
             this.$refs[formName].validate(valid => {
                 if (valid) {
                     crossChainSettingApi(this.baseSettingForm)
-                        .then(response => {
+                        .then(async response => {
                             this.$emit("addSettingSuccess", true);
 
                             this.$message.success(
                                 this.$t("tronSettingCrossChainSaveSuccess")
                             );
+                            await this.$store
+                                .dispatch("user/changeRoles", "plugin")
+                                .then(res => {
+                                    console.log(res);
+                                });
                             this.$router.push({ path: "/plugin/list" });
                         })
                         .catch(error => {

@@ -63,6 +63,10 @@ div:focus {
   margin-top: 20px;
 }
 
+.mgt30 {
+  margin-top: 30px;
+}
+
 // main-container global css
 .app-container {
   padding: 30px;
@@ -85,6 +89,17 @@ div:focus {
   width: 100px;
 }
 
-.transcationDialogForm .el-checkbox {
-  min-width: 195px;
+.pluginSettingFormContent {
+  padding-left: 20px;
+}
+
+.transcationDialogForm {
+
+  .transcationDialogFormContent {
+    padding-left: 20px;
+  }
+
+  .el-checkbox {
+    min-width: 199px;
+  }
 }

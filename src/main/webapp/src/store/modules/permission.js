@@ -2,12 +2,14 @@ import {
   asyncRoutes,
   constantRoutes
 } from '@/router'
+
 /**
  * Use meta.role to determine if the current user has permission
  * @param roles
  * @param route
  */
 function hasPermission(roles, route) {
+
   if (route.meta && route.meta.roles) {
     return roles.some(role => route.meta.roles.includes(role))
   } else {
@@ -55,8 +57,8 @@ const actions = {
     commit
   }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('super')) {
+      let accessedRoutes = []
+      if (roles.includes('admin')) {
         accessedRoutes = asyncRoutes || []
       } else {
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)

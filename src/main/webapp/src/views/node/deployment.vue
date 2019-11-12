@@ -2,24 +2,23 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 11:30:38
+ * @Last Modified time: 2019-11-12 11:33:19
  * @tron node list 
  */
 <template>
     <div class="app-container">
         <div class="tron-content">
             <div class="tron-filter-section">
-                <el-button
+                <!-- <el-button
                     icon="el-icon-plus"
                     size="small"
                     @click="addNodeFun()"
                     type="primary"
-                >{{$t('tronNodeAdd')}}</el-button>
+                >{{$t('tronNodeAdd')}}</el-button>-->
+                <div></div>
                 <el-button
                     size="small"
-                    v-if="isDeploy ==1"
                     :loading="allNodeDeployLoading"
-                    style="float:right"
                     :type="checkType"
                     @click="bulkDeploymentFun"
                 >{{$t('tronNodeBulkDeployment')}}</el-button>
@@ -36,7 +35,7 @@
                     border
                     @selection-change="handleSelectionChange"
                 >
-                    <el-table-column v-if="isDeploy ==1" type="selection" width="55"></el-table-column>
+                    <el-table-column type="selection" width="55"></el-table-column>
                     <el-table-column prop="id" label="ID" align="center"></el-table-column>
                     <el-table-column prop="userName" :label="$t('tronNodeName')" align="center"></el-table-column>
                     <el-table-column prop="ip" label="IP/HOST" align="center"></el-table-column>
@@ -47,7 +46,7 @@
                             <el-tag type="danger" v-else>no</el-tag>
                         </template>
                     </el-table-column>
-                    <!-- <el-table-column prop="status" :label="$t('tronNodeStatus')" align="center">
+                    <el-table-column prop="status" :label="$t('tronNodeStatus')" align="center">
                         <template slot-scope="scope">
                             <el-button
                                 size="small"
@@ -57,8 +56,8 @@
                             >{{$t('tronNodeLog')}}</el-button>
                             <span v-else>-</span>
                         </template>
-                    </el-table-column>-->
-                    <el-table-column :label="$t('tronNodeOperate')" align="center" width="200">
+                    </el-table-column>
+                    <!-- <el-table-column :label="$t('tronNodeOperate')" align="center" width="200">
                         <template slot-scope="scope">
                             <el-button
                                 size="small"
@@ -72,10 +71,10 @@
                                 @click="deleteNodeListFun(scope.row.id)"
                             >{{$t('tronNodeDelete')}}</el-button>
                         </template>
-                    </el-table-column>
+                    </el-table-column>-->
                 </el-table>
             </div>
-            <div class="mgt20" v-if="isDeploy != 1">
+            <!-- <div class="mgt20" v-if="isDeploy != 1">
                 <el-button
                     size="small"
                     style="float:right"
@@ -83,7 +82,7 @@
                     :disabled="allStepsBtnDisable"
                     @click="nextStepFun"
                 >{{$t('tronNodeNextStep')}}</el-button>
-            </div>
+            </div>-->
         </div>
         <!--tron Node Bulk Deployment  -->
         <el-dialog
@@ -148,7 +147,7 @@ import operateNode from "./nodeOperate";
 //let nodeTimer = null;
 let deploymentNode = null;
 export default {
-    name: "nodelist",
+    name: "deploymentlist",
     components: {
         operateNode
     },

@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-03 17:17:51
+ * @Last Modified time: 2019-11-07 17:40:50
  * @setting base setting 
  */
 
@@ -26,70 +26,89 @@
                         <div v-if="baseContentShow">
                             <el-form-item label="chainId" prop="chainId" class="baseFormItem mgt20">
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.chainId"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronChainIdPlaceholder')"
                                 ></el-input>
                             </el-form-item>
                             <el-form-item label="chainName" prop="chainName" class="baseFormItem">
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.chainName"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronChainNamePlaceholder')"
                                 ></el-input>
                             </el-form-item>
-                            <el-form-item
-                                label="blockProducedTimeOut"
-                                prop="block_proposalExpireTime"
-                                class="baseFormItem"
-                            >
-                                <el-input
-                                    :maxlength="50"
-                                    v-model="baseSettingForm.block_proposalExpireTime"
-                                    :placeholder="$t('tronSettingPlaceholder')"
-                                ></el-input>
-                            </el-form-item>
+
                             <el-form-item
                                 class="baseFormItem"
-                                label="blockMaintenanceTimeInterval"
+                                label="MaintenanceTimeInterval"
                                 prop="block_maintenanceTimeInterval"
                             >
                                 <el-input
+                                    size="small"
                                     :maxlength="50"
                                     v-model="baseSettingForm.block_maintenanceTimeInterval"
-                                    :placeholder="$t('tronSettingPlaceholder')"
+                                    :placeholder="$t('tronblockBlockMaintenanceTimeIntervalPlaceholder')"
                                 ></el-input>
                             </el-form-item>
-                            <el-form-item
-                                class="baseFormItem"
-                                label="nodeBlockProducedTimeOut"
-                                prop="node_blockProducedTimeOut"
-                            >
-                                <el-input
-                                    :maxlength="50"
-                                    v-model="baseSettingForm.node_blockProducedTimeOut"
-                                    :placeholder="$t('tronSettingPlaceholder')"
-                                ></el-input>
-                            </el-form-item>
-                            <el-form-item
-                                class="baseFormItem"
-                                label="nodeMinParticipationRate"
-                                prop="node_minParticipationRate"
-                            >
-                                <el-input
-                                    :maxlength="50"
-                                    v-model="baseSettingForm.node_minParticipationRate"
-                                    :placeholder="$t('tronSettingPlaceholder')"
-                                ></el-input>
-                            </el-form-item>
+                            <el-button
+                                type="text"
+                                size="small"
+                                @click="moreSetting = !moreSetting"
+                            >{{$t("tronMoreSetting")}}</el-button>
+                            <div v-if="moreSetting">
+                                <el-form-item
+                                    label="blockProducedTimeOut"
+                                    prop="block_proposalExpireTime"
+                                    class="baseFormItem"
+                                >
+                                    <el-input
+                                        size="small"
+                                        :maxlength="50"
+                                        v-model="baseSettingForm.block_proposalExpireTime"
+                                        :placeholder="$t('tronblockProducedTimeOutePlaceholder')"
+                                    ></el-input>
+                                </el-form-item>
+                                <el-form-item
+                                    class="baseFormItem"
+                                    label="nodeBlockProducedTimeOut"
+                                    prop="node_blockProducedTimeOut"
+                                >
+                                    <el-input
+                                        size="small"
+                                        :maxlength="50"
+                                        v-model="baseSettingForm.node_blockProducedTimeOut"
+                                        :placeholder="$t('tronblockNodeBlockProducedTimeOutPlaceholder')"
+                                    ></el-input>
+                                </el-form-item>
+                                <el-form-item
+                                    class="baseFormItem"
+                                    label="nodeMinParticipationRate"
+                                    prop="node_minParticipationRate"
+                                >
+                                    <el-input
+                                        size="small"
+                                        :maxlength="50"
+                                        v-model="baseSettingForm.node_minParticipationRate"
+                                        :placeholder="$t('tronblockNodeMinParticipationRatePlaceholder')"
+                                    ></el-input>
+                                </el-form-item>
+                            </div>
                         </div>
                     </el-card>
                 </el-col>
             </el-row>
             <el-form-item label-width="0" class="textRight">
-                <el-button type="primary" @click="previousStepFun">{{$t('tronSettingPreviousStep')}}</el-button>
                 <el-button
                     type="primary"
+                    size="small"
+                    @click="previousStepFun"
+                >{{$t('tronSettingPreviousStep')}}</el-button>
+                <el-button
+                    type="primary"
+                    size="small"
                     @click="saveData('baseSettingDialogForm')"
                 >{{$t('tronSettingNextStep')}}</el-button>
             </el-form-item>
@@ -112,13 +131,14 @@ export default {
         };
         return {
             classLoading: false,
+            moreSetting: false,
             baseSettingForm: {},
             baseContentShow: true,
             branchRules: {
                 chainId: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronChainIdPlaceholder"),
                         trigger: "blur"
                     },
                     {
@@ -130,14 +150,16 @@ export default {
                 chainName: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronChainNamePlaceholder"),
                         trigger: "blur"
                     }
                 ],
                 block_proposalExpireTime: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t(
+                            "tronblockProducedTimeOutePlaceholder"
+                        ),
                         trigger: "blur"
                     },
                     {
@@ -149,7 +171,9 @@ export default {
                 block_maintenanceTimeInterval: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t(
+                            "tronblockBlockMaintenanceTimeIntervalPlaceholder"
+                        ),
                         trigger: "blur"
                     },
                     {
@@ -161,7 +185,9 @@ export default {
                 node_blockProducedTimeOut: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t(
+                            "tronblockNodeBlockProducedTimeOutPlaceholder"
+                        ),
                         trigger: "blur"
                     },
                     {
@@ -173,7 +199,9 @@ export default {
                 node_minParticipationRate: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t(
+                            "tronblockNodeMinParticipationRatePlaceholder"
+                        ),
                         trigger: "blur"
                     },
                     {

@@ -5,6 +5,7 @@ const getters = {
   avatar: state => state.user.avatar,
   name: state => state.user.name,
   permission_routes: state => state.permission.routes,
+  roles: state => state.user.roles,
   originSetting: state => state.tronSetting.originSetting,
   configSetting: state => state.tronSetting.configSetting,
   settingStep: state => state.tronSetting.settingStep,
