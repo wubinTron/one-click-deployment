@@ -6,14 +6,14 @@ import java.util.List;
 public class P2PConfig implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public int node_p2p_version;
+  public long node_p2p_version;
   public int node_maxActiveNodes;
   public double node_activeConnectFactor;
   public int node_maxActiveNodesWithSameIp;
   public double connectFactor;
   public List<String> seed_node_ip_list;
 
-  public P2PConfig(int node_p2p_version, int node_maxActiveNodes, double node_activeConnectFactor,
+  public P2PConfig(long node_p2p_version, int node_maxActiveNodes, double node_activeConnectFactor,
       int nodeMaxActiveNodesWithSameIp, double connectFactor, List<String> seed_node_ip_list) {
     this.node_p2p_version = node_p2p_version;
     this.node_maxActiveNodes = node_maxActiveNodes;
