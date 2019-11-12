@@ -20,7 +20,7 @@ result=`scp -P $2  $4 $3@$1:./java-tron/  2>&1`
 if [ -z $result ];then
  echo "already uploading java-tron jar"
 else
-  echo "update java-tron jar and config failed, ${finish}"
+  echo "update java-tron jar, ${finish}"
   exit
 fi
 
