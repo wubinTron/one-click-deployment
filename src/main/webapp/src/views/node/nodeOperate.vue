@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-06 17:15:24
+ * @Last Modified time: 2019-11-11 19:36:45
  * @operation node 
  */
 
@@ -17,13 +17,14 @@
             :close-on-press-escape="false"
             v-loading="classLoading"
             width="680px"
+            top="8vh"
             center
         >
             <el-form
                 ref="nodeDialogForm"
                 :rules="nodeRules"
                 :model="nodeForm"
-                label-width="155px"
+                label-width="150px"
                 label-position="left"
                 class="nodeDialogForm"
             >
@@ -40,6 +41,7 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
                         v-model="nodeForm.id"
                         :placeholder="$t('tronNodeIDPlaceholder')"
@@ -50,6 +52,7 @@
                     <span slot="label">
                         {{$t('tronNodeName')}}
                         <el-tooltip
+                            size="small"
                             class="item"
                             effect="dark"
                             :content="$t('deploymentNodeUsernameTips')"
@@ -59,6 +62,7 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
                         v-model="nodeForm.userName"
                         :placeholder="$t('tronNodeNamePlaceholder')"
@@ -77,8 +81,9 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
-                        v-model="nodeForm.ip"
+                        v-model.trim="nodeForm.ip"
                         :placeholder="$t('tronNodeIpPlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -95,8 +100,9 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
-                        v-model="nodeForm.port"
+                        v-model.trim="nodeForm.port"
                         :placeholder="$t('tronNodePortPlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -112,7 +118,11 @@
                             <i class="iconfont icon-iconset0143"></i>
                         </el-tooltip>
                     </span>
-                    <el-select v-model="nodeForm.isSR" :placeholder="$t('tronNodeSRPlaceholder')">
+                    <el-select
+                        size="small"
+                        v-model="nodeForm.isSR"
+                        :placeholder="$t('tronNodeSRPlaceholder')"
+                    >
                         <el-option
                             v-for="item in srAry"
                             :key="item.value"
@@ -121,8 +131,21 @@
                         ></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="url" prop="url" v-if="nodeForm.isSR">
+                <el-form-item prop="url" v-if="nodeForm.isSR">
+                    <span slot="label">
+                        URL
+                        <el-tooltip
+                            class="item"
+                            effect="dark"
+                            :content="$t('deploymentNodeUrlTips')"
+                            placement="top"
+                        >
+                            <i class="iconfont icon-iconset0143"></i>
+                        </el-tooltip>
+                    </span>
+
                     <el-input
+                        size="small"
                         :maxlength="100"
                         v-model="nodeForm.url"
                         :placeholder="$t('tronNodeUrlPlaceholder')"
@@ -141,12 +164,26 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="100"
                         v-model="nodeForm.voteNumber"
                         :placeholder="$t('tronNodeVoteNumberPlaceholder')"
                     ></el-input>
                 </el-form-item>
-
+                <el-form-item v-if="editStatus ==1" class="publickey">
+                    <span slot="label" style="padding-left:12px">
+                        publicKey
+                        <el-tooltip
+                            class="item"
+                            effect="dark"
+                            :content="$t('deploymentNodePublickKeyTips')"
+                            placement="top"
+                        >
+                            <i class="iconfont icon-iconset0143"></i>
+                        </el-tooltip>
+                    </span>
+                    {{nodeForm.publicKey}}
+                </el-form-item>
                 <el-form-item prop="privateKey" v-if="nodeForm.isSR">
                     <span slot="label">
                         privateKey
@@ -160,6 +197,7 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         type="textarea"
                         :maxlength="1000"
                         v-model="nodeForm.privateKey"
@@ -167,13 +205,14 @@
                     ></el-input>
                 </el-form-item>
 
-                <el-form-item label-width="0" class="textCenter">
+                <el-form-item label-width="0" class="textRight">
                     <el-button
+                        size="small"
                         type="primary"
                         @click="saveData('nodeDialogForm')"
                         :loading="saveLoading"
                     >{{$t('tronNodeSave')}}</el-button>
-                    <el-button @click="cancelFun">{{$t('tronNodeCancel')}}</el-button>
+                    <el-button size="small" @click="cancelFun">{{$t('tronNodeCancel')}}</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -195,14 +234,18 @@ export default {
             }
         };
         const validPrivateKey = (rule, value, callback) => {
-            console.log(value, "value");
-            const address = TronWeb.address.fromPrivateKey(value);
-            console.log(address);
-            if (!TronWeb.isAddress(address)) {
+            // console.log(value, "value");
+            if (value.length != 64) {
                 callback(new Error(this.$t("tronSettingAddressPlaceholder")));
             } else {
                 callback();
             }
+            const address = TronWeb.address.fromPrivateKey(value);
+            // if (!TronWeb.isAddress(address)) {
+            //     callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+            // } else {
+            //     callback();
+            // }
         };
         return {
             classLoading: false,
@@ -300,21 +343,18 @@ export default {
     methods: {
         openDialogFun() {},
         closeFun() {
-            // this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
             this.$emit("addNodeSuccess", true);
         },
         cancelFun() {
-            // this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
             this.$emit("addNodeSuccess", true);
         },
         saveData(formName) {
-            this.saveLoading = true;
             this.$refs[formName].validate(valid => {
                 if (valid) {
+                    this.saveLoading = true;
                     let newForm;
-                    console.log(this.nodeForm.url);
                     if (this.nodeForm.url != undefined) {
                         newForm = {
                             url: `"${this.nodeForm.url}"`,
@@ -326,11 +366,17 @@ export default {
                             ...this.nodeForm
                         };
                     }
+                    if (
+                        newForm.privateKey ==
+                        "****************************************************************"
+                    ) {
+                        delete newForm.privateKey;
+                    }
+
                     console.log(newForm);
 
                     if (this.editStatus == 1) {
-                        // delete newForm.privateKey;
-                        delete newForm.publicKey;
+                        // delete newForm.publicKey;
                         editNote(newForm)
                             .then(response => {
                                 this.$emit("addNodeSuccess", true);
@@ -385,8 +431,17 @@ export default {
 .textCenter {
     text-align: center;
 }
+.textRight {
+    text-align: right;
+    margin-top: 30px;
+}
 .nodeDialogForm {
     padding: 0 20px;
+}
+.item {
+    i {
+        font-size: 12px;
+    }
 }
 </style>
 

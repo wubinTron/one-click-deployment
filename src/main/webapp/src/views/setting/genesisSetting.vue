@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-05 11:38:48
+ * @Last Modified time: 2019-11-08 20:30:36
  * @setting genesis setting
  */
 
@@ -57,7 +57,11 @@
             </el-col>
         </el-row>
         <div label-width="0" class="textRight">
-            <el-button type="primary" @click="saveAllData()">{{$t('tronSettingNextStep')}}</el-button>
+            <el-button
+                size="small"
+                type="primary"
+                @click="saveAllData()"
+            >{{$t('tronSettingNextStep')}}</el-button>
         </div>
         <el-dialog
             center
@@ -66,6 +70,7 @@
             :visible.sync="innerAssetVisible"
         >
             <el-form
+                class="assetDialogForm"
                 ref="assetDialogForm"
                 :rules="assetRules"
                 :model="assetForm"
@@ -74,15 +79,17 @@
             >
                 <el-form-item label="accountName" prop="accountName">
                     <el-input
+                        size="small"
                         :maxlength="50"
                         v-model="assetForm.accountName"
-                        :placeholder="$t('tronSettingPlaceholder')"
+                        :placeholder="$t('tronAccountNamePlaceholder')"
                     ></el-input>
                 </el-form-item>
                 <el-form-item label="accountType" prop="accountType">
                     <el-select
+                        size="small"
                         v-model="assetForm.accountType"
-                        :placeholder="$t('tronSettingSelectPlaceholder')"
+                        :placeholder="$t('tronAccountTypePlaceholder')"
                     >
                         <el-option
                             v-for="item in accountTypeOptions"
@@ -94,24 +101,30 @@
                 </el-form-item>
                 <el-form-item label="address" prop="address">
                     <el-input
+                        size="small"
                         :maxlength="50"
                         v-model="assetForm.address"
-                        :placeholder="$t('tronSettingPlaceholder')"
+                        :placeholder="$t('tronAddressPlaceholder')"
                     ></el-input>
                 </el-form-item>
                 <el-form-item label="balance" prop="balance">
                     <el-input
+                        size="small"
                         :maxlength="50"
                         v-model="assetForm.balance"
-                        :placeholder="$t('tronSettingPlaceholder')"
+                        :placeholder="$t('tronBalancePlaceholder')"
                     ></el-input>
                 </el-form-item>
-                <el-form-item label-width="0" class="textCenter">
+                <el-form-item label-width="0" class="textRight">
                     <el-button
+                        size="small"
                         type="primary"
                         @click="saveData('assetDialogForm')"
                     >{{$t('tronSettingSave')}}</el-button>
-                    <el-button @click="innerAssetVisible = false">{{$t('tronSettingCancel')}}</el-button>
+                    <el-button
+                        size="small"
+                        @click="innerAssetVisible = false"
+                    >{{$t('tronSettingCancel')}}</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -518,6 +531,9 @@ export default {
         margin: auto;
         top: -20px;
     }
+}
+.assetDialogForm {
+    padding: 0 30px 0 20px;
 }
 </style>
 

@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-10-28 20:54:52
+ * @Last Modified time: 2019-11-08 20:27:30
  * @setting genesis setting
  */
 
@@ -84,12 +84,13 @@
                         :placeholder="$t('tronSettingPlaceholder')"
                     ></el-input>
                 </div>
-                <el-form-item label-width="0" class="textCenter">
+                <el-form-item label-width="0" class="textRight">
                     <el-button
+                        size="small"
                         type="primary"
                         @click="saveData('pluginsDialogForm')"
                     >{{$t('tronPluginInputSave')}}</el-button>
-                    <el-button @click="cancelFun">{{$t('tronPluginInputCancel')}}</el-button>
+                    <el-button size="small" @click="cancelFun">{{$t('tronPluginInputCancel')}}</el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -198,6 +199,10 @@ export default {
 .textCenter {
     text-align: center;
     margin-top: 20px;
+}
+.textRight {
+    text-align: right;
+    margin-top: 30px;
 }
 .tronbaseSettingForm {
     padding: 0;

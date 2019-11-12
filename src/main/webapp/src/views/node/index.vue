@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-07 11:55:48
+ * @Last Modified time: 2019-11-12 11:30:38
  * @tron node list 
  */
 <template>
@@ -24,7 +24,7 @@
                     @click="bulkDeploymentFun"
                 >{{$t('tronNodeBulkDeployment')}}</el-button>
             </div>
-            <div class="filter-container tron-table">
+            <div class="filter-container tron-table" id="tronTable">
                 <!--tron table-->
                 <el-table
                     v-loading="listLoading"
@@ -47,7 +47,7 @@
                             <el-tag type="danger" v-else>no</el-tag>
                         </template>
                     </el-table-column>
-                    <el-table-column prop="status" :label="$t('tronNodeStatus')" align="center">
+                    <!-- <el-table-column prop="status" :label="$t('tronNodeStatus')" align="center">
                         <template slot-scope="scope">
                             <el-button
                                 size="small"
@@ -57,7 +57,7 @@
                             >{{$t('tronNodeLog')}}</el-button>
                             <span v-else>-</span>
                         </template>
-                    </el-table-column>
+                    </el-table-column>-->
                     <el-table-column :label="$t('tronNodeOperate')" align="center" width="200">
                         <template slot-scope="scope">
                             <el-button
@@ -144,8 +144,8 @@ import {
     nodeInfoApi
 } from "@/api/nodeApi.js";
 import operateNode from "./nodeOperate";
-import { setTimeout, setInterval } from "timers";
-let nodeTimer = null;
+
+//let nodeTimer = null;
 let deploymentNode = null;
 export default {
     name: "nodelist",
@@ -189,7 +189,8 @@ export default {
             this.multipleSelection.map(item => {
                 arr.push({
                     id: item.id,
-                    path: this.currentPath
+                    path: this.currentPath,
+                    isSR: item.isSR
                 });
             });
             return arr;
@@ -197,11 +198,12 @@ export default {
     },
     created() {
         this.getDataListFun();
+        this.timer = null;
     },
     beforeDestroy() {
-        window.clearInterval(nodeTimer);
+        window.clearInterval(this.timer);
         window.clearInterval(deploymentNode);
-        nodeTimer = null;
+        this.timer = null;
         deploymentNode = null;
     },
     methods: {
@@ -216,7 +218,9 @@ export default {
                 });
                 return;
             }
-            this.nodeObj.detail = {};
+            this.nodeObj.detail = {
+                url: "http://"
+            };
             this.nodeObj.status = 0;
             this.nodeObj.visible = true;
         },
@@ -227,23 +231,28 @@ export default {
                 url: JSON.stringify(val.url)
                     .slice(3)
                     .slice(0, -3),
-                voteNumber: val.voteCount
+                voteNumber: val.voteCount,
+                privateKey:
+                    "****************************************************************"
             };
             this.nodeObj.status = 1;
             this.nodeObj.visible = true;
         },
         viewCurrentLogFun(_id) {
+            console.log(this.timer);
+            clearInterval(this.timer);
             this.logInfoData = [];
             this.currentLogDialog = true;
             this.viewLogFun(_id);
-            // nodeTimer = setInterval(() => {
-            this.viewLogFun(_id);
-            // }, 1000 * 5);
+            this.timer = setInterval(() => {
+                this.viewLogFun(_id);
+            }, 1000 * 5);
         },
         currentNodeLogEnd() {
-            console.log(123);
-            window.clearInterval(nodeTimer);
-            nodeTimer = null;
+            console.log("this.timer", this.timer);
+            clearInterval(this.timer);
+            this.timer = null;
+            console.log(this.timer);
         },
         viewLogFun(_id, _type) {
             this.deploymentLoadingText = this.$t("deploymentSearchLoading");
@@ -256,11 +265,11 @@ export default {
                     this.deplogUploadLoading = true;
                     this.deploymentLoadingTips = true;
                     this.currentlogInfoData.forEach(async item => {
-                        if (item == "deploy finish") {
+                        if (item.indexOf("deploy finish") > -1) {
                             this.deplogUploadLoading = false;
                             this.deploymentDialogVisible = false;
                             this.deploymentLoadingText = this.$t(
-                                "deploymentSuccess"
+                                "deploymentDone"
                             );
                         } else if (item == "ssh connect failed") {
                             this.deplogUploadLoading = false;
@@ -285,10 +294,6 @@ export default {
                     type: "success",
                     message: this.$t("deploymentLoading")
                 });
-                // console.log(
-                //     this.multipleSelectionIds,
-                //     "this.multipleSelectionIds"
-                // );
                 let idAry = [];
                 this.multipleSelectionIds.forEach(item => {
                     idAry.push(item.id);
@@ -317,7 +322,19 @@ export default {
                 });
         },
         bulkDeploymentFun() {
+            // console.log(this.multipleSelectionIds.length);
             if (this.multipleSelectionIds.length > 0) {
+                // let count = 0;
+                // this.multipleSelectionIds.find(item => {
+                //     item.isSR ? count++ : "";
+                // });
+                // if (count == 0) {
+                //     this.$message({
+                //         type: "warning",
+                //         message: this.$t("deploymentSRSelectTips")
+                //     });
+                //     return;
+                // }
                 this.logInfoData = [];
                 this.deploymentDialogVisible = true;
             } else {
@@ -335,14 +352,16 @@ export default {
                     })
                     .then(res => {
                         let newRes = Object.values(res);
+                        let newInd = 0;
                         newRes.forEach(item => {
                             if (item != "deploy finish") {
-                                return false;
-                            } else {
-                                this.allNodeDeployLoading = false;
-                                clearInterval(this.deploymentNode);
+                                newInd++;
                             }
                         });
+                        if (newInd == 0) {
+                            this.allNodeDeployLoading = false;
+                            clearInterval(this.deploymentNode);
+                        }
                     })
                     .catch(error => {
                         console.log(error);
@@ -433,16 +452,16 @@ export default {
                 this.getDataListFun();
             }
         },
-        nextStepFun() {
+        async nextStepFun() {
+            await this.$store
+                .dispatch("user/changeRoles", "setting")
+                .then(res => {
+                    console.log(res);
+                });
             this.$router.push({ path: "/setting/list" });
         }
     }
 };
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
-.license {
-    display: block;
-    width: 120px;
-    height: 80px;
-}
 </style>

@@ -2,19 +2,13 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-06 14:24:53
+ * @Last Modified time: 2019-11-11 19:17:04
  * @tron setting list  
  */
 <template>
     <div class="app-container">
         <div class="tron-content">
-            <div class="tron-filter-section">
-                <!-- <el-button
-                    size="mini"
-                    @click="addNodeFun()"
-                    type="primary"
-                >{{$t('tronSettingApplication')}}</el-button>-->
-            </div>
+            <div class="tron-filter-section"></div>
             <div class="filter-container tron-table tabSection">
                 <!--tron table-->
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -107,7 +101,7 @@
                         <th>{{$t('tronCrossChain')}}</th>
                         <th>
                             <el-button
-                                size="mini"
+                                size="small"
                                 type="warning"
                                 @click="modifySettingFun(6)"
                             >{{$t('tronModifySetting')}}</el-button>
@@ -205,31 +199,10 @@ export default {
         };
     },
     created() {
-        this.getOriginSettingFun();
         this.getCurrentSettingFun();
     },
 
     methods: {
-        getOriginSettingFun() {
-            this.$store
-                .dispatch("tronSetting/getOriginConfig")
-                .then(response => {
-                    this.originSettingObj = response;
-                    if (response.p2pConfig.seed_node_ip_list) {
-                        let newIpList = [];
-                        response.p2pConfig.seed_node_ip_list.forEach(item => {
-                            newIpList.push({
-                                ip: item,
-                                port: ""
-                            });
-                        });
-                        this.seedNodeIpList = newIpList;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
         getCurrentSettingFun() {
             this.$store
                 .dispatch("tronSetting/getConfigSetting")
@@ -243,12 +216,23 @@ export default {
                     this.databaseSettingForm.detail = response.dbConfig;
                     this.networkSetting.detail = response.networkConfig;
                     this.crossChainSetting.detail = response.crossChainConfig;
+                    //  if (response.p2pConfig.allNodes != null) {
+                    //     let newIpList = [];
+                    //     response.p2pConfig.allNodes.forEach(item => {
+                    //         newIpList.push({
+                    //             ip: item,
+                    //             port: ""
+                    //         });
+                    //     });
+                    //     this.seedNodeIpList = newIpList || [];
+                    // } else {
+                    //     this.seedNodeIpList = [];
+                    // }
                 })
                 .catch(error => {
                     console.log(error);
                 });
         },
-        addNodeFun() {},
         async modifySettingFun(type) {
             await this.getCurrentSettingFun();
             switch (type) {
