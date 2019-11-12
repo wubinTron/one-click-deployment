@@ -3,7 +3,6 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-.config.conf
 /src/main/webapp/dist/*
 /src/main/resources/static/static
 /logs/*
