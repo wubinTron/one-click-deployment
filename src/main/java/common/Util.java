@@ -19,16 +19,17 @@ import wallet.WalletFile;
 
 public class Util {
   public static com.typesafe.config.Config config;
+//  public static com.typesafe.config.Config originConfig;
 
   public static void parseConfig() {
     File confFile = new File(Common.configFiled);
     config = ConfigFactory.parseFile(confFile);
   }
-
-  public static void parseOriginConfig() {
-    File confFile = new File(Common.originConfigFiled);
-    config = ConfigFactory.parseFile(confFile);
-  }
+//
+//  public static void parseOriginConfig() {
+//    File confFile = new File(Common.originConfigFiled);
+//    originConfig = ConfigFactory.parseFile(confFile);
+//  }
 
   static public JSONObject readJsonFile() {
     JSONParser parser = new JSONParser();

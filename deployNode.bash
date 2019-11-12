@@ -16,18 +16,26 @@ else
 fi
 
 echo "uploading java-tron jar"
-scp -P $2  $4 $3@$1:./java-tron/
-result=`scp -P $2 $5 $3@$1:./java-tron/config.conf 2>&1`
+result=`scp -P $2  $4 $3@$1:./java-tron/  2>&1`
 if [ -z $result ];then
-  echo "already uploading java-tron jar and config"
+ echo "already uploading java-tron jar"
 else
   echo "update java-tron jar and config failed, ${finish}"
   exit
 fi
 
+echo "uploading config.conf"
+result=`scp -P $2 $5 $3@$1:./java-tron/config.conf 2>&1`
+if [ -z $result ];then
+  echo "already uploading config"
+else
+  echo "update config failed, ${finish}"
+  exit
+fi
+
 result=`ssh -p $2 $3@$1 "cd java-tron&&unzip -o ./${APP}.zip > /dev/null"`
 if [ "$?" != "0" ]; then
-   echo "unzip failed, check unzip cmd is installed or not"
+   echo "unzip failed, check unzip cmd is installed or not, ${finish}"
    echo $result
    exit
 fi
