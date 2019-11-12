@@ -5,6 +5,8 @@ import static common.Util.readJsonFile;
 import common.Common;
 import config.BlockSettingConfig;
 import config.ConfigGenerator;
+import config.DBConfig;
+import config.P2PVersion;
 import org.springframework.web.bind.annotation.RequestBody;
 import response.ResultCode;
 import common.Util;
@@ -37,6 +39,17 @@ import tron.deployment.shellExecutor.BashExecutor;
 @RequestMapping(value = "/")
 @Slf4j
 public class DeployController {
+
+  @RequestMapping(method = RequestMethod.POST, value = "/oneClick")
+  public JSONObject startDeployment() {
+    Long currentTime = System.currentTimeMillis();
+    ConfigGenerator configGenerator = new ConfigGenerator();
+    boolean result = configGenerator.updateConfig(new P2PVersion(currentTime), Common.configFiled);
+    if (result == false) {
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+    }
+    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+  }
 
 	@RequestMapping(method = RequestMethod.POST, value = "/checkNode")
 	public JSONObject checkDeployStatus(@RequestBody ArrayList<Long> idList) {
