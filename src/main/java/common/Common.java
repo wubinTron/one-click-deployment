@@ -70,6 +70,8 @@ public class Common {
 
   public static final String logFormat = "logs/result_%s.log" ;
 
+  public static final String allNodesField = "allNodes";
+
   // Node Status
   public static final String notFoundStatus = "not found";
 

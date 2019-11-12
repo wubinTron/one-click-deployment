@@ -1,7 +1,6 @@
 package tron.deployment.Controller;
 import static common.Util.config;
 import static common.Util.parseConfig;
-import static common.Util.parseOriginConfig;
 import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
 import static org.tron.core.config.args.Storage.getDbEngineFromConfig;
@@ -109,18 +108,18 @@ public class ConfigControlller {
     return json;
   }
 
-  private void loadConfig() {
+  private void loadConfig(com.typesafe.config.Config loadConfig) {
     // dbConfig
-    dbConfig = new DBConfig(getDbVersionSyncFromConfig(config), getTransactionHistoreSwitchFromConfig(config),
-        getDbEngineFromConfig(config), getIndexDirectoryFromConfig(config), Args.needToUpdateAsset(config));
+    dbConfig = new DBConfig(getDbVersionSyncFromConfig(loadConfig), getTransactionHistoreSwitchFromConfig(loadConfig),
+        getDbEngineFromConfig(loadConfig), getIndexDirectoryFromConfig(loadConfig), Args.needToUpdateAsset(loadConfig));
 
     // p2pConfig
-    p2pConfig = new P2PConfig(Args.getP2pVersionFromConfig(config), Args.getNodeMaxActiveNodes(config),
-        Args.getActiveConnectFactor(config), Args.getNodeMaxActiveNodesWithSameIp(config), Args.getConnectFactor(config), Args.getSeedNode(config));
+    p2pConfig = new P2PConfig(Args.getP2pVersionFromConfig(loadConfig), Args.getNodeMaxActiveNodes(loadConfig),
+        Args.getActiveConnectFactor(loadConfig), Args.getNodeMaxActiveNodesWithSameIp(loadConfig), Args.getConnectFactor(loadConfig), Args.getSeedNode(loadConfig));
 
     // network
-    networkConfig = new NetworkConfig(Args.getMaxHttpConnectNumber(config), Args.getRPCFullNodePort(config),
-        Args.getHTTPFullNodePort(config), Args.getRPCSolidityNodePort(config), Args.getHTTPSolidityNodePort(config), Args.getListenPort(config));
+    networkConfig = new NetworkConfig(Args.getMaxHttpConnectNumber(loadConfig), Args.getRPCFullNodePort(loadConfig),
+        Args.getHTTPFullNodePort(loadConfig), Args.getRPCSolidityNodePort(loadConfig), Args.getHTTPSolidityNodePort(loadConfig), Args.getListenPort(loadConfig));
 
     // crossChain
     initCrossSetting();
@@ -129,19 +128,20 @@ public class ConfigControlller {
     initBaseSettingConfig();
 
     // GenesisAsset
-    genesisAssetConfig = new GenesisAssetConfig(Args.getAccountsFromConfig(config));
+    genesisAssetConfig = new GenesisAssetConfig(Args.getAccountsFromConfig(loadConfig));
 
     // GenesisWitness
-    genesisWitnessConfig = new GenesisWitnessConfig(Args.getWitnessesFromConfig(config));
+    genesisWitnessConfig = new GenesisWitnessConfig(Args.getWitnessesFromConfig(loadConfig));
   }
 
-  private JSONObject getConfigJsonObject() {
-    loadConfig();
+  private JSONObject getConfigJsonObject(com.typesafe.config.Config loadConfig) {
+    loadConfig(loadConfig);
     JSONObject configObject = new JSONObject();
     JSONObject dbObject = generateJSONObject(dbConfig.getClass().getFields(), dbConfig);
     configObject.put("dbConfig", dbObject);
 
     JSONObject p2pObject = generateJSONObject(p2pConfig.getClass().getFields(), p2pConfig);
+    p2pObject.put(Common.allNodesField, getSeedNode());
     configObject.put("p2pConfig", p2pObject);
 
     JSONObject networkObject = generateJSONObject(networkConfig.getClass().getFields(), networkConfig);
@@ -284,19 +284,20 @@ public class ConfigControlller {
   @RequestMapping(method = RequestMethod.GET, value = "/config")
   public JSONObject getConfig() {
     parseConfig();
+    JSONObject configObject = getConfigJsonObject(config);
 
-    JSONObject configObject = getConfigJsonObject();
+
     return new Response(ResultCode.OK.code, configObject).toJSONObject();
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/originConfig")
-  public JSONObject getOriginConfig() {
-    parseOriginConfig();
-    loadConfig();
-    JSONObject configObject = getConfigJsonObject();
-    JSONObject p2pObject = generateJSONObject(p2pConfig.getClass().getFields(), p2pConfig);
-    p2pObject.put("seed_node_ip_list", getSeedNode());
-    configObject.put("p2pConfig", p2pObject);
-    return new Response(ResultCode.OK.code, configObject).toJSONObject();
-  }
+//
+//  @RequestMapping(method = RequestMethod.GET, value = "/originConfig")
+//  public JSONObject getOriginConfig() {
+//    parseOriginConfig();
+//    JSONObject configObject = getConfigJsonObject(originConfig);
+//    JSONObject p2pObject = generateJSONObject(p2pConfig.getClass().getFields(), p2pConfig);
+//    p2pObject.put("seed_node_ip_list", getSeedNode());
+//    configObject.put("p2pConfig", p2pObject);
+//    return new Response(ResultCode.OK.code, configObject).toJSONObject();
+//  }
 }
