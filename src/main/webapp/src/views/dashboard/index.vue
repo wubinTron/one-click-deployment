@@ -4,8 +4,8 @@
       <!-- <el-button icon="el-icon-question" type="primary" @click.prevent.stop="guide">使用引导</el-button> -->
       <!-- <router-link :to="{path:'/node/list'}"> -->
       <el-button type="warning" @click="startOneClickFun"
-        >1111111{{ $t("startTronOneClickDeploy") }}</el-button
-      >11111111111111111111111111111111111
+        >{{ $t("startTronOneClickDeploy") }}</el-button
+      >
       <!-- </router-link> -->
     </el-row>
 
