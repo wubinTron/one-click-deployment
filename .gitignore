@@ -4,9 +4,9 @@ target/
 !**/src/main/**
 !**/src/test/**
 .config.conf
-/src/main/webapp/dist/*
-/src/main/resources/static/static
-/logs/*
+src/main/webapp/dist/*
+src/main/resources/*
+logs/*
 .originConfig.conf
 
 ### STS ###
