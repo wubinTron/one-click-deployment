@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-11 19:19:40
+ * @Last Modified time: 2019-11-12 18:41:07
  * @tron setting default  
  */
 <template>
@@ -39,7 +39,6 @@
                     :detailInfoData="networkSetting.detail"
                     @addSettingSuccess="addSettingSuccessFun"
                 ></network-setting>
-
                 <databaseSetting
                     v-if="currentStep == 4"
                     @previousSettingStep="previousSettingStepFun"
@@ -119,6 +118,12 @@ export default {
     methods: {
         stepClickFun(step) {
             if (step == 6) {
+                if (this.p2pSetting.detail.seed_node_ip_list == null) {
+                    this.$message.warning(
+                        this.$t("tronP2pSeedNodeSelectNextTips")
+                    );
+                    return;
+                }
                 if (this.p2pSetting.detail.seed_node_ip_list == 0) {
                     this.$message.warning(
                         this.$t("tronP2pSeedNodeSelectNextTips")

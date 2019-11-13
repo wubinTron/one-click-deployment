@@ -73,6 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+    width: 100%;
     height: 50px;
     overflow: hidden;
     position: relative;
@@ -144,7 +145,7 @@ export default {
             margin-right: 30px;
             .avatar-wrapper {
                 margin-top: 5px;
-                position: relative;
+                // position: relative;
                 line-height: 40px;
                 font-size: 0.9rem;
                 height: 40px;

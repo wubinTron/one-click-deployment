@@ -2,108 +2,53 @@
  * @Author: lxm 
  * @Date: 2019-10-21 15:25:02 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-10-24 15:45:31
+ * @Last Modified time: 2019-11-13 16:12:45
  * @dashboard-index
  */
 
 <template>
     <div>
-        <el-row :gutter="10" class="panel-group">
-            <el-col :xs="16" :sm="16" :lg="8" class="card-panel-col">
-                <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+        <el-row :gutter="0" class="panel-group">
+            <el-col :xs="16" :sm="16" :lg="6" class="card-panel-col">
+                <div class="card-panel">
                     <div class="card-panel-description">
-                        <div class="card-panel-text">All Node</div>
-                        <count-to
-                            :start-val="0"
-                            :end-val="102400"
-                            :duration="2600"
-                            class="card-panel-num"
-                        />
-                    </div>
-                    <div class="card-panel-icon-wrapper icon-people">
-                        <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+                        <div class="card-panel-text">
+                            <i class="num">1</i>添加节点
+                        </div>
+                        <div class="descCont">快速创建节点信息</div>
                     </div>
                 </div>
             </el-col>
-            <el-col :xs="16" :sm="16" :lg="8" class="card-panel-col">
-                <div class="card-panel" @click="handleSetLineChartData('messages')">
+            <el-col :xs="16" :sm="16" :lg="6" class="card-panel-col">
+                <div class="card-panel">
                     <div class="card-panel-description">
-                        <div class="card-panel-text">Witeness</div>
-                        <count-to
-                            :start-val="0"
-                            :end-val="81212"
-                            :duration="3000"
-                            class="card-panel-num"
-                        />
-                    </div>
-                    <div class="card-panel-icon-wrapper icon-message">
-                        <svg-icon icon-class="message" class-name="card-panel-icon" />
+                        <div class="card-panel-text">
+                            <i class="num">2</i>配置设置
+                        </div>
+                        <div class="descCont">配置管理信息</div>
                     </div>
                 </div>
             </el-col>
-            <el-col :xs="16" :sm="16" :lg="8" class="card-panel-col">
-                <div class="card-panel" @click="handleSetLineChartData('purchases')">
+            <el-col :xs="16" :sm="16" :lg="6" class="card-panel-col">
+                <div class="card-panel">
                     <div class="card-panel-description">
-                        <div class="card-panel-text">FullNode</div>
-                        <count-to
-                            :start-val="0"
-                            :end-val="9280"
-                            :duration="3200"
-                            class="card-panel-num"
-                        />
+                        <div class="card-panel-text">
+                            <i class="num">3</i>插件配置
+                        </div>
+                        <div class="descCont">插件个性化配置</div>
                     </div>
                     <div class="card-panel-icon-wrapper icon-money">
                         <svg-icon icon-class="money" class-name="card-panel-icon" />
                     </div>
                 </div>
             </el-col>
-        </el-row>
-        <el-row :gutter="10" class="panel-group">
-            <el-col :xs="16" :sm="16" :lg="8" class="card-panel-col">
-                <div class="card-panel" @click="handleSetLineChartData('newVisitis')">
+            <el-col :xs="16" :sm="16" :lg="6" class="card-panel-col">
+                <div class="card-panel">
                     <div class="card-panel-description">
-                        <div class="card-panel-text">Version</div>
-                        <count-to
-                            :start-val="0"
-                            :end-val="3.5"
-                            :duration="2600"
-                            class="card-panel-num"
-                        />
-                    </div>
-                    <div class="card-panel-icon-wrapper icon-people">
-                        <svg-icon icon-class="peoples" class-name="card-panel-icon" />
-                    </div>
-                </div>
-            </el-col>
-            <el-col :xs="16" :sm="16" :lg="8" class="card-panel-col">
-                <div class="card-panel" @click="handleSetLineChartData('messages')">
-                    <div class="card-panel-description">
-                        <div class="card-panel-text">{{$t('tronSettingNormalNode')}}</div>
-                        <count-to
-                            :start-val="0"
-                            :end-val="81212"
-                            :duration="3000"
-                            class="card-panel-num"
-                        />
-                    </div>
-                    <div class="card-panel-icon-wrapper icon-message">
-                        <svg-icon icon-class="message" class-name="card-panel-icon" />
-                    </div>
-                </div>
-            </el-col>
-            <el-col :xs="16" :sm="16" :lg="8" class="card-panel-col">
-                <div class="card-panel" @click="handleSetLineChartData('purchases')">
-                    <div class="card-panel-description">
-                        <div class="card-panel-text">{{$t('tronSettingUnnormalNode')}}</div>
-                        <count-to
-                            :start-val="0"
-                            :end-val="9280"
-                            :duration="3200"
-                            class="card-panel-num"
-                        />
-                    </div>
-                    <div class="card-panel-icon-wrapper icon-money">
-                        <svg-icon icon-class="money" class-name="card-panel-icon" />
+                        <div class="card-panel-text">
+                            <i class="num">4</i>节点部署
+                        </div>
+                        <div class="descCont">部署节点 一键发链</div>
                     </div>
                 </div>
             </el-col>
@@ -128,11 +73,12 @@ export default {
 <style lang="scss" scoped>
 .panel-group {
     margin-top: 18px;
+    // box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     .card-panel-col {
-        margin-bottom: 32px;
+        // margin-bottom: 32px;
     }
     .card-panel {
-        height: 108px;
+        height: 121px;
         cursor: pointer;
         font-size: 12px;
         position: relative;
@@ -141,6 +87,9 @@ export default {
         background: #fff;
         box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.05);
         border-color: rgba(0, 0, 0, 0.05);
+        &:hover {
+            background: #f0f0f7;
+        }
         .card-panel-icon-wrapper {
             float: right;
             margin: 14px 0 0 14px;
@@ -157,11 +106,43 @@ export default {
             font-weight: bold;
             margin: 26px;
             .card-panel-text {
+                font-size: 14px;
+                color: #373d41;
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 line-height: 18px;
-                color: rgba(0, 0, 0, 0.45);
-                font-size: 16px;
-                margin-bottom: 12px;
+                margin-bottom: 15px;
+                i {
+                    position: relative;
+                    width: 30px;
+                    height: 30px;
+                    display: inline-block;
+                    line-height: 28px;
+                    margin-right: 9px;
+                    text-align: center;
+                    color: #ff6a00;
+                    font-size: 30px;
+                    font-style: italic;
+                    font-weight: 700;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 4px;
+                        left: 16px;
+                        width: 10px;
+                        height: 40px;
+                        border-left: 1px solid #ff6a00;
+                        background-color: #fff;
+                        transform: rotate(45deg);
+                    }
+                }
             }
+            .descCont {
+                margin-left: 40px;
+            }
+
             .card-panel-num {
                 font-size: 20px;
             }
