@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-08 11:01:16
+ * @Last Modified time: 2019-11-12 14:35:02
  * @setting cross setting
  */
 
@@ -32,7 +32,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.node_maxHttpConnectNumber"
+                                    v-model.trim="baseSettingForm.node_maxHttpConnectNumber"
                                     :placeholder="$t('tronmaxHttpConnectNumberPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -44,7 +44,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.node_http_fullNodePort"
+                                    v-model.trim="baseSettingForm.node_http_fullNodePort"
                                     :placeholder="$t('tronhttpFullNodePortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -56,7 +56,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.node_http_solidityPort"
+                                    v-model.trim="baseSettingForm.node_http_solidityPort"
                                     :placeholder="$t('tronhttpHttpSolidityPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -65,7 +65,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.node_rpc_port"
+                                    v-model.trim="baseSettingForm.node_rpc_port"
                                     :placeholder="$t('tronhttpRpcPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -77,7 +77,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.node_rpc_solidityPort"
+                                    v-model.trim="baseSettingForm.node_rpc_solidityPort"
                                     :placeholder="$t('tronhttpRpcSolidityPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -89,7 +89,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.node_listen_port"
+                                    v-model.trim="baseSettingForm.node_listen_port"
                                     :placeholder="$t('tronhttpRpcListenPortPlaceholder')"
                                 ></el-input>
                             </el-form-item>

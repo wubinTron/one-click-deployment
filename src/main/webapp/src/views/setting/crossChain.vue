@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-11 17:23:02
+ * @Last Modified time: 2019-11-12 14:37:29
  * @setting cross setting
  */
 
@@ -44,7 +44,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.maxValidatorNumber"
+                                    v-model.trim="baseSettingForm.maxValidatorNumber"
                                     :placeholder="$t('tronMaxValidatorNumberPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -56,7 +56,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.minValidatorNumber"
+                                    v-model.trim="baseSettingForm.minValidatorNumber"
                                     :placeholder="$t('tronMinValidatorNumberPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -72,7 +72,7 @@
                                     :min="0"
                                     :step="0.01"
                                     :maxlength="50"
-                                    v-model="baseSettingForm.crossChainFee"
+                                    v-model.trim="baseSettingForm.crossChainFee"
                                     :placeholder="$t('tronSettingPlaceholder')"
                                 ></el-input-number>
                             </el-form-item>

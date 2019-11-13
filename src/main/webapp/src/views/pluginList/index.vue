@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 11:34:47
+ * @Last Modified time: 2019-11-13 11:39:15
  * @tron plugin list  
  */
 <template>
@@ -47,21 +47,21 @@
                                 <el-form-item prop="consensus" class="baseFormItem mgt30">
                                     <el-radio-group v-model="pluginOnsensusForm.consensus">
                                         <el-radio :label="'dpos'">DPOS</el-radio>
-                                        <el-radio :label="'pbft'">PBFT</el-radio>
+                                        <!-- <el-radio :label="'pbft'">PBFT</el-radio>
                                         <br />
                                         <el-radio
                                             style="margin:15px 0"
                                             :label="3"
-                                        >{{$t('tronPluginCustomConsensusModule')}}：</el-radio>
+                                        >{{$t('tronPluginCustomConsensusModule')}}：</el-radio>-->
                                     </el-radio-group>
-                                    <br />
+                                    <!-- <br />
                                     <el-input
                                         size="small"
                                         class="pluginSettingFormInput"
                                         :maxlength="50"
-                                        v-model="pluginOnsensusForm.consensusContent"
+                                        v-model.trim="pluginOnsensusForm.consensusContent"
                                         :placeholder="$t('tronPluginCustomConsensusModulePlaceholder')"
-                                    ></el-input>
+                                    ></el-input>-->
                                 </el-form-item>
                             </div>
                         </el-card>
@@ -122,7 +122,7 @@
                                                 class="singlePluginSettingFormInput"
                                                 size="small"
                                                 :maxlength="300"
-                                                v-model="pluginTransactionForm.transactionContent"
+                                                v-model.trim="pluginTransactionForm.transactionContent"
                                                 :placeholder="$t('tronPluginCustomTradingModulePlaceholder')"
                                             ></el-input>
                                         </div>
@@ -178,7 +178,7 @@
                                         size="small"
                                         class="pluginSettingFormInput"
                                         :maxlength="50"
-                                        v-model="plugindbForm.dbsettingContent"
+                                        v-model.trim="plugindbForm.dbsettingContent"
                                         :placeholder="$t('tronPluginCustomDatabaseModulePlaceholder')"
                                     ></el-input>
                                 </el-form-item>

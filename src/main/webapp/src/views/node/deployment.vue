@@ -2,20 +2,13 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 11:33:19
+ * @Last Modified time: 2019-11-13 16:39:43
  * @tron node list 
  */
 <template>
     <div class="app-container">
         <div class="tron-content">
             <div class="tron-filter-section">
-                <!-- <el-button
-                    icon="el-icon-plus"
-                    size="small"
-                    @click="addNodeFun()"
-                    type="primary"
-                >{{$t('tronNodeAdd')}}</el-button>-->
-                <div></div>
                 <el-button
                     size="small"
                     :loading="allNodeDeployLoading"
@@ -57,32 +50,8 @@
                             <span v-else>-</span>
                         </template>
                     </el-table-column>
-                    <!-- <el-table-column :label="$t('tronNodeOperate')" align="center" width="200">
-                        <template slot-scope="scope">
-                            <el-button
-                                size="small"
-                                type="text"
-                                @click="operateNodeFun(scope.row)"
-                            >{{$t('tronNodeModify')}}</el-button>
-                            <el-divider direction="vertical"></el-divider>
-                            <el-button
-                                size="small"
-                                type="text"
-                                @click="deleteNodeListFun(scope.row.id)"
-                            >{{$t('tronNodeDelete')}}</el-button>
-                        </template>
-                    </el-table-column>-->
                 </el-table>
             </div>
-            <!-- <div class="mgt20" v-if="isDeploy != 1">
-                <el-button
-                    size="small"
-                    style="float:right"
-                    :type="allStepsBtnType"
-                    :disabled="allStepsBtnDisable"
-                    @click="nextStepFun"
-                >{{$t('tronNodeNextStep')}}</el-button>
-            </div>-->
         </div>
         <!--tron Node Bulk Deployment  -->
         <el-dialog
@@ -91,7 +60,11 @@
             width="600px"
             center
         >
-            <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" v-model="currentPath"></el-input>
+            <el-input
+                type="textarea"
+                :autosize="{ minRows: 2, maxRows: 4}"
+                v-model.trim="currentPath"
+            ></el-input>
             <div class="el-upload__tip">{{$t('deploymentUpload')}}</div>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="deploymentDialogVisible = false">{{$t('tronNodeCancel')}}</el-button>
@@ -238,7 +211,6 @@ export default {
             this.nodeObj.visible = true;
         },
         viewCurrentLogFun(_id) {
-            console.log(this.timer);
             clearInterval(this.timer);
             this.logInfoData = [];
             this.currentLogDialog = true;
@@ -248,10 +220,10 @@ export default {
             }, 1000 * 5);
         },
         currentNodeLogEnd() {
-            console.log("this.timer", this.timer);
+            // console.log("this.timer", this.timer);
             clearInterval(this.timer);
             this.timer = null;
-            console.log(this.timer);
+            // console.log(this.timer);
         },
         viewLogFun(_id, _type) {
             this.deploymentLoadingText = this.$t("deploymentSearchLoading");
@@ -270,12 +242,14 @@ export default {
                             this.deploymentLoadingText = this.$t(
                                 "deploymentDone"
                             );
+                            clearInterval(this.timer);
                         } else if (item == "ssh connect failed") {
                             this.deplogUploadLoading = false;
                             this.deploymentDialogVisible = false;
                             this.deploymentLoadingText = this.$t(
                                 "deploymentFail"
                             );
+                            clearInterval(this.timer);
                         }
                     });
                 })
@@ -286,6 +260,15 @@ export default {
             this.deplogUploadLoading = true;
             this.allNodeDeployLoading = true;
             if (this.currentPath != "") {
+                if (this.currentPath.indexOf("java-tron-1.0.0.zip") == -1) {
+                    this.$message({
+                        type: "warning",
+                        message: this.$t("deploymentCorrectPath")
+                    });
+                    this.deplogUploadLoading = false;
+                    this.allNodeDeployLoading = false;
+                    return;
+                }
                 this.multipleSelectionIds.forEach(async item => {
                     await this.deployNodeApiFun(item);
                 });
