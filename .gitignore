@@ -8,13 +8,9 @@ package-lock.json
 !**/src/main/**
 !**/src/test/**
 src/main/webapp/dist/*
-src/main/webapp/node_modules/*
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
 src/main/resources/*
 logs/*
+.DS_Store
 
 .originConfig.conf
 

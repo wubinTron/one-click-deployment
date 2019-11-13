@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 14:34:08
+ * @Last Modified time: 2019-11-07 17:40:50
  * @setting base setting 
  */
 
@@ -28,7 +28,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model.trim="baseSettingForm.chainId"
+                                    v-model="baseSettingForm.chainId"
                                     :placeholder="$t('tronChainIdPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -36,7 +36,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model.trim="baseSettingForm.chainName"
+                                    v-model="baseSettingForm.chainName"
                                     :placeholder="$t('tronChainNamePlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -49,7 +49,7 @@
                                 <el-input
                                     size="small"
                                     :maxlength="50"
-                                    v-model.trim="baseSettingForm.block_maintenanceTimeInterval"
+                                    v-model="baseSettingForm.block_maintenanceTimeInterval"
                                     :placeholder="$t('tronblockBlockMaintenanceTimeIntervalPlaceholder')"
                                 ></el-input>
                             </el-form-item>
@@ -67,7 +67,7 @@
                                     <el-input
                                         size="small"
                                         :maxlength="50"
-                                        v-model.trim="baseSettingForm.block_proposalExpireTime"
+                                        v-model="baseSettingForm.block_proposalExpireTime"
                                         :placeholder="$t('tronblockProducedTimeOutePlaceholder')"
                                     ></el-input>
                                 </el-form-item>
@@ -79,7 +79,7 @@
                                     <el-input
                                         size="small"
                                         :maxlength="50"
-                                        v-model.trim="baseSettingForm.node_blockProducedTimeOut"
+                                        v-model="baseSettingForm.node_blockProducedTimeOut"
                                         :placeholder="$t('tronblockNodeBlockProducedTimeOutPlaceholder')"
                                     ></el-input>
                                 </el-form-item>
@@ -91,7 +91,7 @@
                                     <el-input
                                         size="small"
                                         :maxlength="50"
-                                        v-model.trim="baseSettingForm.node_minParticipationRate"
+                                        v-model="baseSettingForm.node_minParticipationRate"
                                         :placeholder="$t('tronblockNodeMinParticipationRatePlaceholder')"
                                     ></el-input>
                                 </el-form-item>
