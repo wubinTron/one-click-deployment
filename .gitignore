@@ -10,6 +10,7 @@ package-lock.json
 src/main/webapp/dist/*
 src/main/resources/*
 logs/*
+.DS_Store
 
 .originConfig.conf
 
