@@ -52,11 +52,4 @@ export default {
     'tronNodeSrIs': "是",
     'tronNodeSrNo': "否",
 
-
-
-
-
-
-
-
 }
