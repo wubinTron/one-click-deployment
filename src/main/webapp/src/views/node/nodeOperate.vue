@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 14:40:09
+ * @Last Modified time: 2019-11-11 19:36:45
  * @operation node 
  */
 
@@ -43,7 +43,7 @@
                     <el-input
                         size="small"
                         :maxlength="50"
-                        v-model.trim="nodeForm.id"
+                        v-model="nodeForm.id"
                         :placeholder="$t('tronNodeIDPlaceholder')"
                         :disabled="editStatus ==1"
                     ></el-input>
@@ -64,7 +64,7 @@
                     <el-input
                         size="small"
                         :maxlength="50"
-                        v-model.trim="nodeForm.userName"
+                        v-model="nodeForm.userName"
                         :placeholder="$t('tronNodeNamePlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -147,7 +147,7 @@
                     <el-input
                         size="small"
                         :maxlength="100"
-                        v-model.trim="nodeForm.url"
+                        v-model="nodeForm.url"
                         :placeholder="$t('tronNodeUrlPlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -166,7 +166,7 @@
                     <el-input
                         size="small"
                         :maxlength="100"
-                        v-model.trim="nodeForm.voteNumber"
+                        v-model="nodeForm.voteNumber"
                         :placeholder="$t('tronNodeVoteNumberPlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -200,7 +200,7 @@
                         size="small"
                         type="textarea"
                         :maxlength="1000"
-                        v-model.trim="nodeForm.privateKey"
+                        v-model="nodeForm.privateKey"
                         :placeholder="$t('tronNodePrivateKeyPlaceholder')"
                     ></el-input>
                 </el-form-item>
