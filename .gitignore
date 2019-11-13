@@ -1,6 +1,9 @@
 HELP.md
 src/main/resources/static/index.html
-target/
+target/*
+node_modules/*
+Wallet/*
+package-lock.json
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
