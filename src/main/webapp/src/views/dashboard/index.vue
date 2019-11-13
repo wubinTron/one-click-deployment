@@ -11,19 +11,24 @@
       </div>
     </el-row>
     <el-row>
-      <div class="help-body-title">一键发链</div>
+      <div class="help-body-title">{{ $t("tronDashboardOneClickChain") }}</div>
       <p class="desc">
-        一键发链服务（One Click
-        Deployment，简称OCD）是一种基于主流区块链技术的企业级PaaS（Platform as a
-        Service）平台服务，帮助您快速构建更稳定、安全的生产级区块链环境，减少在区块链部署、运维、管理、应用开发等方面的挑战，使您更专注于核心业务创新，并实现业务快速上链.
+        {{ $t("tronDashboardOneClickChainDsc") }}
       </p>
-      <div class="help-body-title">新手必看</div>
+      <div class="help-body-title">{{ $t("tronDashboardNoviceSee") }}</div>
       <div id="first-element-introduction">
         <panel-group />
       </div>
-      <div class="help-body-title">帮助文档</div>
+      <div class="help-body-title">{{ $t("tronDashboardHelp") }}</div>
       <div class="help">
-        <el-button type="text" size="small">点击查看帮助文档</el-button>
+        <a
+          href="https://github.com/wubinTron/one-click-deployment/blob/master/README.md"
+          target="_blank"
+        >
+          <el-button type="text" size="small">{{
+            $t("tronDashboardHelpTips")
+          }}</el-button>
+        </a>
       </div>
     </el-row>
   </div>
