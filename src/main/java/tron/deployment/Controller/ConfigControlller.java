@@ -204,7 +204,7 @@ public class ConfigControlller {
 
   @RequestMapping(method = RequestMethod.POST, value = "/p2pconfig")
   public JSONObject p2pConfig(
-      @RequestParam(value = "p2pVersion", required = false, defaultValue = "0") Long p2pVersion,
+      @RequestParam(value = "p2pVersion", required = false, defaultValue = "0") int p2pVersion,
       @RequestParam(value = "maxActiveNodes", required = false, defaultValue = "30") int node_max_active_nodes,
       @RequestParam(value = "nodeActiveConnectFactor", required = false, defaultValue = "0.1") double activeConnectFactor,
       @RequestParam(value = "nodeMaxActiveNodesWithSameIp", required = false, defaultValue = "2") int nodeMaxActiveNodesWithSameIp,
