@@ -41,8 +41,8 @@ public class Args {
         : true;
   }
 
-  public static long getP2pVersionFromConfig(final Config config) {
-    return config.hasPath(P2P_VERSION_KEY) ? config.getLong(P2P_VERSION_KEY) : 0;
+  public static int getP2pVersionFromConfig(final Config config) {
+    return config.hasPath(P2P_VERSION_KEY) ? config.getInt(P2P_VERSION_KEY) : 0;
   }
 
   public static int getNodeMaxActiveNodes(final Config config) {

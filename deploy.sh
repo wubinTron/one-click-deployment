@@ -13,5 +13,5 @@ done
 nohup java -jar target/deployment-0.0.1-SNAPSHOT.jar&
 sleep 10
 echo "ok!"
-cd src/main/resources/static &&  http-server
+cd src/main/webapp && nohup yarn start&
 

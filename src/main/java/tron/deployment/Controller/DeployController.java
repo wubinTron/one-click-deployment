@@ -42,7 +42,7 @@ public class DeployController {
 
   @RequestMapping(method = RequestMethod.POST, value = "/oneClick")
   public JSONObject startDeployment() {
-    Long currentTime = System.currentTimeMillis();
+    int currentTime = (int) (System.currentTimeMillis() / 1000);
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new P2PVersion(currentTime), Common.configFiled);
     if (result == false) {

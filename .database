@@ -1,1 +1,1 @@
-{"chainName":"Parachain","minValidatorNumber":1,"customTransaction":"","crossChainFee":0.01,"consensus":"dpos","nodes":[],"enableCrossChain":false,"chainId":"2","dbEngine":"leveldb","maxValidatorNumber":4}
+{"consensus":"dpos","chainName":"Parachain","minValidatorNumber":1,"nodes":[],"customTransaction":"","enableCrossChain":false,"chainId":"2","dbEngine":"leveldb","crossChainFee":0.01,"maxValidatorNumber":4}
