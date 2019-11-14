@@ -13,6 +13,8 @@ logs/*
 .DS_Store
 .config.conf
 .database
+*.config.conf
+*.database
 
 .originConfig.conf
 

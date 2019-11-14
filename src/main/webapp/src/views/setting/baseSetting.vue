@@ -274,6 +274,6 @@ export default {
   padding: 0 80px 0 0;
 }
 .baseFormItem {
-  width: 500px;
+  width: 580px;
 }
 </style>

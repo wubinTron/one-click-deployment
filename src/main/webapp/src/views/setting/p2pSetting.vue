@@ -360,6 +360,6 @@ export default {
   min-width: 180px;
 }
 .baseFormItem {
-  width: 600px;
+  width: 620px;
 }
 </style>

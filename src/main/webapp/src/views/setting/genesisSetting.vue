@@ -94,7 +94,7 @@ Modified time: 2019-11-12 19:01:59 * @setting genesis setting */
           <el-select
             size="small"
             v-model="assetForm.accountType"
-            :placeholder="$t('tronAccountTypePlaceholder')"
+            :placeholder="$t('tronNodeSRPlaceholder')"
           >
             <el-option
               v-for="item in accountTypeOptions"
