@@ -6,6 +6,8 @@ import static wallet.Wallet.hexs2Bytes;
 import static wallet.Wallet.private2Address;
 
 import common.Common;
+import config.SeedNodeConfig;
+import java.util.List;
 import response.ResultCode;
 import common.Util;
 import entity.WitnessEntity;
@@ -178,6 +180,15 @@ public class NodeController {
     return new Response(ResultCode.OK.code, nodes).toJSONObject();
   }
 
+  @RequestMapping(method = RequestMethod.POST, value = "/initConfig")
+  public JSONObject initConfig() {
+    ConfigGenerator configGenerator = new ConfigGenerator();
+    if (configGenerator.updateConfig(new SeedNodeConfig(new ArrayList<>()), Common.configFiled) == false) {
+      log.error("update seed node config file failed");
+    }
+    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+  }
+
   @RequestMapping(method = RequestMethod.DELETE, value = "/nodeInfo")
   public JSONObject deleteNode(
       @RequestParam(value = "id", required = true, defaultValue = "1") Long id
@@ -221,7 +232,7 @@ public class NodeController {
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }
-
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
+
 }
