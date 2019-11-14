@@ -42,7 +42,7 @@ export default {
     'tronhttpFullNodePortPlaceholder': 'Please fill in the httpFullNode port',
     'tronhttpHttpSolidityPortPlaceholder': 'Please fill in the httpSolidity port',
     'tronhttpRpcPortPlaceholder': 'Please fill in the rpc port',
-    'tronhttpRpcSolidityPortPlaceholder': 'Please fill in the RpcSolidity port',
+    'tronhttpRpcSolidityPortPlaceholder': 'Please fill in the rpcSolidity port',
     'tronhttpRpcListenPortPlaceholder': 'Please fill in the listen port',
 
 
@@ -72,6 +72,7 @@ export default {
     'tronSettingNormalNode': 'Normal node',
     'tronSettingUnnormalNode': 'Abnormal node',
     'tronSettingNumberPlaceholder': 'Fill in must be a number and be a positive integer',
+    'tronSettingNumberMaxPlaceholder': 'Fill in the maximum amount',
     'tronSettingMaxNumberPlaceholder': 'The number of fills must be greater than minValidatorNumber',
     'tronSettingMinNumberPlaceholder': 'Fill in the number must be less than maxValidatorNumber must be greater than minValidatorNumber',
     'tronSettingAddressPlaceholder': 'Please fill in the correct address',

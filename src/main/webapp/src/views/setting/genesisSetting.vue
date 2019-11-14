@@ -202,7 +202,7 @@ export default {
     };
     const validNum = (rule, value, callback) => {
       if (value > 9223372036854775807 || value < -9223372036854775808) {
-        callback(new Error(this.$t("tronSettingNumberPlaceholder")));
+        callback(new Error(this.$t("tronSettingNumberMaxPlaceholder")));
       } else {
         callback();
       }
@@ -277,6 +277,11 @@ export default {
           {
             required: true,
             message: this.$t("tronBalancePlaceholder"),
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validNormalNum,
             trigger: "blur"
           },
           {
