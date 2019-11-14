@@ -10,7 +10,7 @@
 
 ## 前序准备
 
-你需要在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)（推荐当前官网稳定版本，不推荐旧版本 Node,否则会出现项目启动）。
+你需要在本地安装 [node](http://nodejs.org/) 、[yarn](https://yarn.bootcss.com/docs/install/#mac-stable)和 [git](https://git-scm.com/)（推荐当前官网稳定版本，不推荐旧版本 Node,否则项目无法正常启动）。
 
 本项目前端技术栈基于 [ES2015+](http://es6.ruanyifeng.com/)、[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/) 、[vue-cli](https://github.com/vuejs/vue-cli) 、[axios](https://github.com/axios/axios) 和 [element-ui](https://github.com/ElemeFE/element),提前了解和学习这些知识会对使用本项目有很大的帮助。
 
@@ -41,7 +41,7 @@
 
 ```
 
-## 开发
+## 启动步骤
 
 ```bash
 # 克隆项目

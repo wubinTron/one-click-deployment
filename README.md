@@ -40,7 +40,7 @@ The project is based on [ES2015+](https://es6.ruanyifeng.com/), [vue](https://cn
 
 ```
 
-## Getting started
+## Startup step
 
 ```bash
 # clone the project
