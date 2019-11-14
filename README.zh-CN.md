@@ -18,73 +18,58 @@
 
 </p>
 
-English | [简体中文](./README.zh-CN.md)
+简体中文 | [English](./README.md)
 
-## Introduction
+## 简介
 
-[vue-element-admin](https://panjiachen.github.io/vue-element-admin) is a production-ready front-end solution for admin interfaces. It is based on [vue](https://github.com/vuejs/vue) and uses the UI Toolkit [element-ui](https://github.com/ElemeFE/element).
+[vue-element-admin](https://github.com/wubinTron/one-click-deployment/tree/develop) 是一个一键发链解决方案，它基于 [vue](https://github.com/vuejs/vue) 和 [element-ui](https://github.com/ElemeFE/element)实现。它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由。
 
-[vue-element-admin](https://panjiachen.github.io/vue-element-admin) is based on the newest development stack of vue and it has a built-in i18n solution, typical templates for enterprise applications, and lots of awesome features. It helps you build large and complex Single-Page Applications. I believe whatever your needs are, this project will help you.
+## 前序准备
 
-- [Preview](https://panjiachen.github.io/vue-element-admin)
-
-- [Documentation](https://panjiachen.github.io/vue-element-admin-site/)
-
-- Base template recommends using: [vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
-- Desktop: [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
-- Typescript: [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) (Credits: [@Armour](https://github.com/Armour))
-- [awesome-project](https://github.com/PanJiaChen/vue-element-admin/issues/2312)
-
-**After the `v4.1.0+` version, the default master branch will not support i18n. Please use [i18n Branch](https://github.com/PanJiaChen/vue-element-admin/tree/i18n), it will keep up with the master update**
-
-**The current version is `v4.0+` build on `vue-cli`. If you find a problem, please put [issue](https://github.com/PanJiaChen/vue-element-admin/issues/new). If you want to use the old version , you can switch branch to [tag/3.11.0](https://github.com/PanJiaChen/vue-element-admin/tree/tag/3.11.0), it does not rely on `vue-cli`**
-
-**This project does not support low version browsers (e.g. IE). Please add polyfill by yourself.**
-
-## Preparation
-
-You need to install [node](https://nodejs.org/) and [git](https://git-scm.com/) locally.
-The project is based on [ES2015+](https://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [vue-cli](https://github.com/vuejs/vue-cli) , [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element)
+你需要在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)。
+本项目技术栈基于 [ES2015+](http://es6.ruanyifeng.com/)、[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/) 、[vue-cli](https://github.com/vuejs/vue-cli) 、[axios](https://github.com/axios/axios) 和 [element-ui](https://github.com/ElemeFE/element),提前了解和学习这些知识会对使用本项目有很大的帮助。
 
  <p align="center">
-  <!-- <img width="900" src=""> -->
+  <!-- <img width="900" src="https://wpimg.wallstcn.com/a5894c1b-f6af-456e-82df-1151da0839bf.png"> -->
 </p>
 
-## Features
+## 功能
 
 ```
-- Add Nodes
+- 添加节点
 
-- Deployment Setting
-  - Creation Information Configuration
-  - Basic configuration
-  - Network link configuration(http/rpc)
-  - Database basic configuration
-  - P2p configuration
-  - Cross-chain configuration
+- 部署配置
+  - 创世信息配置
+  - 基础配置
+  - 网络链接配置(http/rpc)
+  - 数据库基础配置
+  - p2p配置
+  - 跨链配置
 
-- Plugins Setting
-  - Consensus module setting
-  - Transaction module setting
-  - Database module setting
+- 插件配置
+  - 共识模块
+  - 交易模块
+  - 数据库模块
 
-- Node deployment
-  - Node view log
+- 节点部署
+  - 部署日志
 
 ```
 
-## Getting started
+## 开发
 
 ```bash
-# clone the project
+# 克隆项目
 git clone https://github.com/wubinTron/one-click-deployment.git
 
-# install dependency
+# 进入项目目录
+cd one-click-deployment
+
+# 安装依赖
 ./install.sh
 
-# deploy start
+# 启动服务
 ./deploy.sh
-
 
 ```
 
@@ -92,7 +77,7 @@ git clone https://github.com/wubinTron/one-click-deployment.git
 
 Detailed changes for each release are documented in the [release notes](https://github.com/PanJiaChen/vue-element-admin/releases).
 
-## Browsers support
+## 浏览器支持
 
 Modern browsers and Internet Explorer 10+.
 
@@ -102,6 +87,6 @@ Modern browsers and Internet Explorer 10+.
 
 ## License
 
-[MIT](https://github.com/wubinTron/one-click-deployment/LICENSE)
+[MIT](https://github.com/wubinTron/one-click-deployment/master/LICENSE)
 
-Copyright (c) 2019-present tron
+Copyright (c) 2017-present Tron
