@@ -146,7 +146,7 @@ public class DeployController {
 				return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "read log info failed").toJSONObject();
 			}
 		} else {
-			return new Response(ResultCode.NOT_FOUND.code, "log info file not found").toJSONObject();
+			return new Response(ResultCode.OK.code, "").toJSONObject();
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(Common.logInfoFiled, result);
