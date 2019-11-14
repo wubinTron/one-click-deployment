@@ -68,6 +68,7 @@ finish generation
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.6.RELEASE)
 
+<<<<<<< HEAD
 finish generation
 finish generation
 finish generation
@@ -106,6 +107,8 @@ checkSum: bf195e64
 addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
 finish generation
 finish generation
+=======
+>>>>>>> 2ff232d92f3fefab41f2200544086c3127b8bf86
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -116,6 +119,7 @@ finish generation
  :: Spring Boot ::        (v2.1.6.RELEASE)
 
 finish generation
+<<<<<<< HEAD
 finish generation
 finish generation
 finish generation
@@ -151,3 +155,5 @@ finish generation
 finish generation
 finish generation
 finish generation
+=======
+>>>>>>> 2ff232d92f3fefab41f2200544086c3127b8bf86
