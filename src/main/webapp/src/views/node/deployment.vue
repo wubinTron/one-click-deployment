@@ -249,27 +249,35 @@ export default {
       this.deploymentLoadingText = this.$t("deploymentSearchLoading");
       deployLogInfoApi({ id: _id })
         .then(response => {
-          console.log(response, "res");
-          return response.data;
+          if (response.data) {
+            return response.data;
+          }
         })
         .then(res => {
-          this.currentLogDialog = true;
-          this.currentlogInfoData = res.logInfo;
-          this.deplogUploadLoading = true;
-          this.deploymentLoadingTips = true;
-          this.currentlogInfoData.forEach(async item => {
-            if (item.indexOf("deploy finish") > -1) {
-              this.deplogUploadLoading = false;
-              this.deploymentDialogVisible = false;
-              this.deploymentLoadingText = this.$t("deploymentDone");
-              clearInterval(this.timer);
-            } else if (item == "ssh connect failed") {
-              this.deplogUploadLoading = false;
-              this.deploymentDialogVisible = false;
-              this.deploymentLoadingText = this.$t("deploymentFail");
-              clearInterval(this.timer);
-            }
-          });
+          if (res) {
+            this.currentLogDialog = true;
+            this.currentlogInfoData = res.logInfo;
+            this.deplogUploadLoading = true;
+            this.deploymentLoadingTips = true;
+            this.currentlogInfoData.forEach(async item => {
+              if (item.indexOf("deploy finish") > -1) {
+                this.deplogUploadLoading = false;
+                this.deploymentDialogVisible = false;
+                this.deploymentLoadingText = this.$t("deploymentDone");
+                clearInterval(this.timer);
+              } else if (item == "ssh connect failed") {
+                this.deplogUploadLoading = false;
+                this.deploymentDialogVisible = false;
+                this.deploymentLoadingText = this.$t("deploymentFail");
+                clearInterval(this.timer);
+              }
+            });
+          } else {
+            this.$message({
+              type: "info",
+              message: this.$t("deploymentNodeLog")
+            });
+          }
         })
         .catch(err => {
           console.log(err);
