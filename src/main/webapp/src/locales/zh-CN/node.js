@@ -1,6 +1,6 @@
 export default {
     'tronNodeAdd': '添加节点',
-    'tronNodeEditTitle': '操作节点',
+    'tronNodeEditTitle': '修改节点',
     'tronNodeBulkDeployment': '批量部署',
     'tronNodeName': '用户名称',
     'tronNodeWhetherIsSR': '是否为SR',
@@ -24,6 +24,7 @@ export default {
     'tronNodeCancel': '取消',
     'tronNodeDetermine': '确定',
     'tronNodeAddSuccess': '添加节点成功',
+    'tronNodeEditSuccess': '编辑节点成功',
     'tronNodesDeleteTips': '此操作将删除该节点信息, 是否继续?',
     'tronNodesDeleteTipsTitle': '提示',
     'tronNodesDeleteSuccess': '删除节点信息成功',
@@ -36,6 +37,7 @@ export default {
     'deploymentDone': '部署完成',
     'deploymentLoading': '正在部署,请稍候,点击列表查看详情查看部署状态',
     'deploymentFail': '部署失败',
+    'tronNodesIpNoSame': 'Ip不能和已有Ip相同',
     'deploymentNodeLog': '当前部署暂无日志~',
     'deploymentSelectTips': '请选择至少一个节点',
     'deploymentSRSelectTips': '批量部署至少选择一个SR',

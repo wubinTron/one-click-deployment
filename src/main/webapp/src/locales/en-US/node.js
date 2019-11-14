@@ -1,6 +1,6 @@
 export default {
     'tronNodeAdd': 'Add node',
-    'tronNodeEditTitle': 'Operation node',
+    'tronNodeEditTitle': 'Modify node',
     'tronNodeBulkDeployment': 'Bulk deployment',
     'tronNodeName': 'user name',
     'tronNodeWhetherIsSR': 'Whether it is SR',
@@ -24,6 +24,7 @@ export default {
     'tronNodeCancel': 'cancel',
     'tronNodeDetermine': 'determine',
     'tronNodeAddSuccess': 'Added successfully',
+    'tronNodeEditSuccess': 'Edit node successfully',
     'tronNodesDeleteTips': 'This action will delete the node information, will it continue?',
     'tronNodesDeleteTipsTitle': 'prompt',
     'tronNodesDeleteSuccess': 'Delete node information successfully',
@@ -42,6 +43,7 @@ export default {
     'deploymentPath': 'Please fill in the path',
     'deploymentCorrectPath': 'Please enter a path ending in java-tron-1.0.0.zip',
     'deploymentNodeIdTips': 'ID as the node unique identifier',
+    'tronNodesIpNoSame': 'Ip cannot be the same as existing Ip',
     'deploymentNodeUsernameTips': 'ssh username',
     'deploymentNodeIpTips': 'FullNode IP',
     'deploymentNodePortTips': 'FullNode port',

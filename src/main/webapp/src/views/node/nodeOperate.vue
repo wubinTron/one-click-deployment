@@ -222,7 +222,7 @@ import { isvalidateNum } from "@/utils/validate.js";
 import TronWeb from "tronweb";
 export default {
   name: "operationNode",
-  props: ["nodeDialogVisible", "detailInfoData", "editStatus"],
+  props: ["nodeDialogVisible", "detailInfoData", "editStatus", "allNodes"],
   data() {
     const validNum = (rule, value, callback) => {
       if (!isvalidateNum(value)) {
@@ -249,10 +249,7 @@ export default {
       classLoading: false,
       saveLoading: false,
       dialogVisible: this.nodeDialogVisible,
-      dialogTitle:
-        this.editStatus == 1
-          ? this.$t("tronNodeEditTitle")
-          : this.$t("tronNodeAdd"),
+      dialogTitle: this.$t("tronNodeAdd"),
       nodeForm: {
         id: "",
         userName: "",
@@ -371,15 +368,13 @@ export default {
             delete newForm.privateKey;
           }
 
-          // console.log(newForm);
-
           if (this.editStatus == 1) {
             // delete newForm.publicKey;
             editNote(newForm)
               .then(response => {
                 this.$emit("addNodeSuccess", true);
                 this.$refs.nodeDialogForm.resetFields();
-                this.$message.success(this.$t("tronNodeAddSuccess"));
+                this.$message.success(this.$t("tronNodeEditSuccess"));
                 this.dialogVisible = false;
                 this.saveLoading = false;
               })
@@ -387,6 +382,22 @@ export default {
                 console.log(error);
                 this.saveLoading = false;
               });
+            return;
+          }
+          let isSameIp = false;
+          if (this.allNodes.length > 0) {
+            this.allNodes.forEach(item => {
+              if (item.ip == newForm.ip) {
+                this.$message.warning(this.$t("tronNodesIpNoSame"));
+                isSameIp = true;
+                return;
+              } else {
+                isSameIp = false;
+              }
+            });
+          }
+          if (isSameIp) {
+            this.saveLoading = false;
             return;
           }
           addNote(newForm)
@@ -409,6 +420,12 @@ export default {
     }
   },
   watch: {
+    editStatus(val) {
+      console.log(val);
+      val == 1
+        ? (this.dialogTitle = this.$t("tronNodeEditTitle"))
+        : (this.dialogTitle = this.$t("tronNodeAdd"));
+    },
     detailInfoData(val) {
       this.nodeForm = this.detailInfoData;
     },

@@ -22,7 +22,7 @@
       <div class="help-body-title">{{ $t("tronDashboardHelp") }}</div>
       <div class="help">
         <a
-          href="https://github.com/wubinTron/one-click-deployment/blob/master/README.md"
+          href="https://github.com/wubinTron/one-click-deployment/blob/develop/README.md"
           target="_blank"
         >
           <el-button type="text" size="small">{{

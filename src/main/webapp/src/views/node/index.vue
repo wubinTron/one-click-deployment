@@ -160,6 +160,7 @@ Modified time: 2019-11-12 11:30:38 * @tron node list */
     </el-dialog>
     <!-- node add and edit  -->
     <operate-node
+      :allNodes="list"
       :nodeDialogVisible="nodeObj.visible"
       :editStatus="nodeObj.status"
       :detailInfoData="nodeObj.detail"

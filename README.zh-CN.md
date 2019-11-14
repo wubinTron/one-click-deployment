@@ -58,6 +58,10 @@ cd one-click-deployment
 
 ```
 
+## 使用步骤
+
+[使用流程](https://github.com/wubinTron/one-click-deployment/steps/README.step.md)
+
 ## Changelog
 
 Detailed changes for each release are documented in the [release notes](https://github.com/wubinTron/one-click-deployment/releases).

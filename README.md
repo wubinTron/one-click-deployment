@@ -55,6 +55,10 @@ git clone https://github.com/wubinTron/one-click-deployment.git
 
 ```
 
+## Steps for usage
+
+[manual for usage](https://github.com/wubinTron/one-click-deployment/steps/README.step.md)
+
 ## Changelog
 
 Detailed changes for each release are documented in the [release notes](https://github.com/PanJiaChen/vue-element-admin/releases).
