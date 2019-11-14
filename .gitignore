@@ -11,6 +11,9 @@ src/main/webapp/dist/*
 src/main/resources/*
 logs/*
 .DS_Store
+.config.conf
+.database
+.config.conf
 
 .originConfig.conf
 
