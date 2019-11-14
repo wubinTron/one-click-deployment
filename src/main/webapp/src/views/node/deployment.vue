@@ -63,8 +63,6 @@ Modified time: 2019-11-13 16:39:43 * @tron node list */
                 @click="viewCurrentLogFun(scope.row.id)"
                 >{{ $t("tronNodeLog") }}</el-button
               >
-              <!-- v-if="scope.row.logLoading" -->
-              <!-- <span v-else>-</span> -->
             </template>
           </el-table-column>
         </el-table>
@@ -235,7 +233,7 @@ export default {
     viewCurrentLogFun(_id) {
       clearInterval(this.timer);
       this.logInfoData = [];
-      this.currentLogDialog = true;
+
       this.viewLogFun(_id);
       this.timer = setInterval(() => {
         this.viewLogFun(_id);
@@ -251,9 +249,11 @@ export default {
       this.deploymentLoadingText = this.$t("deploymentSearchLoading");
       deployLogInfoApi({ id: _id })
         .then(response => {
+          console.log(response, "res");
           return response.data;
         })
         .then(res => {
+          this.currentLogDialog = true;
           this.currentlogInfoData = res.logInfo;
           this.deplogUploadLoading = true;
           this.deploymentLoadingTips = true;
@@ -271,7 +271,9 @@ export default {
             }
           });
         })
-        .catch(err => {});
+        .catch(err => {
+          console.log(err);
+        });
     },
     deployMentFun() {
       // deploy
