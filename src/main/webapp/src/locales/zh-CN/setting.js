@@ -70,6 +70,7 @@ export default {
     'tronSettingNormalNode': '正常节点',
     'tronSettingUnnormalNode': '非正常节点',
     'tronSettingNumberPlaceholder': '填写必须为数字且为正整数',
+    'tronSettingNumberZeroPlaceholder': '填写必须为数字且为正整数或0',
     'tronSettingNumberMaxPlaceholder': '填写额超过最大值',
     'tronSettingMaxNumberPlaceholder': '填写数必须大于minValidatorNumber',
     'tronSettingMinNumberPlaceholder': '填写数必须小于maxValidatorNumber',

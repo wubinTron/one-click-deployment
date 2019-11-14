@@ -284,7 +284,6 @@ export default {
     },
 
     checkBoxChangeFun(val) {
-      console.log(val);
       this.checkedSeedNodeList = val;
     },
     saveData(formName) {

@@ -260,11 +260,9 @@ export default {
     operateNodeFun(val) {
       this.nodeObj.detail = {
         ...val,
-        privateKey: "",
         url: JSON.stringify(val.url)
           .slice(3)
           .slice(0, -3),
-        voteNumber: val.voteCount,
         privateKey:
           "****************************************************************"
       };

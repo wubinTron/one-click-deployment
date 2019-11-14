@@ -1,447 +1,440 @@
-/*
- * @Author: lxm 
- * @Date: 2019-10-15 11:03:42 
- * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 14:40:09
- * @operation node 
- */
+/* * @Author: lxm * @Date: 2019-10-15 11:03:42 * @Last Modified by: lxm * @Last
+Modified time: 2019-11-12 14:40:09 * @operation node */
 
 <template>
-    <div class="viewnodeDialog">
-        <el-dialog
-            :title="dialogTitle"
-            @open="openDialogFun"
-            @close="closeFun"
-            :visible.sync="dialogVisible"
-            :close-on-click-modal="false"
-            :close-on-press-escape="false"
-            v-loading="classLoading"
-            width="680px"
-            top="8vh"
-            center
-        >
-            <el-form
-                ref="nodeDialogForm"
-                :rules="nodeRules"
-                :model="nodeForm"
-                label-width="150px"
-                label-position="left"
-                class="nodeDialogForm"
+  <div class="viewnodeDialog">
+    <el-dialog
+      :title="dialogTitle"
+      @open="openDialogFun"
+      @close="closeFun"
+      :visible.sync="dialogVisible"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      v-loading="classLoading"
+      width="680px"
+      top="8vh"
+      center
+    >
+      <el-form
+        ref="nodeDialogForm"
+        :rules="nodeRules"
+        :model="nodeForm"
+        label-width="150px"
+        label-position="left"
+        class="nodeDialogForm"
+      >
+        <el-form-item prop="id">
+          <span slot="label">
+            ID
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodeIdTips')"
+              placement="top"
             >
-                <el-form-item prop="id">
-                    <span slot="label">
-                        ID
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodeIdTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-input
-                        size="small"
-                        :maxlength="50"
-                        v-model.trim="nodeForm.id"
-                        :placeholder="$t('tronNodeIDPlaceholder')"
-                        :disabled="editStatus ==1"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item prop="userName">
-                    <span slot="label">
-                        {{$t('tronNodeName')}}
-                        <el-tooltip
-                            size="small"
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodeUsernameTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-input
-                        size="small"
-                        :maxlength="50"
-                        v-model.trim="nodeForm.userName"
-                        :placeholder="$t('tronNodeNamePlaceholder')"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item prop="ip">
-                    <span slot="label">
-                        IP
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodeIpTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-input
-                        size="small"
-                        :maxlength="50"
-                        v-model.trim="nodeForm.ip"
-                        :placeholder="$t('tronNodeIpPlaceholder')"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item prop="port">
-                    <span slot="label">
-                        PORT
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodePortTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-input
-                        size="small"
-                        :maxlength="50"
-                        v-model.trim="nodeForm.port"
-                        :placeholder="$t('tronNodePortPlaceholder')"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item prop="isSR">
-                    <span slot="label">
-                        {{$t('tronNodeWhetherIsSR')}}
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodeSrTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-select
-                        size="small"
-                        v-model="nodeForm.isSR"
-                        :placeholder="$t('tronNodeSRPlaceholder')"
-                    >
-                        <el-option
-                            v-for="item in srAry"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
-                        ></el-option>
-                    </el-select>
-                </el-form-item>
-                <el-form-item prop="url" v-if="nodeForm.isSR">
-                    <span slot="label">
-                        URL
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodeUrlTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-input
+            size="small"
+            :maxlength="50"
+            v-model.trim="nodeForm.id"
+            :placeholder="$t('tronNodeIDPlaceholder')"
+            :disabled="editStatus == 1"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="userName">
+          <span slot="label">
+            {{ $t("tronNodeName") }}
+            <el-tooltip
+              size="small"
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodeUsernameTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-input
+            size="small"
+            :maxlength="50"
+            v-model.trim="nodeForm.userName"
+            :placeholder="$t('tronNodeNamePlaceholder')"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="ip">
+          <span slot="label">
+            IP
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodeIpTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-input
+            size="small"
+            :maxlength="50"
+            v-model.trim="nodeForm.ip"
+            :placeholder="$t('tronNodeIpPlaceholder')"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="port">
+          <span slot="label">
+            PORT
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodePortTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-input
+            size="small"
+            :maxlength="50"
+            v-model.trim="nodeForm.port"
+            :placeholder="$t('tronNodePortPlaceholder')"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="isSR">
+          <span slot="label">
+            {{ $t("tronNodeWhetherIsSR") }}
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodeSrTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-select
+            size="small"
+            v-model="nodeForm.isSR"
+            :placeholder="$t('tronNodeSRPlaceholder')"
+          >
+            <el-option
+              v-for="item in srAry"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="url" v-if="nodeForm.isSR">
+          <span slot="label">
+            URL
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodeUrlTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
 
-                    <el-input
-                        size="small"
-                        :maxlength="100"
-                        v-model.trim="nodeForm.url"
-                        :placeholder="$t('tronNodeUrlPlaceholder')"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item prop="voteNumber" v-if="nodeForm.isSR">
-                    <span slot="label">
-                        voteNumber
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('tronNodeVoteNumberTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-input
-                        size="small"
-                        :maxlength="100"
-                        v-model.trim="nodeForm.voteNumber"
-                        :placeholder="$t('tronNodeVoteNumberPlaceholder')"
-                    ></el-input>
-                </el-form-item>
-                <el-form-item v-if="editStatus ==1" class="publickey">
-                    <span slot="label" style="padding-left:12px">
-                        publicKey
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodePublickKeyTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    {{nodeForm.publicKey}}
-                </el-form-item>
-                <el-form-item prop="privateKey" v-if="nodeForm.isSR">
-                    <span slot="label">
-                        privateKey
-                        <el-tooltip
-                            class="item"
-                            effect="dark"
-                            :content="$t('deploymentNodePrivateKeyTips')"
-                            placement="top"
-                        >
-                            <i class="iconfont icon-iconset0143"></i>
-                        </el-tooltip>
-                    </span>
-                    <el-input
-                        size="small"
-                        type="textarea"
-                        :maxlength="1000"
-                        v-model.trim="nodeForm.privateKey"
-                        :placeholder="$t('tronNodePrivateKeyPlaceholder')"
-                    ></el-input>
-                </el-form-item>
+          <el-input
+            size="small"
+            :maxlength="100"
+            v-model.trim="nodeForm.url"
+            :placeholder="$t('tronNodeUrlPlaceholder')"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="voteCount" v-if="nodeForm.isSR">
+          <span slot="label">
+            voteCount
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('tronNodeVoteNumberTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-input
+            size="small"
+            :maxlength="100"
+            v-model.trim="nodeForm.voteCount"
+            :placeholder="$t('tronNodeVoteNumberPlaceholder')"
+          ></el-input>
+        </el-form-item>
+        <el-form-item v-if="editStatus == 1 && nodeForm.isSR" class="publickey">
+          <span slot="label" style="padding-left:12px">
+            publicKey
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodePublickKeyTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          {{ nodeForm.publicKey }}
+        </el-form-item>
+        <el-form-item prop="privateKey" v-if="nodeForm.isSR">
+          <span slot="label">
+            privateKey
+            <el-tooltip
+              class="item"
+              effect="dark"
+              :content="$t('deploymentNodePrivateKeyTips')"
+              placement="top"
+            >
+              <i class="iconfont icon-iconset0143"></i>
+            </el-tooltip>
+          </span>
+          <el-input
+            size="small"
+            type="textarea"
+            :maxlength="1000"
+            v-model.trim="nodeForm.privateKey"
+            :placeholder="$t('tronNodePrivateKeyPlaceholder')"
+          ></el-input>
+        </el-form-item>
 
-                <el-form-item label-width="0" class="textRight">
-                    <el-button
-                        size="small"
-                        type="primary"
-                        @click="saveData('nodeDialogForm')"
-                        :loading="saveLoading"
-                    >{{$t('tronNodeSave')}}</el-button>
-                    <el-button size="small" @click="cancelFun">{{$t('tronNodeCancel')}}</el-button>
-                </el-form-item>
-            </el-form>
-        </el-dialog>
-    </div>
+        <el-form-item label-width="0" class="textRight">
+          <el-button
+            size="small"
+            type="primary"
+            @click="saveData('nodeDialogForm')"
+            :loading="saveLoading"
+            >{{ $t("tronNodeSave") }}</el-button
+          >
+          <el-button size="small" @click="cancelFun">{{
+            $t("tronNodeCancel")
+          }}</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
+  </div>
 </template>
 <script>
 import { addNote, editNote } from "@/api/nodeApi";
 import { isvalidateNum } from "@/utils/validate.js";
 import TronWeb from "tronweb";
 export default {
-    name: "operationNode",
-    props: ["nodeDialogVisible", "detailInfoData", "editStatus"],
-    data() {
-        const validNum = (rule, value, callback) => {
-            if (!isvalidateNum(value)) {
-                callback(new Error(this.$t("tronSettingNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validPrivateKey = (rule, value, callback) => {
-            // console.log(value, "value");
-            if (value.length != 64) {
-                callback(new Error(this.$t("tronSettingAddressPlaceholder")));
-            } else {
-                callback();
-            }
-            const address = TronWeb.address.fromPrivateKey(value);
-            // if (!TronWeb.isAddress(address)) {
-            //     callback(new Error(this.$t("tronSettingAddressPlaceholder")));
-            // } else {
-            //     callback();
-            // }
-        };
-        return {
-            classLoading: false,
-            saveLoading: false,
-            dialogVisible: this.nodeDialogVisible,
-            dialogTitle:
-                this.editStatus == 1
-                    ? this.$t("tronNodeEditTitle")
-                    : this.$t("tronNodeAdd"),
-            nodeForm: {
-                id: "",
-                userName: "",
-                ip: "",
-                port: "",
-                isSR: ""
-            },
-            srAry: [
-                { id: 0, label: this.$t("tronNodeSrIs"), value: true },
-                { id: 1, label: this.$t("tronNodeSrNo"), value: false }
-            ],
-            nodeRules: {
-                id: [
-                    {
-                        required: true,
-                        message: this.$t("tronNodeIDPlaceholder"),
-                        trigger: "blur"
-                    },
-                    {
-                        required: true,
-                        validator: validNum,
-                        trigger: "blur"
-                    }
-                ],
-                userName: [
-                    {
-                        required: true,
-                        message: this.$t("tronNodeNamePlaceholder"),
-                        trigger: "blur"
-                    }
-                ],
-                ip: {
-                    required: true,
-                    message: this.$t("tronNodeIpPlaceholder"),
-                    trigger: "blur"
-                },
-                port: [
-                    {
-                        required: true,
-                        message: this.$t("tronNodePortPlaceholder"),
-                        trigger: "blur"
-                    },
-                    {
-                        required: true,
-                        validator: validNum,
-                        trigger: "blur"
-                    }
-                ],
-                isSR: {
-                    required: true,
-                    message: this.$t("tronNodeSRPlaceholder"),
-                    trigger: "change"
-                },
-                url: {
-                    required: true,
-                    message: this.$t("tronNodeUrlPlaceholder"),
-                    trigger: "blur"
-                },
-                voteNumber: [
-                    {
-                        required: true,
-                        message: this.$t("tronNodeVoteNumberTips"),
-                        trigger: "blur"
-                    },
-                    {
-                        required: true,
-                        validator: validNum,
-                        trigger: "blur"
-                    }
-                ],
-                privateKey: [
-                    {
-                        required: true,
-                        message: this.$t("tronNodePrivateKeyPlaceholder"),
-                        trigger: "blur"
-                    },
-                    {
-                        required: true,
-                        validator: validPrivateKey,
-                        trigger: "blur"
-                    }
-                ]
-            }
-        };
+  name: "operationNode",
+  props: ["nodeDialogVisible", "detailInfoData", "editStatus"],
+  data() {
+    const validNum = (rule, value, callback) => {
+      if (!isvalidateNum(value)) {
+        callback(new Error(this.$t("tronSettingNumberPlaceholder")));
+      } else {
+        callback();
+      }
+    };
+    const validPrivateKey = (rule, value, callback) => {
+      // console.log(value, "value");
+      if (value.length != 64) {
+        callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+      } else {
+        callback();
+      }
+      const address = TronWeb.address.fromPrivateKey(value);
+      // if (!TronWeb.isAddress(address)) {
+      //     callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+      // } else {
+      //     callback();
+      // }
+    };
+    return {
+      classLoading: false,
+      saveLoading: false,
+      dialogVisible: this.nodeDialogVisible,
+      dialogTitle:
+        this.editStatus == 1
+          ? this.$t("tronNodeEditTitle")
+          : this.$t("tronNodeAdd"),
+      nodeForm: {
+        id: "",
+        userName: "",
+        ip: "",
+        port: "",
+        isSR: ""
+      },
+      srAry: [
+        { id: 0, label: this.$t("tronNodeSrIs"), value: true },
+        { id: 1, label: this.$t("tronNodeSrNo"), value: false }
+      ],
+      nodeRules: {
+        id: [
+          {
+            required: true,
+            message: this.$t("tronNodeIDPlaceholder"),
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validNum,
+            trigger: "blur"
+          }
+        ],
+        userName: [
+          {
+            required: true,
+            message: this.$t("tronNodeNamePlaceholder"),
+            trigger: "blur"
+          }
+        ],
+        ip: {
+          required: true,
+          message: this.$t("tronNodeIpPlaceholder"),
+          trigger: "blur"
+        },
+        port: [
+          {
+            required: true,
+            message: this.$t("tronNodePortPlaceholder"),
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validNum,
+            trigger: "blur"
+          }
+        ],
+        isSR: {
+          required: true,
+          message: this.$t("tronNodeSRPlaceholder"),
+          trigger: "change"
+        },
+        url: {
+          required: true,
+          message: this.$t("tronNodeUrlPlaceholder"),
+          trigger: "blur"
+        },
+        voteCount: [
+          {
+            required: true,
+            message: this.$t("tronNodeVoteNumberTips"),
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validNum,
+            trigger: "blur"
+          }
+        ],
+        privateKey: [
+          {
+            required: true,
+            message: this.$t("tronNodePrivateKeyPlaceholder"),
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validPrivateKey,
+            trigger: "blur"
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    openDialogFun() {},
+    closeFun() {
+      this.dialogVisible = false;
+      this.$emit("addNodeSuccess", true);
     },
-    methods: {
-        openDialogFun() {},
-        closeFun() {
-            this.dialogVisible = false;
-            this.$emit("addNodeSuccess", true);
-        },
-        cancelFun() {
-            this.dialogVisible = false;
-            this.$emit("addNodeSuccess", true);
-        },
-        saveData(formName) {
-            this.$refs[formName].validate(valid => {
-                if (valid) {
-                    this.saveLoading = true;
-                    let newForm;
-                    if (this.nodeForm.url != undefined) {
-                        newForm = {
-                            url: `"${this.nodeForm.url}"`,
-                            ...this.nodeForm
-                        };
-                        newForm.url = `"${newForm.url}"`;
-                    } else {
-                        newForm = {
-                            ...this.nodeForm
-                        };
-                    }
-                    if (
-                        newForm.privateKey ==
-                        "****************************************************************"
-                    ) {
-                        delete newForm.privateKey;
-                    }
+    cancelFun() {
+      this.dialogVisible = false;
+      this.$emit("addNodeSuccess", true);
+    },
+    saveData(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.saveLoading = true;
+          let newForm;
+          if (this.nodeForm.url != undefined) {
+            newForm = {
+              url: `"${this.nodeForm.url}"`,
+              ...this.nodeForm
+            };
+            newForm.url = `"${newForm.url}"`;
+          } else {
+            newForm = {
+              ...this.nodeForm
+            };
+          }
+          if (
+            newForm.privateKey ==
+            "****************************************************************"
+          ) {
+            delete newForm.privateKey;
+          }
 
-                    console.log(newForm);
+          // console.log(newForm);
 
-                    if (this.editStatus == 1) {
-                        // delete newForm.publicKey;
-                        editNote(newForm)
-                            .then(response => {
-                                this.$emit("addNodeSuccess", true);
-                                this.$refs.nodeDialogForm.resetFields();
-                                this.$message.success(
-                                    this.$t("tronNodeAddSuccess")
-                                );
-                                this.dialogVisible = false;
-                                this.saveLoading = false;
-                            })
-                            .catch(error => {
-                                console.log(error);
-                                this.saveLoading = false;
-                            });
-                        return;
-                    }
-                    addNote(newForm)
-                        .then(response => {
-                            this.$emit("addNodeSuccess", true);
-                            this.$refs.nodeDialogForm.resetFields();
-                            this.$message.success(
-                                this.$t("tronNodeAddSuccess")
-                            );
-                            this.dialogVisible = false;
-                            this.saveLoading = false;
-                        })
-                        .catch(error => {
-                            console.log(error);
-                            this.saveLoading = false;
-                        });
-                } else {
-                    console.log("error submit!!");
-                    return false;
-                }
+          if (this.editStatus == 1) {
+            // delete newForm.publicKey;
+            editNote(newForm)
+              .then(response => {
+                this.$emit("addNodeSuccess", true);
+                this.$refs.nodeDialogForm.resetFields();
+                this.$message.success(this.$t("tronNodeAddSuccess"));
+                this.dialogVisible = false;
+                this.saveLoading = false;
+              })
+              .catch(error => {
+                console.log(error);
+                this.saveLoading = false;
+              });
+            return;
+          }
+          addNote(newForm)
+            .then(response => {
+              this.$emit("addNodeSuccess", true);
+              this.$refs.nodeDialogForm.resetFields();
+              this.$message.success(this.$t("tronNodeAddSuccess"));
+              this.dialogVisible = false;
+              this.saveLoading = false;
+            })
+            .catch(error => {
+              console.log(error);
+              this.saveLoading = false;
             });
+        } else {
+          console.log("error submit!!");
+          return false;
         }
-    },
-    watch: {
-        detailInfoData(val) {
-            this.nodeForm = this.detailInfoData;
-        },
-        nodeDialogVisible(val) {
-            this.dialogVisible = val;
-        },
-        dialogVisible(val) {
-            this.$emit("dialog", val);
-        }
+      });
     }
+  },
+  watch: {
+    detailInfoData(val) {
+      this.nodeForm = this.detailInfoData;
+    },
+    nodeDialogVisible(val) {
+      this.dialogVisible = val;
+    },
+    dialogVisible(val) {
+      this.$emit("dialog", val);
+    }
+  }
 };
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
 .textCenter {
-    text-align: center;
+  text-align: center;
 }
 .textRight {
-    text-align: right;
-    margin-top: 30px;
+  text-align: right;
+  margin-top: 30px;
 }
 .nodeDialogForm {
-    padding: 0 20px;
+  padding: 0 20px;
 }
 .item {
-    i {
-        font-size: 12px;
-    }
+  i {
+    font-size: 12px;
+  }
 }
 </style>
-

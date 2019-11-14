@@ -20,9 +20,15 @@ export function validUsername(str) {
 }
 
 
-/* number */
+/* number Positive integer */
 export function isvalidateNum(str) {
     const reg = /^[0-9]*[1-9][0-9]*$/;
+    return reg.test(str);
+}
+
+/* number 0 and Positive integer */
+export function isvalidateIntegerNum(str) {
+    const reg = /^\d+$/;
     return reg.test(str);
 }
 
