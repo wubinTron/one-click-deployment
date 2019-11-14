@@ -142,6 +142,13 @@ export default {
         callback();
       }
     };
+    const validMaxNum = (rule, value, callback) => {
+      if (value > 2147483647) {
+        callback(new Error(this.$t("tronNumberPlaceholder")));
+      } else {
+        callback();
+      }
+    };
     return {
       classLoading: false,
       moreSetting: false,
@@ -157,6 +164,11 @@ export default {
           {
             message: this.$t("tronSettingNumberPlaceholder"),
             validator: validNum,
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
             trigger: "blur"
           }
         ],
@@ -177,6 +189,11 @@ export default {
             message: this.$t("tronSettingNumberPlaceholder"),
             validator: validNum,
             trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
+            trigger: "blur"
           }
         ],
         block_maintenanceTimeInterval: [
@@ -191,6 +208,11 @@ export default {
             message: this.$t("tronSettingNumberPlaceholder"),
             validator: validNum,
             trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
+            trigger: "blur"
           }
         ],
         node_blockProducedTimeOut: [
@@ -203,6 +225,11 @@ export default {
             message: this.$t("tronSettingNumberPlaceholder"),
             validator: validNum,
             trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
+            trigger: "blur"
           }
         ],
         node_minParticipationRate: [
@@ -214,6 +241,11 @@ export default {
           {
             message: this.$t("tronSettingNumberZeroPlaceholder"),
             validator: validNum,
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
             trigger: "blur"
           }
         ]

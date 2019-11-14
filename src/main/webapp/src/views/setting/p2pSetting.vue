@@ -170,6 +170,13 @@ export default {
         callback();
       }
     };
+    const validMaxNum = (rule, value, callback) => {
+      if (value > 2147483647) {
+        callback(new Error(this.$t("tronNumberPlaceholder")));
+      } else {
+        callback();
+      }
+    };
     const validMainnet = (rule, value, callback) => {
       if (value == 11111) {
         callback(new Error(this.$t("tronp2pVersionMainnetPlaceholder")));
@@ -227,6 +234,11 @@ export default {
           {
             message: this.$t("tronp2pVersionSpecialPlaceholder"),
             validator: validSpecialNet,
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
             trigger: "blur"
           }
         ],

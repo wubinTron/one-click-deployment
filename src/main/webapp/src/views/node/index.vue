@@ -267,6 +267,7 @@ export default {
         privateKey:
           "****************************************************************"
       };
+      sessionStorage.setItem("currentnode", val.ip);
       this.nodeObj.status = 1;
       this.nodeObj.visible = true;
     },
@@ -424,7 +425,6 @@ export default {
                 }
               });
             });
-
             this.getSelectedDeploymentFun(ids);
           }
           this.list = resData.sort(this.sortIdFun);

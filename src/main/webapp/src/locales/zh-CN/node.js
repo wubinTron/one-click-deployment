@@ -54,4 +54,5 @@ export default {
     'tronNodeNextStep': '下一步',
     'tronNodeSrIs': '是',
     'tronNodeSrNo': '否',
+    'tronNumberPlaceholder': '数字超过最大限额'
 }

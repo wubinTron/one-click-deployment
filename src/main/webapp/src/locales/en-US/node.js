@@ -54,5 +54,6 @@ export default {
     'tronNodeNextStep': 'Next step',
     'tronNodeSrIs': 'yes',
     'tronNodeSrNo': 'no',
+    'tronNumberPlaceholder': 'Number exceeds maximum limit'
 
 }

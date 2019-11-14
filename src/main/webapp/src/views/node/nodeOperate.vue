@@ -231,6 +231,13 @@ export default {
         callback();
       }
     };
+    const validMaxNum = (rule, value, callback) => {
+      if (value > 2147483647) {
+        callback(new Error(this.$t("tronNumberPlaceholder")));
+      } else {
+        callback();
+      }
+    };
     const validPrivateKey = (rule, value, callback) => {
       // console.log(value, "value");
       if (value.length != 64) {
@@ -272,6 +279,11 @@ export default {
             required: true,
             validator: validNum,
             trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
+            trigger: "blur"
           }
         ],
         userName: [
@@ -295,6 +307,11 @@ export default {
           {
             required: true,
             validator: validNum,
+            trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validMaxNum,
             trigger: "blur"
           }
         ],
@@ -367,9 +384,36 @@ export default {
           ) {
             delete newForm.privateKey;
           }
+          let isSameIp = false;
+
+          let allNodeAry = [];
+          if (this.allNodes.length > 0) {
+            this.allNodes.forEach(item => {
+              allNodeAry.push(item.ip);
+            });
+          }
 
           if (this.editStatus == 1) {
             // delete newForm.publicKey;
+            let allNodeSet = new Set(allNodeAry);
+            let currentNodeAry = new Set([
+              sessionStorage.getItem("currentnode")
+            ]);
+            // 差集
+            let differenceAry = new Set(
+              [...allNodeSet].filter(x => !currentNodeAry.has(x))
+            );
+            Array.from(differenceAry).forEach(item => {
+              console.log(item, newForm.ip);
+              if (item == newForm.ip) {
+                isSameIp = true;
+                this.$message.warning(this.$t("tronNodesIpNoSame"));
+              }
+            });
+            if (isSameIp) {
+              this.saveLoading = false;
+              return;
+            }
             editNote(newForm)
               .then(response => {
                 this.$emit("addNodeSuccess", true);
@@ -384,15 +428,13 @@ export default {
               });
             return;
           }
-          let isSameIp = false;
+
           if (this.allNodes.length > 0) {
             this.allNodes.forEach(item => {
               if (item.ip == newForm.ip) {
                 this.$message.warning(this.$t("tronNodesIpNoSame"));
                 isSameIp = true;
                 return;
-              } else {
-                isSameIp = false;
               }
             });
           }
