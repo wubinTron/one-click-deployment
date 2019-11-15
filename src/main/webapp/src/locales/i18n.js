@@ -6,20 +6,20 @@ import zh from './zh-CN'
 Vue.use(VueI18n)
 
 const messages = {
-  'en-US': en,
-  'zh-CN': zh
+    'en-US': en,
+    'zh-CN': zh
 }
 
 let curBrowserLang = navigator.language || navigator.userLanguage;
 let curLanAbbreviation = curBrowserLang;
 var languageAry = ['', 'en-US', 'zh-CN'];
 if (languageAry.indexOf(curBrowserLang) < 0) {
-  curLanAbbreviation = 'en-US';
+    curLanAbbreviation = 'en-US';
 }
-console.log(curLanAbbreviation)
+// console.log(curLanAbbreviation)
 const i18n = new VueI18n({
-  locale: curBrowserLang, // 设置默认语言
-  messages
+    locale: curBrowserLang, // 设置默认语言
+    messages
 })
 locale.i18n((key, value) => i18n.t(key, value)) //为了实现element插件的多语言切换
 

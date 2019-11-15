@@ -1,9 +1,22 @@
 HELP.md
-target/
+src/main/resources/static/index.html
+target/*
+node_modules/*
+Wallet/*
+package-lock.json
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-java-tron/
+src/main/webapp/dist/*
+src/main/resources/*
+logs/*
+.DS_Store
+.config.conf
+.database
+
+
+
+.originConfig.conf
 
 ### STS ###
 .apt_generated

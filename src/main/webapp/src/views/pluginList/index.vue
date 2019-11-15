@@ -1,10 +1,5 @@
-/*
- * @Author: lxm 
- * @Date: 2019-08-28 15:27:13 
- * @Last Modified by: lxm
- * @Last Modified time: 2019-11-06 14:11:33
- * @tron plugin list  
- */
+/* * @Author: lxm * @Date: 2019-08-28 15:27:13 * @Last Modified by: lxm * @Last
+Modified time: 2019-11-14 15:13:54 * @tron plugin list */
 <template>
     <div class="app-container">
         <div class="tron-content">
@@ -39,40 +34,52 @@
                         <el-card shadow="hover">
                             <div @click="baseContentShow = !baseContentShow">
                                 <i
-                                    :class="baseContentShow?'el-icon-arrow-down': 'el-icon-arrow-right'"
+                                    :class="
+                    baseContentShow
+                      ? 'el-icon-arrow-down'
+                      : 'el-icon-arrow-right'
+                  "
                                 ></i>
-                                {{$t('tronPluginConsensusModule')}}
+                                {{ $t("tronPluginConsensusModule") }}
                             </div>
-                            <div v-if="baseContentShow">
-                                <el-form-item prop="consensus" class="baseFormItem mgt20">
+                            <div v-if="baseContentShow" class="pluginSettingFormContent">
+                                <el-form-item prop="consensus" class="baseFormItem mgt30">
                                     <el-radio-group v-model="pluginOnsensusForm.consensus">
                                         <el-radio :label="'dpos'">DPOS</el-radio>
-                                        <el-radio :label="'pbft'">PBFT</el-radio>
+                                        <!-- <el-radio :label="'pbft'">PBFT</el-radio>
                                         <br />
                                         <el-radio
                                             style="margin:15px 0"
                                             :label="3"
-                                        >{{$t('tronPluginCustomConsensusModule')}}：</el-radio>
+                                        >{{$t('tronPluginCustomConsensusModule')}}：</el-radio>-->
                                     </el-radio-group>
+                                    <!-- <br />
                                     <el-input
+                                        size="small"
+                                        class="pluginSettingFormInput"
                                         :maxlength="50"
-                                        v-model="pluginOnsensusForm.consensusContent"
-                                        :placeholder="$t('tronSettingPlaceholder')"
-                                    ></el-input>
+                                        v-model.trim="pluginOnsensusForm.consensusContent"
+                                        :placeholder="$t('tronPluginCustomConsensusModulePlaceholder')"
+                                    ></el-input>-->
                                 </el-form-item>
                             </div>
                         </el-card>
                     </el-col>
                 </el-row>
                 <el-form-item label-width="0" class="textRight">
-                    <router-link :to="{path:'/setting/list'}">
-                        <el-button type="primary">{{$t('tronSettingPreviousStep')}}</el-button>
+                    <router-link :to="{ path: '/setting/list' }">
+                        <el-button size="small" type="primary">
+                            {{
+                            $t("tronSettingPreviousStep")
+                            }}
+                        </el-button>
                     </router-link>
 
                     <el-button
+                        size="small"
                         type="primary"
                         @click="saveData('pluginOnsensusDialogForm')"
-                    >{{$t('tronSettingNextStep')}}</el-button>
+                    >{{ $t("tronSettingNextStep") }}</el-button>
                 </el-form-item>
             </el-form>
             <el-form
@@ -88,29 +95,47 @@
                         <el-card shadow="hover">
                             <div @click="transcationContentShow = !transcationContentShow">
                                 <i
-                                    :class="transcationContentShow?'el-icon-arrow-down': 'el-icon-arrow-right'"
+                                    :class="
+                    transcationContentShow
+                      ? 'el-icon-arrow-down'
+                      : 'el-icon-arrow-right'
+                  "
                                 ></i>
-                                {{$t('tronPluginTransactionModule')}}
+                                {{ $t("tronPluginTransactionModule") }}
                             </div>
-                            <div v-if="transcationContentShow">
+                            <div v-if="transcationContentShow" class="transcationDialogFormContent">
                                 <el-form-item prop="transaction" class="baseFormItem mgt20">
                                     <el-checkbox-group v-model="pluginTransactionForm.transaction">
                                         <el-checkbox
                                             :label="item.value"
                                             :key="ind"
-                                            v-for="(item,ind) in transactionCheckNodeAry"
-                                        >{{item.label}}</el-checkbox>
-
+                                            v-for="(item, ind) in transactionCheckNodeAry"
+                                        >{{ item.label }}</el-checkbox>
                                         <br />
-                                        <el-checkbox
-                                            style="margin:15px 0"
-                                            :label="9"
-                                        >{{$t('tronPluginCustomTradingModule')}}</el-checkbox>
-                                        <el-input
-                                            :maxlength="50"
-                                            v-model="pluginTransactionForm.transactionContent"
-                                            :placeholder="$t('tronSettingPlaceholder')"
-                                        ></el-input>
+                                        <el-button
+                                            type="text"
+                                            size="small"
+                                            @click="moreSetting = !moreSetting"
+                                        >{{ $t("tronMoreSetting") }}</el-button>
+                                        <div v-if="moreSetting">
+                                            <el-checkbox style="margin:0" :label="9">
+                                                {{
+                                                $t("tronPluginCustomTradingModule")
+                                                }}
+                                            </el-checkbox>
+                                            <br />
+                                            <el-input
+                                                :autosize="{ minRows: 2, maxRows: 4 }"
+                                                type="textarea"
+                                                class="singlePluginSettingFormInput"
+                                                size="small"
+                                                :maxlength="300"
+                                                v-model.trim="pluginTransactionForm.transactionContent"
+                                                :placeholder="
+                          $t('tronPluginCustomTradingModulePlaceholder')
+                        "
+                                            ></el-input>
+                                        </div>
                                     </el-checkbox-group>
                                 </el-form-item>
                             </div>
@@ -118,21 +143,22 @@
                     </el-col>
                 </el-row>
                 <el-form-item label-width="0" class="textRight">
+                    <el-button size="small" type="primary" @click="previousStepFun()">
+                        {{
+                        $t("tronSettingPreviousStep")
+                        }}
+                    </el-button>
                     <el-button
-                        type="primary"
-                        @click="previousStepFun()"
-                    >{{$t('tronSettingPreviousStep')}}</el-button>
-                    <el-button
+                        size="small"
                         type="primary"
                         @click="saveTranstionData('transcationDialogForm')"
-                    >{{$t('tronSettingNextStep')}}</el-button>
+                    >{{ $t("tronSettingNextStep") }}</el-button>
                 </el-form-item>
             </el-form>
             <el-form
                 ref="dbFormDialogForm"
                 :model="plugindbForm"
                 :rules="plugindbRules"
-                label-width="200px"
                 class="dbSettingForm"
                 label-position="left"
                 v-if="currentStep == 3"
@@ -142,44 +168,49 @@
                         <el-card shadow="hover">
                             <div @click="dbsettingContentShow = !dbsettingContentShow">
                                 <i
-                                    :class="dbsettingContentShow?'el-icon-arrow-down': 'el-icon-arrow-right'"
+                                    :class="
+                    dbsettingContentShow
+                      ? 'el-icon-arrow-down'
+                      : 'el-icon-arrow-right'
+                  "
                                 ></i>
-                                {{$t('tronPluginTransactionModule')}}
+                                {{ $t("tronPluginTransactionModule") }}
                             </div>
-                            <div v-if="dbsettingContentShow">
-                                <el-form-item
-                                    label="dbsetting"
-                                    prop="dbsetting"
-                                    class="baseFormItem mgt20"
-                                >
+                            <div v-if="dbsettingContentShow" style="padding-left:20px">
+                                <el-form-item prop="dbsetting" class="baseFormItem mgt30">
                                     <el-radio-group v-model="plugindbForm.dbsetting">
                                         <el-radio :label="'leveldb'">leveldb</el-radio>
                                         <el-radio :label="'rockdb'">rockdb</el-radio>
-                                        <br />
-                                        <el-radio
+                                        <!-- <br /> -->
+                                        <!-- <el-radio
                                             style="margin:15px 0"
                                             :label="3"
-                                        >{{$t('tronPluginCustomDatabaseModule')}}</el-radio>
+                                        >{{$t('tronPluginCustomDatabaseModule')}}</el-radio>-->
                                     </el-radio-group>
-                                    <el-input
+                                    <!-- <br /> -->
+                                    <!-- <el-input
+                                        size="small"
+                                        class="pluginSettingFormInput"
                                         :maxlength="50"
-                                        v-model="plugindbForm.dbsettingContent"
-                                        :placeholder="$t('tronSettingPlaceholder')"
-                                    ></el-input>
+                                        v-model.trim="plugindbForm.dbsettingContent"
+                                        :placeholder="$t('tronPluginCustomDatabaseModulePlaceholder')"
+                                    ></el-input>-->
                                 </el-form-item>
                             </div>
                         </el-card>
                     </el-col>
                 </el-row>
                 <el-form-item label-width="0" class="textRight">
+                    <el-button size="small" type="primary" @click="previousStepFun()">
+                        {{
+                        $t("tronSettingPreviousStep")
+                        }}
+                    </el-button>
                     <el-button
-                        type="primary"
-                        @click="previousStepFun()"
-                    >{{$t('tronSettingPreviousStep')}}</el-button>
-                    <el-button
+                        size="small"
                         type="primary"
                         @click="saveDBData('dbFormDialogForm')"
-                    >{{$t('tronSettingNextStep')}}</el-button>
+                    >{{ $t("tronSettingNextStep") }}</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -198,6 +229,7 @@ export default {
         return {
             currentStep: 1,
             baseContentShow: true,
+            moreSetting: false,
             transcationContentShow: true,
             dbsettingContentShow: true,
             pluginOnsensusForm: {
@@ -205,36 +237,7 @@ export default {
                 consensusContent: ""
             },
             pluginTransactionForm: {
-                transaction: [
-                    // "AccountPermissionUpdateActuator",
-                    // "AssetIssueActuator",
-                    // "ClearABIContractActuator",
-                    // "CreateAccountActuator",
-                    // "ExchangeCreateActuator",
-                    // "ExchangeInjectActuator",
-                    // "ExchangeTransactionActuator",
-                    // "ExchangeWithdrawActuator",
-                    // "FreezeBalanceActuator",
-                    // "ParticipateAssetIssueActuator",
-                    // "ProposalApproveActuator",
-                    // "ProposalCreateActuator",
-                    // "ProposalDeleteActuator",
-                    // "SetAccountIdActuator",
-                    // "ShieldedTransferActuator",
-                    // "TransferActuator",
-                    // "TransferAssetActuator",
-                    // "UnfreezeAssetActuator",
-                    // "UnfreezeBalanceActuator",
-                    // "UpdateAccountActuator",
-                    // "UpdateAssetActuator",
-                    // "UpdateBrokerageActuator",
-                    // "UpdateEnergyLimitContractActuator",
-                    // "UpdateSettingContractActuator",
-                    // "VoteWitnessActuator",
-                    // "WithdrawBalanceActuator",
-                    // "WitnessCreateActuator",
-                    // "WitnessUpdateActuator"
-                ],
+                transaction: [],
                 transactionContent: ""
             },
             transactionCheckNodeAry: [
@@ -458,8 +461,15 @@ export default {
         saveData(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
-                    console.log(this.pluginOnsensusForm);
                     if (this.pluginOnsensusForm.consensus == 3) {
+                        if (this.pluginOnsensusForm.consensusContent == "") {
+                            this.$message.success(
+                                this.$t(
+                                    "tronPluginCustomConsensusModulePlaceholder"
+                                )
+                            );
+                            return;
+                        }
                         this.pluginOnsensusForm.consensus = this.pluginOnsensusForm.consensusContent;
                     }
                     consensusApi({
@@ -490,7 +500,46 @@ export default {
         saveTranstionData(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
+                    let checkStatus = 0;
                     if (this.pluginTransactionForm.transactionContent != "") {
+                        this.pluginTransactionForm.transaction.forEach(
+                            (item, ind) => {
+                                if (item === 9) {
+                                    if (
+                                        this.pluginTransactionForm
+                                            .transactionContent.length > 4 &&
+                                        this.pluginTransactionForm.transactionContent.slice(
+                                            -4
+                                        ) == ".jar"
+                                    ) {
+                                        checkStatus = 1;
+                                    } else {
+                                        checkStatus = 2;
+                                        // this.pluginTransactionForm.transaction.splice(
+                                        //     ind,
+                                        //     1
+                                        // );
+                                    }
+                                } else {
+                                    checkStatus = 3;
+                                }
+                            }
+                        );
+                    } else {
+                        if (
+                            this.pluginTransactionForm.transaction.indexOf(9) >
+                            0
+                        ) {
+                            checkStatus = 4;
+                            this.$message.warning(
+                                this.$t(
+                                    "tronPluginCustomTradingModulePlaceholder"
+                                )
+                            );
+                        }
+                    }
+                    console.log(checkStatus);
+                    if (checkStatus == 1) {
                         this.pluginTransactionForm.transaction.forEach(
                             (item, ind) => {
                                 if (item === 9) {
@@ -498,11 +547,31 @@ export default {
                                         ind,
                                         1
                                     );
+                                } else {
+                                    checkStatus = 3;
                                 }
                             }
                         );
+                    } else if (checkStatus == 2) {
+                        this.$message({
+                            type: "warning",
+                            message: this.$t(
+                                "tronPluginDeploymentCorrectPathPlaceholder"
+                            )
+                        });
+                        return;
+                    } else if (checkStatus == 3) {
+                        this.$message({
+                            type: "warning",
+                            message: this.$t(
+                                "tronPluginDeploymentCheckPathPlaceholder"
+                            )
+                        });
+                        return;
+                    } else if (checkStatus == 4) {
+                        return;
                     }
-                    console.log(this.pluginTransactionForm);
+
                     transactionApi({
                         transaction: this.pluginTransactionForm.transaction,
                         customTransaction: this.pluginTransactionForm
@@ -531,16 +600,29 @@ export default {
             this.$refs[formName].validate(valid => {
                 if (valid) {
                     if (this.plugindbForm.dbsetting == 3) {
+                        if (this.plugindbForm.dbsettingContent == "") {
+                            this.$message.success(
+                                this.$t(
+                                    "tronPluginCustomDatabaseModulePlaceholder"
+                                )
+                            );
+                            return;
+                        }
                         this.plugindbForm.dbsetting = this.plugindbForm.dbsettingContent;
                     }
                     dbEngineApi({ dbEngine: this.plugindbForm.dbsetting })
-                        .then(response => {
+                        .then(async response => {
                             this.$message.success(
                                 this.$t("tronPluginInputSaveSuccess")
                             );
+                            await this.$store
+                                .dispatch("user/changeRoles", "deploy")
+                                .then(res => {
+                                    console.log(res);
+                                });
                             this.$router.push({
-                                path: "/node/list",
-                                query: { deploy: 1 }
+                                path: "/deploy/list"
+                                // query: { deploy: 1 }
                             });
                         })
                         .catch(error => {
@@ -559,5 +641,11 @@ export default {
 .textRight {
     margin-top: 40px;
     text-align: right;
+}
+.pluginSettingFormInput {
+    width: 400px;
+}
+.singlePluginSettingFormInput {
+    width: 715px;
 }
 </style>

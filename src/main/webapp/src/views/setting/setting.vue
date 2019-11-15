@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-06 14:34:12
+ * @Last Modified time: 2019-11-15 14:40:45
  * @tron setting default  
  */
 <template>
@@ -13,9 +13,9 @@
                     <el-steps :active="currentStep" align-center type="mini">
                         <el-step @click.native="stepClickFun(1)" :title="$t('tronSettingGenesis')"></el-step>
                         <el-step @click.native="stepClickFun(2)" :title="$t('tronSettingBase')"></el-step>
-                        <el-step @click.native="stepClickFun(3)" :title="$t('tronSettingP2p')"></el-step>
+                        <el-step @click.native="stepClickFun(3)" :title="$t('tronSettingHttp')"></el-step>
                         <el-step @click.native="stepClickFun(4)" :title="$t('tronSettingDb')"></el-step>
-                        <el-step @click.native="stepClickFun(5)" :title="$t('tronSettingHttp')"></el-step>
+                        <el-step @click.native="stepClickFun(5)" :title="$t('tronSettingP2p')"></el-step>
                         <el-step @click.native="stepClickFun(6)" :title="$t('tronCrossChain')"></el-step>
                     </el-steps>
                 </div>
@@ -33,25 +33,25 @@
                     @previousSettingStep="previousSettingStepFun"
                     @addSettingSuccess="addSettingSuccessFun"
                 ></base-setting>
-                <p2p-setting
+                <network-setting
                     v-if="currentStep == 3"
-                    :seedNodeIpList="seedNodeIpListData"
-                    :detailInfoData="p2pSetting.detail"
                     @previousSettingStep="previousSettingStepFun"
+                    :detailInfoData="networkSetting.detail"
                     @addSettingSuccess="addSettingSuccessFun"
-                ></p2p-setting>
+                ></network-setting>
                 <databaseSetting
                     v-if="currentStep == 4"
                     @previousSettingStep="previousSettingStepFun"
                     :detailInfoData="databaseSettingForm.detail"
                     @addSettingSuccess="addSettingSuccessFun"
                 ></databaseSetting>
-                <network-setting
+                <p2p-setting
                     v-if="currentStep == 5"
+                    :seedNodeIpListAry="seedNodeIpListData"
+                    :detailInfoData="p2pSetting.detail"
                     @previousSettingStep="previousSettingStepFun"
-                    :detailInfoData="networkSetting.detail"
                     @addSettingSuccess="addSettingSuccessFun"
-                ></network-setting>
+                ></p2p-setting>
                 <cross-chain
                     v-if="currentStep == 6"
                     @previousSettingStep="previousSettingStepFun"
@@ -106,16 +106,30 @@ export default {
                 detail: {}
             },
             originSettingObj: {},
-            seedNodeIpListData: []
+            seedNodeIpListData: [],
+            currentListenPort: ""
         };
     },
     created() {
-        this.getOriginSettingFun();
         this.getCurrentSettingFun();
         this.getCurrentStepFun();
     },
     methods: {
         stepClickFun(step) {
+            if (step == 6) {
+                if (this.p2pSetting.detail.seed_node_ip_list == null) {
+                    this.$message.warning(
+                        this.$t("tronP2pSeedNodeSelectNextTips")
+                    );
+                    return;
+                }
+                if (this.p2pSetting.detail.seed_node_ip_list == 0) {
+                    this.$message.warning(
+                        this.$t("tronP2pSeedNodeSelectNextTips")
+                    );
+                    return;
+                }
+            }
             this.currentStep = step;
             this.$store.dispatch("tronSetting/getCurrentStepConfig", {
                 step
@@ -131,26 +145,7 @@ export default {
             this.currentStep = Number(step);
             this.$store.dispatch("tronSetting/getCurrentStepConfig", { step });
         },
-        getOriginSettingFun() {
-            this.$store
-                .dispatch("tronSetting/getOriginConfig")
-                .then(response => {
-                    this.originSettingObj = response;
-                    if (response.p2pConfig.seed_node_ip_list) {
-                        let newIpList = [];
-                        response.p2pConfig.seed_node_ip_list.forEach(item => {
-                            newIpList.push({
-                                ip: item,
-                                port: "18889"
-                            });
-                        });
-                        this.seedNodeIpListData = newIpList;
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
+
         getCurrentSettingFun() {
             this.$store
                 .dispatch("tronSetting/getConfigSetting")
@@ -180,6 +175,20 @@ export default {
                     this.databaseSettingForm.detail = response.dbConfig;
                     this.networkSetting.detail = response.networkConfig;
                     this.crossChainSetting.detail = response.crossChainConfig;
+                    this.currentListenPort =
+                        response.p2pConfig.node_listen_port;
+                    if (response.p2pConfig.allNodes != null) {
+                        let newIpList = [];
+                        response.p2pConfig.allNodes.forEach(item => {
+                            newIpList.push({
+                                ip: item,
+                                port: this.currentListenPort
+                            });
+                        });
+                        this.seedNodeIpListData = newIpList || [];
+                    } else {
+                        this.seedNodeIpListData = [];
+                    }
                 })
                 .catch(error => {
                     console.log(error);

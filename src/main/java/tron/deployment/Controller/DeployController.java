@@ -5,6 +5,8 @@ import static common.Util.readJsonFile;
 import common.Common;
 import config.BlockSettingConfig;
 import config.ConfigGenerator;
+import config.DBConfig;
+import config.P2PVersion;
 import org.springframework.web.bind.annotation.RequestBody;
 import response.ResultCode;
 import common.Util;
@@ -37,6 +39,17 @@ import tron.deployment.shellExecutor.BashExecutor;
 @RequestMapping(value = "/")
 @Slf4j
 public class DeployController {
+
+  @RequestMapping(method = RequestMethod.POST, value = "/oneClick")
+  public JSONObject startDeployment() {
+    int currentTime = (int) (System.currentTimeMillis() / 1000);
+    ConfigGenerator configGenerator = new ConfigGenerator();
+    boolean result = configGenerator.updateConfig(new P2PVersion(currentTime), Common.configFiled);
+    if (result == false) {
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+    }
+    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+  }
 
 	@RequestMapping(method = RequestMethod.POST, value = "/checkNode")
 	public JSONObject checkDeployStatus(@RequestBody ArrayList<Long> idList) {
@@ -91,10 +104,16 @@ public class DeployController {
 		Long port = (Long)node.get(Common.portFiled);
 		String userName = (String)node.get(Common.userNameFiled);
 		BashExecutor bashExecutor = new BashExecutor();
+    String plugin = "null";
+    if (json.containsKey(Common.customTransactionFiled)
+        && ((String) json.get(Common.customTransactionFiled)).length() != 0) {
+      plugin = (String) json.get(Common.customTransactionFiled);
+    }
+
 		if (Objects.nonNull(privateKey)) {
-			bashExecutor.callScript(ip, port, userName, path, privateKey, id);
+			bashExecutor.callScript(ip, port, userName, path, privateKey, id, plugin);
 		} else {
-			bashExecutor.callScript(ip, port, userName, path, "", id);
+			bashExecutor.callScript(ip, port, userName, path, "", id, plugin);
 		}
 
 		return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
@@ -127,7 +146,7 @@ public class DeployController {
 				return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "read log info failed").toJSONObject();
 			}
 		} else {
-			return new Response(ResultCode.NOT_FOUND.code, "log info file not found").toJSONObject();
+			return new Response(ResultCode.OK.code, "").toJSONObject();
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(Common.logInfoFiled, result);

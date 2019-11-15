@@ -30,179 +30,188 @@ import Layout from '@/newLayout';
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-// export const constantRoutes = [
-//   {
-//     path: '/redirect',
-//     component: Layout,
-//     hidden: true,
-//     children: [
-//       {
-//         path: '/redirect/:path*',
-//         component: () => import('@/views/redirect/index')
-//       }
-//     ]
-//   },
-// ]
 export const constantRoutes = [
 
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
-
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: {
-        title: 'tronSettingMenuDashboard',
-        icon: 'dashboard'
-      }
-    }]
-  },
-  {
-    path: '/node',
-    component: Layout,
-    redirect: '/node/list',
-    name: 'node',
-    meta: {
-      title: 'tronSettingMenuNode',
-      icon: 'tree'
+    {
+        path: '/',
+        component: Layout,
+        redirect: '/dashboard',
+        children: [{
+            path: 'dashboard',
+            name: 'Dashboard',
+            component: () =>
+                import ('@/views/dashboard/index'),
+            meta: {
+                title: 'tronSettingMenuDashboard',
+                icon: 'dashboard'
+            }
+        }]
     },
-    children: [{
-        path: 'list',
-        name: 'nodeMenu',
-        component: () => import('@/views/node/index'),
-        meta: {
-          title: 'tronSettingMenuNodeList',
-          icon: 'tree'
-        }
-      },
-      // {
-      //   path: 'setting',
-      //   name: 'setting',
-      //   hidden: true,
-      //   component: () => import('@/views/setting/setting'),
-      //   meta: {
-      //     title: 'tronSettingMenuSetting',
-      //     icon: 'setting'
-      //   }
-      // },
-      // {
-      //   path: 'plugin',
-      //   name: 'plugin',
-      //   hidden: true,
-      //   component: () => import('@/views/pluginList/index'),
-      //   meta: {
-      //     title: 'tronSettingMenuPlugin',
-      //     icon: 'plugins'
-      //   }
-      // }
-    ]
-  },
-  {
-    path: '/setting',
-    component: Layout,
-    redirect: '/setting/list',
-    name: 'setting',
-    // hidden: true,
-    meta: {
-      title: '配置',
-      icon: 'example'
+    {
+        path: '/404',
+        component: () =>
+            import ('@/views/404'),
+        hidden: true
     },
-    children: [
 
-      {
-        path: 'list',
-        name: 'settinglist',
-        component: () => import('@/views/setting/setting'),
+]
+export const asyncRoutes = [
+
+    {
+        path: '/node',
+        component: Layout,
+        redirect: '/node/list',
+        name: 'node',
         meta: {
-          title: 'tronSettingMenuSetting',
-          icon: 'setting'
+            title: 'tronSettingMenuNode',
+            icon: 'tree',
+            roles: ['admin', 'node', 'setting', 'plugin', 'deploy']
         },
+        children: [
 
-      },
-      {
-        path: 'config',
-        name: 'settinglist',
-        hidden: true,
-        component: () => import('@/views/setting/index'),
+            {
+                path: 'list',
+                name: 'nodeMenu',
+                component: () =>
+                    import ('@/views/node/index'),
+                meta: {
+                    title: 'tronSettingMenuNodeList',
+                    icon: 'tree',
+                    roles: ['admin', 'node', 'setting', 'plugin', 'deploy']
+                }
+            },
+
+        ]
+    },
+    {
+        path: '/setting',
+        component: Layout,
+        redirect: '/setting/list',
+        name: 'setting',
+        // hidden: true,
         meta: {
-          title: 'tronSettingMenuSetting',
-          icon: 'setting'
-        }
-      }
-    ]
-  },
+            title: '配置',
+            icon: 'example',
+            roles: ['admin', 'setting', 'plugin', 'deploy']
+        },
+        children: [
 
-  {
-    path: '/plugin',
-    component: Layout,
-    // hidden: true, 
-    redirect: '/plugin/list',
-    name: 'pluginMenu',
-    meta: {
-      title: '插件管理',
-      icon: 'example'
+            {
+                path: 'list',
+                name: 'settinglist',
+                component: () =>
+                    import ('@/views/setting/setting'),
+                meta: {
+                    title: 'tronSettingMenuSetting',
+                    icon: 'setting',
+                    roles: ['admin', 'setting', 'plugin', 'deploy']
+                },
+
+            },
+            {
+                path: 'config',
+                name: 'settingconfig',
+                hidden: true,
+                component: () =>
+                    import ('@/views/setting/index'),
+                meta: {
+                    title: 'tronSettingMenuSetting',
+                    icon: 'setting',
+                    roles: ['admin', 'setting', 'plugin', 'deploy']
+                }
+            }
+        ]
     },
-    children: [{
-      path: 'list',
-      name: 'pluginlist',
-      component: () => import('@/views/pluginList/index'),
-      meta: {
-        title: 'tronSettingMenuPlugin',
-        icon: 'plugins'
-      }
-    }]
-  },
 
-  {
-    path: '/tronscan',
-    component: Layout,
-    redirect: '/tronscan/list',
-    name: 'tronscanMenu',
-    meta: {
-      title: 'tronscan浏览器',
-      icon: 'example'
+    {
+        path: '/plugin',
+        component: Layout,
+        // hidden: true, 
+        redirect: '/plugin/list',
+        name: 'pluginMenu',
+        meta: {
+            title: '插件管理',
+            icon: 'example',
+            roles: ['admin', 'plugin', 'deploy']
+        },
+        children: [{
+            path: 'list',
+            name: 'pluginlist',
+            component: () =>
+                import ('@/views/pluginList/index'),
+            meta: {
+                title: 'tronSettingMenuPlugin',
+                icon: 'plugins',
+                roles: ['admin', 'plugin', 'deploy']
+            }
+        }]
     },
-    children: [{
-      path: 'https://tronscan.org/#/',
-      meta: {
-        title: 'tronscanMenu',
-        icon: 'link'
-      }
-    }]
 
-  },
+    {
+        path: '/deploy',
+        component: Layout,
+        redirect: '/deploy/list',
+        name: 'deployMenu',
+        meta: {
+            title: '部署管理',
+            icon: 'example',
+            roles: ['admin', 'deploy']
+        },
+        children: [{
+            path: 'list',
+            name: 'pluginlist',
+            component: () =>
+                import ('@/views/node/deployment'),
+            meta: {
+                title: 'tronSettingMenuDeployment',
+                icon: 'deployment',
+                roles: ['admin', 'deploy']
+            }
+        }]
+    },
 
-  // 404 page must be placed at the end !!!
-  {
-    path: '*',
-    redirect: '/404',
-    hidden: true
-  }
+    {
+        path: '/tronscan',
+        component: Layout,
+        redirect: '/tronscan/list',
+        name: 'tronscanMenu',
+        meta: {
+            title: 'tronscan浏览器',
+            icon: 'example',
+            roles: ['admin', 'deploy']
+        },
+        children: [{
+            path: 'https://tronscan.org/#/',
+            meta: {
+                title: 'tronscanMenu',
+                icon: 'link',
+                roles: ['admin', 'deploy']
+            }
+        }]
+
+    },
+    // 404 page must be placed at the end !!!
+    {
+        path: '*',
+        redirect: '/404',
+        hidden: true
+    }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({
-    y: 0
-  }),
-  routes: constantRoutes
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({
+        y: 0
+    }),
+    routes: constantRoutes
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher // reset router
 }
 
 export default router

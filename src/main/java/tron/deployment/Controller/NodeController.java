@@ -6,6 +6,8 @@ import static wallet.Wallet.hexs2Bytes;
 import static wallet.Wallet.private2Address;
 
 import common.Common;
+import config.SeedNodeConfig;
+import java.util.List;
 import response.ResultCode;
 import common.Util;
 import entity.WitnessEntity;
@@ -35,7 +37,7 @@ import config.ConfigGenerator;
 @Slf4j
 public class NodeController {
 
-  private JSONArray removeNodeInfo(JSONArray nodes, Long id) {
+  private JSONArray  removeNodeInfo(JSONArray nodes, Long id, boolean flag) {
     JSONArray newNodes = new JSONArray();
     for (int i = 0; i< nodes.size(); i++) {
       JSONObject node = (JSONObject) nodes.get(i);
@@ -43,7 +45,7 @@ public class NodeController {
       if (nodeID == id) {
         String privateKeyFile = (String) node.get(Common.privateKeyFiled);
         File file = new File(String.format("%s/%s", Common.walletFiled, privateKeyFile));
-        if(file.exists()){
+        if(file.exists() && flag){
           file.delete();
         }
       } else {
@@ -51,6 +53,17 @@ public class NodeController {
       }
     }
     return newNodes;
+  }
+
+  private boolean isIpExist(JSONArray nodes, String ip) {
+    for (int i = 0; i< nodes.size(); i++) {
+      JSONObject node = (JSONObject) nodes.get(i);
+      String nodeIp = (String) node.get(Common.ipFiled);
+      if (nodeIp.equals(ip)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/nodeInfo")
@@ -74,6 +87,11 @@ public class NodeController {
     JSONObject node = Util.getNodeInfo(nodes, id);
     if (node != null) {
       return new Response(ResultCode.FORBIDDEND.code, "node id already exist").toJSONObject();
+    }
+
+
+    if (isIpExist(nodes, ip)) {
+      return new Response(ResultCode.FORBIDDEND.code, "ip should be different").toJSONObject();
     }
 
     JSONObject newNode = new JSONObject();
@@ -122,8 +140,6 @@ public class NodeController {
       return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
     }
 
-    nodes = removeNodeInfo(nodes, id);
-
     if (key.length() != 0) {
       String path;
       String publicKey;
@@ -138,6 +154,8 @@ public class NodeController {
       }
     }
 
+    boolean flag = key.length()!= 0;
+    nodes = removeNodeInfo(nodes, id, flag);
     node.put(Common.userNameFiled, userName);
     node.put(Common.portFiled, port);
     node.put(Common.ipFiled, ip);
@@ -178,6 +196,15 @@ public class NodeController {
     return new Response(ResultCode.OK.code, nodes).toJSONObject();
   }
 
+  @RequestMapping(method = RequestMethod.POST, value = "/initConfig")
+  public JSONObject initConfig() {
+    ConfigGenerator configGenerator = new ConfigGenerator();
+    if (configGenerator.updateConfig(new SeedNodeConfig(new ArrayList<>()), Common.configFiled) == false) {
+      log.error("update seed node config file failed");
+    }
+    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+  }
+
   @RequestMapping(method = RequestMethod.DELETE, value = "/nodeInfo")
   public JSONObject deleteNode(
       @RequestParam(value = "id", required = true, defaultValue = "1") Long id
@@ -189,7 +216,7 @@ public class NodeController {
       nodes = new JSONArray();
     }
 
-    JSONArray newNodes = removeNodeInfo(nodes, id);
+    JSONArray newNodes = removeNodeInfo(nodes, id, true);
     if (newNodes.size() == nodes.size()) {
       return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
     }
@@ -221,7 +248,7 @@ public class NodeController {
     if (!writeJsonFile(json)) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
     }
-
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
+
 }

@@ -16,11 +16,11 @@ import java.io.InputStreamReader;
 @Slf4j
 public class BashExecutor {
 
-    public void callScript(String ip, Long port, String userName, String jarPath, String privateKey, Long id){
+    public void callScript(String ip, Long port, String userName, String jarPath, String privateKey, Long id, String plugin){
         try {
             String absolutePath = System.getProperty("user.dir").concat("/deployNode.bash");
             String configPath = String.format("%s_%s", Common.configFiled, id.toString());
-            String[] cmdArray = {absolutePath, ip, port.toString(), userName, jarPath, configPath};
+            String[] cmdArray = {absolutePath, ip, port.toString(), userName, jarPath, configPath, plugin};
             if (privateKey.length() != 0) {
                 cmdArray = ArrayUtils.add(cmdArray, privateKey);
             }
@@ -33,31 +33,5 @@ public class BashExecutor {
         catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    public void callBuildScript(String branch){
-        try {
-            Resource resource = new ClassPathResource("build.bash");
-            File script =resource.getFile();
-            String[] cmd = {"bash", script.getAbsolutePath(), branch};
-            ProcessBuilder processBuilder = new ProcessBuilder(cmd);
-            processBuilder.redirectErrorStream(true);
-            Process process = processBuilder.start();
-            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line = "";
-            while ((line = input.readLine()) != null) {
-                System.out.println(line);
-            }
-            input.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        BashExecutor call = new BashExecutor();
-        call.callBuildScript("");
     }
 }

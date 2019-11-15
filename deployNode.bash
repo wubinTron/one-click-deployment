@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+APP="java-tron-1.0.0"
 
 echo "Start ssh deployment"
 finish="deploy finish"
@@ -15,24 +16,50 @@ else
 fi
 
 echo "uploading java-tron jar"
-scp -P $2  $4 $3@$1:./java-tron/
-result=`scp -P $2 $5 $3@$1:./java-tron/config.conf 2>&1`
+result=`scp -P $2  $4 $3@$1:./java-tron/  2>&1`
 if [ -z $result ];then
-  echo "already uploading java-tron jar and config"
+ echo "already uploading java-tron jar"
 else
-  echo "update java-tron jar and config failed, ${finish}"
+  echo "update java-tron jar failed, ${finish}"
   exit
 fi
 
-if [ -z $6 ]; then
+echo "uploading config.conf"
+result=`scp -P $2 $5 $3@$1:./java-tron/config.conf 2>&1`
+if [ -z $result ];then
+  echo "already uploading config"
+else
+  echo "update config failed, ${finish}"
+  exit
+fi
+
+result=`ssh -p $2 $3@$1 "cd java-tron&&unzip -o ./${APP}.zip > /dev/null"`
+if [ "$?" != "0" ]; then
+   echo "unzip failed, unzip cmd is not installed or java-tron zip upload failed, ${finish}"
+   echo $result
+   exit
+fi
+
+scp -P $2 ./.startNode.sh $3@$1:./java-tron/start.sh
+
+if [ $6 != "null" ]; then
+  echo "uploading plugin"
+  result=`scp -P $2 $6 $3@$1:./java-tron/$APP/lib/ 2>&1`
+
+  if [ -z $result ];then
+    echo "already upload plugin"
+  else
+    echo "update plugin failed"
+    exit
+  fi
+fi
+
+if [ -z $7 ]; then
    echo "deploy FullNode"
-   scp -P $2 ./startFullNode.sh $3@$1:./java-tron/
-   ssh -p $2 $3@$1 "cd java-tron&& nohup bash startFullNode.sh"
+   ssh -p $2 $3@$1 "cd java-tron&& nohup bash start.sh"
 else
    echo "deploy WitnessNode"
-   cmd="cd java-tron&& nohup bash startWitnessNode.sh ${6}"
-   scp -P $2 ./startWitnessNode.sh $3@$1:./java-tron/
-   ssh -p $2 $3@$1 "cd java-tron&& nohup bash startWitnessNode.sh ${6}"
+   ssh -p $2 $3@$1 "cd java-tron&& nohup bash start.sh ${7}"
 fi
 
 rm -rf $5

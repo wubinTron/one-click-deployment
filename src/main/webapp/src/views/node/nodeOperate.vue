@@ -1,10 +1,5 @@
-/*
- * @Author: lxm 
- * @Date: 2019-10-15 11:03:42 
- * @Last Modified by: lxm
- * @Last Modified time: 2019-11-06 17:15:24
- * @operation node 
- */
+/* * @Author: lxm * @Date: 2019-10-15 11:03:42 * @Last Modified by: lxm * @Last
+Modified time: 2019-11-12 14:40:09 * @operation node */
 
 <template>
     <div class="viewnodeDialog">
@@ -17,13 +12,14 @@
             :close-on-press-escape="false"
             v-loading="classLoading"
             width="680px"
+            top="8vh"
             center
         >
             <el-form
                 ref="nodeDialogForm"
                 :rules="nodeRules"
                 :model="nodeForm"
-                label-width="155px"
+                label-width="150px"
                 label-position="left"
                 class="nodeDialogForm"
             >
@@ -40,16 +36,18 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
-                        v-model="nodeForm.id"
+                        v-model.trim="nodeForm.id"
                         :placeholder="$t('tronNodeIDPlaceholder')"
-                        :disabled="editStatus ==1"
+                        :disabled="editStatus == 1"
                     ></el-input>
                 </el-form-item>
                 <el-form-item prop="userName">
                     <span slot="label">
-                        {{$t('tronNodeName')}}
+                        {{ $t("tronNodeName") }}
                         <el-tooltip
+                            size="small"
                             class="item"
                             effect="dark"
                             :content="$t('deploymentNodeUsernameTips')"
@@ -59,8 +57,9 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
-                        v-model="nodeForm.userName"
+                        v-model.trim="nodeForm.userName"
                         :placeholder="$t('tronNodeNamePlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -77,8 +76,9 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
-                        v-model="nodeForm.ip"
+                        v-model.trim="nodeForm.ip"
                         :placeholder="$t('tronNodeIpPlaceholder')"
                     ></el-input>
                 </el-form-item>
@@ -95,14 +95,15 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="50"
-                        v-model="nodeForm.port"
+                        v-model.trim="nodeForm.port"
                         :placeholder="$t('tronNodePortPlaceholder')"
                     ></el-input>
                 </el-form-item>
                 <el-form-item prop="isSR">
                     <span slot="label">
-                        {{$t('tronNodeWhetherIsSR')}}
+                        {{ $t("tronNodeWhetherIsSR") }}
                         <el-tooltip
                             class="item"
                             effect="dark"
@@ -112,7 +113,11 @@
                             <i class="iconfont icon-iconset0143"></i>
                         </el-tooltip>
                     </span>
-                    <el-select v-model="nodeForm.isSR" :placeholder="$t('tronNodeSRPlaceholder')">
+                    <el-select
+                        size="small"
+                        v-model="nodeForm.isSR"
+                        :placeholder="$t('tronNodeSRPlaceholder')"
+                    >
                         <el-option
                             v-for="item in srAry"
                             :key="item.value"
@@ -121,16 +126,29 @@
                         ></el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="url" prop="url" v-if="nodeForm.isSR">
+                <el-form-item prop="url" v-if="nodeForm.isSR">
+                    <span slot="label">
+                        URL
+                        <el-tooltip
+                            class="item"
+                            effect="dark"
+                            :content="$t('deploymentNodeUrlTips')"
+                            placement="top"
+                        >
+                            <i class="iconfont icon-iconset0143"></i>
+                        </el-tooltip>
+                    </span>
+
                     <el-input
+                        size="small"
                         :maxlength="100"
-                        v-model="nodeForm.url"
+                        v-model.trim="nodeForm.url"
                         :placeholder="$t('tronNodeUrlPlaceholder')"
                     ></el-input>
                 </el-form-item>
-                <el-form-item prop="voteNumber" v-if="nodeForm.isSR">
+                <el-form-item prop="voteCount" v-if="nodeForm.isSR">
                     <span slot="label">
-                        voteNumber
+                        voteCount
                         <el-tooltip
                             class="item"
                             effect="dark"
@@ -141,12 +159,26 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         :maxlength="100"
-                        v-model="nodeForm.voteNumber"
+                        v-model.trim="nodeForm.voteCount"
                         :placeholder="$t('tronNodeVoteNumberPlaceholder')"
                     ></el-input>
                 </el-form-item>
-
+                <el-form-item v-if="editStatus == 1 && nodeForm.isSR" class="publickey">
+                    <span slot="label" style="padding-left:12px">
+                        publicKey
+                        <el-tooltip
+                            class="item"
+                            effect="dark"
+                            :content="$t('deploymentNodePublickKeyTips')"
+                            placement="top"
+                        >
+                            <i class="iconfont icon-iconset0143"></i>
+                        </el-tooltip>
+                    </span>
+                    {{ nodeForm.publicKey }}
+                </el-form-item>
                 <el-form-item prop="privateKey" v-if="nodeForm.isSR">
                     <span slot="label">
                         privateKey
@@ -160,20 +192,26 @@
                         </el-tooltip>
                     </span>
                     <el-input
+                        size="small"
                         type="textarea"
                         :maxlength="1000"
-                        v-model="nodeForm.privateKey"
+                        v-model.trim="nodeForm.privateKey"
                         :placeholder="$t('tronNodePrivateKeyPlaceholder')"
                     ></el-input>
                 </el-form-item>
 
-                <el-form-item label-width="0" class="textCenter">
+                <el-form-item label-width="0" class="textRight">
                     <el-button
+                        size="small"
                         type="primary"
                         @click="saveData('nodeDialogForm')"
                         :loading="saveLoading"
-                    >{{$t('tronNodeSave')}}</el-button>
-                    <el-button @click="cancelFun">{{$t('tronNodeCancel')}}</el-button>
+                    >{{ $t("tronNodeSave") }}</el-button>
+                    <el-button size="small" @click="cancelFun">
+                        {{
+                        $t("tronNodeCancel")
+                        }}
+                    </el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -181,11 +219,11 @@
 </template>
 <script>
 import { addNote, editNote } from "@/api/nodeApi";
-import { isvalidateNum } from "@/utils/validate.js";
+import { isvalidateNum, isCorrectIp } from "@/utils/validate.js";
 import TronWeb from "tronweb";
 export default {
     name: "operationNode",
-    props: ["nodeDialogVisible", "detailInfoData", "editStatus"],
+    props: ["nodeDialogVisible", "detailInfoData", "editStatus", "allNodes"],
     data() {
         const validNum = (rule, value, callback) => {
             if (!isvalidateNum(value)) {
@@ -194,24 +232,47 @@ export default {
                 callback();
             }
         };
-        const validPrivateKey = (rule, value, callback) => {
-            console.log(value, "value");
-            const address = TronWeb.address.fromPrivateKey(value);
-            console.log(address);
-            if (!TronWeb.isAddress(address)) {
-                callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+        const validIpRule = (rule, value, callback) => {
+            if (!isCorrectIp(value)) {
+                callback(new Error(this.$t("tronNodeIpValidate")));
             } else {
                 callback();
             }
         };
+        // const validUrlRule = (rule, value, callback) => {
+        //     if (!isCorrectUrl(value)) {
+        //         callback(new Error(this.$t("tronNodeUrlValidate")));
+        //     } else {
+        //         callback();
+        //     }
+        // };
+        const validMaxNum = (rule, value, callback) => {
+            if (value > 2147483647) {
+                callback(new Error(this.$t("tronNumberPlaceholder")));
+            } else {
+                callback();
+            }
+        };
+        const validPrivateKey = (rule, value, callback) => {
+            // console.log(value, "value");
+            if (value.length != 64) {
+                callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+            } else {
+                callback();
+            }
+            const address = TronWeb.address.fromPrivateKey(value);
+            // if (!TronWeb.isAddress(address)) {
+            //     callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+            // } else {
+            //     callback();
+            // }
+        };
+
         return {
             classLoading: false,
             saveLoading: false,
             dialogVisible: this.nodeDialogVisible,
-            dialogTitle:
-                this.editStatus == 1
-                    ? this.$t("tronNodeEditTitle")
-                    : this.$t("tronNodeAdd"),
+            dialogTitle: this.$t("tronNodeAdd"),
             nodeForm: {
                 id: "",
                 userName: "",
@@ -234,6 +295,11 @@ export default {
                         required: true,
                         validator: validNum,
                         trigger: "blur"
+                    },
+                    {
+                        required: true,
+                        validator: validMaxNum,
+                        trigger: "blur"
                     }
                 ],
                 userName: [
@@ -243,11 +309,18 @@ export default {
                         trigger: "blur"
                     }
                 ],
-                ip: {
-                    required: true,
-                    message: this.$t("tronNodeIpPlaceholder"),
-                    trigger: "blur"
-                },
+                ip: [
+                    {
+                        required: true,
+                        message: this.$t("tronNodeIpPlaceholder"),
+                        trigger: "blur"
+                    },
+                    {
+                        required: true,
+                        validator: validIpRule,
+                        trigger: "blur"
+                    }
+                ],
                 port: [
                     {
                         required: true,
@@ -258,6 +331,11 @@ export default {
                         required: true,
                         validator: validNum,
                         trigger: "blur"
+                    },
+                    {
+                        required: true,
+                        validator: validMaxNum,
+                        trigger: "blur"
                     }
                 ],
                 isSR: {
@@ -265,12 +343,14 @@ export default {
                     message: this.$t("tronNodeSRPlaceholder"),
                     trigger: "change"
                 },
-                url: {
-                    required: true,
-                    message: this.$t("tronNodeUrlPlaceholder"),
-                    trigger: "blur"
-                },
-                voteNumber: [
+                url: [
+                    {
+                        required: true,
+                        message: this.$t("tronNodeUrlPlaceholder"),
+                        trigger: "blur"
+                    }
+                ],
+                voteCount: [
                     {
                         required: true,
                         message: this.$t("tronNodeVoteNumberTips"),
@@ -300,21 +380,18 @@ export default {
     methods: {
         openDialogFun() {},
         closeFun() {
-            // this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
             this.$emit("addNodeSuccess", true);
         },
         cancelFun() {
-            // this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
             this.$emit("addNodeSuccess", true);
         },
         saveData(formName) {
-            this.saveLoading = true;
             this.$refs[formName].validate(valid => {
                 if (valid) {
+                    this.saveLoading = true;
                     let newForm;
-                    console.log(this.nodeForm.url);
                     if (this.nodeForm.url != undefined) {
                         newForm = {
                             url: `"${this.nodeForm.url}"`,
@@ -326,17 +403,50 @@ export default {
                             ...this.nodeForm
                         };
                     }
-                    console.log(newForm);
+                    if (
+                        newForm.privateKey ==
+                        "****************************************************************"
+                    ) {
+                        delete newForm.privateKey;
+                    }
+                    let isSameIp = false;
+
+                    let allNodeAry = [];
+                    if (this.allNodes.length > 0) {
+                        this.allNodes.forEach(item => {
+                            allNodeAry.push(item.ip);
+                        });
+                    }
 
                     if (this.editStatus == 1) {
-                        // delete newForm.privateKey;
-                        delete newForm.publicKey;
+                        // delete newForm.publicKey;
+                        let allNodeSet = new Set(allNodeAry);
+                        let currentNodeAry = new Set([
+                            sessionStorage.getItem("currentnode")
+                        ]);
+                        // 差集
+                        let differenceAry = new Set(
+                            [...allNodeSet].filter(x => !currentNodeAry.has(x))
+                        );
+                        Array.from(differenceAry).forEach(item => {
+                            console.log(item, newForm.ip);
+                            if (item == newForm.ip) {
+                                isSameIp = true;
+                                this.$message.warning(
+                                    this.$t("tronNodesIpNoSame")
+                                );
+                            }
+                        });
+                        if (isSameIp) {
+                            this.saveLoading = false;
+                            return;
+                        }
                         editNote(newForm)
                             .then(response => {
                                 this.$emit("addNodeSuccess", true);
                                 this.$refs.nodeDialogForm.resetFields();
                                 this.$message.success(
-                                    this.$t("tronNodeAddSuccess")
+                                    this.$t("tronNodeEditSuccess")
                                 );
                                 this.dialogVisible = false;
                                 this.saveLoading = false;
@@ -345,6 +455,22 @@ export default {
                                 console.log(error);
                                 this.saveLoading = false;
                             });
+                        return;
+                    }
+
+                    if (this.allNodes.length > 0) {
+                        this.allNodes.forEach(item => {
+                            if (item.ip == newForm.ip) {
+                                this.$message.warning(
+                                    this.$t("tronNodesIpNoSame")
+                                );
+                                isSameIp = true;
+                                return;
+                            }
+                        });
+                    }
+                    if (isSameIp) {
+                        this.saveLoading = false;
                         return;
                     }
                     addNote(newForm)
@@ -369,6 +495,12 @@ export default {
         }
     },
     watch: {
+        editStatus(val) {
+            console.log(val);
+            val == 1
+                ? (this.dialogTitle = this.$t("tronNodeEditTitle"))
+                : (this.dialogTitle = this.$t("tronNodeAdd"));
+        },
         detailInfoData(val) {
             this.nodeForm = this.detailInfoData;
         },
@@ -385,8 +517,16 @@ export default {
 .textCenter {
     text-align: center;
 }
+.textRight {
+    text-align: right;
+    margin-top: 30px;
+}
 .nodeDialogForm {
     padding: 0 20px;
 }
+.item {
+    i {
+        font-size: 12px;
+    }
+}
 </style>
-
