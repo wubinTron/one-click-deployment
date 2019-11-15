@@ -42,7 +42,19 @@ Modified time: 2019-11-13 14:16:55 * @setting p2p setting */
                                     :placeholder="$t('tronP2pVersionPlaceholder')"
                                 ></el-input>
                             </el-form-item>
-
+                            <el-form-item
+                                class="baseFormItem"
+                                label="listenPort"
+                                prop="node_listen_port"
+                            >
+                                <el-input
+                                    size="small"
+                                    :maxlength="50"
+                                    v-model.trim="p2pSettingForm.node_listen_port"
+                                    @blur="syncListenPortFun"
+                                    :placeholder="$t('tronhttpRpcListenPortPlaceholder')"
+                                ></el-input>
+                            </el-form-item>
                             <el-form-item
                                 class="baseFormItem"
                                 label="seedNode"
@@ -160,10 +172,7 @@ import { p2pSettingApi } from "@/api/settingApi";
 import { isvalidateNum } from "@/utils/validate.js";
 export default {
     name: "p2pSettingDialog",
-    props: ["detailInfoData", "listenPort", "seedNodeIpList"],
-    computed: {
-        ...mapGetters(["tronSetting"])
-    },
+    props: ["detailInfoData", "seedNodeIpListAry"],
     data() {
         const validNum = (rule, value, callback) => {
             if (!isvalidateNum(value)) {
@@ -207,6 +216,7 @@ export default {
             }
         };
         return {
+            seedNodeIpList: [],
             baseContentShow: true,
             moreSetting: false,
             p2pSettingForm: {
@@ -214,7 +224,8 @@ export default {
                 node_maxActiveNodes: "",
                 node_maxActiveNodesWithSameIp: "",
                 connectFactor: "",
-                node_activeConnectFactor: ""
+                node_activeConnectFactor: "",
+                node_listen_port: ""
             },
             checkedSeedNodeList: [],
             p2pSettingRules: {
@@ -242,6 +253,23 @@ export default {
                     {
                         message: this.$t("tronp2pVersionSpecialPlaceholder"),
                         validator: validSpecialNet,
+                        trigger: "blur"
+                    },
+                    {
+                        required: true,
+                        validator: validMaxNum,
+                        trigger: "blur"
+                    }
+                ],
+                node_listen_port: [
+                    {
+                        required: true,
+                        message: this.$t("tronhttpRpcListenPortPlaceholder"),
+                        trigger: "blur"
+                    },
+                    {
+                        message: this.$t("tronSettingNumberPlaceholder"),
+                        validator: validNum,
                         trigger: "blur"
                     },
                     {
@@ -316,12 +344,23 @@ export default {
         checkBoxChangeFun(val) {
             this.checkedSeedNodeList = val;
         },
+        syncListenPortFun() {
+            let newIpList = [];
+            this.seedNodeIpList.forEach(item => {
+                newIpList.push({
+                    ip: item.ip,
+                    port: this.p2pSettingForm.node_listen_port
+                });
+            });
+            this.seedNodeIpList = newIpList || [];
+        },
         saveData(formName) {
             this.$refs[formName].validate(valid => {
                 if (valid) {
                     const newp2pForm = {
                         p2pVersion: this.p2pSettingForm.node_p2p_version,
                         maxActiveNodes: this.p2pSettingForm.node_maxActiveNodes,
+                        listenPort: this.p2pSettingForm.node_listen_port,
                         nodeActiveConnectFactor: this.p2pSettingForm
                             .node_activeConnectFactor,
                         nodeMaxActiveNodesWithSameIp: this.p2pSettingForm
@@ -347,7 +386,9 @@ export default {
 
                     let passNodeData = [];
                     Array.from(intersect).forEach(item => {
-                        passNodeData.push(`${item}":"${this.listenPort}`);
+                        passNodeData.push(
+                            `${item}":"${this.p2pSettingForm.node_listen_port}`
+                        );
                     });
                     p2pSettingApi(newp2pForm, passNodeData)
                         .then(response => {
@@ -372,7 +413,10 @@ export default {
             this.p2pSettingForm = {
                 ...this.detailInfoData
             };
-            console.log(this.p2pSettingForm);
+        },
+        seedNodeIpListAry(val) {
+            console.log(val);
+            this.seedNodeIpList = val;
         }
     }
 };
