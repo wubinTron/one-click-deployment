@@ -15,12 +15,12 @@ else
   exit
 fi
 
-echo "uploading java-tron jar"
+echo "uploading java-tron zip"
 result=`scp -P $2  $4 $3@$1:./java-tron/  2>&1`
 if [ -z $result ];then
- echo "already uploading java-tron jar"
+ echo "already uploading java-tron zip"
 else
-  echo "update java-tron jar failed, ${finish}"
+  echo "update java-tron zip failed, ${finish}"
   exit
 fi
 
