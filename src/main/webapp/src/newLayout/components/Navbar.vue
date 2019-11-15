@@ -62,9 +62,10 @@ export default {
         handleCommand(val) {
             if (val === "zh") {
                 this.$i18n.locale = "zh-CN"; //关键语句
+                sessionStorage.setItem("currentLang", "zh-CN");
             } else {
                 this.$i18n.locale = "en-US"; //关键语句
-                console.log("zh-CN");
+                sessionStorage.setItem("currentLang", "en-US");
             }
         }
     }

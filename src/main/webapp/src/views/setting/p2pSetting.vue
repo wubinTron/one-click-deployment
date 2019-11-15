@@ -173,62 +173,52 @@ import { isvalidateNum } from "@/utils/validate.js";
 export default {
     name: "p2pSettingDialog",
     props: ["detailInfoData", "seedNodeIpListAry"],
-    data() {
-        const validNum = (rule, value, callback) => {
-            if (!isvalidateNum(value)) {
-                callback(new Error(this.$t("tronSettingNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validMaxNum = (rule, value, callback) => {
-            if (value > 2147483647) {
-                callback(new Error(this.$t("tronNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validMainnet = (rule, value, callback) => {
-            if (value == 11111) {
-                callback(
-                    new Error(this.$t("tronp2pVersionMainnetPlaceholder"))
-                );
-            } else {
-                callback();
-            }
-        };
-        const validTestNet = (rule, value, callback) => {
-            if (value == 20180622) {
-                callback(
-                    new Error(this.$t("tronp2pVersionTestnetPlaceholder"))
-                );
-            } else {
-                callback();
-            }
-        };
-        const validSpecialNet = (rule, value, callback) => {
-            if (value == 1) {
-                callback(
-                    new Error(this.$t("tronp2pVersionSpecialPlaceholder"))
-                );
-            } else {
-                callback();
-            }
-        };
-        return {
-            seedNodeIpList: [],
-            baseContentShow: true,
-            moreSetting: false,
-            p2pSettingForm: {
-                node_p2p_version: "",
-                node_maxActiveNodes: "",
-                node_maxActiveNodesWithSameIp: "",
-                connectFactor: "",
-                node_activeConnectFactor: "",
-                node_listen_port: ""
-            },
-            checkedSeedNodeList: [],
-            p2pSettingRules: {
+    computed: {
+        p2pSettingRules() {
+            const validNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validMaxNum = (rule, value, callback) => {
+                if (value > 2147483647) {
+                    callback(new Error(this.$t("tronNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            };
+            const validMainnet = (rule, value, callback) => {
+                if (value == 11111) {
+                    callback(
+                        new Error(this.$t("tronp2pVersionMainnetPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validTestNet = (rule, value, callback) => {
+                if (value == 20180622) {
+                    callback(
+                        new Error(this.$t("tronp2pVersionTestnetPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validSpecialNet = (rule, value, callback) => {
+                if (value == 1) {
+                    callback(
+                        new Error(this.$t("tronp2pVersionSpecialPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const rules = {
                 node_p2p_version: [
                     {
                         required: true,
@@ -333,7 +323,24 @@ export default {
                         trigger: "blur"
                     }
                 ]
-            }
+            };
+            return rules;
+        }
+    },
+    data() {
+        return {
+            seedNodeIpList: [],
+            baseContentShow: true,
+            moreSetting: false,
+            p2pSettingForm: {
+                node_p2p_version: "",
+                node_maxActiveNodes: "",
+                node_maxActiveNodesWithSameIp: "",
+                connectFactor: "",
+                node_activeConnectFactor: "",
+                node_listen_port: ""
+            },
+            checkedSeedNodeList: []
         };
     },
     methods: {

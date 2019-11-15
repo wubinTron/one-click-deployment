@@ -81,36 +81,6 @@ export default {
         "currentIndex"
     ],
     data() {
-        const validNormalNum = (rule, value, callback) => {
-            if (!isvalidateNum(value)) {
-                callback(new Error(this.$t("tronSettingNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validNum = (rule, value, callback) => {
-            if (value > 9223372036854775807 || value < -9223372036854775808) {
-                callback(new Error(this.$t("tronSettingNumberMaxPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validAddress = (rule, value, callback) => {
-            if (!TronWeb.isAddress(value)) {
-                callback(new Error(this.$t("tronSettingAddressPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validPrivateKey = (rule, value, callback) => {
-            const address = TronWeb.address.fromPrivateKey(value);
-            console.log(address);
-            if (!TronWeb.isAddress(address)) {
-                callback(new Error(this.$t("tronSettingAddressPlaceholder")));
-            } else {
-                callback();
-            }
-        };
         return {
             nodeRules: {},
             dialogVisible: this.assetDialogVisible,
@@ -129,8 +99,53 @@ export default {
                     value: "Contract",
                     label: "Contract"
                 }
-            ],
-            assetRules: {
+            ]
+        };
+    },
+    computed: {
+        assetRules() {
+            const validNormalNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validNum = (rule, value, callback) => {
+                if (
+                    value > 9223372036854775807 ||
+                    value < -9223372036854775808
+                ) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberMaxPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validAddress = (rule, value, callback) => {
+                if (!TronWeb.isAddress(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingAddressPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validPrivateKey = (rule, value, callback) => {
+                const address = TronWeb.address.fromPrivateKey(value);
+                console.log(address);
+                if (!TronWeb.isAddress(address)) {
+                    callback(
+                        new Error(this.$t("tronSettingAddressPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const rules = {
                 accountName: [
                     {
                         required: true,
@@ -174,8 +189,9 @@ export default {
                         trigger: "blur"
                     }
                 ]
-            }
-        };
+            };
+            return rules;
+        }
     },
     methods: {
         tronSettingCancel() {

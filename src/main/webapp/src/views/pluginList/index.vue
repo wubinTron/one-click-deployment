@@ -225,6 +225,44 @@ import {
 } from "@/api/pluginApi";
 export default {
     name: "pluginlist",
+    computed: {
+        pluginRules() {
+            const rules = {
+                consensus: [
+                    {
+                        required: true,
+                        message: this.$t("tronSettingPlaceholder"),
+                        trigger: "blur"
+                    }
+                ]
+            };
+            return rules;
+        },
+        transcationRules() {
+            const rules = {
+                transaction: [
+                    {
+                        required: true,
+                        message: this.$t("tronSettingPlaceholder"),
+                        trigger: "blur"
+                    }
+                ]
+            };
+            return rules;
+        },
+        plugindbRules() {
+            const rules = {
+                dbsetting: [
+                    {
+                        required: true,
+                        message: this.$t("tronSettingPlaceholder"),
+                        trigger: "blur"
+                    }
+                ]
+            };
+            return rules;
+        }
+    },
     data() {
         return {
             currentStep: 1,
@@ -354,33 +392,6 @@ export default {
             plugindbForm: {
                 dbsetting: "leveldb",
                 dbsettingContent: ""
-            },
-            pluginRules: {
-                consensus: [
-                    {
-                        required: true,
-                        message: this.$t("tronSettingPlaceholder"),
-                        trigger: "blur"
-                    }
-                ]
-            },
-            transcationRules: {
-                transaction: [
-                    {
-                        required: true,
-                        message: this.$t("tronSettingPlaceholder"),
-                        trigger: "blur"
-                    }
-                ]
-            },
-            plugindbRules: {
-                dbsetting: [
-                    {
-                        required: true,
-                        message: this.$t("tronSettingPlaceholder"),
-                        trigger: "blur"
-                    }
-                ]
             }
         };
     },

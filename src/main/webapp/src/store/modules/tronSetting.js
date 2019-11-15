@@ -1,5 +1,5 @@
 import {
-    originSettingApi,
+    // originSettingApi,
     configSettingApi
 } from '@/api/settingApi'
 
