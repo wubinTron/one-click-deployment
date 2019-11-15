@@ -115,11 +115,12 @@ public class ConfigControlller {
 
     // p2pConfig
     p2pConfig = new P2PConfig(Args.getP2pVersionFromConfig(loadConfig), Args.getNodeMaxActiveNodes(loadConfig),
-        Args.getActiveConnectFactor(loadConfig), Args.getNodeMaxActiveNodesWithSameIp(loadConfig), Args.getConnectFactor(loadConfig), Args.getSeedNode(loadConfig));
+        Args.getActiveConnectFactor(loadConfig), Args.getNodeMaxActiveNodesWithSameIp(loadConfig),
+        Args.getConnectFactor(loadConfig), Args.getSeedNode(loadConfig), Args.getListenPort(loadConfig));
 
     // network
     networkConfig = new NetworkConfig(Args.getMaxHttpConnectNumber(loadConfig), Args.getRPCFullNodePort(loadConfig),
-        Args.getHTTPFullNodePort(loadConfig), Args.getRPCSolidityNodePort(loadConfig), Args.getHTTPSolidityNodePort(loadConfig), Args.getListenPort(loadConfig));
+        Args.getHTTPFullNodePort(loadConfig), Args.getRPCSolidityNodePort(loadConfig), Args.getHTTPSolidityNodePort(loadConfig));
 
     // crossChain
     initCrossSetting();
@@ -188,12 +189,11 @@ public class ConfigControlller {
       @RequestParam(value = "rpcPort", required = false, defaultValue = "50051") int rpcPort,
       @RequestParam(value = "rpcSolidityPort", required = false, defaultValue = "50061") int solidityRPCPort,
       @RequestParam(value = "httpFullNodePort", required = false, defaultValue = "8090") int httpFullNodePort,
-      @RequestParam(value = "httpSolidityPort", required = false, defaultValue = "8091") int httpSolidityPort,
-      @RequestParam(value = "listenPort", required = false, defaultValue = "18889") int listenPort
+      @RequestParam(value = "httpSolidityPort", required = false, defaultValue = "8091") int httpSolidityPort
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, rpcPort, solidityRPCPort,
-        httpFullNodePort, httpSolidityPort, listenPort), Common.configFiled);
+        httpFullNodePort, httpSolidityPort), Common.configFiled);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
     }
@@ -209,11 +209,12 @@ public class ConfigControlller {
       @RequestParam(value = "nodeActiveConnectFactor", required = false, defaultValue = "0.1") double activeConnectFactor,
       @RequestParam(value = "nodeMaxActiveNodesWithSameIp", required = false, defaultValue = "2") int nodeMaxActiveNodesWithSameIp,
       @RequestParam(value = "connectFactor", required = false, defaultValue = "0.3") double connectFactor,
+      @RequestParam(value = "listenPort", required = false, defaultValue = "18883") int listenPort,
       @RequestBody ArrayList<String> ipList //seedNode
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new P2PConfig(p2pVersion, node_max_active_nodes,
-        activeConnectFactor, nodeMaxActiveNodesWithSameIp, connectFactor, ipList), Common.configFiled);
+        activeConnectFactor, nodeMaxActiveNodesWithSameIp, connectFactor, ipList, listenPort), Common.configFiled);
 
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
