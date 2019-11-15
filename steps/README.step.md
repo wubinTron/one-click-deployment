@@ -5,7 +5,7 @@
 简体中文 | [English](./README.md)
 
 
-###添加节点
+### 添加节点
 点击选择左上角的添加节点，给一键发链网络添加Witness节点和FullNode节点(注:id和ip地址均不能相同)   
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
