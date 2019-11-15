@@ -25,7 +25,7 @@ export default {
 
     'tronChainIdPlaceholder': '请填写该链Id',
     'tronChainNamePlaceholder': '请填写该链名称',
-    'tronblockProducedTimeOutePlaceholder': '请填写区块产生超时时间',
+    'tronblockProducedTimeOutePlaceholder': '请填写区提案到期时间',
     'tronblockNodeBlockProducedTimeOutPlaceholder': '请填写节点区块产生超时时间',
     'tronblockBlockMaintenanceTimeIntervalPlaceholder': '请填写块维护时间间隔',
     'tronblockNodeMinParticipationRatePlaceholder': '请填写节点最小参与率',
