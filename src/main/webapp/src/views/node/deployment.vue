@@ -277,6 +277,7 @@ export default {
               type: "info",
               message: this.$t("deploymentNodeLog")
             });
+             clearInterval(this.timer);
           }
         })
         .catch(err => {
