@@ -24,7 +24,7 @@ export default {
     'tronBalancePlaceholder': 'Please fill in the balance',
     'tronChainIdPlaceholder': 'Please fill in the chain Id',
     'tronChainNamePlaceholder': 'Please fill in the name of the chain',
-    'tronblockProducedTimeOutePlaceholder': 'Please fill in the block to generate timeout',
+    'tronblockProducedTimeOutePlaceholder': 'Please fill in the district proposal expiration time',
     'tronblockNodeBlockProducedTimeOutPlaceholder': 'Please fill in the node block to generate timeout',
     'tronblockBlockMaintenanceTimeIntervalPlaceholder': 'Please fill in the block maintenance time interval',
     'tronblockNodeMinParticipationRatePlaceholder': 'Please fill in the minimum participation rate of the node',
