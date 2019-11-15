@@ -5,16 +5,16 @@ import {
 
 
 const state = {
-    originSetting: {},
+    // originSetting: {},
     configSetting: {},
     settingStep: 0,
     pluginStep: 0,
 }
 
 const mutations = {
-    SET_ORIGINCONFIG: (state, data) => {
-        state.originSetting = data
-    },
+    // SET_ORIGINCONFIG: (state, data) => {
+    //     state.originSetting = data
+    // },
     SET_CONFIGSETTING: (state, data) => {
         state.configSetting = data
     },
@@ -30,25 +30,25 @@ const mutations = {
 const actions = {
 
     // get setting info
-    getOriginConfig({
-        commit,
-    }) {
-        return new Promise((resolve, reject) => {
-            originSettingApi().then(response => {
-                const {
-                    data
-                } = response
+    // getOriginConfig({
+    //     commit,
+    // }) {
+    //     return new Promise((resolve, reject) => {
+    //         originSettingApi().then(response => {
+    //             const {
+    //                 data
+    //             } = response
 
-                if (!data) {
-                    reject('Verification failed, please Login again.')
-                }
-                commit('SET_ORIGINCONFIG', data)
-                resolve(data)
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    },
+    //             if (!data) {
+    //                 reject('Verification failed, please Login again.')
+    //             }
+    //             commit('SET_ORIGINCONFIG', data)
+    //             resolve(data)
+    //         }).catch(error => {
+    //             reject(error)
+    //         })
+    //     })
+    // },
     getConfigSetting({
         commit,
     }) {

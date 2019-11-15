@@ -254,7 +254,6 @@ export default {
             }
         };
         const validPrivateKey = (rule, value, callback) => {
-            // console.log(value, "value");
             if (value.length != 64) {
                 callback(new Error(this.$t("tronSettingAddressPlaceholder")));
             } else {
@@ -429,7 +428,6 @@ export default {
                             [...allNodeSet].filter(x => !currentNodeAry.has(x))
                         );
                         Array.from(differenceAry).forEach(item => {
-                            console.log(item, newForm.ip);
                             if (item == newForm.ip) {
                                 isSameIp = true;
                                 this.$message.warning(
@@ -496,7 +494,6 @@ export default {
     },
     watch: {
         editStatus(val) {
-            console.log(val);
             val == 1
                 ? (this.dialogTitle = this.$t("tronNodeEditTitle"))
                 : (this.dialogTitle = this.$t("tronNodeAdd"));

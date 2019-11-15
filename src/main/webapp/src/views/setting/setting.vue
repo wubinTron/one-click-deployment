@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-15 14:40:45
+ * @Last Modified time: 2019-11-15 17:34:04
  * @tron setting default  
  */
 <template>
@@ -22,11 +22,7 @@
             </div>
             <div class="filter-container tron-table tabSection">
                 <!--tron form-->
-                <genesis-setting
-                    v-if="currentStep == 1"
-                    :detailInfoData="genesisSetting.detail"
-                    @addSettingSuccess="addSettingSuccessFun"
-                ></genesis-setting>
+                <genesis-setting v-if="currentStep == 1" @addSettingSuccess="addSettingSuccessFun"></genesis-setting>
                 <base-setting
                     v-if="currentStep == 2"
                     :detailInfoData="baseSetting.detail"

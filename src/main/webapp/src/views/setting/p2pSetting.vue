@@ -415,7 +415,6 @@ export default {
             };
         },
         seedNodeIpListAry(val) {
-            console.log(val);
             this.seedNodeIpList = val;
         }
     }
