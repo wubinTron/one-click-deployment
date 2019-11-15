@@ -54,5 +54,7 @@ export default {
     'tronNodeNextStep': '下一步',
     'tronNodeSrIs': '是',
     'tronNodeSrNo': '否',
-    'tronNumberPlaceholder': '数字超过最大限额'
+    'tronNumberPlaceholder': '数字超过最大限额',
+    'tronNodeIpValidate': '请输入正确IP',
+    'tronNodeUrlValidate': '请输入正确Url'
 }

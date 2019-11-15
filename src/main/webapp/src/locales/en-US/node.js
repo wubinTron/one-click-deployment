@@ -54,6 +54,8 @@ export default {
     'tronNodeNextStep': 'Next step',
     'tronNodeSrIs': 'yes',
     'tronNodeSrNo': 'no',
-    'tronNumberPlaceholder': 'Number exceeds maximum limit'
+    'tronNumberPlaceholder': 'Number exceeds maximum limit',
+    'tronNodeIpValidate': 'Please enter the correct IP',
+    'tronNodeUrlValidate': 'Please enter the correct Url'
 
 }

@@ -37,3 +37,16 @@ export function twoDecimal(str) {
     const reg = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
     return reg.test(str);
 }
+
+/* test ip */
+export function isCorrectIp(str) {
+    const reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+    return reg.test(str)
+}
+
+/* test url*/
+
+export function isCorrectUrl(str) {
+    const reg = /^((https|http):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+    return reg.test(str)
+}
