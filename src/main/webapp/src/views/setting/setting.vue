@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-08-28 15:27:13 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 18:41:07
+ * @Last Modified time: 2019-11-15 14:40:45
  * @tron setting default  
  */
 <template>
@@ -47,8 +47,7 @@
                 ></databaseSetting>
                 <p2p-setting
                     v-if="currentStep == 5"
-                    :seedNodeIpList="seedNodeIpListData"
-                    :listenPort="currentListenPort"
+                    :seedNodeIpListAry="seedNodeIpListData"
                     :detailInfoData="p2pSetting.detail"
                     @previousSettingStep="previousSettingStepFun"
                     @addSettingSuccess="addSettingSuccessFun"
@@ -177,7 +176,7 @@ export default {
                     this.networkSetting.detail = response.networkConfig;
                     this.crossChainSetting.detail = response.crossChainConfig;
                     this.currentListenPort =
-                        response.networkConfig.node_listen_port;
+                        response.p2pConfig.node_listen_port;
                     if (response.p2pConfig.allNodes != null) {
                         let newIpList = [];
                         response.p2pConfig.allNodes.forEach(item => {
