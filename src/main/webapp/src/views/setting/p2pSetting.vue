@@ -232,7 +232,7 @@ export default {
                 node_p2p_version: [
                     {
                         required: true,
-                        message: this.$t("tronSettingPlaceholder"),
+                        message: this.$t("tronP2pVersionPlaceholder"),
                         trigger: "blur"
                     },
                     {
