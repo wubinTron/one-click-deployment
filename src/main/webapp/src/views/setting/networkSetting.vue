@@ -84,7 +84,7 @@ Modified time: 2019-11-12 14:35:02 * @setting cross setting */
                   :placeholder="$t('tronhttpRpcSolidityPortPlaceholder')"
                 ></el-input>
               </el-form-item>
-              <el-form-item
+              <!-- <el-form-item
                 class="baseFormItem"
                 label="listenPort"
                 prop="node_listen_port"
@@ -94,7 +94,7 @@ Modified time: 2019-11-12 14:35:02 * @setting cross setting */
                   :maxlength="50"
                   v-model.trim="baseSettingForm.node_listen_port"
                   :placeholder="$t('tronhttpRpcListenPortPlaceholder')"
-                ></el-input>
+                ></el-input> -->
               </el-form-item>
             </div>
           </el-card>
@@ -144,7 +144,7 @@ export default {
         node_http_fullNodePort: "",
         node_rpc_port: "",
         node_rpc_solidityPort: "",
-        listenPort: ""
+        // listenPort: ""
       },
       branchRules: {
         node_maxHttpConnectNumber: [
@@ -232,23 +232,23 @@ export default {
             trigger: "blur"
           }
         ],
-        node_listen_port: [
-          {
-            required: true,
-            message: this.$t("tronhttpRpcListenPortPlaceholder"),
-            trigger: "blur"
-          },
-          {
-            message: this.$t("tronSettingNumberPlaceholder"),
-            validator: validNum,
-            trigger: "blur"
-          },
-          {
-            required: true,
-            validator: validMaxNum,
-            trigger: "blur"
-          }
-        ]
+        // node_listen_port: [
+        //   {
+        //     required: true,
+        //     message: this.$t("tronhttpRpcListenPortPlaceholder"),
+        //     trigger: "blur"
+        //   },
+        //   {
+        //     message: this.$t("tronSettingNumberPlaceholder"),
+        //     validator: validNum,
+        //     trigger: "blur"
+        //   },
+        //   {
+        //     required: true,
+        //     validator: validMaxNum,
+        //     trigger: "blur"
+        //   }
+        // ]
       }
     };
   },
@@ -266,7 +266,7 @@ export default {
             rpcSolidityPort: this.baseSettingForm.node_rpc_solidityPort,
             httpFullNodePort: this.baseSettingForm.node_http_fullNodePort,
             httpSolidityPort: this.baseSettingForm.node_http_solidityPort,
-            listenPort: this.baseSettingForm.node_listen_port
+            // listenPort: this.baseSettingForm.node_listen_port
           };
           networkSettingApi(newSettingForm)
             .then(response => {
