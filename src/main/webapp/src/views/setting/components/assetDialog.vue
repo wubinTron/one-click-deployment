@@ -176,20 +176,27 @@ export default {
       this.dialogVisible = false;
       this.$emit("addNodeSuccess", true);
     },
-    validaterNumberLimit(balance) {
-      checkBalanceApi({ balance: JSON.stringify(balance) })
-        .then(response => {
-          console.log(response, "res");
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
+    validaterNumberLimit(balance) {},
     saveData(formName) {
-      this.$refs[formName].validate(async valid => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
-          console.log(this.assetForm);
-          await this.validaterNumberLimit(this.assetForm.balance);
+          checkBalanceApi({ balance: this.assetForm.balance })
+            .then(response => {
+              if (response.data) {
+                return response.data;
+              }
+            })
+            .then(res => {
+              if (res.result) {
+                return true;
+              } else {
+                this.$message.error(this.$t("tronSettingNumberMaxPlaceholder"));
+                return false;
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
           let genesisBlockAssetsAry = this.genesisBlockAssets;
           if (this.editStatus == 0) {
             genesisBlockAssetsAry.push(this.assetForm);
@@ -198,9 +205,9 @@ export default {
           }
 
           //   console.log(genesisBlockAssetsAry);
-          //   const newSettingForm = {
-          //     assets: genesisBlockAssetsAry
-          //   };
+          const newSettingForm = {
+            assets: genesisBlockAssetsAry
+          };
           //   genesisSettingApi(newSettingForm)
           //     .then(response => {
           //       this.$emit("addAssetSuccess", true);
