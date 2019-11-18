@@ -180,6 +180,7 @@ export default {
     saveData(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {
+          let isValidateBalance = false;
           await checkBalanceApi({ balance: this.assetForm.balance })
             .then(response => {
               if (response.data) {
@@ -188,35 +189,38 @@ export default {
             })
             .then(res => {
               if (res.result) {
-                return true;
+                isValidateBalance = true;
               } else {
                 this.$message.error(this.$t("tronSettingNumberMaxPlaceholder"));
+                isValidateBalance = false;
                 return;
               }
             })
             .catch(error => {
               console.log(error);
             });
-          let genesisBlockAssetsAry = this.genesisBlockAssets;
-          if (this.editStatus == 0) {
-            genesisBlockAssetsAry.push(this.assetForm);
-          } else {
-            genesisBlockAssetsAry[this.currentIndex] = this.assetForm;
-          }
+          if (isValidateBalance) {
+            let genesisBlockAssetsAry = this.genesisBlockAssets;
+            if (this.editStatus == 0) {
+              genesisBlockAssetsAry.push(this.assetForm);
+            } else {
+              genesisBlockAssetsAry[this.currentIndex] = this.assetForm;
+            }
 
-          //   console.log(genesisBlockAssetsAry);
-          const newSettingForm = {
-            assets: genesisBlockAssetsAry
-          };
-          genesisSettingApi(newSettingForm)
-            .then(response => {
-              this.$emit("addAssetSuccess", true);
-              this.$message.success(this.$t("tronSettingGenesisSaveSuccess"));
-              this.dialogVisible = false;
-            })
-            .catch(error => {
-              console.log(error);
-            });
+            //   console.log(genesisBlockAssetsAry);
+            const newSettingForm = {
+              assets: genesisBlockAssetsAry
+            };
+            genesisSettingApi(newSettingForm)
+              .then(response => {
+                this.$emit("addAssetSuccess", true);
+                this.$message.success(this.$t("tronSettingGenesisSaveSuccess"));
+                this.dialogVisible = false;
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          }
         } else {
           console.log("error submit!!");
           return false;
