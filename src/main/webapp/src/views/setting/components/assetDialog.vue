@@ -178,9 +178,9 @@ export default {
     },
     validaterNumberLimit(balance) {},
     saveData(formName) {
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].validate(async valid => {
         if (valid) {
-          checkBalanceApi({ balance: this.assetForm.balance })
+          await checkBalanceApi({ balance: this.assetForm.balance })
             .then(response => {
               if (response.data) {
                 return response.data;
@@ -191,7 +191,7 @@ export default {
                 return true;
               } else {
                 this.$message.error(this.$t("tronSettingNumberMaxPlaceholder"));
-                return false;
+                return;
               }
             })
             .catch(error => {
@@ -208,15 +208,15 @@ export default {
           const newSettingForm = {
             assets: genesisBlockAssetsAry
           };
-          //   genesisSettingApi(newSettingForm)
-          //     .then(response => {
-          //       this.$emit("addAssetSuccess", true);
-          //       this.$message.success(this.$t("tronSettingGenesisSaveSuccess"));
-          //       this.dialogVisible = false;
-          //     })
-          //     .catch(error => {
-          //       console.log(error);
-          //     });
+          genesisSettingApi(newSettingForm)
+            .then(response => {
+              this.$emit("addAssetSuccess", true);
+              this.$message.success(this.$t("tronSettingGenesisSaveSuccess"));
+              this.dialogVisible = false;
+            })
+            .catch(error => {
+              console.log(error);
+            });
         } else {
           console.log("error submit!!");
           return false;
