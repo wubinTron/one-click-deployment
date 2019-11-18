@@ -441,31 +441,5 @@ public class WalletFile {
       return result;
     }
   }
-
-  // If we need to work with MyEtherWallet we'll need to use this deserializer, see the
-  // following issue https://github.com/kvhnuke/etherwallet/issues/269
-  static class KdfParamsDeserialiser extends JsonDeserializer<KdfParams> {
-
-    @Override
-    public KdfParams deserialize(
-        JsonParser jsonParser, DeserializationContext deserializationContext)
-        throws IOException {
-
-      ObjectMapper objectMapper = (ObjectMapper) jsonParser.getCodec();
-      ObjectNode root = objectMapper.readTree(jsonParser);
-      KdfParams kdfParams;
-
-      // it would be preferable to detect the class to use based on the kdf parameter in the
-      // container object instance
-      JsonNode n = root.get("n");
-      if (n == null) {
-        kdfParams = objectMapper.convertValue(root, Aes128CtrKdfParams.class);
-      } else {
-        kdfParams = objectMapper.convertValue(root, ScryptKdfParams.class);
-      }
-
-      return kdfParams;
-    }
-  }
-
+  
 }
