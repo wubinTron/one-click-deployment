@@ -2,17 +2,17 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-English | [简体中文 ](./steps/READMESTEP.zh.md)
+English | [简体中文 ](https://github.com/wubinTron/one-click-deployment/blob/master/steps/READMESTEP.zh.md)
 
-### 1.准备工作
+### 1.Preparations
 
-### 2.一键发链首页
+### 2.Home for One Click Deployment
 
-主要展示一键发链的内容操作步骤及相关文档说明
-（1）一键发链
-（2）新手必看
-（3）帮助文档
-（4）点击开始一键部署按钮，展示添加节点菜单权限，开始一键部署<sup style="color:blue">[1]</sup>
+Mainly show the operation steps for one click deployment:   
+(1）Introduction for one click deployment      
+(2）New guide    
+(3）Help document  
+(4）Click start button to start deployment <sup style="color:blue">[1]</sup>
 
 ### 3.添加节点
 
