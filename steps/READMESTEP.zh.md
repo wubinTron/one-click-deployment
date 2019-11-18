@@ -39,8 +39,6 @@
 
 ### 4.配置管理
 
-如图：
-
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
 
 (1)创世信息配置

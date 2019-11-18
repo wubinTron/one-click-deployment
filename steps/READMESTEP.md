@@ -42,9 +42,9 @@ Mainly show the operation steps for one click deployment:
 
 (1)创世信息配置
 
-创世信息配置主要包括 asset 配置和 witeness 配置
-asset 配置 可以新增和修改当前 asset 配置信息
-witeness 配置 可以查看当前 witeness 配置信息
+创世信息配置主要包括 asset 配置和 witeness 配置   
+asset配置: 可以新增和修改当前 asset 配置信息   
+witeness配置: 可以查看当前 witeness 配置信息
 
 asset 配置必填字段包括：
 
