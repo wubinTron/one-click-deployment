@@ -72,6 +72,7 @@ export default {
     'tronSettingNormalNode': 'Normal node',
     'tronSettingUnnormalNode': 'Abnormal node',
     'tronSettingNumberPlaceholder': 'Fill in must be a number and be a positive integer',
+    'tronSettingValidateNumberPlaceholder': 'Fill in must be a number',
     'tronSettingNumberZeroPlaceholder': 'Fill in must be a number and be a positive integer or 0',
     'tronSettingNumberMaxPlaceholder': 'Fill in the maximum amount',
     'tronSettingMaxNumberPlaceholder': 'The number of fills must be greater than minValidatorNumber',

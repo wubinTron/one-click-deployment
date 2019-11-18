@@ -39,7 +39,7 @@
         <el-form-item label="address" prop="address">
           <el-input
             size="small"
-            :maxlength="19"
+            :maxlength="50"
             v-model.trim="assetForm.address"
             :placeholder="$t('tronAddressPlaceholder')"
           ></el-input>
@@ -47,7 +47,7 @@
         <el-form-item label="balance" prop="balance">
           <el-input
             size="small"
-            :maxlength="50"
+            :maxlength="22"
             v-model.trim="assetForm.balance"
             :placeholder="$t('tronBalancePlaceholder')"
           ></el-input>
@@ -69,8 +69,8 @@
 </template>
 <script>
 import TronWeb from "tronweb";
-import { genesisSettingApi } from "@/api/settingApi";
-import { isvalidateNum } from "@/utils/validate.js";
+import { genesisSettingApi, checkBalanceApi } from "@/api/settingApi";
+import { isAllNumber } from "@/utils/validate.js";
 export default {
   props: [
     "assetDialogVisible",
@@ -103,23 +103,14 @@ export default {
   },
   computed: {
     assetRules() {
-      const validNormalNum = (rule, value, callback) => {
-        if (!isvalidateNum(value)) {
-          callback(new Error(this.$t("tronSettingNumberPlaceholder")));
+      const validateNumber = (rule, value, callback) => {
+        if (!isAllNumber(value)) {
+          callback(new Error(this.$t("tronSettingValidateNumberPlaceholder")));
         } else {
           callback();
         }
       };
-      const validNum = (rule, value, callback) => {
-        if (
-          Number(value) < 9223372036854775807 &&
-          Number(value) > -9223372036854775808
-        ) {
-          callback();
-        } else {
-          callback(new Error(this.$t("tronSettingNumberMaxPlaceholder")));
-        }
-      };
+
       const validAddress = (rule, value, callback) => {
         if (!TronWeb.isAddress(value)) {
           callback(new Error(this.$t("tronSettingAddressPlaceholder")));
@@ -168,6 +159,11 @@ export default {
             required: true,
             message: this.$t("tronBalancePlaceholder"),
             trigger: "blur"
+          },
+          {
+            required: true,
+            validator: validateNumber,
+            trigger: "blur"
           }
         ]
       };
@@ -180,28 +176,51 @@ export default {
       this.dialogVisible = false;
       this.$emit("addNodeSuccess", true);
     },
+    validaterNumberLimit(balance) {},
     saveData(formName) {
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].validate(async valid => {
         if (valid) {
-          let genesisBlockAssetsAry = this.genesisBlockAssets;
-          if (this.editStatus == 0) {
-            genesisBlockAssetsAry.push(this.assetForm);
-          } else {
-            genesisBlockAssetsAry[this.currentIndex] = this.assetForm;
-          }
-          // console.log(genesisBlockAssetsAry);
-          const newSettingForm = {
-            assets: genesisBlockAssetsAry
-          };
-          genesisSettingApi(newSettingForm)
+          let isValidateBalance = false;
+          await checkBalanceApi({ balance: this.assetForm.balance })
             .then(response => {
-              this.$emit("addAssetSuccess", true);
-              this.$message.success(this.$t("tronSettingGenesisSaveSuccess"));
-              this.dialogVisible = false;
+              if (response.data) {
+                return response.data;
+              }
+            })
+            .then(res => {
+              if (res.result) {
+                isValidateBalance = true;
+              } else {
+                this.$message.error(this.$t("tronSettingNumberMaxPlaceholder"));
+                isValidateBalance = false;
+                return;
+              }
             })
             .catch(error => {
               console.log(error);
             });
+          if (isValidateBalance) {
+            let genesisBlockAssetsAry = this.genesisBlockAssets;
+            if (this.editStatus == 0) {
+              genesisBlockAssetsAry.push(this.assetForm);
+            } else {
+              genesisBlockAssetsAry[this.currentIndex] = this.assetForm;
+            }
+
+            //   console.log(genesisBlockAssetsAry);
+            const newSettingForm = {
+              assets: genesisBlockAssetsAry
+            };
+            genesisSettingApi(newSettingForm)
+              .then(response => {
+                this.$emit("addAssetSuccess", true);
+                this.$message.success(this.$t("tronSettingGenesisSaveSuccess"));
+                this.dialogVisible = false;
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          }
         } else {
           console.log("error submit!!");
           return false;

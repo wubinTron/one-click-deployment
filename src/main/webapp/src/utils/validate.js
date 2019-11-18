@@ -19,6 +19,10 @@ export function validUsername(str) {
     return valid_map.indexOf(str.trim()) >= 0
 }
 
+export function isAllNumber(str) {
+    const reg = /^(\-|\+)?\d+(\.\d+)?$/
+    return reg.test(str)
+}
 
 /* number Positive integer */
 export function isvalidateNum(str) {
