@@ -11,8 +11,6 @@ src/main/webapp/dist/*
 src/main/resources/*
 logs/*
 .DS_Store
-.config.conf
-.database
 .nohup.out
 
 .originConfig.conf
