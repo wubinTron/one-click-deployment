@@ -122,16 +122,25 @@ Modified time: 2019-11-12 14:34:08 * @setting base setting */
 </template>
 <script>
 import { baseSettingApi } from "@/api/settingApi";
-import { isvalidateIntegerNum } from "@/utils/validate.js";
+import { isvalidateNum, isvalidateIntegerNum } from "@/utils/validate.js";
 export default {
     name: "baseSetting",
     props: ["detailInfoData", "editStatus"],
     computed: {
         baseRules() {
+            const validateNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberZeroPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
             const validNum = (rule, value, callback) => {
                 if (!isvalidateIntegerNum(value)) {
                     callback(
-                        new Error(this.$t("tronSettingNumberZeroPlaceholder"))
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
                     );
                 } else {
                     callback();
@@ -153,7 +162,7 @@ export default {
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
-                        validator: validNum,
+                        validator: validateNum,
                         trigger: "blur"
                     },
                     {
