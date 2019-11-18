@@ -177,7 +177,7 @@ public class ConfigControlller {
     boolean result = configGenerator.updateConfig(new DBConfig(isDBSync, isOpenTransaction,
         dbEnine, indexDirectory, needToUpdateAsset), Common.configFiled);
     if (result == false) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -195,7 +195,7 @@ public class ConfigControlller {
     boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, rpcPort, solidityRPCPort,
         httpFullNodePort, httpSolidityPort), Common.configFiled);
     if (result == false) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
 
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
@@ -217,7 +217,7 @@ public class ConfigControlller {
         activeConnectFactor, nodeMaxActiveNodesWithSameIp, connectFactor, ipList, listenPort), Common.configFiled);
 
     if (result == false) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -260,7 +260,7 @@ public class ConfigControlller {
     result = configGenerator.updateConfig(new BaseSettingConfig(blockProducedTimeOut, maintenanceTimeInterval,
         proposalExpireTime, minParticipationRate), Common.configFiled);
     if (result == false) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -277,7 +277,7 @@ public class ConfigControlller {
     boolean result = configGenerator.updateConfig(genesisAssetConfig, Common.configFiled);
 
     if (result == false) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -286,19 +286,6 @@ public class ConfigControlller {
   public JSONObject getConfig() {
     parseConfig();
     JSONObject configObject = getConfigJsonObject(config);
-
-
     return new Response(ResultCode.OK.code, configObject).toJSONObject();
   }
-
-//
-//  @RequestMapping(method = RequestMethod.GET, value = "/originConfig")
-//  public JSONObject getOriginConfig() {
-//    parseOriginConfig();
-//    JSONObject configObject = getConfigJsonObject(originConfig);
-//    JSONObject p2pObject = generateJSONObject(p2pConfig.getClass().getFields(), p2pConfig);
-//    p2pObject.put("seed_node_ip_list", getSeedNode());
-//    configObject.put("p2pConfig", p2pObject);
-//    return new Response(ResultCode.OK.code, configObject).toJSONObject();
-//  }
 }

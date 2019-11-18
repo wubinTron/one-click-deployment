@@ -11,13 +11,8 @@ src/main/webapp/dist/*
 src/main/resources/*
 logs/*
 .DS_Store
-.config.conf
-.database
-
-
-
+.nohup.out
 .originConfig.conf
-
 ### STS ###
 .apt_generated
 .classpath
@@ -32,6 +27,7 @@ logs/*
 *.iws
 *.iml
 *.ipr
+*.nohup.out
 
 ### NetBeans ###
 /nbproject/private/

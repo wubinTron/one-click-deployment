@@ -53,12 +53,14 @@ git clone https://github.com/wubinTron/one-click-deployment.git
 # deploy start
 ./deploy.sh
 
+# after deployment
+The project is deployed to the /home/USERNAME/java-tron directory, and the deployment log can be viewed on the website.
 
 ```
 
 ## Steps for usage
 
-[manual for usage](https://github.com/wubinTron/one-click-deployment/steps/README.step.md)
+[manual for usage](https://github.com/wubinTron/one-click-deployment/blob/master/steps/README.step.md)
 
 ## Changelog
 
