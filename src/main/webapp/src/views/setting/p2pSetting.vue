@@ -295,7 +295,9 @@ export default {
                 node_maxActiveNodesWithSameIp: [
                     {
                         required: true,
-                        message: this.$t("tronMaxActionNodesPlaceholder"),
+                        message: this.$t(
+                            "tronMaxActiveNodesWithSameIpPlaceholder"
+                        ),
                         trigger: "blur"
                     },
                     {
