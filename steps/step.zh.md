@@ -8,14 +8,37 @@
 
 ### 2.一键发链首页
 
-主要展示一键发链的内容操作步骤及相关文档说明   
-（1）一键发链介绍   
-（2）新手指南   
-（3）帮助文档   
+主要展示一键发链的内容操作步骤及相关文档说明  
+（1）一键发链介绍  
+（2）新手指南  
+（3）帮助文档  
 （4）点击开始按钮，一键部署<sup style="color:blue">[1]</sup>
 
 ### 3.添加节点
+
 点击选择左上角的添加节点，给一键发链网络添加 Witness 节点和 FullNode 节点
+
+## 添加节点
+
+必填字段包括：
+
+|                  必填字段                   |                  解释                  |
+| :-----------------------------------------: | :------------------------------------: |
+|    ID <sup style="color:blue">[2]</sup>     |              节点唯一编号              |
+|                  用户名称                   |               ssh 用户名               |
+|                     IP                      |                节点 Ip                 |
+|                    PORT                     |               节点 端口                |
+|                     URL                     |        Url （为 Witness 必填）         |
+|                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
+| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
+
+如下图所示：
+![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
+
+(1）点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息
+(2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点
+(3) 点击下一步将会进入配置页面
+
 ### 4.配置管理
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
@@ -123,7 +146,7 @@ p2p 配置点击下一步按钮保存当前配置
 
 如图：
 
-![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/plugins.png)
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/plugins.png)
 
 (1)共识模块
 
@@ -134,33 +157,33 @@ p2p 配置点击下一步按钮保存当前配置
 (2)交易模块
 
 目前支持的模块如下，也可以自定义模块
-AccountPermissionUpdate
-AssetIssue
-ClearABIContract
-CreateAccount
-ExchangeCreate
-ExchangeInject
-ExchangeTransaction
-ExchangeWithdraw
-FreezeBalance
-ParticipateAssetIssue
-ProposalApprove
-ProposalCreate
-ProposalDelete
-SetAccountId
-ShieldedTransfer
-Transfer
-TransferAsset
-UnfreezeAsset
-UnfreezeBalance
-UpdateAccount
-UpdateAsset
-UpdateBrokerage
-UpdateEnergyLimit
-UpdateSettingContract
-VoteWitness
-WithdrawBalance
-WitnessCreate
+AccountPermissionUpdate  
+AssetIssue  
+ClearABIContract  
+CreateAccount  
+ExchangeCreate  
+ExchangeInject  
+ExchangeTransaction  
+ExchangeWithdraw  
+FreezeBalance  
+ParticipateAssetIssue  
+ProposalApprove  
+ProposalCreate  
+ProposalDelete  
+SetAccountId  
+ShieldedTransfer  
+Transfer  
+TransferAsset  
+UnfreezeAsset  
+UnfreezeBalance  
+UpdateAccount  
+UpdateAsset  
+UpdateBrokerage  
+UpdateEnergyLimit  
+UpdateSettingContract  
+VoteWitness  
+WithdrawBalance  
+WitnessCreate  
 WitnessUpdate
 
 交易模块点击下一步按钮保存当前共识模块设置
