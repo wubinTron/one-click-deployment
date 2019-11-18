@@ -2,7 +2,7 @@
  * @Author: lxm 
  * @Date: 2019-10-15 11:03:42 
  * @Last Modified by: lxm
- * @Last Modified time: 2019-11-12 14:37:29
+ * @Last Modified time: 2019-11-15 20:23:28
  * @setting cross setting
  */
 
@@ -10,7 +10,7 @@
     <div class="viewBranchDialog">
         <el-form
             ref="crossSettingDialogForm"
-            :rules="branchRules"
+            :rules="crossChainRules"
             :model="baseSettingForm"
             label-width="200px"
             class="tronbaseSettingForm"
@@ -29,12 +29,7 @@
                                 prop="enableCrossChain"
                                 class="baseFormItem mgt20"
                             >
-                                <el-switch
-                                    size="small"
-                                    v-model="baseSettingForm.enableCrossChain"
-                                    active-color="#13ce66"
-                                    inactive-color="#ff4949"
-                                ></el-switch>
+                                <el-switch size="small" v-model="baseSettingForm.enableCrossChain"></el-switch>
                             </el-form-item>
                             <el-form-item
                                 label="maxValidatorNumber"
@@ -101,45 +96,49 @@ import { isvalidateNum, twoDecimal } from "@/utils/validate.js";
 export default {
     name: "corssChain",
     props: ["detailInfoData"],
-    data() {
-        const validNum = (rule, value, callback) => {
-            if (!isvalidateNum(value)) {
-                callback(new Error(this.$t("tronSettingNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validMaxNum = (rule, value, callback) => {
-            if (
-                this.baseSettingForm.minValidatorNumber &&
-                value < this.baseSettingForm.minValidatorNumber
-            ) {
-                callback(new Error(this.$t("tronSettingMaxNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validMinNum = (rule, value, callback) => {
-            if (
-                this.baseSettingForm.maxValidatorNumber &&
-                value > this.baseSettingForm.maxValidatorNumber
-            ) {
-                callback(new Error(this.$t("tronSettingMinNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validTwoDecimalFun = (rule, value, callback) => {
-            if (!twoDecimal(value)) {
-                callback(new Error(this.$t("validTwoDecimal")));
-            } else {
-                callback();
-            }
-        };
-        return {
-            baseContentShow: true,
-            baseSettingForm: {},
-            branchRules: {
+    computed: {
+        crossChainRules() {
+            const validNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validMaxNum = (rule, value, callback) => {
+                if (
+                    this.baseSettingForm.minValidatorNumber &&
+                    value < this.baseSettingForm.minValidatorNumber
+                ) {
+                    callback(
+                        new Error(this.$t("tronSettingMaxNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validMinNum = (rule, value, callback) => {
+                if (
+                    this.baseSettingForm.maxValidatorNumber &&
+                    value > this.baseSettingForm.maxValidatorNumber
+                ) {
+                    callback(
+                        new Error(this.$t("tronSettingMinNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validTwoDecimalFun = (rule, value, callback) => {
+                if (!twoDecimal(value)) {
+                    callback(new Error(this.$t("validTwoDecimal")));
+                } else {
+                    callback();
+                }
+            };
+            const rules = {
                 enableCrossChain: [
                     {
                         required: true,
@@ -193,7 +192,14 @@ export default {
                         trigger: "blur"
                     }
                 ]
-            }
+            };
+            return rules;
+        }
+    },
+    data() {
+        return {
+            baseContentShow: true,
+            baseSettingForm: {}
         };
     },
     methods: {

@@ -224,67 +224,55 @@ import TronWeb from "tronweb";
 export default {
     name: "operationNode",
     props: ["nodeDialogVisible", "detailInfoData", "editStatus", "allNodes"],
-    data() {
-        const validNum = (rule, value, callback) => {
-            if (!isvalidateNum(value)) {
-                callback(new Error(this.$t("tronSettingNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validIpRule = (rule, value, callback) => {
-            if (!isCorrectIp(value)) {
-                callback(new Error(this.$t("tronNodeIpValidate")));
-            } else {
-                callback();
-            }
-        };
-        // const validUrlRule = (rule, value, callback) => {
-        //     if (!isCorrectUrl(value)) {
-        //         callback(new Error(this.$t("tronNodeUrlValidate")));
-        //     } else {
-        //         callback();
-        //     }
-        // };
-        const validMaxNum = (rule, value, callback) => {
-            if (value > 2147483647) {
-                callback(new Error(this.$t("tronNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validPrivateKey = (rule, value, callback) => {
-            // console.log(value, "value");
-            if (value.length != 64) {
-                callback(new Error(this.$t("tronSettingAddressPlaceholder")));
-            } else {
-                callback();
-            }
-            const address = TronWeb.address.fromPrivateKey(value);
-            // if (!TronWeb.isAddress(address)) {
-            //     callback(new Error(this.$t("tronSettingAddressPlaceholder")));
-            // } else {
-            //     callback();
-            // }
-        };
+    computed: {
+        nodeRules() {
+            const validNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validIpRule = (rule, value, callback) => {
+                if (!isCorrectIp(value)) {
+                    callback(new Error(this.$t("tronNodeIpValidate")));
+                } else {
+                    callback();
+                }
+            };
+            const validLocalRule = (rule, value, callback) => {
+                if (value == "127.0.0.1") {
+                    callback(new Error(this.$t("tronNodeIpLocalValidate")));
+                } else {
+                    callback();
+                }
+            };
 
-        return {
-            classLoading: false,
-            saveLoading: false,
-            dialogVisible: this.nodeDialogVisible,
-            dialogTitle: this.$t("tronNodeAdd"),
-            nodeForm: {
-                id: "",
-                userName: "",
-                ip: "",
-                port: "",
-                isSR: ""
-            },
-            srAry: [
-                { id: 0, label: this.$t("tronNodeSrIs"), value: true },
-                { id: 1, label: this.$t("tronNodeSrNo"), value: false }
-            ],
-            nodeRules: {
+            const validMaxNum = (rule, value, callback) => {
+                if (value > 2147483647) {
+                    callback(new Error(this.$t("tronNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            };
+            const validPrivateKey = (rule, value, callback) => {
+                if (value.length != 64) {
+                    callback(
+                        new Error(this.$t("tronSettingAddressPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+                const address = TronWeb.address.fromPrivateKey(value);
+                // if (!TronWeb.isAddress(address)) {
+                //     callback(new Error(this.$t("tronSettingAddressPlaceholder")));
+                // } else {
+                //     callback();
+                // }
+            };
+            const rules = {
                 id: [
                     {
                         required: true,
@@ -318,6 +306,11 @@ export default {
                     {
                         required: true,
                         validator: validIpRule,
+                        trigger: "blur"
+                    },
+                    {
+                        required: true,
+                        validator: validLocalRule,
                         trigger: "blur"
                     }
                 ],
@@ -374,16 +367,38 @@ export default {
                         trigger: "blur"
                     }
                 ]
-            }
+            };
+            return rules;
+        }
+    },
+    data() {
+        return {
+            classLoading: false,
+            saveLoading: false,
+            dialogVisible: this.nodeDialogVisible,
+            dialogTitle: this.$t("tronNodeAdd"),
+            nodeForm: {
+                id: "",
+                userName: "",
+                ip: "",
+                port: "",
+                isSR: ""
+            },
+            srAry: [
+                { id: 0, label: this.$t("tronNodeSrIs"), value: true },
+                { id: 1, label: this.$t("tronNodeSrNo"), value: false }
+            ]
         };
     },
     methods: {
         openDialogFun() {},
         closeFun() {
+            this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
             this.$emit("addNodeSuccess", true);
         },
         cancelFun() {
+            this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
             this.$emit("addNodeSuccess", true);
         },
@@ -429,7 +444,6 @@ export default {
                             [...allNodeSet].filter(x => !currentNodeAry.has(x))
                         );
                         Array.from(differenceAry).forEach(item => {
-                            console.log(item, newForm.ip);
                             if (item == newForm.ip) {
                                 isSameIp = true;
                                 this.$message.warning(
@@ -481,6 +495,7 @@ export default {
                                 this.$t("tronNodeAddSuccess")
                             );
                             this.dialogVisible = false;
+
                             this.saveLoading = false;
                         })
                         .catch(error => {
@@ -496,7 +511,6 @@ export default {
     },
     watch: {
         editStatus(val) {
-            console.log(val);
             val == 1
                 ? (this.dialogTitle = this.$t("tronNodeEditTitle"))
                 : (this.dialogTitle = this.$t("tronNodeAdd"));

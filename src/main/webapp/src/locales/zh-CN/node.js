@@ -56,5 +56,6 @@ export default {
     'tronNodeSrNo': '否',
     'tronNumberPlaceholder': '数字超过最大限额',
     'tronNodeIpValidate': '请输入正确IP',
+    'tronNodeIpLocalValidate': '暂不支持本地情况',
     'tronNodeUrlValidate': '请输入正确Url'
 }

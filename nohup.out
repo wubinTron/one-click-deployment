@@ -8,95 +8,12 @@
  :: Spring Boot ::        (v2.1.6.RELEASE)
 
 finish generation
-WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.spongycastle.jcajce.provider.drbg.DRBG (jar:file:/Users/liuximing/Documents/liuximing/company/tron/code/wubin-one-click-deployment/target/deployment-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/prov-1.58.0.0.jar!/) to constructor sun.security.provider.Sun()
-WARNING: Please consider reporting this to the maintainers of org.spongycastle.jcajce.provider.drbg.DRBG
-WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-WARNING: All illegal access operations will be denied in a future release
-Private Key: 369f095838eb6eed45d4f6312af962d5b9de52927da9f04174ee49f9af54bc77
-Public Key: 0406f213c657967aff4d8a5d730919c8e0d8caaeef78c10594f95c68fb70486daa053bcb54b794210a2eee2c693c5f64c4b00902fcb48153b7304a0513925091db
-sha3 = 31a9158efde258c2d72741980be88a918d74d0dfd71dc84bd4abf036d0562991
-Address: 410be88a918d74d0dfd71dc84bd4abf036d0562991
-sha256_0: 55696b3c23e6788ded10af2448f7ea5bbaa374780494437e5a2938dbffc8126a
-sha256_1: bf195e64ccd99306722340d27d62f5dd3abb265d251016fad1daa5aeffbecd54
-checkSum: bf195e64
-addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
-finish generation
-Private Key: 369f095838eb6eed45d4f6312af962d5b9de52927da9f04174ee49f9af54bc77
-Public Key: 0406f213c657967aff4d8a5d730919c8e0d8caaeef78c10594f95c68fb70486daa053bcb54b794210a2eee2c693c5f64c4b00902fcb48153b7304a0513925091db
-sha3 = 31a9158efde258c2d72741980be88a918d74d0dfd71dc84bd4abf036d0562991
-Address: 410be88a918d74d0dfd71dc84bd4abf036d0562991
-sha256_0: 55696b3c23e6788ded10af2448f7ea5bbaa374780494437e5a2938dbffc8126a
-sha256_1: bf195e64ccd99306722340d27d62f5dd3abb265d251016fad1daa5aeffbecd54
-checkSum: bf195e64
-addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
-finish generation
-Private Key: 369f095838eb6eed45d4f6312af962d5b9de52927da9f04174ee49f9af54bc77
-Public Key: 0406f213c657967aff4d8a5d730919c8e0d8caaeef78c10594f95c68fb70486daa053bcb54b794210a2eee2c693c5f64c4b00902fcb48153b7304a0513925091db
-sha3 = 31a9158efde258c2d72741980be88a918d74d0dfd71dc84bd4abf036d0562991
-Address: 410be88a918d74d0dfd71dc84bd4abf036d0562991
-sha256_0: 55696b3c23e6788ded10af2448f7ea5bbaa374780494437e5a2938dbffc8126a
-sha256_1: bf195e64ccd99306722340d27d62f5dd3abb265d251016fad1daa5aeffbecd54
-checkSum: bf195e64
-addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.6.RELEASE)
-
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.6.RELEASE)
-
-<<<<<<< HEAD
-finish generation
-finish generation
-finish generation
-finish generation
 finish generation
 WARNING: An illegal reflective access operation has occurred
 WARNING: Illegal reflective access by org.spongycastle.jcajce.provider.drbg.DRBG (jar:file:/Users/liuximing/Documents/liuximing/company/tron/code/wubin-one-click-deployment/target/deployment-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/prov-1.58.0.0.jar!/) to constructor sun.security.provider.Sun()
 WARNING: Please consider reporting this to the maintainers of org.spongycastle.jcajce.provider.drbg.DRBG
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-Private Key: 9fd8e129de181ea44c6129f727a6871440169568ade002943ead0e7a16d8edac
-Public Key: 040de4d4279798191a13aec415d12470b15cf44e8d8859298efb4862ba66e8d0ec1c4cd862af17396170943214eb45b21216862b6983226142e9b6800bd8adcc28
-sha3 = a4a1c7965da3d34ebde2df3ebafb56091591790e00aa05eaddcc7dc1474b5d4b
-Address: 41bafb56091591790e00aa05eaddcc7dc1474b5d4b
-sha256_0: b0a4dedcb71207bd25b05c90885d0ad0ffc6e18b8cfc2ee7c079be03ee7bf1ad
-sha256_1: bf0560de6904304a59a516eed247b209d01b7db5fb41649877dae1659cff07f8
-checkSum: bf0560de
-addchecksum: 41bafb56091591790e00aa05eaddcc7dc1474b5d4bbf0560de
-finish generation
-Private Key: 369f095838eb6eed45d4f6312af962d5b9de52927da9f04174ee49f9af54bc77
-Public Key: 0406f213c657967aff4d8a5d730919c8e0d8caaeef78c10594f95c68fb70486daa053bcb54b794210a2eee2c693c5f64c4b00902fcb48153b7304a0513925091db
-sha3 = 31a9158efde258c2d72741980be88a918d74d0dfd71dc84bd4abf036d0562991
-Address: 410be88a918d74d0dfd71dc84bd4abf036d0562991
-sha256_0: 55696b3c23e6788ded10af2448f7ea5bbaa374780494437e5a2938dbffc8126a
-sha256_1: bf195e64ccd99306722340d27d62f5dd3abb265d251016fad1daa5aeffbecd54
-checkSum: bf195e64
-addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
-finish generation
 Private Key: 369f095838eb6eed45d4f6312af962d5b9de52927da9f04174ee49f9af54bc77
 Public Key: 0406f213c657967aff4d8a5d730919c8e0d8caaeef78c10594f95c68fb70486daa053bcb54b794210a2eee2c693c5f64c4b00902fcb48153b7304a0513925091db
 sha3 = 31a9158efde258c2d72741980be88a918d74d0dfd71dc84bd4abf036d0562991
@@ -107,71 +24,3 @@ checkSum: bf195e64
 addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
 finish generation
 finish generation
-=======
->>>>>>> 2ff232d92f3fefab41f2200544086c3127b8bf86
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.6.RELEASE)
-
-finish generation
-<<<<<<< HEAD
-finish generation
-finish generation
-finish generation
-finish generation
-WARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.spongycastle.jcajce.provider.drbg.DRBG (jar:file:/Users/liuximing/Documents/liuximing/company/tron/code/wubin-one-click-deployment/target/deployment-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/prov-1.58.0.0.jar!/) to constructor sun.security.provider.Sun()
-WARNING: Please consider reporting this to the maintainers of org.spongycastle.jcajce.provider.drbg.DRBG
-WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-WARNING: All illegal access operations will be denied in a future release
-Private Key: 9fd8e129de181ea44c6129f727a6871440169568ade002943ead0e7a16d8edac
-Public Key: 040de4d4279798191a13aec415d12470b15cf44e8d8859298efb4862ba66e8d0ec1c4cd862af17396170943214eb45b21216862b6983226142e9b6800bd8adcc28
-sha3 = a4a1c7965da3d34ebde2df3ebafb56091591790e00aa05eaddcc7dc1474b5d4b
-Address: 41bafb56091591790e00aa05eaddcc7dc1474b5d4b
-sha256_0: b0a4dedcb71207bd25b05c90885d0ad0ffc6e18b8cfc2ee7c079be03ee7bf1ad
-sha256_1: bf0560de6904304a59a516eed247b209d01b7db5fb41649877dae1659cff07f8
-checkSum: bf0560de
-addchecksum: 41bafb56091591790e00aa05eaddcc7dc1474b5d4bbf0560de
-finish generation
-Private Key: 369f095838eb6eed45d4f6312af962d5b9de52927da9f04174ee49f9af54bc77
-Public Key: 0406f213c657967aff4d8a5d730919c8e0d8caaeef78c10594f95c68fb70486daa053bcb54b794210a2eee2c693c5f64c4b00902fcb48153b7304a0513925091db
-sha3 = 31a9158efde258c2d72741980be88a918d74d0dfd71dc84bd4abf036d0562991
-Address: 410be88a918d74d0dfd71dc84bd4abf036d0562991
-sha256_0: 55696b3c23e6788ded10af2448f7ea5bbaa374780494437e5a2938dbffc8126a
-sha256_1: bf195e64ccd99306722340d27d62f5dd3abb265d251016fad1daa5aeffbecd54
-checkSum: bf195e64
-addchecksum: 410be88a918d74d0dfd71dc84bd4abf036d0562991bf195e64
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-finish generation
-=======
->>>>>>> 2ff232d92f3fefab41f2200544086c3127b8bf86
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.6.RELEASE)
-
-
-  .   ____          _            __ _ _
- /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
-( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
- \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
-  '  |____| .__|_| |_|_| |_\__, | / / / /
- =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.6.RELEASE)
-

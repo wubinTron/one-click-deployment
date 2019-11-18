@@ -5,7 +5,7 @@ Modified time: 2019-11-12 14:34:08 * @setting base setting */
     <div class="viewBranchDialog">
         <el-form
             ref="baseSettingDialogForm"
-            :rules="branchRules"
+            :rules="baseRules"
             :model="baseSettingForm"
             label-width="230px"
             class="tronbaseSettingForm"
@@ -122,33 +122,38 @@ Modified time: 2019-11-12 14:34:08 * @setting base setting */
 </template>
 <script>
 import { baseSettingApi } from "@/api/settingApi";
-import { isvalidateIntegerNum } from "@/utils/validate.js";
+import { isvalidateNum, isvalidateIntegerNum } from "@/utils/validate.js";
 export default {
     name: "baseSetting",
     props: ["detailInfoData", "editStatus"],
-    data() {
-        const validNum = (rule, value, callback) => {
-            if (!isvalidateIntegerNum(value)) {
-                callback(
-                    new Error(this.$t("tronSettingNumberZeroPlaceholder"))
-                );
-            } else {
-                callback();
-            }
-        };
-        const validMaxNum = (rule, value, callback) => {
-            if (value > 2147483647) {
-                callback(new Error(this.$t("tronNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        return {
-            classLoading: false,
-            moreSetting: false,
-            baseSettingForm: {},
-            baseContentShow: true,
-            branchRules: {
+    computed: {
+        baseRules() {
+            const validateNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberZeroPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validNum = (rule, value, callback) => {
+                if (!isvalidateIntegerNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validMaxNum = (rule, value, callback) => {
+                if (value > 2147483647) {
+                    callback(new Error(this.$t("tronNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            };
+            const rules = {
                 chainId: [
                     {
                         required: true,
@@ -157,7 +162,7 @@ export default {
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
-                        validator: validNum,
+                        validator: validateNum,
                         trigger: "blur"
                     },
                     {
@@ -249,7 +254,16 @@ export default {
                         trigger: "blur"
                     }
                 ]
-            }
+            };
+            return rules;
+        }
+    },
+    data() {
+        return {
+            classLoading: false,
+            moreSetting: false,
+            baseSettingForm: {},
+            baseContentShow: true
         };
     },
     methods: {

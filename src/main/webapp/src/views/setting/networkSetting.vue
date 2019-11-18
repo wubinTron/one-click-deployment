@@ -5,7 +5,7 @@ Modified time: 2019-11-12 14:35:02 * @setting cross setting */
     <div class="viewBranchDialog">
         <el-form
             ref="crossSettingDialogForm"
-            :rules="branchRules"
+            :rules="networkRules"
             :model="baseSettingForm"
             label-width="200px"
             class="tronbaseSettingForm"
@@ -118,32 +118,25 @@ import { isvalidateNum } from "@/utils/validate.js";
 export default {
     name: "networkSetting",
     props: ["detailInfoData"],
-    data() {
-        const validNum = (rule, value, callback) => {
-            if (!isvalidateNum(value)) {
-                callback(new Error(this.$t("tronSettingNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        const validMaxNum = (rule, value, callback) => {
-            if (value > 2147483647) {
-                callback(new Error(this.$t("tronNumberPlaceholder")));
-            } else {
-                callback();
-            }
-        };
-        return {
-            baseContentShow: true,
-            baseSettingForm: {
-                node_maxHttpConnectNumber: "",
-                node_http_solidityPort: "",
-                node_http_fullNodePort: "",
-                node_rpc_port: "",
-                node_rpc_solidityPort: ""
-                // listenPort: ""
-            },
-            branchRules: {
+    computed: {
+        networkRules() {
+            const validNum = (rule, value, callback) => {
+                if (!isvalidateNum(value)) {
+                    callback(
+                        new Error(this.$t("tronSettingNumberPlaceholder"))
+                    );
+                } else {
+                    callback();
+                }
+            };
+            const validMaxNum = (rule, value, callback) => {
+                if (value > 2147483647) {
+                    callback(new Error(this.$t("tronNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            };
+            const rules = {
                 node_maxHttpConnectNumber: [
                     {
                         required: true,
@@ -246,6 +239,20 @@ export default {
                 //     trigger: "blur"
                 //   }
                 // ]
+            };
+            return rules;
+        }
+    },
+    data() {
+        return {
+            baseContentShow: true,
+            baseSettingForm: {
+                node_maxHttpConnectNumber: "",
+                node_http_solidityPort: "",
+                node_http_fullNodePort: "",
+                node_rpc_port: "",
+                node_rpc_solidityPort: ""
+                // listenPort: ""
             }
         };
     },

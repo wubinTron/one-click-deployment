@@ -11,6 +11,9 @@ const messages = {
 }
 
 let curBrowserLang = navigator.language || navigator.userLanguage;
+if (sessionStorage.getItem('currentLang')) {
+    curBrowserLang = sessionStorage.getItem('currentLang')
+}
 let curLanAbbreviation = curBrowserLang;
 var languageAry = ['', 'en-US', 'zh-CN'];
 if (languageAry.indexOf(curBrowserLang) < 0) {

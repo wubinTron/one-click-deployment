@@ -11,9 +11,6 @@ import {
 import router, {
     resetRouter
 } from '@/router'
-import {
-    AST_Atom
-} from 'terser'
 
 const state = {
     token: getToken(),
