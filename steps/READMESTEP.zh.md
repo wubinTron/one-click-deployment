@@ -8,11 +8,11 @@
 
 ### 2.一键发链首页
 
-主要展示一键发链的内容操作步骤及相关文档说明
-（1）一键发链
-（2）新手必看
-（3）帮助文档
-（4）点击开始一键部署按钮，展示添加节点菜单权限，开始一键部署<sup style="color:blue">[1]</sup>
+主要展示一键发链的内容操作步骤及相关文档说明   
+（1）一键发链介绍   
+（2）新手指南   
+（3）帮助文档   
+（4）点击开始按钮，一键部署<sup style="color:blue">[1]</sup>
 
 ### 3.添加节点
 
@@ -22,27 +22,26 @@
 
 |                  必填字段                   |               解释                |
 | :-----------------------------------------: | :-------------------------------: |
-|    ID <sup style="color:blue">[2]</sup>     |            ssh 用户名             |
-|                     IP                      |            FullNode Ip            |
-|                    PORT                     |           FullNode 端口           |
-|                     URL                     |    Witness Url （为 SR 必填）     |
-|                  voteCount                  |    对应投票数量 （为 SR 必填）    |
-| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 SR 必填） |
+|    ID <sup style="color:blue">[2]</sup>     |            节点唯一编号             |
+|      用户名称                          |            ssh用户名             |
+|                     IP                      |            节点 Ip            |
+|                    PORT                     |           节点 端口           |
+|                     URL                     |     Url         （为 Witness 必填）     |
+|                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
+| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
 如下图所示：
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
-(2）点击保存<sup style="color:blue">[4]</sup> 当前节点列表展示当前添加的节点信息 下一步按钮可以点击
+(2）点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息
 
-(3) 节点列表 <sup style="color:blue">[5]</sup>
-
-节点列表展示所有添加的节点
+(3) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点
 
 ### 4.配置管理
 
 如图：
 
-![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/setting.png)
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
 
 (1)创世信息配置
 
