@@ -441,5 +441,5 @@ public class WalletFile {
       return result;
     }
   }
-  
+
 }
