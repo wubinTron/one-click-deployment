@@ -40,6 +40,10 @@
 
 ### 4.配置管理
 
+如图：
+
+![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/setting.png)
+
 (1)创世信息配置
 
 创世信息配置主要包括 asset 配置和 witeness 配置
@@ -140,6 +144,10 @@ p2p 配置点击下一步按钮保存当前配置
 跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[7]</sup>
 
 ### 5.导入插件
+
+如图：
+
+![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/plugins.png)
 
 (1)共识模块
 
