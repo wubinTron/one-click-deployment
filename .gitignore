@@ -12,9 +12,7 @@ src/main/resources/*
 logs/*
 .DS_Store
 .nohup.out
-
 .originConfig.conf
-
 ### STS ###
 .apt_generated
 .classpath
