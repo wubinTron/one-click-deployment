@@ -36,6 +36,32 @@ import config.ConfigGenerator;
 @RequestMapping(value = "/")
 @Slf4j
 public class NodeController {
+  private JSONObject updateNodesInfo(JSONArray nodes, JSONObject json) {
+    ConfigGenerator configGenerator = new ConfigGenerator();
+
+    ArrayList<WitnessEntity> witnessnodes = new ArrayList<>();
+    for (int i = 0; i< nodes.size(); i++) {
+      JSONObject node = (JSONObject) nodes.get(i);
+      boolean isSR = (Boolean) node.get(Common.isSRFiled);
+
+      if (isSR == true) {
+        witnessnodes.add(new WitnessEntity((String) node.get(Common.publicKeyFiled),
+            (String)node.get(Common.urlFiled), (String)node.get(Common.voteCountFiled)));
+      }
+    }
+    GenesisWitnessConfig witnessConfig =  new GenesisWitnessConfig();
+    witnessConfig.setGenesisBlockWitnesses(witnessnodes);
+    if (configGenerator.updateConfig(witnessConfig, Common.configFiled) == false) {
+      log.error("update witness config file failed");
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update witness config file failed").toJSONObject();
+    }
+
+    json.put(Common.nodesFiled, nodes);
+    if (!writeJsonFile(json)) {
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.writeJsonFileFailed).toJSONObject();
+    }
+    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+  }
 
   private JSONArray  removeNodeInfo(JSONArray nodes, Long id, boolean flag) {
     JSONArray newNodes = new JSONArray();
@@ -105,7 +131,7 @@ public class NodeController {
         newNode.put(Common.publicKeyFiled, publicKey);
       } catch (CipherException | IOException e) {
         log.error(e.toString()) ;
-        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
+        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.savePrivateKeyFailed).toJSONObject();
       }
     }
 
@@ -137,7 +163,7 @@ public class NodeController {
     JSONArray nodes = (JSONArray)json.get(Common.nodesFiled);
     JSONObject node = Util.getNodeInfo(nodes, id);
     if (node == null) {
-      return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
+      return new Response(ResultCode.NOT_FOUND.code, Common.nodeIdNotExistFailed).toJSONObject();
     }
 
     if (key.length() != 0) {
@@ -150,7 +176,7 @@ public class NodeController {
         node.put(Common.publicKeyFiled, publicKey);
       } catch (CipherException | IOException e) {
         log.error(e.toString()) ;
-        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "save private key failed").toJSONObject();
+        return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.savePrivateKeyFailed).toJSONObject();
       }
     }
 
@@ -182,7 +208,7 @@ public class NodeController {
 
     JSONObject node = Util.getNodeInfo(nodes, id);
     if (node == null) {
-      return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
+      return new Response(ResultCode.NOT_FOUND.code, Common.nodeIdNotExistFailed).toJSONObject();
     }
     return new Response(ResultCode.OK.code, node).toJSONObject();
   }
@@ -218,37 +244,10 @@ public class NodeController {
 
     JSONArray newNodes = removeNodeInfo(nodes, id, true);
     if (newNodes.size() == nodes.size()) {
-      return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
+      return new Response(ResultCode.NOT_FOUND.code, Common.nodeIdNotExistFailed).toJSONObject();
     }
 
     return updateNodesInfo(newNodes, json);
-  }
-
-  JSONObject updateNodesInfo(JSONArray nodes, JSONObject json) {
-    ConfigGenerator configGenerator = new ConfigGenerator();
-
-    ArrayList<WitnessEntity> witnessnodes = new ArrayList<>();
-    for (int i = 0; i< nodes.size(); i++) {
-      JSONObject node = (JSONObject) nodes.get(i);
-      boolean isSR = (Boolean) node.get(Common.isSRFiled);
-
-      if (isSR == true) {
-        witnessnodes.add(new WitnessEntity((String) node.get(Common.publicKeyFiled),
-            (String)node.get(Common.urlFiled), (String)node.get(Common.voteCountFiled)));
-      }
-    }
-    GenesisWitnessConfig witnessConfig =  new GenesisWitnessConfig();
-    witnessConfig.setGenesisBlockWitnesses(witnessnodes);
-    if (configGenerator.updateConfig(witnessConfig, Common.configFiled) == false) {
-      log.error("update witness config file failed");
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update witness config file failed").toJSONObject();
-    }
-
-    json.put(Common.nodesFiled, nodes);
-    if (!writeJsonFile(json)) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
-    }
-    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
 
 }

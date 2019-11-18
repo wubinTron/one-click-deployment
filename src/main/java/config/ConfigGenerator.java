@@ -46,7 +46,6 @@ public class ConfigGenerator {
             fileWriter.write(configStr);
             fileWriter.flush();
             fileWriter.close();
-            System.out.println("finish generation");
         }
         catch (IOException e){
             e.printStackTrace();
