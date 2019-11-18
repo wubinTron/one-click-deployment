@@ -60,7 +60,7 @@ The project is deployed to the /home/USERNAME/java-tron directory, and the deplo
 
 ## Steps for usage
 
-[manual for usage](https://github.com/wubinTron/one-click-deployment/blob/master/steps/README.step.md)
+[manual for usage](https://github.com/wubinTron/one-click-deployment/blob/master/steps/READMESTEP.zh.md)
 
 ## Changelog
 

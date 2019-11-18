@@ -64,7 +64,7 @@ cd one-click-deployment
 
 ## 使用步骤
 
-[使用步骤](https://github.com/wubinTron/one-click-deployment/blob/master/steps/README.step.md)
+[使用步骤](https://github.com/wubinTron/one-click-deployment/blob/master/steps/READMESTEP.zh.md)
 
 
 ## 版本发布日志

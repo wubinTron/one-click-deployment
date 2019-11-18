@@ -289,7 +289,7 @@ public class ConfigControlller {
     return new Response(ResultCode.OK.code, configObject).toJSONObject();
   }
 
-  @RequestMapping(method = RequestMethod.POST, value = "/checkBalance")
+  @RequestMapping(method = RequestMethod.GET, value = "/checkBalance")
   public JSONObject checkBalance(
       @RequestParam(value = "balance", required = true, defaultValue = "0") String balance
   ) {
