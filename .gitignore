@@ -13,8 +13,7 @@ logs/*
 .DS_Store
 .config.conf
 .database
-
-
+.nohup.out
 
 .originConfig.conf
 
@@ -32,6 +31,7 @@ logs/*
 *.iws
 *.iml
 *.ipr
+*.nohup.out
 
 ### NetBeans ###
 /nbproject/private/
