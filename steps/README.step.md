@@ -67,12 +67,13 @@ asset 配置必填字段包括：
 | chainName | 链名称 |
 
 高级配置字段包括：
-| 高级配置字段 | 解释 |
-| :----------------------: | :--------------: |
-| MaintenanceTimeInterval | 维护时间间隔 |
-| blockProposalExpireTime | 区块提案到期时间 |
+
+|       高级配置字段       |         解释         |
+| :----------------------: | :------------------: |
+| MaintenanceTimeInterval  |     维护时间间隔     |
+| blockProposalExpireTime  |   区块提案到期时间   |
 | nodeBlockProducedTimeOut | 节点区块产生超时时间 |
-| nodeMinParticipationRate | 节点最小参与率 |
+| nodeMinParticipationRate |    节点最小参与率    |
 
 基础配置点击下一步按钮保存当前配置
 
@@ -107,31 +108,34 @@ asset 配置必填字段包括：
 (5)p2p 配置
 
 p2p 配置必填字段包括：
-| 必填字段 | 解释 |
-| :------------------: | :----: |
-| p2pVersion | p2p 版本 |
+
+|  必填字段  |    解释     |
+| :--------: | :---------: |
+| p2pVersion |  p2p 版本   |
 | listenPort | listen 端口 |
-| seedNode | seedNode |
+|  seedNode  |  seedNode   |
 
 高级配置字段包括：
-| 高级配置字段 | 解释 |
-| :----------------------: | :--------------: |
-| maxActiveNodes | 最大链接数 |
-| maxActiveNodesWithSameIp | 同一 ip 最大连接数 |
-| activeConnectFactor | activeConnectFactor |
-| connectFactor | connectFactor |
+
+|       高级配置字段       |        解释         |
+| :----------------------: | :-----------------: |
+|      maxActiveNodes      |     最大链接数      |
+| maxActiveNodesWithSameIp | 同一 ip 最大连接数  |
+|   activeConnectFactor    | activeConnectFactor |
+|      connectFactor       |    connectFactor    |
 
 p2p 配置点击下一步按钮保存当前配置
 
 (6)跨链配置
 
 跨链配置必填字段包括：
-| 必填字段 | 解释 |
-| :------------------: | :----: |
-| enableCrossChain | 是否允许跨链|
-| maxValidatorNumber | 最大验证数 |
-| minValidatorNumber | 最小验证数 |
-| crossChainFee | crossChainFee |
+
+|      必填字段      |     解释      |
+| :----------------: | :-----------: |
+|  enableCrossChain  | 是否允许跨链  |
+| maxValidatorNumber |  最大验证数   |
+| minValidatorNumber |  最小验证数   |
+|   crossChainFee    | crossChainFee |
 
 跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[7]</sup>
 
@@ -201,13 +205,13 @@ WitnessUpdate
 
 [1] 注：点击开始一键部署按钮，获取节点列表菜单权限，每次点击会重置菜单权限
 
-[2] 注：id 和 ip 地址均不能相同 ↩︎
+[2] 注：id 和 ip 地址均不能相同
 
-[3] 注：每次添加的节点 privateKey 不能重复 ↩︎
+[3] 注：每次添加的节点 privateKey 不能重复
 
-[4] 注：点击节点列表下一步按钮重置配置管理菜单权限，只展示配置管理菜单权限 ↩︎
+[4] 注：点击节点列表下一步按钮重置配置管理菜单权限，只展示配置管理菜单权限
 
-[5] 注：当节点列表为空时候默认下一步按钮不可以点击，当节点列表都删除除时没有下一步菜单权限，节点列表最多支持 20 个节点 ↩︎
+[5] 注：当节点列表为空时候默认下一步按钮不可以点击，当节点列表都删除除时没有下一步菜单权限，节点列表最多支持 20 个节点
 
 [6] 注：balance 范围在-9223372036854775808 和 9223372036854775807 之间，为保证部署成功，请按照取值内范围填写
 
