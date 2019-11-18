@@ -57,6 +57,9 @@ cd one-click-deployment
 # 启动服务
 ./deploy.sh
 
+# 部署完成
+项目被部署到/home/USERNAME/java-tron目录下，项目运行日志可以在网站中查看
+
 ```
 
 ## 使用步骤
