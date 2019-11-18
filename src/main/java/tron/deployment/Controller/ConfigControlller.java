@@ -288,4 +288,19 @@ public class ConfigControlller {
     JSONObject configObject = getConfigJsonObject(config);
     return new Response(ResultCode.OK.code, configObject).toJSONObject();
   }
+
+  @RequestMapping(method = RequestMethod.POST, value = "/checkBalance")
+  public JSONObject checkBalance(
+      @RequestParam(value = "balance", required = true, defaultValue = "0") String balance
+  ) {
+    JSONObject jsonObject = new JSONObject();
+    boolean flag = true;
+    try {
+      Long.parseLong(balance);
+    } catch ( NumberFormatException e) {
+      flag = false;
+    }
+    jsonObject.put(Common.resultField, flag);
+    return new Response(ResultCode.OK.code, jsonObject).toJSONObject();
+  }
 }

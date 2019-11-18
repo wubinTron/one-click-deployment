@@ -20,7 +20,8 @@ public class Common {
 
   public static final String dbEngineFiled = "dbEngine";
 
-  public static final String branchNoteFiled = "branchNote";
+
+  public static final String resultField = "result";
 
   public static final String idFiled = "id";
 
