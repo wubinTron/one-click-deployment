@@ -34,7 +34,7 @@ public class PluginConfig {
     JSONObject json = readJsonFile();
     json.put(Common.consensusFiled, consensus);
     if (!writeJsonFile(json)) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.writeJsonFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -56,11 +56,11 @@ public class PluginConfig {
     json.put(Common.customTransactionFiled, customTransaction);
     ConfigGenerator configGenerator = new ConfigGenerator();
     if (!configGenerator.updateConfig(new ActuatorConfig(transactions), Common.configFiled)) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
 
     if (!writeJsonFile(json)) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.writeJsonFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -72,7 +72,7 @@ public class PluginConfig {
     JSONObject json = readJsonFile();
     json.put(Common.dbEngineFiled, dbEngine);
     if (!writeJsonFile(json)) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "write json file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.writeJsonFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }

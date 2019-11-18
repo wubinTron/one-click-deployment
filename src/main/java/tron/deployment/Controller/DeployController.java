@@ -39,6 +39,42 @@ import tron.deployment.shellExecutor.BashExecutor;
 @RequestMapping(value = "/")
 @Slf4j
 public class DeployController {
+	private String checkNodeStatus(String path) {
+		File file = new File(path);
+		if (file.isFile() && file.exists()) {
+			try {
+				InputStreamReader read = new InputStreamReader(
+						new FileInputStream(file), Common.encoding);
+				BufferedReader bufferedReader = new BufferedReader(read);
+				String lineTxt;
+
+				while ((lineTxt = bufferedReader.readLine()) != null)
+				{
+					if (lineTxt.contains(Common.deployFinishStatus)) {
+						return Common.deployFinishStatus;
+					}
+				}
+				bufferedReader.close();
+				read.close();
+
+			} catch (Exception  e) {
+				log.error(e.toString());
+			}
+		} else {
+			return Common.notFoundStatus;
+		}
+		return Common.deployFailedStatus;
+	}
+	private boolean isBlockNeedSync(JSONArray nodes, Long id) {
+		for (int i = 0; i< nodes.size(); i++) {
+			JSONObject node = (JSONObject) nodes.get(i);
+			Long nodeID = (Long) node.get(Common.idFiled);
+			if (id.compareTo(nodeID) > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
 
   @RequestMapping(method = RequestMethod.POST, value = "/oneClick")
   public JSONObject startDeployment() {
@@ -46,7 +82,7 @@ public class DeployController {
     ConfigGenerator configGenerator = new ConfigGenerator();
     boolean result = configGenerator.updateConfig(new P2PVersion(currentTime), Common.configFiled);
     if (result == false) {
-      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config.conf file failed").toJSONObject();
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
@@ -75,7 +111,7 @@ public class DeployController {
 
 		JSONObject node = Util.getNodeInfo(nodes, id);
 		if (node == null) {
-			return new Response(ResultCode.NOT_FOUND.code, "node id not exist").toJSONObject();
+			return new Response(ResultCode.NOT_FOUND.code, Common.nodeIdNotExistFailed).toJSONObject();
 		}
 
 		boolean isSR = (Boolean) node.get(Common.isSRFiled);
@@ -97,7 +133,7 @@ public class DeployController {
 				new BlockSettingConfig(blockNeedSync), String.format("%s_%s", Common.configFiled, id.toString()));
 
 		if (result == false) {
-			return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update config file failed").toJSONObject();
+			return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
 		}
 
 		String ip = (String) node.get(Common.ipFiled);
@@ -125,12 +161,11 @@ public class DeployController {
 	) {
 		String logName = String.format(Common.logFormat, id.toString());
 		File file = new File(logName);
-		String encoding = "GBK";
 		List<String> result= new ArrayList<>();
 		if (file.isFile() && file.exists()) {
 			try {
 				InputStreamReader read = new InputStreamReader(
-						new FileInputStream(file), encoding);
+						new FileInputStream(file), Common.encoding);
 				BufferedReader bufferedReader = new BufferedReader(read);
 				String lineTxt;
 
@@ -151,43 +186,5 @@ public class DeployController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(Common.logInfoFiled, result);
 		return new Response(ResultCode.OK.code, jsonObject).toJSONObject();
-	}
-
-	String checkNodeStatus(String path) {
-		File file = new File(path);
-		if (file.isFile() && file.exists()) {
-			try {
-				InputStreamReader read = new InputStreamReader(
-						new FileInputStream(file), "GBK");
-				BufferedReader bufferedReader = new BufferedReader(read);
-				String lineTxt;
-
-				while ((lineTxt = bufferedReader.readLine()) != null)
-				{
-					if (lineTxt.contains(Common.deployFinishStatus)) {
-						return Common.deployFinishStatus;
-					}
-				}
-				bufferedReader.close();
-				read.close();
-
-			} catch (Exception  e) {
-				log.error(e.toString());
-			}
-		} else {
-			return Common.notFoundStatus;
-		}
-		return Common.deployFailedStatus;
-	}
-
-	boolean isBlockNeedSync(JSONArray nodes, Long id) {
-		for (int i = 0; i< nodes.size(); i++) {
-			JSONObject node = (JSONObject) nodes.get(i);
-			Long nodeID = (Long) node.get(Common.idFiled);
-			if (id.compareTo(nodeID) > 0) {
-				return true;
-			}
-		}
-		return false;
 	}
 }

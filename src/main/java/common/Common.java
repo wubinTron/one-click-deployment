@@ -4,8 +4,6 @@ public class Common {
 
   public static final String configFiled = ".config.conf";
 
-  public static final String originConfigFiled = ".originConfig.conf";
-
   public static final String databaseFiled = ".database";
 
   public static final String branchFiled = "branch";
@@ -78,4 +76,15 @@ public class Common {
   public static final String deployFinishStatus = "deploy finish";
 
   public static final String deployFailedStatus = "deploying";
+
+  public static final String encoding = "GBK";
+
+  public static final String writeJsonFileFailed = "write json file failed";
+
+  public static final String updateConfigFileFailed = "update config file failed";
+
+  public static final String nodeIdNotExistFailed = "node id not exist";
+
+  public static final String savePrivateKeyFailed = "save private key failed";
+
 }
