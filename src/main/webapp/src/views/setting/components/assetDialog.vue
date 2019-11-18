@@ -39,7 +39,7 @@
                 <el-form-item label="address" prop="address">
                     <el-input
                         size="small"
-                        :maxlength="50"
+                        :maxlength="20"
                         v-model.trim="assetForm.address"
                         :placeholder="$t('tronAddressPlaceholder')"
                     ></el-input>
@@ -115,14 +115,14 @@ export default {
             };
             const validNum = (rule, value, callback) => {
                 if (
-                    value > 9223372036854775807 ||
-                    value < -9223372036854775808
+                    Number(value) < 9223372036854775807 &&
+                    Number(value) > -9223372036854775808
                 ) {
+                    callback();
+                } else {
                     callback(
                         new Error(this.$t("tronSettingNumberMaxPlaceholder"))
                     );
-                } else {
-                    callback();
                 }
             };
             const validAddress = (rule, value, callback) => {
@@ -176,16 +176,6 @@ export default {
                     {
                         required: true,
                         message: this.$t("tronBalancePlaceholder"),
-                        trigger: "blur"
-                    },
-                    {
-                        required: true,
-                        validator: validNormalNum,
-                        trigger: "blur"
-                    },
-                    {
-                        required: true,
-                        validator: validNum,
                         trigger: "blur"
                     }
                 ]
