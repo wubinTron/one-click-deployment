@@ -67,12 +67,13 @@ asset 配置必填字段包括：
 | chainName | 链名称 |
 
 高级配置字段包括：
-| 高级配置字段 | 解释 |
-| :----------------------: | :--------------: |
-| MaintenanceTimeInterval | 维护时间间隔 |
-| blockProposalExpireTime | 区块提案到期时间 |
+
+|       高级配置字段       |         解释         |
+| :----------------------: | :------------------: |
+| MaintenanceTimeInterval  |     维护时间间隔     |
+| blockProposalExpireTime  |   区块提案到期时间   |
 | nodeBlockProducedTimeOut | 节点区块产生超时时间 |
-| nodeMinParticipationRate | 节点最小参与率 |
+| nodeMinParticipationRate |    节点最小参与率    |
 
 基础配置点击下一步按钮保存当前配置
 
@@ -107,31 +108,34 @@ asset 配置必填字段包括：
 (5)p2p 配置
 
 p2p 配置必填字段包括：
-| 必填字段 | 解释 |
-| :------------------: | :----: |
-| p2pVersion | p2p 版本 |
+
+|  必填字段  |    解释     |
+| :--------: | :---------: |
+| p2pVersion |  p2p 版本   |
 | listenPort | listen 端口 |
-| seedNode | seedNode |
+|  seedNode  |  seedNode   |
 
 高级配置字段包括：
-| 高级配置字段 | 解释 |
-| :----------------------: | :--------------: |
-| maxActiveNodes | 最大链接数 |
-| maxActiveNodesWithSameIp | 同一 ip 最大连接数 |
-| activeConnectFactor | activeConnectFactor |
-| connectFactor | connectFactor |
+
+|       高级配置字段       |        解释         |
+| :----------------------: | :-----------------: |
+|      maxActiveNodes      |     最大链接数      |
+| maxActiveNodesWithSameIp | 同一 ip 最大连接数  |
+|   activeConnectFactor    | activeConnectFactor |
+|      connectFactor       |    connectFactor    |
 
 p2p 配置点击下一步按钮保存当前配置
 
 (6)跨链配置
 
 跨链配置必填字段包括：
-| 必填字段 | 解释 |
-| :------------------: | :----: |
-| enableCrossChain | 是否允许跨链|
-| maxValidatorNumber | 最大验证数 |
-| minValidatorNumber | 最小验证数 |
-| crossChainFee | crossChainFee |
+
+|      必填字段      |     解释      |
+| :----------------: | :-----------: |
+|  enableCrossChain  | 是否允许跨链  |
+| maxValidatorNumber |  最大验证数   |
+| minValidatorNumber |  最小验证数   |
+|   crossChainFee    | crossChainFee |
 
 跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[7]</sup>
 
