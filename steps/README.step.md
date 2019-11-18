@@ -125,12 +125,48 @@ p2p 配置必填字段包括：
 ### 4.导入插件
 
 (1)共识模块
+目前支持 DPOS
+
 (2)交易模块
+
+目前支持的模块如下，也可以自定义模块
+AccountPermissionUpdate
+AssetIssue
+ClearABIContract
+CreateAccount
+ExchangeCreate
+ExchangeInject
+ExchangeTransaction
+ExchangeWithdraw
+FreezeBalance
+ParticipateAssetIssue
+ProposalApprove
+ProposalCreate
+ProposalDelete
+SetAccountId
+ShieldedTransfer
+Transfer
+TransferAsset
+UnfreezeAsset
+UnfreezeBalance
+UpdateAccount
+UpdateAsset
+UpdateBrokerage
+UpdateEnergyLimit
+UpdateSettingContract
+VoteWitness
+WithdrawBalance
+WitnessCreate
+WitnessUpdate
+
 (3)数据库模块
+
+支持 leveldb 和 rockdb
 
 ### 5.节点部署
 
 (1)批量部署
+
 (2)查看日志
 
 ## License

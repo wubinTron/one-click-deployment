@@ -242,6 +242,13 @@ export default {
                     callback();
                 }
             };
+            const validLocalRule = (rule, value, callback) => {
+                if (value == "127.0.0.1") {
+                    callback(new Error(this.$t("tronNodeIpLocalValidate")));
+                } else {
+                    callback();
+                }
+            };
 
             const validMaxNum = (rule, value, callback) => {
                 if (value > 2147483647) {
@@ -299,6 +306,11 @@ export default {
                     {
                         required: true,
                         validator: validIpRule,
+                        trigger: "blur"
+                    },
+                    {
+                        required: true,
+                        validator: validLocalRule,
                         trigger: "blur"
                     }
                 ],

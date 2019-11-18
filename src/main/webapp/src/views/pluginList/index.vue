@@ -82,6 +82,7 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                     >{{ $t("tronSettingNextStep") }}</el-button>
                 </el-form-item>
             </el-form>
+            <!-- transcation -->
             <el-form
                 ref="transcationDialogForm"
                 class="transcationDialogForm"
@@ -155,6 +156,7 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                     >{{ $t("tronSettingNextStep") }}</el-button>
                 </el-form-item>
             </el-form>
+            <!-- db form -->
             <el-form
                 ref="dbFormDialogForm"
                 :model="plugindbForm"
@@ -174,7 +176,7 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                       : 'el-icon-arrow-right'
                   "
                                 ></i>
-                                {{ $t("tronPluginTransactionModule") }}
+                                {{ $t("tronPluginDatabaseModule") }}
                             </div>
                             <div v-if="dbsettingContentShow" style="padding-left:20px">
                                 <el-form-item prop="dbsetting" class="baseFormItem mgt30">

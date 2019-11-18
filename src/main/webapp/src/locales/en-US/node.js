@@ -56,6 +56,7 @@ export default {
     'tronNodeSrNo': 'no',
     'tronNumberPlaceholder': 'Number exceeds maximum limit',
     'tronNodeIpValidate': 'Please enter the correct IP',
+    'tronNodeIpLocalValidate': 'Local conditions are not supported at this time',
     'tronNodeUrlValidate': 'Please enter the correct Url'
 
 }
