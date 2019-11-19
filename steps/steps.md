@@ -8,9 +8,9 @@ English | [简体中文 ](https://github.com/wubinTron/one-click-deployment/blob
 
 ### 2.Home for One Click Deployment
 
-Mainly show the operation steps for one click deployment:   
-(1）Introduction for one click deployment      
-(2）New guide    
+Mainly show the operation steps for one click deployment:  
+(1）Introduction for one click deployment  
+(2）New guide  
 (3）Help document  
 (4）Click start button to start deployment <sup style="color:blue">[1]</sup>
 
@@ -42,9 +42,9 @@ Mainly show the operation steps for one click deployment:
 
 (1)创世信息配置
 
-创世信息配置主要包括 asset 配置和 witeness 配置   
-asset配置: 可以新增和修改当前 asset 配置信息   
-witeness配置: 可以查看当前 witeness 配置信息
+创世信息配置主要包括 asset 配置和 witeness 配置  
+asset 配置: 可以新增和修改当前 asset 配置信息  
+witeness 配置: 可以查看当前 witeness 配置信息
 
 asset 配置必填字段包括：
 
@@ -150,33 +150,33 @@ p2p 配置点击下一步按钮保存当前配置
 (2)交易模块
 
 目前支持的模块如下，也可以自定义模块
-AccountPermissionUpdate
-AssetIssue
-ClearABIContract
-CreateAccount
-ExchangeCreate
-ExchangeInject
-ExchangeTransaction
-ExchangeWithdraw
-FreezeBalance
-ParticipateAssetIssue
-ProposalApprove
-ProposalCreate
-ProposalDelete
-SetAccountId
-ShieldedTransfer
-Transfer
-TransferAsset
-UnfreezeAsset
-UnfreezeBalance
-UpdateAccount
-UpdateAsset
-UpdateBrokerage
-UpdateEnergyLimit
-UpdateSettingContract
-VoteWitness
-WithdrawBalance
-WitnessCreate
+AccountPermissionUpdate  
+AssetIssue  
+ClearABIContract  
+CreateAccount  
+ExchangeCreate  
+ExchangeInject  
+ExchangeTransaction  
+ExchangeWithdraw  
+FreezeBalance  
+ParticipateAssetIssue  
+ProposalApprove  
+ProposalCreate  
+ProposalDelete  
+SetAccountId  
+ShieldedTransfer  
+Transfer  
+TransferAsset  
+UnfreezeAsset  
+UnfreezeBalance  
+UpdateAccount  
+UpdateAsset  
+UpdateBrokerage  
+UpdateEnergyLimit  
+UpdateSettingContract  
+VoteWitness  
+WithdrawBalance  
+WitnessCreate  
 WitnessUpdate
 
 交易模块点击下一步按钮保存当前共识模块设置

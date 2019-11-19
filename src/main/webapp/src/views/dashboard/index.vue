@@ -64,7 +64,7 @@ export default {
       let currentLanguage = sessionStorage.getItem("currentLang");
       if (currentLanguage == "en-US") {
         window.open(
-          "https://github.com/wubinTron/one-click-deployment/blob/develop/README.md",
+          "https://github.com/wubinTron/one-click-deployment/blob/master/README.md",
           "_blank"
         );
       } else {
