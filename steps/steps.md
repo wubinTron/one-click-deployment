@@ -43,7 +43,7 @@ Required fields include：
 
 ### 4.Configuration management
 
-The configuration management page [as shown] (./steps/img/setting.png), mainly including: genesis information, basic configuration, network configuration, database configuration, p2p configuration and cross-chain configuration   
+The configuration management page [as shown](./steps/img/setting.png), mainly including: genesis information, basic configuration, network configuration, database configuration, p2p configuration and cross-chain configuration   
 
 
 (1)Genesis Information Configuration
