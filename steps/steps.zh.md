@@ -32,7 +32,6 @@
 |                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
-如图：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
@@ -43,8 +42,6 @@
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
 
 ### 4.配置管理
-
-如图：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
 
