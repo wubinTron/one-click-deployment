@@ -8,7 +8,7 @@ English | [简体中文](./steps/steps.zh.md)
 
 Need to implement in advance [free login](https://www.jianshu.com/p/13919b5ba8a2)
 
-Deploy node needs[java-tron-1.0.0.zip build](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
+Deploy node needs [java-tron-1.0.0.zip build](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
 ### 2.Home
 
