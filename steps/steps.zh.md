@@ -33,7 +33,7 @@
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
 (1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息  
-(2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点 如下图所示：  
+(2) 节点列表 <sup style="color:blue">[5]</sup> 展示所有添加的节点      
 (3) 点击下一步将会进入[配置页面](./steps/img/nodeList.png)
 
 ### 4.配置管理
@@ -179,8 +179,8 @@ VoteWitness
 WithdrawBalance  
 WitnessCreate  
 WitnessUpdate
-
-交易模块点击下一步按钮保存当前共识模块设置
+还可以选择自定义上传自定义交易    
+交易模块点击下一步按钮保存当前交易模块设置
 
 #### 数据库模块
 
@@ -200,7 +200,7 @@ WitnessUpdate
 #### 查看日志
 
 点击[查看日志](./steps/img/deploy.png)可以查看当前节点的日志。   
-如果没有则会提示暂无节点日志,如果部署完成点击查看日志。   
+如果没有则会提示暂无节点日志,如果部署完成点击查看日志。日志信息将一直保存直到下次部署      
 日志会自动刷新,直至出现 deploy finish，则为部署完成。    
 
 ## 脚注
