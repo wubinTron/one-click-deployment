@@ -16,6 +16,7 @@ export default {
     'tronNodeIpPlaceholder': 'Please fill in IP/HOST',
     'tronNodePortPlaceholder': 'Please fill in PORT',
     'tronNodePrivateKeyPlaceholder': 'Please fill in privateKey',
+    'tronNodeCorrectPrivateKeyPlaceholder': 'Please fill in the correct privateKey',
     'tronNodeUrlPlaceholder': 'Please fill in the voting url',
     'tronNodeVoteNumberPlaceholder': 'Please fill in the number of votes',
     'tronNodeVoteNumberTips': 'Number of corresponding votes',
