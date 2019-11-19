@@ -57,5 +57,6 @@ export default {
     'tronNumberPlaceholder': '数字超过最大限额',
     'tronNodeIpValidate': '请输入正确IP',
     'tronNodeIpLocalValidate': '暂不支持本地情况',
-    'tronNodeUrlValidate': '请输入正确Url'
+    'tronNodeUrlValidate': '请输入正确Url',
+    'tronNodevoteCountNumberMaxPlaceholder': 'voteCount填写额超过最大值'
 }

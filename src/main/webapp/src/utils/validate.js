@@ -20,7 +20,7 @@ export function validUsername(str) {
 }
 
 export function isAllNumber(str) {
-    const reg = /^(\-|\+)?\d+(\.\d+)?$/
+    const reg = /^(\-|\+)?\d+(0)?$/
     return reg.test(str)
 }
 
