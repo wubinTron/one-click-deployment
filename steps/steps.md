@@ -35,7 +35,7 @@ Required fields include：
 
 As shown：
 
-![](http://39.106.174.213/wubin1/one-click-deployment/blob/develop/steps/img/add_node.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/add_node.png)
 
 (1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
 
