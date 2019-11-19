@@ -33,17 +33,17 @@
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
 
-![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/add_node.png)
+![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/add_node.png)
 
 (1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息  
 (2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点 如下图所示：  
 (3) 点击下一步将会进入配置页面
 
-![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/nodeList.png)
+![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/nodeList.png)
 
 ### 4.配置管理
 
-![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/setting.png)
+![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/setting.png)
 
 (1)创世信息配置
 
@@ -148,7 +148,7 @@ p2p 配置点击下一步按钮保存当前配置
 
 如图：
 
-![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/plugins.png)
+![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/plugins.png)
 
 (1)共识模块
 
@@ -210,7 +210,7 @@ WitnessUpdate
 点击查看日志可以查看当前节点的日志 如果没有则会提示暂无节点日志
 如果部署完成点击查看日志 日志会自动刷新 直至出现 deploy finish，则为部署完成
 
-![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/deploy.png)
+![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/deploy.png)
 
 ## 脚注
 
