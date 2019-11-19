@@ -160,7 +160,7 @@ Modified time: 2019-11-12 14:40:09 * @operation node */
                     </span>
                     <el-input
                         size="small"
-                        :maxlength="100"
+                        :maxlength="40"
                         v-model.trim="nodeForm.voteCount"
                         :placeholder="$t('tronNodeVoteNumberPlaceholder')"
                     ></el-input>
