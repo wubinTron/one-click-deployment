@@ -187,7 +187,7 @@ VoteWitness
 WithdrawBalance  
 WitnessCreate  
 WitnessUpdate   
-Also could choose uploading custom transactions   
+Also could customize uploading transactions   
 Trading module click the next button to save the current consensus module settings.
 
 (3)Database module
