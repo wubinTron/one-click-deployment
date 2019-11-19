@@ -21,7 +21,7 @@ Mainly show the content operation steps of the one-click deployment and related 
 
 ### 3.Add node
 
-Click on the Add node in the upper left corner to add a Witness node and a FullNode node to the one-click chain network.
+Click on the Add node in the [upper left corner](./steps/img/add_node.png) to add a Witness node and a FullNode node to the one-click chain network.
 
 Required fields include：
 
@@ -35,17 +35,11 @@ Required fields include：
 |                  voteCount                  | Number of corresponding votes （Required for Witness） |
 | privateKey<sup style="color:blue">[3]</sup> | Save local 64-bit private key （Required for Witness） |
 
-As shown：
-
-![image](./steps/img/add_node.png)
-
 (1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
 
-(2) Node list <sup style="color:blue">[5]</sup> The node list shows all the added nodes as shown below:
+(2) [Node list](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> shows all the added nodes   
 
 (3) Click Next to enter the configuration page
-
-![image](./steps/img/nodeList.png)
 
 ### 4.Configuration management
 
