@@ -180,7 +180,7 @@ UpdateSettingContract
 VoteWitness  
 WithdrawBalance  
 WitnessCreate  
-WitnessUpdate
+WitnessUpdate    
 还可以选择自定义上传自定义交易    
 交易模块点击下一步按钮保存当前交易模块设置
 
