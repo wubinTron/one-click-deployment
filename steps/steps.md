@@ -202,7 +202,7 @@ Database module click next to save the current database module<sup style="color:
 
 Node deployment supports single node deployment and multiple node bulk deployment    
 Select the node which needs to be deployed. The deployment button will be green.   
-Click the bulk deployment button and enter the corresponding zip package path, such as/home/user/java-tron/build/distributions/java-tron-1.0.0.zip      
+Click the bulk deployment button, it will show [input box](./steps/img/deploy.png) and enter the corresponding zip package path, such as /home/user/java-tron/build/distributions/java-tron-1.0.0.zip      
 Click Save to start the deployment. During the deployment, the batch deployment button is in the loading state.    
 You can click view log to check the deployment log. After the deployment is complete, the batch deployment button end loading status.
 
@@ -211,8 +211,6 @@ You can click view log to check the deployment log. After the deployment is comp
 Click the log button to check the current node's log. If not, it will response the no-node log.    
 If the deployment is complete, click to view the log.    
 The log will be automatically refreshed until the deploy finish.
-
-![image](./steps/img/deploy.png)
 
 ## Footnote
 
