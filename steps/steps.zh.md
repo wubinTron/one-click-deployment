@@ -2,7 +2,7 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-简体中文 | [English](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.md)
+简体中文 | [English](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.md)
 
 ### 1.准备工作
 
@@ -33,17 +33,17 @@
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
 
-![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/develop/steps/img/add_node.png)
 
 (1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息  
 (2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点 如下图所示：  
 (3) 点击下一步将会进入配置页面
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/nodeList.png)
 
 ### 4.配置管理
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/setting.png)
 
 (1)创世信息配置
 
@@ -148,7 +148,7 @@ p2p 配置点击下一步按钮保存当前配置
 
 如图：
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/plugins.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/plugins.png)
 
 (1)共识模块
 
@@ -210,7 +210,7 @@ WitnessUpdate
 点击查看日志可以查看当前节点的日志 如果没有则会提示暂无节点日志
 如果部署完成点击查看日志 日志会自动刷新 直至出现 deploy finish，则为部署完成
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/deploy.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/deploy.png)
 
 ## 脚注
 

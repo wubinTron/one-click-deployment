@@ -6,7 +6,7 @@ English | [简体中文](./README.zh-CN.md)
 
 ## Introduction
 
-[one-click-deployment](https://github.com/wubinTron/one-click-deployment/tree/master) is a one-click chaining solution that helps you quickly build a more stable and secure production-level blockchain environment, reducing the challenges of blockchain deployment, operations, management, application development, etc. You are more focused on core business innovation and fast business.
+[one-click-deployment](http://39.106.174.213/wubin1/one-click-deployment) is a one-click chaining solution that helps you quickly build a more stable and secure production-level blockchain environment, reducing the challenges of blockchain deployment, operations, management, application development, etc. You are more focused on core business innovation and fast business.
 
 ## Preparation
 
@@ -46,7 +46,7 @@ Learning this knowledge in advance will make a greate help in this project.
 
 ```bash
 # clone the project
-git clone https://github.com/wubinTron/one-click-deployment.git
+git clone http://39.106.174.213/wubin1/one-click-deployment.git
 
 # Enter the project directory
 cd one-click-deployment
@@ -64,11 +64,11 @@ The project is deployed to the /home/USERNAME/java-tron directory, and the deplo
 
 ## Steps for usage
 
-[manual for usage](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.md)
+[manual for usage](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.md)
 
 ## Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/wubinTron/one-click-deployment/releases).
+Detailed changes for each release are documented in the [release notes](http://39.106.174.213/wubin1/one-click-deployment/tags).
 
 ## Browsers support
 

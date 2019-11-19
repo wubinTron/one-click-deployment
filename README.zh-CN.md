@@ -6,7 +6,7 @@
 
 ## 简介
 
-[one-click-deployment](https://github.com/wubinTron/one-click-deployment/tree/master) 是一个一键发链解决方案， 帮助您快速构建更稳定、 安全的生产级区块链环境， 减少在区块链部署、 运维、 管理、 应用开发等方面的挑战， 使您更专注于核心业务创新， 并实现业务快速上链.
+[one-click-deployment](http://39.106.174.213/wubin1/one-click-deployment) 是一个一键发链解决方案， 帮助您快速构建更稳定、 安全的生产级区块链环境， 减少在区块链部署、 运维、 管理、 应用开发等方面的挑战， 使您更专注于核心业务创新， 并实现业务快速上链.
 
 ## 前序准备
 
@@ -46,7 +46,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/wubinTron/one-click-deployment.git
+git clone http://39.106.174.213/wubin1/one-click-deployment.git
 
 # 进入项目目录
 cd one-click-deployment
@@ -64,7 +64,7 @@ cd one-click-deployment
 
 ## 使用步骤
 
-[使用步骤](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.zh.md)
+[使用步骤](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.zh.md)
 
 ## 版本发布日志
 

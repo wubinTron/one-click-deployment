@@ -2,7 +2,7 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-English | [简体中文](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.zh.md)
+English | [简体中文](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.zh.md)
 
 ### 1.Ready to work
 
@@ -35,7 +35,7 @@ Required fields include：
 
 As shown：
 
-![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/develop/steps/img/add_node.png)
 
 (1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
 
@@ -43,13 +43,13 @@ As shown：
 
 (3) Click Next to enter the configuration page
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/nodeList.png)
 
 ### 4.Configuration management
 
 As shown：
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/setting.png)
 
 (1)Creation Information Configuration
 
@@ -154,7 +154,7 @@ Cross-chain configuration Click the Next button to save the current cross-chain 
 
 As shown：
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/plugins.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/plugins.png)
 
 (1)Consensus module
 
@@ -216,7 +216,7 @@ Click Save to start the deployment. During the deployment, the batch deployment 
 Click to view the log to view the current node's log. If not, it will prompt the no-node log.
 If the deployment is complete, click to view the log. The log will be automatically refreshed until the deploy finish appears, then the deployment is complete.
 
-![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/deploy.png)
+![](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/deploy.png)
 
 ## Footnote
 
