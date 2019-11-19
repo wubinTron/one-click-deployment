@@ -34,7 +34,7 @@ export default {
     'tronMaxActionNodesPlaceholder': '请填写最大链接数',
     'tronMaxActiveNodesWithSameIpPlaceholder': '请填写同一ip最大连接数',
     'tronP2pSeedNodeSelectPlaceholder': '请选择SeedNode',
-    'tronP2pSeedNodeSelectNextTips': '请在p2p配置中至少选择一个SeedNode',
+    'tronP2pSeedNodeSelectNextTips': '请在p2p配置中至少选择一个SeedNode,并点下一步保存设置',
     'tronp2pVersionPlaceholder': 'p2p版本',
     'tronp2pVersionMainnetPlaceholder': '主网p2pversion不可使用',
     'tronp2pVersionTestnetPlaceholder': '测试网p2pversion不可使用',

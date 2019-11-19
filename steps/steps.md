@@ -8,9 +8,10 @@ English | [简体中文](https://github.com/wubinTron/one-click-deployment/blob/
 
 ### 2.Home
 
-Mainly show the content operation steps of the one-click deployment and related documentation  
-（1）One-click deployment introduction
-（2）Guide
+Mainly show the content operation steps of the one-click deployment and related documentation
+
+（1）One-click deployment introduction  
+（2）Guide  
 （3）Documentation  
 （4）Click the start button and deploy with one click<sup style="color:blue">[1]</sup>
 
@@ -35,7 +36,9 @@ As shown：
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
 (1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
+
 (2) Node list <sup style="color:blue">[5]</sup> The node list shows all the added nodes as shown below:
+
 (3) Click Next to enter the configuration page
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
