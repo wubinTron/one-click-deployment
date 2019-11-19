@@ -35,7 +35,7 @@
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
 (1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息  
-(2) [节点列表](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> 展示所有添加的节点  
+(2) 节点列表[如图所示](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> 展示所有添加的节点  
 (3) 点击下一步将会进入配置页面
 
 ### 4.配置管理
