@@ -64,7 +64,7 @@ cd one-click-deployment
 
 ## 使用步骤
 
-[使用步骤](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.zh.md)
+[使用步骤](./steps/steps.zh.md)
 
 ## 版本发布日志
 

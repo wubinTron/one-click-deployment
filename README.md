@@ -64,7 +64,7 @@ The project is deployed to the /home/USERNAME/java-tron directory, and the deplo
 
 ## Steps for usage
 
-[manual for usage](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.md)
+[manual for usage](./steps/steps.md)
 
 ## Changelog
 

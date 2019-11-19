@@ -2,7 +2,7 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-English | [简体中文](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/steps.zh.md)
+English | [简体中文](./steps/steps.zh.md)
 
 ### 1.Ready to work
 
@@ -43,13 +43,13 @@ As shown：
 
 (3) Click Next to enter the configuration page
 
-![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/nodeList.png)
+![image](./steps/img/nodeList.png)
 
 ### 4.Configuration management
 
 As shown：
 
-![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/setting.png)
+![image](./steps/img/setting.png)
 
 (1)Creation Information Configuration
 
@@ -154,7 +154,7 @@ Cross-chain configuration Click the Next button to save the current cross-chain 
 
 As shown：
 
-![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/plugins.png)
+![image](./steps/img/plugins.png)
 
 (1)Consensus module
 
@@ -216,7 +216,7 @@ Click Save to start the deployment. During the deployment, the batch deployment 
 Click to view the log to view the current node's log. If not, it will prompt the no-node log.
 If the deployment is complete, click to view the log. The log will be automatically refreshed until the deploy finish appears, then the deployment is complete.
 
-![image](http://39.106.174.213/wubin1/one-click-deployment/blob/master/steps/img/deploy.png)
+![image](./steps/img/deploy.png)
 
 ## Footnote
 
