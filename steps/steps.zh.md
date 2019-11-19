@@ -152,7 +152,7 @@ p2p 配置点击下一步按钮保存当前配置
 
 #### 交易模块
 
-目前支持的模块如下，也可以自定义模块
+目前支持的模块如下，也可以自定义模块    
 AccountPermissionUpdate  
 AssetIssue  
 ClearABIContract  
