@@ -188,11 +188,11 @@ WithdrawBalance
 WitnessCreate  
 WitnessUpdate   
 Also could customize uploading transactions   
-Trading module click the next button to save the current consensus module settings.
+Trading module click the next button to save the current transaction module settings.
 
 (3)Database module
 
-Support for leveldb and rockdb
+Support for leveldb and rocksdb
 
 Database module click next to save the current database module<sup style="color:blue">[8]</sup>
 
@@ -200,15 +200,17 @@ Database module click next to save the current database module<sup style="color:
 
 (1)Bulk deployment
 
-Node deployment supports single node deployment and multiple node bulk deployment
-Click the checkbox in the list and select the node that needs to be deployed. The deployment button is green.
-Click the bulk deployment button and enter the corresponding zip package path, such as/home/user/java-tron/build/distributions/java-tron-1.0.0.zip
-Click Save to start the deployment. During the deployment, the batch deployment button is in the loading state. You can click View Log to view the deployment details. After the deployment is complete, the batch deployment button cancels the loading status.
+Node deployment supports single node deployment and multiple node bulk deployment    
+Select the node which needs to be deployed. The deployment button will be green.   
+Click the bulk deployment button and enter the corresponding zip package path, such as/home/user/java-tron/build/distributions/java-tron-1.0.0.zip      
+Click Save to start the deployment. During the deployment, the batch deployment button is in the loading state.    
+You can click view log to check the deployment log. After the deployment is complete, the batch deployment button end loading status.
 
 (2)View log
 
-Click to view the log to view the current node's log. If not, it will prompt the no-node log.
-If the deployment is complete, click to view the log. The log will be automatically refreshed until the deploy finish appears, then the deployment is complete.
+Click the log button to check the current node's log. If not, it will response the no-node log.    
+If the deployment is complete, click to view the log.    
+The log will be automatically refreshed until the deploy finish.
 
 ![image](./steps/img/deploy.png)
 

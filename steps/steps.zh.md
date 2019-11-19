@@ -186,7 +186,7 @@ WitnessUpdate
 
 #### 数据库模块
 
-支持 leveldb 和 rockdb
+支持 leveldb 和 rocksdb
 
 数据库模块点击下一步保存当前数据库模块<sup style="color:blue">[8]</sup>
 
