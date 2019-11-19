@@ -166,6 +166,8 @@ public class NodeController {
       return new Response(ResultCode.NOT_FOUND.code, Common.nodeIdNotExistFailed).toJSONObject();
     }
 
+    boolean flag = key.length()!= 0;
+    nodes = removeNodeInfo(nodes, id, flag);
     if (key.length() != 0) {
       String path;
       String publicKey;
@@ -180,8 +182,6 @@ public class NodeController {
       }
     }
 
-    boolean flag = key.length()!= 0;
-    nodes = removeNodeInfo(nodes, id, flag);
     node.put(Common.userNameFiled, userName);
     node.put(Common.portFiled, port);
     node.put(Common.ipFiled, ip);
