@@ -6,6 +6,8 @@ English | [简体中文](https://github.com/wubinTron/one-click-deployment/blob/
 
 ### 1.Ready to work
 
+Need to implement in advance [free login](https://www.jianshu.com/p/13919b5ba8a2)
+
 ### 2.Home
 
 Mainly show the content operation steps of the one-click deployment and related documentation

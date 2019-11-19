@@ -5,7 +5,9 @@
 简体中文 | [English](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.md)
 
 ### 1.准备工作
-  需要提前实现[免密登陆](https://www.jianshu.com/p/13919b5ba8a2)
+
+需要提前实现[免密登陆](https://www.jianshu.com/p/13919b5ba8a2)
+
 ### 2.一键发链首页
 
 主要展示一键发链的内容操作步骤及相关文档说明  
