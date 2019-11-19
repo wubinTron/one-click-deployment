@@ -95,7 +95,7 @@ asset 配置必填字段包括：
 |       rpcPort        |     rpc 端口      |
 |   rpcSolidityPort    | rpcSolidity 端口  |
 
-络链接配置点击下一步按钮保存当前配置
+网络链接配置点击下一步按钮保存当前配置
 
 (4)数据库基础配置
 

@@ -4,7 +4,7 @@
 
 English | [简体中文](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.zh.md)
 
-### 1.准备工作
+### 1.Ready to work
 
 ### 2.Home
 
@@ -63,103 +63,103 @@ The required fields for asset configuration include:
 
 Creation Information Configuration Click Next button to save the current configuration
 
-(2)基础配置
+(2)Basic configuration
 
-基础配置必填字段包括：
+The basic configuration required fields include：
 
-| 必填字段  |  解释  |
-| :-------: | :----: |
-|  chainId  | 链 ID  |
-| chainName | 链名称 |
+| Required field | Explanation |
+| :------------: | :---------: |
+|    chainId     |  chain ID   |
+|   chainName    | chain Name  |
 
-高级配置字段包括：
+Advanced configuration fields include：
 
-|       高级配置字段       |         解释         |
-| :----------------------: | :------------------: |
-| MaintenanceTimeInterval  |     维护时间间隔     |
-| blockProposalExpireTime  |   区块提案到期时间   |
-| nodeBlockProducedTimeOut | 节点区块产生超时时间 |
-| nodeMinParticipationRate |    节点最小参与率    |
+| Advanced configuration field |          Explanation           |
+| :--------------------------: | :----------------------------: |
+|   MaintenanceTimeInterval    |      Maintenance interval      |
+|   blockProposalExpireTime    | Block proposal expiration time |
+|   nodeBlockProducedTimeOut   |  node Block Produced TimeOut   |
+|   nodeMinParticipationRate   |   node MinParticipationRate    |
 
-基础配置点击下一步按钮保存当前配置
+Basic configuration Click the Next button to save the current configuration
 
-(3)网络链接配置(http/rpc)
+(3)Network link configuration(http/rpc)
 
-网络链接配置必填字段包括：
+Required fields for network link configuration include:
 
-|       必填字段       |       解释        |
-| :------------------: | :---------------: |
-| maxHttpConnectNumber | 最大 http 连接数  |
-|   httpFullNodePort   | httpFullNode 端口 |
-|   httpSolidityPort   | httpFullNode 端口 |
-|       rpcPort        |     rpc 端口      |
-|   rpcSolidityPort    | rpcSolidity 端口  |
+|    Required field    |       Explanation       |
+| :------------------: | :---------------------: |
+| maxHttpConnectNumber | max http Connect Number |
+|   httpFullNodePort   |    httpFullNode Port    |
+|   httpSolidityPort   |    httpFullNode Port    |
+|       rpcPort        |        rpc Port         |
+|   rpcSolidityPort    |    rpcSolidity Port     |
 
-络链接配置点击下一步按钮保存当前配置
+Network link configuration Click the Next button to save the current configuration
 
-(4)数据库基础配置
+(4)Database basic configuration
 
-数据库基础配置必填字段包括：
+Database base configuration required fields include：
 
-|       必填字段       |  解释  |
-| :------------------: | :----: |
-|     是否同步写入     | 是或否 |
-| 是否打开 transaction | 是或否 |
-|    选择数据库配置    | 是或否 |
-| 是否打开 index 开关  | 是或否 |
-| 是否需要更新 assets  | 是或否 |
+|          Required field          | Explanation |
+| :------------------------------: | :---------: |
+|  Whether to write synchronously  |  Yes or no  |
+| Whether to open the transaction  |  Yes or no  |
+|  Select database configuration   |  Yes or no  |
+| Whether to open the index switch |  Yes or no  |
+|      Need to update assets       |  Yes or no  |
 
-数据库基础配置点击下一步按钮保存当前配置
+Database basic configuration Click the Next button to save the current configuration
 
-(5)p2p 配置
+(5)P2p configuration
 
-p2p 配置必填字段包括：
+P2p configuration required fields include：
 
-|  必填字段  |    解释     |
-| :--------: | :---------: |
-| p2pVersion |  p2p 版本   |
-| listenPort | listen 端口 |
-|  seedNode  |  seedNode   |
+| Required field | Explanation |
+| :------------: | :---------: |
+|   p2pVersion   | p2p Version |
+|   listenPort   | listen Port |
+|    seedNode    |  seedNode   |
 
-高级配置字段包括：
+Advanced configuration fields include：
 
-|       高级配置字段       |        解释         |
-| :----------------------: | :-----------------: |
-|      maxActiveNodes      |     最大链接数      |
-| maxActiveNodesWithSameIp | 同一 ip 最大连接数  |
-|   activeConnectFactor    | activeConnectFactor |
-|      connectFactor       |    connectFactor    |
+| Advanced configuration field |        Explanation         |
+| :--------------------------: | :------------------------: |
+|        maxActiveNodes        |      Max Active Nodes      |
+|   maxActiveNodesWithSameIp   | max Active NodesWithSameIp |
+|     activeConnectFactor      |    activeConnectFactor     |
+|        connectFactor         |       connectFactor        |
 
-p2p 配置点击下一步按钮保存当前配置
+P2p configuration Click the Next button to save the current configuration
 
-(6)跨链配置
+(6)Cross-chain configuration
 
-跨链配置必填字段包括：
+Required fields for cross-chain configuration include：
 
-|      必填字段      |     解释      |
-| :----------------: | :-----------: |
-|  enableCrossChain  | 是否允许跨链  |
-| maxValidatorNumber |  最大验证数   |
-| minValidatorNumber |  最小验证数   |
-|   crossChainFee    | crossChainFee |
+|   Required field   |     Explanation     |
+| :----------------: | :-----------------: |
+|  enableCrossChain  |  enable CrossChain  |
+| maxValidatorNumber | max ValidatorNumber |
+| minValidatorNumber | min ValidatorNumber |
+|   crossChainFee    |    crossChainFee    |
 
-跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[7]</sup>
+Cross-chain configuration Click the Next button to save the current cross-chain configuration<sup style="color:blue">[7]</sup>
 
-### 5.导入插件
+### 5.Import plugin
 
-如图：
+As shown：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/plugins.png)
 
-(1)共识模块
+(1)Consensus module
 
-目前支持 DPOS
+Currently supports DPOS
 
-共识模块点击下一步按钮保存当前共识模块设置
+Consensus module click the Next button to save the current consensus module settings
 
-(2)交易模块
+(2)Transaction module
 
-目前支持的模块如下，也可以自定义模块
+Currently supported modules are as follows, you can also customize the module
 AccountPermissionUpdate  
 AssetIssue  
 ClearABIContract  
@@ -189,47 +189,47 @@ WithdrawBalance
 WitnessCreate  
 WitnessUpdate
 
-交易模块点击下一步按钮保存当前共识模块设置
+Trading module click the Next button to save the current consensus module settings
 
-(3)数据库模块
+(3)Database module
 
-支持 leveldb 和 rockdb
+Support for leveldb and rockdb
 
-数据库模块点击下一步保存当前数据库模块<sup style="color:blue">[8]</sup>
+Database module click Next to save the current database module<sup style="color:blue">[8]</sup>
 
-### 6.节点部署
+### 6.Node deployment
 
-(1)批量部署
+(1)Bulk deployment
 
-节点部署支持单个节点部署和多个节点批量部署
-点击列表勾选按钮，勾选对应需要部署的节点，此时部署按钮为绿色
-点击批量部署按钮，输入对应的 zip 包路径，如/home/user/java-tron/build/distributions/java-tron-1.0.0.zip
-点击保存开始部署，在部署期间批量部署按钮为 loading 状态，此时可以点击查看日志查看部署详情，部署完成后批量部署按钮取消 loading 状态。
+Node deployment supports single node deployment and multiple node bulk deployment
+Click the checkbox in the list and select the node that needs to be deployed. The deployment button is green.
+Click the bulk deployment button and enter the corresponding zip package path, such as/home/user/java-tron/build/distributions/java-tron-1.0.0.zip
+Click Save to start the deployment. During the deployment, the batch deployment button is in the loading state. You can click View Log to view the deployment details. After the deployment is complete, the batch deployment button cancels the loading status.
 
-(2)查看日志
+(2)View log
 
-点击查看日志可以查看当前节点的日志 如果没有则会提示暂无节点日志
-如果部署完成点击查看日志 日志会自动刷新 直至出现 deploy finish，则为部署完成
+Click to view the log to view the current node's log. If not, it will prompt the no-node log.
+If the deployment is complete, click to view the log. The log will be automatically refreshed until the deploy finish appears, then the deployment is complete.
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/deploy.png)
 
-## 脚注
+## Footnote
 
-[1] 注：点击开始一键部署按钮，获取节点列表菜单权限，每次点击会重置菜单权限
+[1] Note: Click the Start One-Click Deployment button to get the node list menu permissions. Each click will reset the menu permissions.
 
-[2] 注：id 和 ip 地址均不能相同
+[2] Note: id and ip addresses cannot be the same
 
-[3] 注：每次添加的节点 privateKey 不能重复
+[3] Note: The node privateKey added each time cannot be repeated
 
-[4] 注：点击节点列表下一步按钮重置配置管理菜单权限，只展示配置管理菜单权限
+[4] Note: Click the node list next button to reset the configuration management menu permissions, only show configuration management menu permissions
 
-[5] 注：当节点列表为空时候默认下一步按钮不可以点击，当节点列表都删除除时没有下一步菜单权限，节点列表最多支持 20 个节点
+[5] Note: When the node list is empty, the default next button cannot be clicked. When the node list is deleted, there is no next menu permission. The node list supports up to 20 nodes.
 
-[6] 注：balance 范围在-9223372036854775808 和 9223372036854775807 之间，为保证部署成功，请按照取值内范围填写
+[6] Note: The balance range is between -9223372036854775808 and 9223372036854775807. To ensure successful deployment, please fill in the range of values.
 
-[7] 注：点击配置管理最后一步骤跨链配置的下一步时，获取导入插件菜单权限，每次点击重置菜单权限
+[7] Note: Click the last step of the configuration management cross-chain configuration next step, get the import plug-in menu permissions, each time click reset menu permissions
 
-[8] 注：点击导入插件最后一步数据库模块的下一步时点击获取节点部署菜单权限，每次点击重置菜单权限
+[8] Note: Click the button to get the node deployment menu right when you click the next step of the import plugin. Click the reset menu permission each time.
 
 ## License
 
