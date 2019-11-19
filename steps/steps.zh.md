@@ -8,6 +8,8 @@
 
 需要提前实现[免密登陆](https://www.jianshu.com/p/13919b5ba8a2)
 
+部署节点需要[java-tron-1.0.0.zip 包编译](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
+
 ### 2.一键发链首页
 
 主要展示一键发链的内容操作步骤及相关文档说明  
