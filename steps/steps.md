@@ -48,9 +48,9 @@ The configuration management page [as shown](./steps/img/setting.png), mainly in
 
 (1)Genesis Information Configuration
 
-Genesis information configuration mainly includes asset configuration and witeness configuration    
-Asset configuration can add and modify current asset configuration information  
-Witeness configuration to view current witeness configuration information
+Genesis information configuration mainly includes asset configuration and witeness configuration.    
+Asset configuration can add and modify current asset configuration information.  
+Witeness configuration to view current witeness configuration information.
 
 The required fields for asset configuration include:
 
@@ -61,7 +61,7 @@ The required fields for asset configuration include:
 |                  address                  |                address                |
 | balance <sup style="color:blue">[6]</sup> |                balance                |
 
-Genesis Information Configuration Click Next button to save the current configuration
+Genesis Information Configuration click next button to save the current configuration
 
 (2)Basic configuration
 
@@ -147,19 +147,18 @@ Cross-chain configuration click the next button to save the current cross-chain 
 
 ### 5.Import plugin
 
-As shown：
+Import plugin page [as shown](./steps/img/plugins.png), mainly including: consensus module, transaction module and database module   
 
-![image](./steps/img/plugins.png)
 
 (1)Consensus module
 
 Currently supports DPOS
 
-Consensus module click the Next button to save the current consensus module settings
+Consensus module click the next button to save the current consensus module settings
 
 (2)Transaction module
 
-Currently supported modules are as follows, you can also customize the module
+Currently supported modules are as follows, you can also customize the module   
 AccountPermissionUpdate  
 AssetIssue  
 ClearABIContract  
@@ -187,15 +186,15 @@ UpdateSettingContract
 VoteWitness  
 WithdrawBalance  
 WitnessCreate  
-WitnessUpdate
-
-Trading module click the Next button to save the current consensus module settings
+WitnessUpdate   
+Also could choose uploading custom transactions   
+Trading module click the next button to save the current consensus module settings.
 
 (3)Database module
 
 Support for leveldb and rockdb
 
-Database module click Next to save the current database module<sup style="color:blue">[8]</sup>
+Database module click next to save the current database module<sup style="color:blue">[8]</sup>
 
 ### 6.Node deployment
 
