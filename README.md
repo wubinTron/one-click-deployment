@@ -6,7 +6,7 @@ English | [简体中文](./README.zh-CN.md)
 
 ## Introduction
 
-[one-click-deployment](https://github.com/wubinTron/one-click-deployment/tree/develop) is a one-click chaining solution that helps you quickly build a more stable and secure production-level blockchain environment, reducing the challenges of blockchain deployment, operations, management, application development, etc. You are more focused on core business innovation and fast business.
+[one-click-deployment](https://github.com/wubinTron/one-click-deployment/tree/master) is a one-click chaining solution that helps you quickly build a more stable and secure production-level blockchain environment, reducing the challenges of blockchain deployment, operations, management, application development, etc. You are more focused on core business innovation and fast business.
 
 ## Preparation
 
