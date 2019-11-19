@@ -21,7 +21,7 @@ Mainly show the content operation steps of the one-click deployment and related 
 
 ### 3.Add node
 
-Click on the Add node in the upper left corner to add a Witness node and a FullNode node to the one-click chain network.
+Click on the Add node in the [upper left corner](./steps/img/add_node.png) to add a Witness node and a FullNode node to the one-click chain network.
 
 Required fields include：
 
@@ -35,29 +35,22 @@ Required fields include：
 |                  voteCount                  | Number of corresponding votes （Required for Witness） |
 | privateKey<sup style="color:blue">[3]</sup> | Save local 64-bit private key （Required for Witness） |
 
-As shown：
+(1) Click the save button<sup style="color:blue">[4]</sup> to save current node information
 
-![image](./steps/img/add_node.png)
+(2) [Node list](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> shows all the added nodes   
 
-(1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
-
-(2) Node list <sup style="color:blue">[5]</sup> The node list shows all the added nodes as shown below:
-
-(3) Click Next to enter the configuration page
-
-![image](./steps/img/nodeList.png)
+(3) Click next to enter the configuration page
 
 ### 4.Configuration management
 
-As shown：
+The configuration management page [as shown](./steps/img/setting.png), mainly including: genesis information, basic configuration, network configuration, database configuration, p2p configuration and cross-chain configuration   
 
-![image](./steps/img/setting.png)
 
-(1)Creation Information Configuration
+(1)Genesis Information Configuration
 
-Genesis information configuration mainly includes asset configuration and witeness configuration  
-Asset configuration can add and modify current asset configuration information  
-Witeness configuration to view current witeness configuration information
+Genesis information configuration mainly includes asset configuration and witeness configuration.    
+Asset configuration can add and modify current asset configuration information.  
+Witeness configuration to view current witeness configuration information.
 
 The required fields for asset configuration include:
 
@@ -68,7 +61,7 @@ The required fields for asset configuration include:
 |                  address                  |                address                |
 | balance <sup style="color:blue">[6]</sup> |                balance                |
 
-Creation Information Configuration Click Next button to save the current configuration
+Genesis Information Configuration click next button to save the current configuration
 
 (2)Basic configuration
 
@@ -88,7 +81,7 @@ Advanced configuration fields include：
 |   nodeBlockProducedTimeOut   |  node Block Produced TimeOut   |
 |   nodeMinParticipationRate   |   node MinParticipationRate    |
 
-Basic configuration Click the Next button to save the current configuration
+Basic configuration click the next button to save the current configuration
 
 (3)Network link configuration(http/rpc)
 
@@ -102,11 +95,11 @@ Required fields for network link configuration include:
 |       rpcPort        |        rpc Port         |
 |   rpcSolidityPort    |    rpcSolidity Port     |
 
-Network link configuration Click the Next button to save the current configuration
+Network link configuration click the next button to save the current configuration
 
-(4)Database basic configuration
+(4)Database configuration
 
-Database base configuration required fields include：
+Database configuration required fields include：
 
 |          Required field          | Explanation |
 | :------------------------------: | :---------: |
@@ -116,7 +109,7 @@ Database base configuration required fields include：
 | Whether to open the index switch |  Yes or no  |
 |      Need to update assets       |  Yes or no  |
 
-Database basic configuration Click the Next button to save the current configuration
+Database configuration click the next button to save the current configuration
 
 (5)P2p configuration
 
@@ -137,7 +130,7 @@ Advanced configuration fields include：
 |     activeConnectFactor      |    activeConnectFactor     |
 |        connectFactor         |       connectFactor        |
 
-P2p configuration Click the Next button to save the current configuration
+P2p configuration click the next button to save the current configuration
 
 (6)Cross-chain configuration
 
@@ -150,23 +143,22 @@ Required fields for cross-chain configuration include：
 | minValidatorNumber | min ValidatorNumber |
 |   crossChainFee    |    crossChainFee    |
 
-Cross-chain configuration Click the Next button to save the current cross-chain configuration<sup style="color:blue">[7]</sup>
+Cross-chain configuration click the next button to save the current cross-chain configuration<sup style="color:blue">[7]</sup>
 
 ### 5.Import plugin
 
-As shown：
+Import plugin page [as shown](./steps/img/plugins.png), mainly including: consensus module, transaction module and database module   
 
-![image](./steps/img/plugins.png)
 
 (1)Consensus module
 
 Currently supports DPOS
 
-Consensus module click the Next button to save the current consensus module settings
+Consensus module click the next button to save the current consensus module settings
 
 (2)Transaction module
 
-Currently supported modules are as follows, you can also customize the module
+Currently supported modules are as follows, you can also customize the module   
 AccountPermissionUpdate  
 AssetIssue  
 ClearABIContract  
@@ -194,29 +186,31 @@ UpdateSettingContract
 VoteWitness  
 WithdrawBalance  
 WitnessCreate  
-WitnessUpdate
-
-Trading module click the Next button to save the current consensus module settings
+WitnessUpdate   
+Also could customize uploading transactions   
+Trading module click the next button to save the current transaction module settings.
 
 (3)Database module
 
-Support for leveldb and rockdb
+Support for leveldb and rocksdb
 
-Database module click Next to save the current database module<sup style="color:blue">[8]</sup>
+Database module click next to save the current database module<sup style="color:blue">[8]</sup>
 
 ### 6.Node deployment
 
 (1)Bulk deployment
 
-Node deployment supports single node deployment and multiple node bulk deployment
-Click the checkbox in the list and select the node that needs to be deployed. The deployment button is green.
-Click the bulk deployment button and enter the corresponding zip package path, such as/home/user/java-tron/build/distributions/java-tron-1.0.0.zip
-Click Save to start the deployment. During the deployment, the batch deployment button is in the loading state. You can click View Log to view the deployment details. After the deployment is complete, the batch deployment button cancels the loading status.
+Node deployment supports single node deployment and multiple node bulk deployment    
+Select the node which needs to be deployed. The deployment button will be green.   
+Click the bulk deployment button and enter the corresponding zip package path, such as/home/user/java-tron/build/distributions/java-tron-1.0.0.zip      
+Click Save to start the deployment. During the deployment, the batch deployment button is in the loading state.    
+You can click view log to check the deployment log. After the deployment is complete, the batch deployment button end loading status.
 
 (2)View log
 
-Click to view the log to view the current node's log. If not, it will prompt the no-node log.
-If the deployment is complete, click to view the log. The log will be automatically refreshed until the deploy finish appears, then the deployment is complete.
+Click the log button to check the current node's log. If not, it will response the no-node log.    
+If the deployment is complete, click to view the log.    
+The log will be automatically refreshed until the deploy finish.
 
 ![image](./steps/img/deploy.png)
 

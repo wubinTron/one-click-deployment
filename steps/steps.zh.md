@@ -35,8 +35,8 @@
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
 (1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息  
-(2) 节点列表 <sup style="color:blue">[5]</sup> 展示所有添加的节点  
-(3) 点击下一步将会进入[配置页面](./steps/img/nodeList.png)
+(2) [节点列表](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> 展示所有添加的节点  
+(3) 点击下一步将会进入配置页面
 
 ### 4.配置管理
 
@@ -187,7 +187,7 @@ WitnessUpdate
 
 #### 数据库模块
 
-支持 leveldb 和 rockdb
+支持 leveldb 和 rocksdb
 
 数据库模块点击下一步保存当前数据库模块<sup style="color:blue">[8]</sup>
 
@@ -195,14 +195,14 @@ WitnessUpdate
 
 #### 批量部署
 
-节点部署支持单个节点部署和多个节点批量部署  
+[节点部署](./steps/img/deploy.png)支持单个节点部署和多个节点批量部署  
 点击列表勾选按钮，勾选对应需要部署的节点，此时部署按钮为绿色  
 点击批量部署按钮，输入对应的 zip 包路径，如/home/user/java-tron/build/distributions/java-tron-1.0.0.zip  
-点击保存开始部署，在部署期间批量部署按钮为 loading 状态，此时可以点击查看日志查看部署详情，部署完成后批量部署按钮取消 loading 状态。
+点击保存开始部署，在部署期间批量部署按钮为 loading 状态，此时可以点击查看日志查看部署详情，部署完成后批量部署按钮结束 loading 状态。
 
 #### 查看日志
 
-点击[查看日志](./steps/img/deploy.png)可以查看当前节点的日志。  
+点击查看日志可以查看当前节点的日志。  
 如果没有则会提示暂无节点日志, 如果部署完成点击查看日志, 日志信息将一直保存直到下次部署后覆盖。  
 日志会自动刷新,直至出现 deploy finish，则为部署完成。
 
