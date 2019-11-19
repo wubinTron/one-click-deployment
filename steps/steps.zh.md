@@ -2,7 +2,7 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-简体中文 | [English](./README.md)
+简体中文 | [English](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.md)
 
 ### 1.准备工作
 

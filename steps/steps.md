@@ -2,7 +2,7 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-English | [简体中文 ](https://github.com/wubinTron/one-click-deployment/blob/master/steps/READMESTEP.zh.md)
+English | [简体中文 ](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.zh.md)
 
 ### 1.Preparations
 
@@ -30,6 +30,7 @@ Mainly show the operation steps for one click deployment:
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 SR 必填） |
 
 如下图所示：
+
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
 (2）点击保存<sup style="color:blue">[4]</sup> 当前节点列表展示当前添加的节点信息 下一步按钮可以点击
@@ -150,6 +151,7 @@ p2p 配置点击下一步按钮保存当前配置
 (2)交易模块
 
 目前支持的模块如下，也可以自定义模块
+
 AccountPermissionUpdate  
 AssetIssue  
 ClearABIContract  
