@@ -2,50 +2,55 @@
   <img width="320" src="https://tronscan.org/static/media/tron-banner-1.e40b3379.png">
 </p>
 
-English | [简体中文 ](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.zh.md)
+English | [简体中文](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.zh.md)
 
-### 1.Preparations
+### 1.准备工作
 
-### 2.Home for One Click Deployment
+### 2.Home
 
-Mainly show the operation steps for one click deployment:  
-(1）Introduction for one click deployment  
-(2）New guide  
-(3）Help document  
-(4）Click start button to start deployment <sup style="color:blue">[1]</sup>
+Mainly show the content operation steps of the one-click deployment and related documentation  
+（1）One-click deployment introduction
+（2）Guide
+（3）Documentation  
+（4）Click the start button and deploy with one click<sup style="color:blue">[1]</sup>
 
-### 3.添加节点
+### 3.Add node
 
-(1) 点击选择左上角的添加节点，给一键发链网络添加 Witness 节点和 FullNode 节点
+Click on the Add node in the upper left corner to add a Witness node and a FullNode node to the one-click chain network.
 
 必填字段包括：
 
-|                  必填字段                   |               解释                |
-| :-----------------------------------------: | :-------------------------------: |
-|    ID <sup style="color:blue">[2]</sup>     |            ssh 用户名             |
-|                     IP                      |            FullNode Ip            |
-|                    PORT                     |           FullNode 端口           |
-|                     URL                     |    Witness Url （为 SR 必填）     |
-|                  voteCount                  |    对应投票数量 （为 SR 必填）    |
-| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 SR 必填） |
+|                  必填字段                   |                  解释                  |
+| :-----------------------------------------: | :------------------------------------: |
+|    ID <sup style="color:blue">[2]</sup>     |              节点唯一编号              |
+|                  用户名称                   |               ssh 用户名               |
+|                     IP                      |                节点 Ip                 |
+|                    PORT                     |               节点 端口                |
+|                     URL                     |        Url （为 Witness 必填）         |
+|                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
+| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
-如下图所示：
+如图：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
-(2）点击保存<sup style="color:blue">[4]</sup> 当前节点列表展示当前添加的节点信息 下一步按钮可以点击
+(1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息
+(2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点 如下图所示：
+(3) 点击下一步将会进入配置页面
 
-(3) 节点列表 <sup style="color:blue">[5]</sup>
-
-节点列表展示所有添加的节点
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
 
 ### 4.配置管理
 
+如图：
+
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
+
 (1)创世信息配置
 
-创世信息配置主要包括 asset 配置和 witeness 配置  
-asset 配置: 可以新增和修改当前 asset 配置信息  
-witeness 配置: 可以查看当前 witeness 配置信息
+创世信息配置主要包括 asset 配置和 witeness 配置
+asset 配置 可以新增和修改当前 asset 配置信息
+witeness 配置 可以查看当前 witeness 配置信息
 
 asset 配置必填字段包括：
 
@@ -142,6 +147,10 @@ p2p 配置点击下一步按钮保存当前配置
 
 ### 5.导入插件
 
+如图：
+
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/plugins.png)
+
 (1)共识模块
 
 目前支持 DPOS
@@ -151,7 +160,6 @@ p2p 配置点击下一步按钮保存当前配置
 (2)交易模块
 
 目前支持的模块如下，也可以自定义模块
-
 AccountPermissionUpdate  
 AssetIssue  
 ClearABIContract  
@@ -202,6 +210,8 @@ WitnessUpdate
 
 点击查看日志可以查看当前节点的日志 如果没有则会提示暂无节点日志
 如果部署完成点击查看日志 日志会自动刷新 直至出现 deploy finish，则为部署完成
+
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/deploy.png)
 
 ## 脚注
 

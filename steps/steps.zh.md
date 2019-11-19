@@ -18,8 +18,6 @@
 
 点击选择左上角的添加节点，给一键发链网络添加 Witness 节点和 FullNode 节点
 
-## 添加节点
-
 必填字段包括：
 
 |                  必填字段                   |                  解释                  |
@@ -32,14 +30,19 @@
 |                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
 | privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
 
-如下图所示：
+如图：
+
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
-(1）点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息
-(2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点
+(1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息
+(2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点 如下图所示：
 (3) 点击下一步将会进入配置页面
 
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
+
 ### 4.配置管理
+
+如图：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
 
@@ -207,6 +210,8 @@ WitnessUpdate
 
 点击查看日志可以查看当前节点的日志 如果没有则会提示暂无节点日志
 如果部署完成点击查看日志 日志会自动刷新 直至出现 deploy finish，则为部署完成
+
+![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/deploy.png)
 
 ## 脚注
 
