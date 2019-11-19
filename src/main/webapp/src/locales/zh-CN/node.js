@@ -17,6 +17,7 @@ export default {
     'tronNodePortPlaceholder': '请填写PORT',
     'tronNodeSRPlaceholder': '请选择是否为SR',
     'tronNodePrivateKeyPlaceholder': '请填写privateKey',
+    'tronNodeCorrectPrivateKeyPlaceholder': '请填写正确privateKey',
     'tronNodeUrlPlaceholder': '请填写投票url',
     'tronNodeVoteNumberPlaceholder': '请填写投票数',
     'tronNodeVoteNumberTips': '对应投票数量',
