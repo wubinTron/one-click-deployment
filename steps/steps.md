@@ -35,21 +35,20 @@ Required fields include：
 |                  voteCount                  | Number of corresponding votes （Required for Witness） |
 | privateKey<sup style="color:blue">[3]</sup> | Save local 64-bit private key （Required for Witness） |
 
-(1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
+(1) Click the save button<sup style="color:blue">[4]</sup> to save current node information
 
 (2) [Node list](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> shows all the added nodes   
 
-(3) Click Next to enter the configuration page
+(3) Click next to enter the configuration page
 
 ### 4.Configuration management
 
-As shown：
+The configuration management page [as shown] (./steps/img/setting.png), mainly including: genesis information, basic configuration, network configuration, database configuration, p2p configuration and cross-chain configuration   
 
-![image](./steps/img/setting.png)
 
-(1)Creation Information Configuration
+(1)Genesis Information Configuration
 
-Genesis information configuration mainly includes asset configuration and witeness configuration  
+Genesis information configuration mainly includes asset configuration and witeness configuration    
 Asset configuration can add and modify current asset configuration information  
 Witeness configuration to view current witeness configuration information
 
@@ -62,7 +61,7 @@ The required fields for asset configuration include:
 |                  address                  |                address                |
 | balance <sup style="color:blue">[6]</sup> |                balance                |
 
-Creation Information Configuration Click Next button to save the current configuration
+Genesis Information Configuration Click Next button to save the current configuration
 
 (2)Basic configuration
 
@@ -82,7 +81,7 @@ Advanced configuration fields include：
 |   nodeBlockProducedTimeOut   |  node Block Produced TimeOut   |
 |   nodeMinParticipationRate   |   node MinParticipationRate    |
 
-Basic configuration Click the Next button to save the current configuration
+Basic configuration click the next button to save the current configuration
 
 (3)Network link configuration(http/rpc)
 
@@ -96,11 +95,11 @@ Required fields for network link configuration include:
 |       rpcPort        |        rpc Port         |
 |   rpcSolidityPort    |    rpcSolidity Port     |
 
-Network link configuration Click the Next button to save the current configuration
+Network link configuration click the next button to save the current configuration
 
-(4)Database basic configuration
+(4)Database configuration
 
-Database base configuration required fields include：
+Database configuration required fields include：
 
 |          Required field          | Explanation |
 | :------------------------------: | :---------: |
@@ -110,7 +109,7 @@ Database base configuration required fields include：
 | Whether to open the index switch |  Yes or no  |
 |      Need to update assets       |  Yes or no  |
 
-Database basic configuration Click the Next button to save the current configuration
+Database configuration click the next button to save the current configuration
 
 (5)P2p configuration
 
@@ -131,7 +130,7 @@ Advanced configuration fields include：
 |     activeConnectFactor      |    activeConnectFactor     |
 |        connectFactor         |       connectFactor        |
 
-P2p configuration Click the Next button to save the current configuration
+P2p configuration click the next button to save the current configuration
 
 (6)Cross-chain configuration
 
@@ -144,7 +143,7 @@ Required fields for cross-chain configuration include：
 | minValidatorNumber | min ValidatorNumber |
 |   crossChainFee    |    crossChainFee    |
 
-Cross-chain configuration Click the Next button to save the current cross-chain configuration<sup style="color:blue">[7]</sup>
+Cross-chain configuration click the next button to save the current cross-chain configuration<sup style="color:blue">[7]</sup>
 
 ### 5.Import plugin
 
