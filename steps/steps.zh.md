@@ -6,6 +6,34 @@
 
 ### 1.准备工作
 
+```
+  ssh免密登录在实际工作中有重要的作用
+  免密登录，需要先在本机生成公钥，然后将公钥拷贝到远程主机，拷贝的过程，既可以手动（在远程主机根目录下创建.ssh目录，然后将公钥存入该目录下authorized_keys文件中即可），
+  也可以直接命令操作ssh-copy-id，这个操作做完了，即可免密登录远程主机。
+  这里假定我们需要在node01上远程登录node02机器，这样的话，默认ssh登录，需要输入node02上root用户的密码。如下图所示:
+  一、生成类型rsa免密的公钥。
+
+    (1)命令
+    #ssh-keygen -t rsa -P ""
+      遇到提示，一路回车即可。
+
+    (2)查看刚刚生成的公钥id_rsa.pub:
+    cat id_rsa.pub
+  二、将公钥通过命令ssh-copy-id放入node02机器上。
+    (1)命令
+    #ssh-copy-id root@node02
+    执行这一步操作，需要输入node02上root用户登录的密码
+    (2)查看ssh和authorized_keys
+    执行成功之后，我们在node02上查看/root/.ssh目录已经生成，并且多了一个名为authorized_keys的文件，里面保存的正是node01上ssh-keygen生成的id_rsa.pub的内容。
+    cd .ssh
+    cat authorized_keys
+  三、远程登录node02，无需密码，直接登录成功
+    ssh node2
+
+    另外：免密登录本机也是可以的，默认是需要密码的，只需要将id_rsa.pub拷贝一份保存为authorized_keys。接着ssh登录本机，直接登录成功。
+
+```
+
 ### 2.一键发链首页
 
 主要展示一键发链的内容操作步骤及相关文档说明  
