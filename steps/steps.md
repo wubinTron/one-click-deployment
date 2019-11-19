@@ -18,50 +18,50 @@ Mainly show the content operation steps of the one-click deployment and related 
 
 Click on the Add node in the upper left corner to add a Witness node and a FullNode node to the one-click chain network.
 
-必填字段包括：
+Required fields include：
 
-|                  必填字段                   |                  解释                  |
-| :-----------------------------------------: | :------------------------------------: |
-|    ID <sup style="color:blue">[2]</sup>     |              节点唯一编号              |
-|                  用户名称                   |               ssh 用户名               |
-|                     IP                      |                节点 Ip                 |
-|                    PORT                     |               节点 端口                |
-|                     URL                     |        Url （为 Witness 必填）         |
-|                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
-| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
+|               Required field                |                      Explanation                       |
+| :-----------------------------------------: | :----------------------------------------------------: |
+|    ID <sup style="color:blue">[2]</sup>     |                   Node unique number                   |
+|                  user name                  |                      ssh username                      |
+|                     IP                      |                        Node Ip                         |
+|                    PORT                     |                       Node Port                        |
+|                     URL                     |              Url （Required for Witness）              |
+|                  voteCount                  | Number of corresponding votes （Required for Witness） |
+| privateKey<sup style="color:blue">[3]</sup> | Save local 64-bit private key （Required for Witness） |
 
-如图：
+As shown：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/develop/steps/img/add_node.png)
 
-(1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息
-(2) 节点列表 <sup style="color:blue">[5]</sup> 节点列表展示所有添加的节点 如下图所示：
-(3) 点击下一步将会进入配置页面
+(1) Click the save button<sup style="color:blue">[4]</sup> Save current node information
+(2) Node list <sup style="color:blue">[5]</sup> The node list shows all the added nodes as shown below:
+(3) Click Next to enter the configuration page
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/nodeList.png)
 
-### 4.配置管理
+### 4.Configuration management
 
-如图：
+As shown：
 
 ![](https://github.com/wubinTron/one-click-deployment/blob/master/steps/img/setting.png)
 
-(1)创世信息配置
+(1)Creation Information Configuration
 
-创世信息配置主要包括 asset 配置和 witeness 配置
-asset 配置 可以新增和修改当前 asset 配置信息
-witeness 配置 可以查看当前 witeness 配置信息
+Genesis information configuration mainly includes asset configuration and witeness configuration
+Asset configuration can add and modify current asset configuration information
+Witeness configuration to view current witeness configuration information
 
-asset 配置必填字段包括：
+The required fields for asset configuration include:
 
-|                 必填字段                  |               解释                |
-| :---------------------------------------: | :-------------------------------: |
-|                accountName                |              账户名               |
-|                accountType                | 账户类型： AssetIssue 或 Contract |
-|                  address                  |               地址                |
-| balance <sup style="color:blue">[6]</sup> |               余额                |
+|              Required field               |              Explanation              |
+| :---------------------------------------: | :-----------------------------------: |
+|                accountName                |             account name              |
+|                accountType                | account type： AssetIssue or Contract |
+|                  address                  |                address                |
+| balance <sup style="color:blue">[6]</sup> |                balance                |
 
-创世信息配置点击下一步按钮保存当前配置
+Creation Information Configuration Click Next button to save the current configuration
 
 (2)基础配置
 
