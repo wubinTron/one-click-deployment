@@ -51,8 +51,8 @@ As shown：
 
 (1)Creation Information Configuration
 
-Genesis information configuration mainly includes asset configuration and witeness configuration
-Asset configuration can add and modify current asset configuration information
+Genesis information configuration mainly includes asset configuration and witeness configuration  
+Asset configuration can add and modify current asset configuration information  
 Witeness configuration to view current witeness configuration information
 
 The required fields for asset configuration include:
