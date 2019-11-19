@@ -11,9 +11,10 @@ English | [简体中文](./README.zh-CN.md)
 ## Preparation
 
 You need to install [node](https://nodejs.org/), [yarn](https://yarn.bootcss.com/docs/install/#mac-stable), [git](https://git-scm.com/) and [maven](http://maven.apache.org/)locally.（Recommend the current official website stable version, do not recommend the old version of Node, otherwise the project can not start normally).  
-Front end of this project is based on [ES2015+](https://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [vue-cli](https://github.com/vuejs/vue-cli) , [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element)   
-Backend end of this project is based on [sprint-boot](https://spring.io/projects/spring-boot), [maven](https://maven.apache.org/guides/mini/index.html) and [lightbend](https://github.com/lightbend/config)     
+Front end of this project is based on [ES2015+](https://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [vue-cli](https://github.com/vuejs/vue-cli) , [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element)  
+Backend end of this project is based on [sprint-boot](https://spring.io/projects/spring-boot), [maven](https://maven.apache.org/guides/mini/index.html) and [lightbend](https://github.com/lightbend/config)  
 Learning this knowledge in advance will make a greate help in this project.
+
  <p align="center">
   <!-- <img width="900" src=""> -->
 </p>
@@ -60,7 +61,7 @@ The project is deployed to the /home/USERNAME/java-tron directory, and the deplo
 
 ## Steps for usage
 
-[manual for usage](https://github.com/wubinTron/one-click-deployment/blob/master/steps/READMESTEP.zh.md)
+[manual for usage](https://github.com/wubinTron/one-click-deployment/blob/master/steps/steps.md)
 
 ## Changelog
 

@@ -19,6 +19,8 @@ var languageAry = ['', 'en-US', 'zh-CN'];
 if (languageAry.indexOf(curBrowserLang) < 0) {
     curLanAbbreviation = 'en-US';
 }
+// console.log(curBrowserLang)
+sessionStorage.setItem("currentLang", curBrowserLang);
 // console.log(curLanAbbreviation)
 const i18n = new VueI18n({
     locale: curBrowserLang, // 设置默认语言
