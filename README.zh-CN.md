@@ -6,7 +6,7 @@
 
 ## 简介
 
-[one-click-deployment](https://github.com/wubinTron/one-click-deployment/tree/develop) 是一个一键发链解决方案， 帮助您快速构建更稳定、 安全的生产级区块链环境， 减少在区块链部署、 运维、 管理、 应用开发等方面的挑战， 使您更专注于核心业务创新， 并实现业务快速上链.
+[one-click-deployment](https://github.com/wubinTron/one-click-deployment/tree/master) 是一个一键发链解决方案， 帮助您快速构建更稳定、 安全的生产级区块链环境， 减少在区块链部署、 运维、 管理、 应用开发等方面的挑战， 使您更专注于核心业务创新， 并实现业务快速上链.
 
 ## 前序准备
 

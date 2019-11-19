@@ -48,6 +48,9 @@ Learning this knowledge in advance will make a greate help in this project.
 # clone the project
 git clone https://github.com/wubinTron/one-click-deployment.git
 
+# Enter the project directory
+cd one-click-deployment
+
 # install dependency
 ./install.sh
 
@@ -65,7 +68,7 @@ The project is deployed to the /home/USERNAME/java-tron directory, and the deplo
 
 ## Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/PanJiaChen/vue-element-admin/releases).
+Detailed changes for each release are documented in the [release notes](https://github.com/wubinTron/one-click-deployment/releases).
 
 ## Browsers support
 
