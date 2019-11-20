@@ -187,7 +187,8 @@ VoteWitness
 WithdrawBalance  
 WitnessCreate  
 WitnessUpdate   
-Also could customize uploading transactions   
+Also could customize uploading transactions.
+Upload jar which not related customize transaction may affect normal running  
 Trading module click the next button to save the current transaction module settings.
 
 (3)Database module
