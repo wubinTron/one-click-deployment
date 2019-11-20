@@ -182,8 +182,9 @@ VoteWitness
 WithdrawBalance  
 WitnessCreate  
 WitnessUpdate  
-还可以选择自定义上传自定义交易  
-交易模块点击下一步按钮保存当前交易模块设置
+还可以选择自定义上传自定义交易, 上传于项目无关的 jar 包，可能会影响程序正常运行    
+交易模块点击下一步按钮保存当前交易模块设置   
+
 
 #### 数据库模块
 
