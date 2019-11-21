@@ -27,15 +27,15 @@ Click on the Add node in the [upper left corner](./steps/img/add_node.png) to ad
 
 Required fields include：
 
-|                            Required field                            |                                    Explanation                                     |
-| :------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-|                 ID <sup style="color:blue">[2]</sup>                 | Node unique number (Number is a positive integer maximum support value 2147483647) |
-|                              user name                               |                                    ssh username                                    |
-|                                  IP                                  |                                      Node Ip                                       |
-| PORT (Number is a positive integer maximum support value 2147483647) |                                     Node Port                                      |
-|                                 URL                                  |                            Url （Required for Witness）                            |
-|                              voteCount                               |               Number of corresponding votes （Required for Witness）               |
-|             privateKey<sup style="color:blue">[3]</sup>              |               Save local 64-bit private key （Required for Witness）               |
+|               Required field                |                                    Explanation                                     |
+| :-----------------------------------------: | :--------------------------------------------------------------------------------: |
+|    ID <sup style="color:blue">[2]</sup>     | Node unique number (Number is a positive integer maximum support value 2147483647) |
+|                  user name                  |                                    ssh username                                    |
+|                     IP                      |                                      Node Ip                                       |
+|                    PORT                     |     Node Port (Number is a positive integer maximum support value 2147483647)      |
+|                     URL                     |                            Url （Required for Witness）                            |
+|                  voteCount                  |               Number of corresponding votes （Required for Witness）               |
+| privateKey<sup style="color:blue">[3]</sup> |               Save local 64-bit private key （Required for Witness）               |
 
 (1) Click the save button<sup style="color:blue">[4]</sup> to save current node information
 
