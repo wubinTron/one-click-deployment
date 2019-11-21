@@ -10,7 +10,7 @@
 
 部署节点需要 [java-tron-1.0.0.zip 包编译](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
-linux 环境启动需提前修改对应启动请求 ip 修改目录 src/main/webapp/.env.development 中的 VUE_APP_BASE_API 修改成对应请求 Ip
+前端游览器和后台服务器不在一台机器上需要提前修改对应启动请求 ip, 修改文件 src/main/webapp/.env.development 中的 VUE_APP_BASE_API 修改成对应请求 Ip
 
 ### 2.一键发链首页
 
@@ -184,8 +184,9 @@ VoteWitness
 WithdrawBalance  
 WitnessCreate  
 WitnessUpdate  
-还可以选择自定义上传自定义交易  
-交易模块点击下一步按钮保存当前交易模块设置
+还可以选择自定义上传自定义交易, 上传于项目无关的 jar 包，可能会影响程序正常运行    
+交易模块点击下一步按钮保存当前交易模块设置   
+
 
 #### 数据库模块
 
@@ -212,7 +213,7 @@ WitnessUpdate
 
 [1] 注：点击开始一键部署按钮，获取节点列表菜单权限，每次点击会重置菜单权限
 
-[2] 注：id 和 ip 地址均不能相同
+[2] 注：id 和 ip 地址均不能相同，且ip不能为本地ip
 
 [3] 注：voteCount 支持范围为 0 - 9223372036854775807
 

@@ -10,7 +10,7 @@ Need to implement in advance [free login](https://www.jianshu.com/p/13919b5ba8a2
 
 Deploy node needs [java-tron-1.0.0.zip build](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
-The linux environment needs to be modified in advance to start the corresponding ip modify directory VUE_APP_BASE_API in src/main/webapp/.env.development is modified to correspond to the request Ip
+If front-end browser and the back-end server not in one computer, we needs to modified the corresponding variable VUE_APP_BASE_API in src/main/webapp/.env.development.
 
 ### 2.Home
 
@@ -186,8 +186,9 @@ UpdateSettingContract
 VoteWitness  
 WithdrawBalance  
 WitnessCreate  
-WitnessUpdate  
-Also could customize uploading transactions  
+WitnessUpdate   
+Also could customize uploading transactions.
+Upload jar which not related customize transaction may affect normal running  
 Trading module click the next button to save the current transaction module settings.
 
 (3)Database module
@@ -216,7 +217,7 @@ The log will be automatically refreshed until the deploy finish.
 
 [1] Note: Click the Start One-Click Deployment button to get the node list menu permissions. Each click will reset the menu permissions.
 
-[2] Note: id and ip addresses cannot be the same
+[2] Note: id and ip addresses cannot be the same, and ip can't be local ip
 
 [3] Note: The node privateKey added each time cannot be repeated
 
