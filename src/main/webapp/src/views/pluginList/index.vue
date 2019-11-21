@@ -181,8 +181,8 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                             <div v-if="dbsettingContentShow" style="padding-left:20px">
                                 <el-form-item prop="dbsetting" class="baseFormItem mgt30">
                                     <el-radio-group v-model="plugindbForm.dbsetting">
-                                        <el-radio :label="'leveldb'">leveldb</el-radio>
-                                        <el-radio :label="'rockdb'">rocksdb</el-radio>
+                                        <el-radio disabled :label="'leveldb'">leveldb</el-radio>
+                                        <el-radio disabled :label="'rockdb'">rocksdb</el-radio>
                                         <!-- <br /> -->
                                         <!-- <el-radio
                                             style="margin:15px 0"
