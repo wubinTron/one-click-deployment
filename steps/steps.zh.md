@@ -10,7 +10,7 @@
 
 部署节点需要 [java-tron-1.0.0.zip 包编译](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
-linux 环境启动需提前修改对应启动请求 ip 修改目录 src/main/webapp/.env.development 中的 VUE_APP_BASE_API 修改成对应请求 Ip
+前端游览器和后台服务器不在一台机器上需要提前修改对应启动请求 ip, 修改目录 src/main/webapp/.env.development 中的 VUE_APP_BASE_API 修改成对应请求 Ip
 
 ### 2.一键发链首页
 
