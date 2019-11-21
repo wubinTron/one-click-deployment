@@ -2,6 +2,7 @@ package tron.deployment.Controller;
 
 import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
+import static org.tron.core.config.args.Storage.getDbEngineFromConfig;
 
 import common.Args;
 import common.Common;
@@ -82,7 +83,7 @@ public class PluginConfig {
     JSONObject json = readJsonFile();
     JSONObject result = new JSONObject();
     result.put(Common.consensusFiled, json.get(Common.consensusFiled));
-    result.put(Common.dbEngineFiled, json.get(Common.dbEngineFiled));
+    result.put(Common.dbEngineFiled, getDbEngineFromConfig(Util.config));
     result.put(Common.customTransactionFiled, json.get(Common.customTransactionFiled));
     Util.parseConfig();
     result.put(Common.transactionFiled, Args.getActuatorSet(Util.config));
