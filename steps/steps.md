@@ -217,7 +217,7 @@ The log will be automatically refreshed until the deploy finish.
 
 [1] Note: Click the Start One-Click Deployment button to get the node list menu permissions. Each click will reset the menu permissions.
 
-[2] Note: id and ip addresses cannot be the same
+[2] Note: id and ip addresses cannot be the same, and ip can't be local ip
 
 [3] Note: The node privateKey added each time cannot be repeated
 
