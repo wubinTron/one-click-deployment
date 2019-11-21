@@ -438,7 +438,10 @@ export default {
                         this.pluginTransactionForm.transaction =
                             res.transaction;
                     }
-                    if (res.dbEngine != "leveldb" && res.dbEngine != "rockdb") {
+                    if (
+                        res.dbEngine != "leveldb" &&
+                        res.dbEngine != "rocksdb"
+                    ) {
                         this.plugindbForm = {
                             dbsetting: 3,
                             dbsettingContent: res.dbEngine
