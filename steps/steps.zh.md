@@ -10,6 +10,8 @@
 
 部署节点需要 [java-tron-1.0.0.zip 包编译](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
+linux 环境启动需提前修改对应启动请求 ip 修改目录 src/main/webapp/.env.development 中的 VUE_APP_BASE_API 修改成对应请求 Ip
+
 ### 2.一键发链首页
 
 主要展示一键发链的内容操作步骤及相关文档说明  
@@ -24,18 +26,18 @@
 
 必填字段包括
 
-|                  必填字段                   |                  解释                  |
-| :-----------------------------------------: | :------------------------------------: |
-|    ID <sup style="color:blue">[2]</sup>     |              节点唯一编号              |
-|                  用户名称                   |               ssh 用户名               |
-|                     IP                      |                节点 Ip                 |
-|                    PORT                     |               节点 端口                |
-|                     URL                     |        Url （为 Witness 必填）         |
-|                  voteCount                  |    对应投票数量 （为 Witness 必填）    |
-| privateKey<sup style="color:blue">[3]</sup> | 保存本地 64 位私钥 （为 Witness 必填） |
+|                  必填字段                   |                        解释                         |
+| :-----------------------------------------: | :-------------------------------------------------: |
+|    ID <sup style="color:blue">[2]</sup>     | 节点唯一编号（数字且为正整数最大支持值 2147483647） |
+|                  用户名称                   |                     ssh 用户名                      |
+|                     IP                      |                       节点 Ip                       |
+|                    PORT                     |  节点 端口 （数字且为正整数最大支持值 2147483647）  |
+|                     URL                     |               Url （为 Witness 必填）               |
+| voteCount<sup style="color:blue">[3]</sup>  |          对应投票数量 （为 Witness 必填）           |
+| privateKey<sup style="color:blue">[4]</sup> |       保存本地 64 位私钥 （为 Witness 必填）        |
 
-(1) 点击保存按钮<sup style="color:blue">[4]</sup> 保存当前节点信息  
-(2) 节点列表[如图所示](./steps/img/nodeList.png) <sup style="color:blue">[5]</sup> 展示所有添加的节点  
+(1) 点击保存按钮<sup style="color:blue">[5]</sup> 保存当前节点信息  
+(2) 节点列表[如图所示](./steps/img/nodeList.png) <sup style="color:blue">[6]</sup> 展示所有添加的节点  
 (3) 点击下一步将会进入配置页面
 
 ### 4.配置管理
@@ -55,7 +57,7 @@ asset 配置必填字段包括：
 |                accountName                |              账户名               |
 |                accountType                | 账户类型： AssetIssue 或 Contract |
 |                  address                  |               地址                |
-| balance <sup style="color:blue">[6]</sup> |               余额                |
+| balance <sup style="color:blue">[7]</sup> |               余额                |
 
 创世信息配置点击下一步按钮保存当前配置
 
@@ -63,19 +65,19 @@ asset 配置必填字段包括：
 
 基础配置必填字段包括：
 
-| 必填字段  |  解释  |
-| :-------: | :----: |
-|  chainId  | 链 ID  |
-| chainName | 链名称 |
+| 必填字段  |                     解释                      |
+| :-------: | :-------------------------------------------: |
+|  chainId  | 链 ID （数字且为正整数最大支持值 2147483647） |
+| chainName |                    链名称                     |
 
 高级配置字段包括：
 
-|       高级配置字段       |         解释         |
-| :----------------------: | :------------------: |
-| MaintenanceTimeInterval  |     维护时间间隔     |
-| blockProposalExpireTime  |   区块提案到期时间   |
-| nodeBlockProducedTimeOut | 节点区块产生超时时间 |
-| nodeMinParticipationRate |    节点最小参与率    |
+|       高级配置字段       |                             解释                             |
+| :----------------------: | :----------------------------------------------------------: |
+| MaintenanceTimeInterval  |     维护时间间隔 （数字且为正整数最大支持值 2147483647）     |
+| blockProposalExpireTime  |   区块提案到期时间（数字且为正整数最大支持值 2147483647）    |
+| nodeBlockProducedTimeOut | 节点区块产生超时时间 （数字且为正整数最大支持值 2147483647） |
+| nodeMinParticipationRate |   节点最小参与率 （数字 0 或正整数最大支持值 2147483647）    |
 
 基础配置点击下一步按钮保存当前配置
 
@@ -83,13 +85,13 @@ asset 配置必填字段包括：
 
 网络链接配置必填字段包括：
 
-|       必填字段       |       解释        |
-| :------------------: | :---------------: |
-| maxHttpConnectNumber | 最大 http 连接数  |
-|   httpFullNodePort   | httpFullNode 端口 |
-|   httpSolidityPort   | httpFullNode 端口 |
-|       rpcPort        |     rpc 端口      |
-|   rpcSolidityPort    | rpcSolidity 端口  |
+|       必填字段       |                           解释                            |
+| :------------------: | :-------------------------------------------------------: |
+| maxHttpConnectNumber | 最大 http 连接数 （数字且为正整数最大支持值 2147483647）  |
+|   httpFullNodePort   | httpFullNode 端口（数字且为正整数最大支持值 2147483647）  |
+|   httpSolidityPort   | httpFullNode 端口 （数字且为正整数最大支持值 2147483647） |
+|       rpcPort        |     rpc 端口 （数字且为正整数最大支持值 2147483647）      |
+|   rpcSolidityPort    | rpcSolidity 端口 （数字且为正整数最大支持值 2147483647）  |
 
 网络链接配置点击下一步按钮保存当前配置
 
@@ -111,20 +113,20 @@ asset 配置必填字段包括：
 
 p2p 配置必填字段包括：
 
-|  必填字段  |    解释     |
-| :--------: | :---------: |
-| p2pVersion |  p2p 版本   |
-| listenPort | listen 端口 |
-|  seedNode  |  seedNode   |
+|  必填字段  |                        解释                         |
+| :--------: | :-------------------------------------------------: |
+| p2pVersion |  p2p 版本 （数字且为正整数最大支持值 2147483647）   |
+| listenPort | listen 端口 （数字且为正整数最大支持值 2147483647） |
+|  seedNode  |                   seedNode (勾选)                   |
 
 高级配置字段包括：
 
-|       高级配置字段       |        解释         |
-| :----------------------: | :-----------------: |
-|      maxActiveNodes      |     最大链接数      |
-| maxActiveNodesWithSameIp | 同一 ip 最大连接数  |
-|   activeConnectFactor    | activeConnectFactor |
-|      connectFactor       |    connectFactor    |
+|       高级配置字段       |                            解释                            |
+| :----------------------: | :--------------------------------------------------------: |
+|      maxActiveNodes      |     最大链接数 （数字且为正整数最大支持值 2147483647）     |
+| maxActiveNodesWithSameIp | 同一 ip 最大连接数 （数字且为正整数最大支持值 2147483647） |
+|   activeConnectFactor    | activeConnectFactor （数字且为正数最大支持值 2147483647）  |
+|      connectFactor       |    connectFactor （数字且为正数最大支持值 2147483647）     |
 
 p2p 配置点击下一步按钮保存当前配置
 
@@ -132,14 +134,14 @@ p2p 配置点击下一步按钮保存当前配置
 
 跨链配置必填字段包括：
 
-|      必填字段      |     解释      |
-| :----------------: | :-----------: |
-|  enableCrossChain  | 是否允许跨链  |
-| maxValidatorNumber |  最大验证数   |
-| minValidatorNumber |  最小验证数   |
-|   crossChainFee    | crossChainFee |
+|      必填字段      |                                     解释                                     |
+| :----------------: | :--------------------------------------------------------------------------: |
+|  enableCrossChain  |                          是否允许跨链 （勾选选择）                           |
+| maxValidatorNumber | 最大验证数 （数字且为正整数且大于 minValidatorNumber 最大支持值 2147483647） |
+| minValidatorNumber | 最小验证数 （数字且为正整数且小于 minValidatorNumber 最大支持值 2147483647） |
+|   crossChainFee    |             crossChainFee （数字且为正数最大支持值 2147483647）              |
 
-跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[7]</sup>
+跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[8]</sup>
 
 ### 5.导入插件
 
@@ -190,7 +192,7 @@ WitnessUpdate
 
 支持 leveldb 和 rocksdb
 
-数据库模块点击下一步保存当前数据库模块<sup style="color:blue">[8]</sup>
+数据库模块点击下一步保存当前数据库模块<sup style="color:blue">[9]</sup>
 
 ### 6.节点部署
 
@@ -213,17 +215,19 @@ WitnessUpdate
 
 [2] 注：id 和 ip 地址均不能相同
 
-[3] 注：每次添加的节点 privateKey 不能重复
+[3] 注：voteCount 支持范围为 0 - 9223372036854775807
 
-[4] 注：点击节点列表下一步按钮重置配置管理菜单权限，只展示配置管理菜单权限
+[4] 注：每次添加的节点 privateKey 不能重复
 
-[5] 注：当节点列表为空时候默认下一步按钮不可以点击，当节点列表都删除除时没有下一步菜单权限，节点列表最多支持 20 个节点
+[5] 注：点击节点列表下一步按钮重置配置管理菜单权限，只展示配置管理菜单权限
 
-[6] 注：balance 范围在-9223372036854775808 和 9223372036854775807 之间，为保证部署成功，请按照取值内范围填写
+[6] 注：当节点列表为空时候默认下一步按钮不可以点击，当节点列表都删除除时没有下一步菜单权限，节点列表最多支持 20 个节点
 
-[7] 注：点击配置管理最后一步骤跨链配置的下一步时，获取导入插件菜单权限，每次点击重置菜单权限
+[7] 注：balance 范围为-9223372036854775808 至 9223372036854775807 ，为保证部署成功，请按照取值内范围填写
 
-[8] 注：点击导入插件最后一步数据库模块的下一步时点击获取节点部署菜单权限，每次点击重置菜单权限
+[8] 注：点击配置管理最后一步骤跨链配置的下一步时，获取导入插件菜单权限，每次点击重置菜单权限
+
+[9] 注：点击导入插件最后一步数据库模块的下一步时点击获取节点部署菜单权限，每次点击重置菜单权限
 
 ## License
 
