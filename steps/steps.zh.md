@@ -10,6 +10,8 @@
 
 部署节点需要 [java-tron-1.0.0.zip 包编译](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
+linux 环境启动需提前修改对应启动请求 ip 修改目录 src/main/webapp/.env.development 中的 VUE_APP_BASE_API 修改成对应请求 Ip
+
 ### 2.一键发链首页
 
 主要展示一键发链的内容操作步骤及相关文档说明  
@@ -119,12 +121,12 @@ p2p 配置必填字段包括：
 
 高级配置字段包括：
 
-|       高级配置字段       |                            解释                             |
-| :----------------------: | :---------------------------------------------------------: |
-|      maxActiveNodes      |     最大链接数 （数字且为正整数最大支持值 2147483647）      |
-| maxActiveNodesWithSameIp | 同一 ip 最大连接数 （数字且为正整数最大支持值 2147483647）  |
-|   activeConnectFactor    | activeConnectFactor （数字且为正整数最大支持值 2147483647） |
-|      connectFactor       |    connectFactor （数字且为正整数最大支持值 2147483647）    |
+|       高级配置字段       |                            解释                            |
+| :----------------------: | :--------------------------------------------------------: |
+|      maxActiveNodes      |     最大链接数 （数字且为正整数最大支持值 2147483647）     |
+| maxActiveNodesWithSameIp | 同一 ip 最大连接数 （数字且为正整数最大支持值 2147483647） |
+|   activeConnectFactor    | activeConnectFactor （数字且为正数最大支持值 2147483647）  |
+|      connectFactor       |    connectFactor （数字且为正数最大支持值 2147483647）     |
 
 p2p 配置点击下一步按钮保存当前配置
 
@@ -137,7 +139,7 @@ p2p 配置点击下一步按钮保存当前配置
 |  enableCrossChain  |                          是否允许跨链 （勾选选择）                           |
 | maxValidatorNumber | 最大验证数 （数字且为正整数且大于 minValidatorNumber 最大支持值 2147483647） |
 | minValidatorNumber | 最小验证数 （数字且为正整数且小于 minValidatorNumber 最大支持值 2147483647） |
-|   crossChainFee    |            crossChainFee （数字且为正整数最大支持值 2147483647）             |
+|   crossChainFee    |             crossChainFee （数字且为正数最大支持值 2147483647）              |
 
 跨链配置点击下一步按钮保存当前跨链配置<sup style="color:blue">[8]</sup>
 
