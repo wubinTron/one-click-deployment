@@ -10,7 +10,7 @@ Need to implement in advance [free login](https://www.jianshu.com/p/13919b5ba8a2
 
 Deploy node needs [java-tron-1.0.0.zip build](https://github.com/tronprotocol/java-tron/blob/develop/build.md)
 
-The linux environment needs to be modified in advance to start the corresponding ip modify directory VUE_APP_BASE_API in src/main/webapp/.env.development is modified to correspond to the request Ip
+If front-end browser and the back-end server not in one computer, we needs to modified the corresponding variable VUE_APP_BASE_API in src/main/webapp/.env.development.
 
 ### 2.Home
 
