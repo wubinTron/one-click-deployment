@@ -121,7 +121,7 @@ public class DeployController {
 		if (isSR) {
       try {
         privateKey = Wallet.getPrivateString(String.format("%s/%s", Common.walletFiled, privateKeypath));
-				blockNeedSync = isBlockNeedSync(nodes, id);
+				blockNeedSync = (Boolean) node.get(Common.needSyncCheck);
       } catch (CipherException | IOException e) {
         log.error(e.toString());
         return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "load privateKey info failed").toJSONObject();

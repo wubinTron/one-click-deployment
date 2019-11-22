@@ -181,8 +181,8 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                             <div v-if="dbsettingContentShow" style="padding-left:20px">
                                 <el-form-item prop="dbsetting" class="baseFormItem mgt30">
                                     <el-radio-group v-model="plugindbForm.dbsetting">
-                                        <el-radio :label="'leveldb'">leveldb</el-radio>
-                                        <el-radio :label="'rockdb'">rockdb</el-radio>
+                                        <el-radio disabled :label="'leveldb'">leveldb</el-radio>
+                                        <el-radio disabled :label="'rocksdb'">rocksdb</el-radio>
                                         <!-- <br /> -->
                                         <!-- <el-radio
                                             style="margin:15px 0"
@@ -438,7 +438,10 @@ export default {
                         this.pluginTransactionForm.transaction =
                             res.transaction;
                     }
-                    if (res.dbEngine != "leveldb" && res.dbEngine != "rockdb") {
+                    if (
+                        res.dbEngine != "leveldb" &&
+                        res.dbEngine != "rocksdb"
+                    ) {
                         this.plugindbForm = {
                             dbsetting: 3,
                             dbsettingContent: res.dbEngine

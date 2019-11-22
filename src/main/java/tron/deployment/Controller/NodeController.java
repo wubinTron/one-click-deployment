@@ -101,7 +101,8 @@ public class NodeController {
       @RequestParam(value = "isSR", required = false, defaultValue = "false") boolean isSR,
       @RequestParam(value = "url", required = false, defaultValue = "") String url,
       @RequestParam(value = "privateKey", required = false, defaultValue = "") String privateKey,
-      @RequestParam(value = "voteCount", required = false, defaultValue = "104") String voteCount
+      @RequestParam(value = "voteCount", required = false, defaultValue = "104") String voteCount,
+      @RequestParam(value = "needSyncCheck", required = false, defaultValue = "true") boolean needSyncCheck
   ) {
 
     JSONObject json = readJsonFile();
@@ -142,6 +143,7 @@ public class NodeController {
     newNode.put(Common.isSRFiled, isSR);
     newNode.put(Common.urlFiled, url);
     newNode.put(Common.voteCountFiled, voteCount);
+    newNode.put(Common.needSyncCheck, needSyncCheck);
     nodes.add(newNode);
 
     return updateNodesInfo(nodes, json);
@@ -156,7 +158,8 @@ public class NodeController {
       @RequestParam(value = "isSR", required = false, defaultValue = "") boolean isSR,
       @RequestParam(value = "privateKey", required = false, defaultValue = "") String key,
       @RequestParam(value = "url", required = false, defaultValue = "") String url,
-      @RequestParam(value = "voteCount", required = false, defaultValue = "104") String voteCount
+      @RequestParam(value = "voteCount", required = false, defaultValue = "104") String voteCount,
+      @RequestParam(value = "needSyncCheck", required = false, defaultValue = "true") boolean needSyncCheck
   ) {
 
     JSONObject json = readJsonFile();
@@ -188,6 +191,7 @@ public class NodeController {
     node.put(Common.isSRFiled, isSR);
     node.put(Common.urlFiled, url);
     node.put(Common.voteCountFiled, voteCount);
+    node.put(Common.needSyncCheck, needSyncCheck);
     nodes.add(node);
     json.put(Common.nodesFiled, nodes);
 

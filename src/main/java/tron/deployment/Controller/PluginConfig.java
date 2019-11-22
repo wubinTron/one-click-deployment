@@ -10,6 +10,7 @@ import common.Util;
 import config.ActuatorConfig;
 import config.ConfigGenerator;
 import config.NetworkConfig;
+import org.spongycastle.util.Strings;
 import response.ResultCode;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,7 @@ public class PluginConfig {
     JSONObject json = readJsonFile();
     JSONObject result = new JSONObject();
     result.put(Common.consensusFiled, json.get(Common.consensusFiled));
-    result.put(Common.dbEngineFiled, getDbEngineFromConfig(Util.config));
+    result.put(Common.dbEngineFiled, Strings.toLowerCase(getDbEngineFromConfig(Util.config)));
     result.put(Common.customTransactionFiled, json.get(Common.customTransactionFiled));
     Util.parseConfig();
     result.put(Common.transactionFiled, Args.getActuatorSet(Util.config));

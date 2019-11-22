@@ -43,6 +43,8 @@ public class Common {
 
   public static final String voteCountFiled = "voteCount";
 
+  public static final String needSyncCheck = "needSyncCheck";
+
   public static final String addressFiled = "address";
 
   public static final String enableCrossChainFiled = "enableCrossChain";
