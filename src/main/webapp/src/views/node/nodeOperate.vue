@@ -126,6 +126,31 @@ Modified time: 2019-11-12 14:40:09 * @operation node */
                         ></el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item prop="needSyncCheck" v-if="nodeForm.isSR">
+                    <span slot="label">
+                        needSyncCheck
+                        <el-tooltip
+                            class="item"
+                            effect="dark"
+                            :content="$t('deploymentNodeSyncCheckTips')"
+                            placement="top"
+                        >
+                            <i class="iconfont icon-iconset0143"></i>
+                        </el-tooltip>
+                    </span>
+                    <el-select
+                        size="small"
+                        v-model="nodeForm.needSyncCheck"
+                        :placeholder="$t('tronNodeSyncCheckPlaceholder')"
+                    >
+                        <el-option
+                            v-for="item in syncCheckAry"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
                 <el-form-item prop="url" v-if="nodeForm.isSR">
                     <span slot="label">
                         URL
@@ -348,6 +373,11 @@ export default {
                     message: this.$t("tronNodeSRPlaceholder"),
                     trigger: "change"
                 },
+                needSyncCheck: {
+                    required: true,
+                    message: this.$t("tronNodeSyncCheckPlaceholder"),
+                    trigger: "change"
+                },
                 url: [
                     {
                         required: true,
@@ -396,14 +426,21 @@ export default {
                 port: "",
                 isSR: ""
             },
+
             srAry: [
+                { id: 0, label: this.$t("tronNodeSrIs"), value: true },
+                { id: 1, label: this.$t("tronNodeSrNo"), value: false }
+            ],
+            syncCheckAry: [
                 { id: 0, label: this.$t("tronNodeSrIs"), value: true },
                 { id: 1, label: this.$t("tronNodeSrNo"), value: false }
             ]
         };
     },
     methods: {
-        openDialogFun() {},
+        openDialogFun() {
+            this.$refs.nodeDialogForm.resetFields();
+        },
         closeFun() {
             this.$refs.nodeDialogForm.resetFields();
             this.dialogVisible = false;
