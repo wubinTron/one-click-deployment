@@ -188,7 +188,7 @@ export default {
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
-                        validator: validNum,
+                        validator: validateNum,
                         trigger: "blur"
                     },
                     {
@@ -207,7 +207,7 @@ export default {
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
-                        validator: validNum,
+                        validator: validateNum,
                         trigger: "blur"
                     },
                     {
@@ -226,7 +226,7 @@ export default {
                     },
                     {
                         message: this.$t("tronSettingNumberPlaceholder"),
-                        validator: validNum,
+                        validator: validateNum,
                         trigger: "blur"
                     },
                     {

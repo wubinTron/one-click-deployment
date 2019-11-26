@@ -168,7 +168,7 @@ Modified time: 2019-11-13 14:16:55 * @setting p2p setting */
 <script>
 import { mapGetters } from "vuex";
 import { p2pSettingApi } from "@/api/settingApi";
-import { isvalidateNum } from "@/utils/validate.js";
+import { isvalidateNum, twoDecimal } from "@/utils/validate.js";
 export default {
     name: "p2pSettingDialog",
     props: ["detailInfoData", "seedNodeIpListAry"],
@@ -220,6 +220,13 @@ export default {
             const validPortNum = (rule, value, callback) => {
                 if (value > 65535) {
                     callback(new Error(this.$t("tronPortNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            };
+            const validTwoDecimalFun = (rule, value, callback) => {
+                if (!twoDecimal(value)) {
+                    callback(new Error(this.$t("validTwoDecimal")));
                 } else {
                     callback();
                 }
@@ -327,6 +334,11 @@ export default {
                         required: true,
                         validator: validMaxNum,
                         trigger: "blur"
+                    },
+                    {
+                        message: this.$t("tronSettingNumberTwoDecimal"),
+                        validator: validTwoDecimalFun,
+                        trigger: "blur"
                     }
                 ],
                 node_connectFactor: [
@@ -338,6 +350,11 @@ export default {
                     {
                         required: true,
                         validator: validMaxNum,
+                        trigger: "blur"
+                    },
+                    {
+                        message: this.$t("tronSettingNumberTwoDecimal"),
+                        validator: validTwoDecimalFun,
                         trigger: "blur"
                     }
                 ]
