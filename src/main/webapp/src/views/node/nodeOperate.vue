@@ -293,7 +293,7 @@ export default {
                 }
             };
             const validPortNum = (rule, value, callback) => {
-                if (value > 65536) {
+                if (value > 65535) {
                     callback(new Error(this.$t("tronPortNumberPlaceholder")));
                 } else {
                     callback();
