@@ -136,6 +136,13 @@ export default {
                     callback();
                 }
             };
+            const validPortNum = (rule, value, callback) => {
+                if (value > 65535) {
+                    callback(new Error(this.$t("tronPortNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            }
             const rules = {
                 node_maxHttpConnectNumber: [
                     {
@@ -167,7 +174,7 @@ export default {
                     },
                     {
                         required: true,
-                        validator: validMaxNum,
+                        validator: validPortNum,
                         trigger: "blur"
                     }
                 ],
@@ -184,7 +191,7 @@ export default {
                     },
                     {
                         required: true,
-                        validator: validMaxNum,
+                        validator: validPortNum,
                         trigger: "blur"
                     }
                 ],
@@ -201,7 +208,7 @@ export default {
                     },
                     {
                         required: true,
-                        validator: validMaxNum,
+                        validator: validPortNum,
                         trigger: "blur"
                     }
                 ],
@@ -218,7 +225,7 @@ export default {
                     },
                     {
                         required: true,
-                        validator: validMaxNum,
+                        validator: validPortNum,
                         trigger: "blur"
                     }
                 ]
