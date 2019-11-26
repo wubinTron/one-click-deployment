@@ -133,7 +133,7 @@ Modified time: 2019-11-13 14:16:55 * @setting p2p setting */
                                 <el-form-item
                                     class="baseFormItem"
                                     label="connectFactor"
-                                    prop="connectFactor"
+                                    prop="node_connectFactor"
                                 >
                                     <el-input-number
                                         size="small"
@@ -141,7 +141,7 @@ Modified time: 2019-11-13 14:16:55 * @setting p2p setting */
                                         :min="0"
                                         :step="0.1"
                                         :maxlength="50"
-                                        v-model.trim="p2pSettingForm.connectFactor"
+                                        v-model.trim="p2pSettingForm.node_connectFactor"
                                         :placeholder="$t('tronSettingPlaceholder')"
                                     ></el-input-number>
                                 </el-form-item>
@@ -329,7 +329,7 @@ export default {
                         trigger: "blur"
                     }
                 ],
-                connectFactor: [
+                node_connectFactor: [
                     {
                         required: true,
                         message: this.$t("tronSettingPlaceholder"),
@@ -354,7 +354,7 @@ export default {
                 node_p2p_version: "",
                 node_maxActiveNodes: "",
                 node_maxActiveNodesWithSameIp: "",
-                connectFactor: "",
+                node_connectFactor: "",
                 node_activeConnectFactor: "",
                 node_listen_port: ""
             },
@@ -390,7 +390,7 @@ export default {
                             .node_activeConnectFactor,
                         nodeMaxActiveNodesWithSameIp: this.p2pSettingForm
                             .node_maxActiveNodesWithSameIp,
-                        connectFactor: this.p2pSettingForm.connectFactor
+                        connectFactor: this.p2pSettingForm.node_connectFactor
                     };
                     // all node ary
                     let allNodesAry = [];
