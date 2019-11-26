@@ -59,6 +59,7 @@ export default {
     'deploymentNodeSyncCheckTips': 'Do you need synchronous detection，Only one SR in the new chain is false, others are true',
     'tronNodeSyncCheckPlaceholder': 'Please choose ',
     'tronNumberPlaceholder': 'Number exceeds maximum limit',
+    'tronPortNumberPlaceholder': 'Maximum number of port numbers 65536',
     'tronNodeIpValidate': 'Please enter the correct IP',
     'tronNodeIpLocalValidate': 'Local conditions are not supported at this time',
     'tronNodeUrlValidate': 'Please enter the correct Url',

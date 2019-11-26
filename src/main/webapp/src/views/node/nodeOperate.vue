@@ -292,6 +292,13 @@ export default {
                     callback();
                 }
             };
+            const validPortNum = (rule, value, callback) => {
+                if (value > 65536) {
+                    callback(new Error(this.$t("tronPortNumberPlaceholder")));
+                } else {
+                    callback();
+                }
+            }
             const validPrivateKey = (rule, value, callback) => {
                 if (value.length != 64) {
                     callback(
@@ -364,7 +371,7 @@ export default {
                     },
                     {
                         required: true,
-                        validator: validMaxNum,
+                        validator: validPortNum,
                         trigger: "blur"
                     }
                 ],

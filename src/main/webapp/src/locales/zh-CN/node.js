@@ -59,6 +59,7 @@ export default {
     'deploymentNodeSyncCheckTips': '是否需要同步检测，新链中仅有一个SR为false，其他为true',
     'tronNodeSyncCheckPlaceholder': '请选择是否同步检测',
     'tronNumberPlaceholder': '数字超过最大限额',
+    'tronPortNumberPlaceholder': '端口号最大限制65536',
     'tronNodeIpValidate': '请输入正确IP',
     'tronNodeIpLocalValidate': '暂不支持本地情况',
     'tronNodeUrlValidate': '请输入正确Url',
