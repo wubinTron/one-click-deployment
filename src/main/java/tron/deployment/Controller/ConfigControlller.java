@@ -119,8 +119,8 @@ public class ConfigControlller {
         Args.getConnectFactor(loadConfig), Args.getSeedNode(loadConfig), Args.getListenPort(loadConfig));
 
     // network
-    networkConfig = new NetworkConfig(Args.getMaxHttpConnectNumber(loadConfig), Args.getRPCFullNodePort(loadConfig),
-        Args.getHTTPFullNodePort(loadConfig), Args.getRPCSolidityNodePort(loadConfig), Args.getHTTPSolidityNodePort(loadConfig));
+    networkConfig = new NetworkConfig(Args.getMaxHttpConnectNumber(loadConfig), Args.getRPCSolidityNodePort(loadConfig),  Args.getRPCFullNodePort(loadConfig),
+        Args.getHTTPFullNodePort(loadConfig), Args.getHTTPSolidityNodePort(loadConfig));
 
     // crossChain
     initCrossSetting();
@@ -192,7 +192,7 @@ public class ConfigControlller {
       @RequestParam(value = "httpSolidityPort", required = false, defaultValue = "8091") int httpSolidityPort
   ) {
     ConfigGenerator configGenerator = new ConfigGenerator();
-    boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, rpcPort, solidityRPCPort,
+    boolean result = configGenerator.updateConfig(new NetworkConfig(maxHttpConnectNumber, solidityRPCPort, rpcPort,
         httpFullNodePort, httpSolidityPort), Common.configFiled);
     if (result == false) {
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.updateConfigFileFailed).toJSONObject();
