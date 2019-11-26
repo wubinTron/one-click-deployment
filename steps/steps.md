@@ -32,7 +32,7 @@ Required fields include：
 |    ID <sup style="color:blue">[2]</sup>     | Node unique number (Number is a positive integer maximum support value 2147483647) |
 |                  user name                  |                                    ssh username                                    |
 |                     IP                      |                                      Node Ip                                       |
-|                    PORT                     |     Node Port (Number is a positive integer maximum support value 2147483647)      |
+|                    PORT                     |        Node Port (Number is a positive integer maximum support value 65535)        |
 |                     URL                     |                            Url （Required for Witness）                            |
 |                  voteCount                  |               Number of corresponding votes （Required for Witness）               |
 | privateKey<sup style="color:blue">[3]</sup> |               Save local 64-bit private key （Required for Witness）               |
@@ -91,10 +91,10 @@ Required fields for network link configuration include:
 |    Required field    |                                       Explanation                                       |
 | :------------------: | :-------------------------------------------------------------------------------------: |
 | maxHttpConnectNumber | max http Connect Number (Number is a positive integer maximum support value 2147483647) |
-|   httpFullNodePort   |    httpFullNode Port (Number is a positive integer maximum support value 2147483647)    |
-|   httpSolidityPort   |    httpFullNode Port (Number is a positive integer maximum support value 2147483647)    |
-|       rpcPort        |        rpc Port (Number is a positive integer maximum support value 2147483647)         |
-|   rpcSolidityPort    |    rpcSolidity Port (Number is a positive integer maximum support value 2147483647)     |
+|   httpFullNodePort   |      httpFullNode Port (Number is a positive integer maximum support value 65535)       |
+|   httpSolidityPort   |      httpFullNode Port (Number is a positive integer maximum support value 65535)       |
+|       rpcPort        |           rpc Port (Number is a positive integer maximum support value 65535)           |
+|   rpcSolidityPort    |       rpcSolidity Port (Number is a positive integer maximum support value 65535)       |
 
 Network link configuration click the next button to save the current configuration
 
@@ -119,7 +119,7 @@ P2p configuration required fields include：
 | Required field |                                 Explanation                                 |
 | :------------: | :-------------------------------------------------------------------------: |
 |   p2pVersion   | p2p Version (Number is a positive integer maximum support value 2147483647) |
-|   listenPort   | listen Port (Number is a positive integer maximum support value 2147483647) |
+|   listenPort   |   listen Port (Number is a positive integer maximum support value 65535)    |
 |    seedNode    |                              seedNode (check)                               |
 
 Advanced configuration fields include：
@@ -186,7 +186,7 @@ UpdateSettingContract
 VoteWitness  
 WithdrawBalance  
 WitnessCreate  
-WitnessUpdate   
+WitnessUpdate  
 Also could customize uploading transactions.
 Upload jar which not related customize transaction may affect normal running  
 Trading module click the next button to save the current transaction module settings.
