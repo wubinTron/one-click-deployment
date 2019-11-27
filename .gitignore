@@ -20,6 +20,8 @@ logs/*
 .settings
 .springBeans
 .sts4-cache
+.config.conf
+.database
 
 ### IntelliJ IDEA ###
 .idea
