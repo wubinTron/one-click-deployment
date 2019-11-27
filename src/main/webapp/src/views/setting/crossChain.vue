@@ -44,6 +44,7 @@ Modified time: 2019-11-15 20:23:28 * @setting cross setting */
                                     :maxlength="50"
                                     v-model.trim="baseSettingForm.maxValidatorNumber"
                                     :placeholder="$t('tronMaxValidatorNumberPlaceholder')"
+                                    disabled
                                 ></el-input>
                             </el-form-item>
                             <el-form-item
@@ -56,6 +57,7 @@ Modified time: 2019-11-15 20:23:28 * @setting cross setting */
                                     :maxlength="50"
                                     v-model.trim="baseSettingForm.minValidatorNumber"
                                     :placeholder="$t('tronMinValidatorNumberPlaceholder')"
+                                    disabled
                                 ></el-input>
                             </el-form-item>
 
@@ -72,6 +74,7 @@ Modified time: 2019-11-15 20:23:28 * @setting cross setting */
                                     :maxlength="50"
                                     v-model.trim="baseSettingForm.crossChainFee"
                                     :placeholder="$t('tronSettingPlaceholder')"
+                                    disabled
                                 ></el-input-number>
                             </el-form-item>
                         </div>
