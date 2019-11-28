@@ -18,7 +18,8 @@
                 @command="handleCommand"
             >
                 <div class="avatar-wrapper">
-                    {{$t('tronSettingChooseLanguage')}}
+                    {{currentLanguage }}
+                    <!-- {{$t('tronSettingChooseLanguage')}} -->
                     <i class="el-icon-caret-bottom" />
                 </div>
                 <el-dropdown-menu slot="dropdown">
@@ -38,7 +39,11 @@ import Hamburger from "@/components/Hamburger";
 export default {
     data() {
         return {
-            title: ""
+            title: "",
+            currentLanguage:
+                sessionStorage.getItem("currentLang") == "zh-CN"
+                    ? "简体中文"
+                    : "English"
         };
     },
     created() {
@@ -63,9 +68,11 @@ export default {
             if (val === "zh") {
                 this.$i18n.locale = "zh-CN"; //关键语句
                 sessionStorage.setItem("currentLang", "zh-CN");
+                this.currentLanguage = "简体中文";
             } else {
                 this.$i18n.locale = "en-US"; //关键语句
                 sessionStorage.setItem("currentLang", "en-US");
+                this.currentLanguage = "English";
             }
         }
     }
