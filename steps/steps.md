@@ -223,7 +223,7 @@ The log will be automatically refreshed until the deploy finish.
 
 [4] Note: Click the node list next button to reset the configuration management menu permissions, only show configuration management menu permissions
 
-[5] Note: When the node list is empty, the default next button cannot be clicked. When the node list is deleted, there is no next menu permission. The node list supports up to 20 nodes.
+[5] Note: When the node list is empty, the default next button cannot be clicked. When the node list is deleted, there is no next menu permission. The node list supports up to 20 nodes.When you modify the contents of the node list, you also need to click the Next button to reset the current default settings.
 
 [6] Note: The balance range is between -9223372036854775808 and 9223372036854775807. To ensure successful deployment, please fill in the range of values.
 
