@@ -17,7 +17,7 @@ If front-end browser and the back-end server not in one computer, we needs to mo
 Mainly show the content operation steps of the one-click deployment and related documentation
 
 （1）One-click deployment introduction  
-（2）Guide (Recommended for linux and mac systems)  
+（2）Guide (Recommended for linux and mac systems)
 （3）Documentation  
 （4）Click the start button and deploy with one click<sup style="color:blue">[1]</sup>
 
