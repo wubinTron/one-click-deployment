@@ -130,7 +130,8 @@ import {
     deleteNote,
     deployNodeApi,
     deployLogInfoApi,
-    nodeInfoApi
+    nodeInfoApi,
+    initConfigApi
 } from "@/api/nodeApi.js";
 import operateNode from "./nodeOperate";
 
@@ -444,13 +445,22 @@ export default {
                 this.getDataListFun();
             }
         },
-        async nextStepFun() {
-            await this.$store
-                .dispatch("user/changeRoles", "setting")
-                .then(res => {
-                    console.log(res);
+        nextStepFun() {
+            initConfigApi()
+                .then(async response => {
+                    console.log(response);
+                    if (response.code === 204) {
+                        await this.$store
+                            .dispatch("user/changeRoles", "setting")
+                            .then(res => {
+                                console.log(res);
+                            });
+                        this.$router.push({ path: "/setting/list" });
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
                 });
-            this.$router.push({ path: "/setting/list" });
         }
     }
 };
