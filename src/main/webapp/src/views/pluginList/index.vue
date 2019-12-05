@@ -18,6 +18,10 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                             @click.native="stepClickFun(3)"
                             :title="$t('tronPluginDatabaseModule')"
                         ></el-step>
+                        <el-step
+                          @click.native="stepClickFun(4)"
+                          :title="$t('tronPluginCryptoModule')"
+                        ></el-step>
                     </el-steps>
                 </div>
             </div>
@@ -215,6 +219,51 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                     >{{ $t("tronSettingNextStep") }}</el-button>
                 </el-form-item>
             </el-form>
+            <!-- crypto form -->
+            <el-form
+              ref="cryptoFormDialogForm"
+              :model="cryptoForm"
+              :rules="cryptoRules"
+              class="cryptoForm"
+              label-position="left"
+              v-if="currentStep === 4">
+              <el-row :gutter="12" v-if="currentStep == 4">
+                <el-col :span="24">
+                  <el-card shadow="hover">
+                    <div @click="cryptoContentShow = !cryptoContentShow">
+                      <i
+                        :class="
+                    cryptoContentShow
+                      ? 'el-icon-arrow-down'
+                      : 'el-icon-arrow-right'
+                  "
+                      ></i>
+                      {{ $t("tronPluginCryptoModule") }}
+                    </div>
+                    <div v-if="cryptoContentShow" style="padding-left:20px">
+                      <el-form-item prop="crypto" class="baseFormItem mgt30">
+                        <el-radio-group v-model="cryptoForm.crypto">
+                          <el-radio :label="'sm2'">sm2</el-radio>
+                          <el-radio :label="'eckey'">eckey</el-radio>
+                        </el-radio-group>
+                      </el-form-item>
+                    </div>
+                  </el-card>
+                </el-col>
+              </el-row>
+              <el-form-item label-width="0" class="textRight">
+                <el-button size="small" type="primary" @click="previousStepFun()">
+                  {{
+                  $t("tronSettingPreviousStep")
+                  }}
+                </el-button>
+                <el-button
+                  size="small"
+                  type="primary"
+                  @click="saveCryptoData('cryptoFormDialogForm')"
+                >{{ $t("tronSettingNextStep") }}</el-button>
+              </el-form-item>
+            </el-form>
         </div>
     </div>
 </template>
@@ -263,6 +312,18 @@ export default {
                 ]
             };
             return rules;
+        },
+        cryptoRules() {
+          const rules = {
+            crypto: [
+              {
+                required: true,
+                message: this.$t("tronSettingPlaceholder"),
+                trigger: "blur"
+              }
+            ]
+          };
+          return rules;
         }
     },
     data() {
@@ -272,6 +333,7 @@ export default {
             moreSetting: false,
             transcationContentShow: true,
             dbsettingContentShow: true,
+            cryptoContentShow: true,
             pluginOnsensusForm: {
                 consensus: "dpos",
                 consensusContent: ""
@@ -394,6 +456,10 @@ export default {
             plugindbForm: {
                 dbsetting: "leveldb",
                 dbsettingContent: ""
+            },
+            cryptoForm: {
+              crypto: 'sm2',
+              cryptoContent: '',
             }
         };
     },
@@ -451,6 +517,18 @@ export default {
                             dbsetting: res.dbEngine,
                             dbsettingContent: ""
                         };
+                    }
+
+                    if (!['sm2', 'eckey'].includes(res.crypto)) {
+                      this.cryptoForm = {
+                        crypto: 3,
+                        cryptoContent: res.crypto
+                      };
+                    } else {
+                      this.cryptoForm = {
+                        crypto: res.crypto,
+                        cryptoContent: '',
+                      }
                     }
                 })
                 .catch(error => {
@@ -629,17 +707,16 @@ export default {
                     dbEngineApi({ dbEngine: this.plugindbForm.dbsetting })
                         .then(async response => {
                             this.$message.success(
-                                this.$t("tronPluginInputSaveSuccess")
+                                this.$t("tronPluginDatabaseSaveSuccess")
                             );
-                            await this.$store
-                                .dispatch("user/changeRoles", "deploy")
-                                .then(res => {
-                                    console.log(res);
-                                });
-                            this.$router.push({
-                                path: "/deploy/list"
-                                // query: { deploy: 1 }
-                            });
+                            this.currentStep = this.currentStep + 1;
+                            this.$store.dispatch(
+                              "tronSetting/getCurrentPluginStepConfig",
+                              {
+                                step: this.currentStep
+                              }
+                            );
+                            this.pluginConfigFun();
                         })
                         .catch(error => {
                             console.log(error);
@@ -649,7 +726,43 @@ export default {
                     return false;
                 }
             });
-        }
+        },
+      saveCryptoData(formName) {
+        this.$refs[formName].validate(valid => {
+          if (valid) {
+            if (this.cryptoForm.crypto === 3) {
+              if (!this.cryptoForm.cryptoContent) {
+                this.$message.success(
+                  this.$t("tronPluginCustomDatabaseModulePlaceholder")
+                );
+                return;
+              }
+              this.cryptoForm.crypto = this.cryptoForm.cryptoContent;
+            }
+            dbEngineApi({ crypto: this.cryptoForm.crypto })
+              .then(async response => {
+                this.$message.success(
+                  this.$t("tronPluginInputSaveSuccess")
+                );
+                await this.$store
+                  .dispatch("user/changeRoles", "deploy")
+                  .then(res => {
+                    console.log(res);
+                  });
+                this.$router.push({
+                  path: "/deploy/list"
+                  // query: { deploy: 1 }
+                });
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          } else {
+            console.log("error submit!!");
+            return false;
+          }
+        });
+      }
     }
 };
 </script>
