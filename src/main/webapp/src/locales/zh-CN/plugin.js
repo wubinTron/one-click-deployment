@@ -14,6 +14,7 @@ export default {
     'tronPluginCustomDatabaseModulePlaceholder': '请填写自定义数据库模块',
     'tronPluginDatabaseSaveSuccess': '数据库模块设置成功',
     'tronPluginCryptoModule': '密钥模块',
+    'tronPluginCustomCryptoModulePlaceholder': '请填写自定义密钥模块',
     'tronPluginInputPlaceholder': '请填写',
     'tronPluginInputSave': '保存',
     'tronPluginInputCancel': '取消',

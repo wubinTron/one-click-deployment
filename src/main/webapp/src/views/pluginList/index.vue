@@ -272,7 +272,8 @@ import {
     dbEngineApi,
     transactionApi,
     consensusApi,
-    pluginConfigApi
+    pluginConfigApi,
+    cryptoApi,
 } from "@/api/pluginApi";
 export default {
     name: "pluginlist",
@@ -733,13 +734,13 @@ export default {
             if (this.cryptoForm.crypto === 3) {
               if (!this.cryptoForm.cryptoContent) {
                 this.$message.success(
-                  this.$t("tronPluginCustomDatabaseModulePlaceholder")
+                  this.$t("tronPluginCustomCryptoModulePlaceholder")
                 );
                 return;
               }
               this.cryptoForm.crypto = this.cryptoForm.cryptoContent;
             }
-            dbEngineApi({ crypto: this.cryptoForm.crypto })
+            cryptoApi({ crypto: this.cryptoForm.crypto })
               .then(async response => {
                 this.$message.success(
                   this.$t("tronPluginInputSaveSuccess")

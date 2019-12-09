@@ -43,3 +43,13 @@ export function consensusApi(params) {
     params
   })
 }
+
+
+// /crypto setting
+export function cryptoApi(params) {
+  return request({
+    url: '/crypto',
+    method: 'post',
+    params
+  })
+}
