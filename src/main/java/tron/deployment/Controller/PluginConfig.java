@@ -8,7 +8,9 @@ import common.Args;
 import common.Common;
 import common.Util;
 import config.ActuatorConfig;
+import config.BlockSettingConfig;
 import config.ConfigGenerator;
+import config.CryptoConfig;
 import config.NetworkConfig;
 import org.spongycastle.util.Strings;
 import response.ResultCode;
@@ -79,6 +81,19 @@ public class PluginConfig {
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }
 
+  @RequestMapping(method = RequestMethod.POST, value = "/crypto")
+  public JSONObject cryptoEngine(
+      @RequestParam(value = "crypto", required = false, defaultValue = "eckey") String eckey
+  ){
+    ConfigGenerator configGenerator = new ConfigGenerator();
+    boolean result = configGenerator.updateConfig(new CryptoConfig(eckey), Common.configFiled);
+
+    if (result == false) {
+      return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.writeJsonFileFailed).toJSONObject();
+    }
+    return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
+  }
+
   @RequestMapping(method = RequestMethod.GET, value = "/pluginConfig")
   public JSONObject pluginConfig() {
     JSONObject json = readJsonFile();
@@ -88,6 +103,8 @@ public class PluginConfig {
     result.put(Common.customTransactionFiled, json.get(Common.customTransactionFiled));
     Util.parseConfig();
     result.put(Common.transactionFiled, Args.getActuatorSet(Util.config));
+    result.put(Common.cryptoEngine, Args.getCrypto(Util.config));
+
     return new Response(ResultCode.OK.code, result).toJSONObject();
   }
 }

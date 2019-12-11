@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import org.spongycastle.util.Strings;
+import org.tron.core.Constant;
 import org.tron.core.Wallet;
 import org.tron.core.config.args.Account;
 import org.tron.core.config.args.Witness;
@@ -34,6 +36,7 @@ public class Args {
   private static final String SEED_NODE_IP_LIST = "seed.node.ip.list";
   private static final String GENESIS_BLOCK_WITNESSES = "genesis.block.witnesses";
   private static final String ACTUATOR_WHITELIST = "actuator.whitelist";
+  private static final String CRYPTO_ENGINE = "crypto.engine";
 
   public static boolean needToUpdateAsset(final Config config) {
     return config.hasPath(NEED_TO_UPDATE_ASSET_KEY) ? config
@@ -158,5 +161,10 @@ public class Args {
     return config.hasPath(ACTUATOR_WHITELIST) ?
         new HashSet<>(config.getStringList(ACTUATOR_WHITELIST))
         : Collections.emptySet();
+  }
+
+  public static String getCrypto(final Config config) {
+    return config.hasPath(CRYPTO_ENGINE) ? config
+        .getString(CRYPTO_ENGINE) : "eckey";
   }
 }

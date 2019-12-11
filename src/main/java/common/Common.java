@@ -12,6 +12,8 @@ public class Common {
 
   public static final String transactionFiled = "transaction";
 
+  public static final String cryptoEngine = "crypto";
+
   public static final String customTransactionFiled = "customTransaction";
 
   public static final String assetsFiled = "assets";
