@@ -243,8 +243,8 @@ Modified time: 2019-11-14 15:13:54 * @tron plugin list */
                     <div v-if="cryptoContentShow" style="padding-left:20px">
                       <el-form-item prop="crypto" class="baseFormItem mgt30">
                         <el-radio-group v-model="cryptoForm.crypto">
-                          <el-radio :label="'sm2'">sm2</el-radio>
                           <el-radio :label="'eckey'">eckey</el-radio>
+                          <el-radio :label="'sm2'">sm2</el-radio>
                         </el-radio-group>
                       </el-form-item>
                     </div>
@@ -459,7 +459,7 @@ export default {
                 dbsettingContent: ""
             },
             cryptoForm: {
-              crypto: 'sm2',
+              crypto: 'eckey',
               cryptoContent: '',
             }
         };
