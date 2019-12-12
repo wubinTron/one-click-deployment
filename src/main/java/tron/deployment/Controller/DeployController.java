@@ -1,5 +1,6 @@
 package tron.deployment.Controller;
 
+import static common.LogConfig.LOG;
 import static common.Util.readJsonFile;
 
 import common.Common;
@@ -58,7 +59,7 @@ public class DeployController {
 				read.close();
 
 			} catch (Exception  e) {
-				log.error(e.toString());
+				LOG.error(e.toString());
 			}
 		} else {
 			return Common.notFoundStatus;
@@ -123,7 +124,7 @@ public class DeployController {
         privateKey = Wallet.getPrivateString(String.format("%s/%s", Common.walletFiled, privateKeypath));
 				blockNeedSync = (Boolean) node.get(Common.needSyncCheck);
       } catch (CipherException | IOException e) {
-        log.error(e.toString());
+        LOG.error(e.toString());
         return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "load privateKey info failed").toJSONObject();
       }
     }

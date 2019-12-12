@@ -1,11 +1,13 @@
 package tron.deployment.Controller;
 
+import static common.LogConfig.LOG;
 import static common.Util.readJsonFile;
 import static common.Util.writeJsonFile;
 import static wallet.Wallet.hexs2Bytes;
 import static wallet.Wallet.private2Address;
 
 import common.Common;
+import common.LogConfig;
 import config.SeedNodeConfig;
 import java.util.List;
 import response.ResultCode;
@@ -52,7 +54,7 @@ public class NodeController {
     GenesisWitnessConfig witnessConfig =  new GenesisWitnessConfig();
     witnessConfig.setGenesisBlockWitnesses(witnessnodes);
     if (configGenerator.updateConfig(witnessConfig, Common.configFiled) == false) {
-      log.error("update witness config file failed");
+      LOG.error("update witness config file failed");
       return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, "update witness config file failed").toJSONObject();
     }
 
@@ -131,7 +133,7 @@ public class NodeController {
         newNode.put(Common.privateKeyFiled, path);
         newNode.put(Common.publicKeyFiled, publicKey);
       } catch (CipherException | IOException e) {
-        log.error(e.toString()) ;
+        LOG.error(e.toString()) ;
         return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.savePrivateKeyFailed).toJSONObject();
       }
     }
@@ -180,7 +182,7 @@ public class NodeController {
         node.put(Common.privateKeyFiled, path);
         node.put(Common.publicKeyFiled, publicKey);
       } catch (CipherException | IOException e) {
-        log.error(e.toString()) ;
+        LOG.error(e.toString()) ;
         return new Response(ResultCode.INTERNAL_SERVER_ERROR.code, Common.savePrivateKeyFailed).toJSONObject();
       }
     }
@@ -230,7 +232,7 @@ public class NodeController {
   public JSONObject initConfig() {
     ConfigGenerator configGenerator = new ConfigGenerator();
     if (configGenerator.updateConfig(new SeedNodeConfig(new ArrayList<>()), Common.configFiled) == false) {
-      log.error("update seed node config file failed");
+      LOG.error("update seed node config file failed");
     }
     return new Response(ResultCode.OK_NO_CONTENT.code, "").toJSONObject();
   }

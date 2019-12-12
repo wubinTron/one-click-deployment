@@ -1,17 +1,13 @@
 package tron.deployment.shellExecutor;
 
 import static common.Common.logFormat;
+import static common.LogConfig.LOG;
 
 import common.Common;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStreamReader;
 
 @Slf4j
 public class BashExecutor {
@@ -28,7 +24,7 @@ public class BashExecutor {
             cmdArray = ArrayUtils.add(cmdArray, logName);
             String cmd = StringUtils.join(cmdArray, " ");
             Runtime.getRuntime().exec(new String[]{"bash", "-c", cmd});
-            log.info("deploy cmd: {}", cmd);
+            LOG.info("deploy cmd: {}", cmd);
         }
         catch (Exception e){
             e.printStackTrace();
