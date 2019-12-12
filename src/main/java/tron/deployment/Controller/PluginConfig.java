@@ -103,7 +103,7 @@ public class PluginConfig {
     result.put(Common.customTransactionFiled, json.get(Common.customTransactionFiled));
     Util.parseConfig();
     result.put(Common.transactionFiled, Args.getActuatorSet(Util.config));
-    result.put(Common.cryptoEngine, Args.getCrypto(Util.config));
+    result.put(Common.cryptoEngine, Strings.toLowerCase(Args.getCrypto(Util.config)));
 
     return new Response(ResultCode.OK.code, result).toJSONObject();
   }
